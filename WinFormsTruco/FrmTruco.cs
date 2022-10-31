@@ -16,6 +16,7 @@ namespace WinFormsTruco
 
         private int contJugador1;
         private int contJugador2;
+        private int turno=1;
 
         #endregion
 
@@ -85,6 +86,7 @@ namespace WinFormsTruco
 
             label.Location = new Point(anchuraPanel / 2, alturaPanel);
             this.contJugador1++;
+            this.turno = 2;
         }
 
         private void CentrarLabelEnMesaJ2(Label label)
@@ -104,7 +106,9 @@ namespace WinFormsTruco
 
             label.Location = new Point(anchuraPanel / 2, alturaPanel);
             this.contJugador2++;
+            this.turno = 1;
         }
+
 
 
 
@@ -112,6 +116,68 @@ namespace WinFormsTruco
 
         #endregion
 
+        #region Botones
         
+        private void CambiarLabelJugador(string msj)
+        {
+            switch (this.turno)
+            {
+                case 1: this.labelCantoJugador1.Text = msj; this.labelCantoJugador1.Visible = true; this.turno = 2; break;
+                case 2: this.labelCantoJugador2.Text = msj; this.labelCantoJugador2.Visible = true; this.turno = 1; break;
+            }
+        }
+        private void btnEnvido_Click(object sender, EventArgs e)
+        {
+            this.CambiarLabelJugador("Envido!");
+        }
+
+        private void btnRealEnvido_Click(object sender, EventArgs e)
+        {
+            this.CambiarLabelJugador("Real envido!");
+        }
+
+        private void btnFaltaEnvido_Click(object sender, EventArgs e)
+        {
+            this.CambiarLabelJugador("Falta envido!");
+        }
+
+        private void btnFlor_Click(object sender, EventArgs e)
+        {
+            this.CambiarLabelJugador("Flor!");
+        }
+
+        private void btnQuiero_Click(object sender, EventArgs e)
+        {
+            this.CambiarLabelJugador("Quiero!");
+        }
+
+        private void btnNoQuiero_Click(object sender, EventArgs e)
+        {
+            this.CambiarLabelJugador("No quiero!");
+        }
+
+        private void btnTruco_Click(object sender, EventArgs e)
+        {
+            this.CambiarLabelJugador("Truco!");
+        }
+
+        private void btnReTruco_Click(object sender, EventArgs e)
+        {
+            this.CambiarLabelJugador("Quiero re truco!");
+        }
+
+        private void btnValeCuatro_Click(object sender, EventArgs e)
+        {
+            this.CambiarLabelJugador("Quiero vale cuatro!");
+        }
+
+        private void btnAlMazo_Click(object sender, EventArgs e)
+        {
+            this.CambiarLabelJugador("Me voy al mazo");
+        }
+
+
+        #endregion
+
     }
 }

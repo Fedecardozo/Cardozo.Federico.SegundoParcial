@@ -29,15 +29,15 @@ namespace WinFormsTruco
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelInferior = new System.Windows.Forms.Panel();
             this.labelCantoJugador1 = new System.Windows.Forms.Label();
             this.labelJugador1C3 = new System.Windows.Forms.Label();
             this.labelJugador1C2 = new System.Windows.Forms.Label();
             this.labelJugador1C1 = new System.Windows.Forms.Label();
             this.panelSuperior = new System.Windows.Forms.Panel();
-            this.labelCantojugador2 = new System.Windows.Forms.Label();
+            this.labelCantoJugador2 = new System.Windows.Forms.Label();
             this.labelJugador2C3 = new System.Windows.Forms.Label();
             this.labelJugador2C2 = new System.Windows.Forms.Label();
             this.labelJugador2C1 = new System.Windows.Forms.Label();
@@ -46,13 +46,16 @@ namespace WinFormsTruco
             this.jugador1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jugador2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelIzquierdo = new System.Windows.Forms.Panel();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAlMazo = new System.Windows.Forms.Button();
+            this.btnNoQuiero = new System.Windows.Forms.Button();
+            this.btnQuiero = new System.Windows.Forms.Button();
+            this.btnFlor = new System.Windows.Forms.Button();
+            this.btnValeCuatro = new System.Windows.Forms.Button();
+            this.btnReTruco = new System.Windows.Forms.Button();
+            this.btnTruco = new System.Windows.Forms.Button();
+            this.btnFaltaEnvido = new System.Windows.Forms.Button();
+            this.btnRealEnvido = new System.Windows.Forms.Button();
+            this.btnEnvido = new System.Windows.Forms.Button();
             this.panelMesa = new System.Windows.Forms.Panel();
             this.panelInferior.SuspendLayout();
             this.panelSuperior.SuspendLayout();
@@ -84,6 +87,7 @@ namespace WinFormsTruco
             this.labelCantoJugador1.Size = new System.Drawing.Size(173, 31);
             this.labelCantoJugador1.TabIndex = 7;
             this.labelCantoJugador1.Text = "Lo que se canta";
+            this.labelCantoJugador1.Visible = false;
             // 
             // labelJugador1C3
             // 
@@ -126,7 +130,7 @@ namespace WinFormsTruco
             // panelSuperior
             // 
             this.panelSuperior.BackColor = System.Drawing.Color.Red;
-            this.panelSuperior.Controls.Add(this.labelCantojugador2);
+            this.panelSuperior.Controls.Add(this.labelCantoJugador2);
             this.panelSuperior.Controls.Add(this.labelJugador2C3);
             this.panelSuperior.Controls.Add(this.labelJugador2C2);
             this.panelSuperior.Controls.Add(this.labelJugador2C1);
@@ -136,16 +140,17 @@ namespace WinFormsTruco
             this.panelSuperior.Size = new System.Drawing.Size(1015, 128);
             this.panelSuperior.TabIndex = 1;
             // 
-            // labelCantojugador2
+            // labelCantoJugador2
             // 
-            this.labelCantojugador2.AutoSize = true;
-            this.labelCantojugador2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelCantojugador2.ForeColor = System.Drawing.Color.AliceBlue;
-            this.labelCantojugador2.Location = new System.Drawing.Point(35, 90);
-            this.labelCantojugador2.Name = "labelCantojugador2";
-            this.labelCantojugador2.Size = new System.Drawing.Size(173, 31);
-            this.labelCantojugador2.TabIndex = 6;
-            this.labelCantojugador2.Text = "Lo que se canta";
+            this.labelCantoJugador2.AutoSize = true;
+            this.labelCantoJugador2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelCantoJugador2.ForeColor = System.Drawing.Color.AliceBlue;
+            this.labelCantoJugador2.Location = new System.Drawing.Point(35, 90);
+            this.labelCantoJugador2.Name = "labelCantoJugador2";
+            this.labelCantoJugador2.Size = new System.Drawing.Size(173, 31);
+            this.labelCantoJugador2.TabIndex = 6;
+            this.labelCantoJugador2.Text = "Lo que se canta";
+            this.labelCantoJugador2.Visible = false;
             // 
             // labelJugador2C3
             // 
@@ -197,9 +202,9 @@ namespace WinFormsTruco
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Orange;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.Orange;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -214,8 +219,8 @@ namespace WinFormsTruco
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridView1.RowTemplate.Height = 29;
             this.dataGridView1.Size = new System.Drawing.Size(275, 233);
             this.dataGridView1.TabIndex = 0;
@@ -241,88 +246,131 @@ namespace WinFormsTruco
             // panelIzquierdo
             // 
             this.panelIzquierdo.BackColor = System.Drawing.Color.AliceBlue;
-            this.panelIzquierdo.Controls.Add(this.button7);
-            this.panelIzquierdo.Controls.Add(this.button6);
-            this.panelIzquierdo.Controls.Add(this.button5);
-            this.panelIzquierdo.Controls.Add(this.button4);
-            this.panelIzquierdo.Controls.Add(this.button3);
-            this.panelIzquierdo.Controls.Add(this.button2);
-            this.panelIzquierdo.Controls.Add(this.button1);
+            this.panelIzquierdo.Controls.Add(this.btnAlMazo);
+            this.panelIzquierdo.Controls.Add(this.btnNoQuiero);
+            this.panelIzquierdo.Controls.Add(this.btnQuiero);
+            this.panelIzquierdo.Controls.Add(this.btnFlor);
+            this.panelIzquierdo.Controls.Add(this.btnValeCuatro);
+            this.panelIzquierdo.Controls.Add(this.btnReTruco);
+            this.panelIzquierdo.Controls.Add(this.btnTruco);
+            this.panelIzquierdo.Controls.Add(this.btnFaltaEnvido);
+            this.panelIzquierdo.Controls.Add(this.btnRealEnvido);
+            this.panelIzquierdo.Controls.Add(this.btnEnvido);
             this.panelIzquierdo.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelIzquierdo.Location = new System.Drawing.Point(0, 128);
             this.panelIzquierdo.Name = "panelIzquierdo";
             this.panelIzquierdo.Size = new System.Drawing.Size(282, 261);
             this.panelIzquierdo.TabIndex = 3;
             // 
-            // button7
+            // btnAlMazo
             // 
-            this.button7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button7.Location = new System.Drawing.Point(145, 67);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(118, 38);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "Flor";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnAlMazo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAlMazo.Location = new System.Drawing.Point(145, 206);
+            this.btnAlMazo.Name = "btnAlMazo";
+            this.btnAlMazo.Size = new System.Drawing.Size(118, 49);
+            this.btnAlMazo.TabIndex = 9;
+            this.btnAlMazo.Text = "Me voy al mazo";
+            this.btnAlMazo.UseVisualStyleBackColor = true;
+            this.btnAlMazo.Click += new System.EventHandler(this.btnAlMazo_Click);
             // 
-            // button6
+            // btnNoQuiero
             // 
-            this.button6.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button6.Location = new System.Drawing.Point(77, 217);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(118, 38);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Vale cuatro";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnNoQuiero.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnNoQuiero.Location = new System.Drawing.Point(145, 106);
+            this.btnNoQuiero.Name = "btnNoQuiero";
+            this.btnNoQuiero.Size = new System.Drawing.Size(118, 38);
+            this.btnNoQuiero.TabIndex = 8;
+            this.btnNoQuiero.Text = "No quiero";
+            this.btnNoQuiero.UseVisualStyleBackColor = true;
+            this.btnNoQuiero.Click += new System.EventHandler(this.btnNoQuiero_Click);
             // 
-            // button5
+            // btnQuiero
             // 
-            this.button5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button5.Location = new System.Drawing.Point(145, 162);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(118, 38);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Re truco";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnQuiero.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnQuiero.Location = new System.Drawing.Point(12, 106);
+            this.btnQuiero.Name = "btnQuiero";
+            this.btnQuiero.Size = new System.Drawing.Size(118, 38);
+            this.btnQuiero.TabIndex = 7;
+            this.btnQuiero.Text = "Quiero";
+            this.btnQuiero.UseVisualStyleBackColor = true;
+            this.btnQuiero.Click += new System.EventHandler(this.btnQuiero_Click);
             // 
-            // button4
+            // btnFlor
             // 
-            this.button4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button4.Location = new System.Drawing.Point(12, 162);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(118, 38);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Truco";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnFlor.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnFlor.Location = new System.Drawing.Point(145, 50);
+            this.btnFlor.Name = "btnFlor";
+            this.btnFlor.Size = new System.Drawing.Size(118, 38);
+            this.btnFlor.TabIndex = 6;
+            this.btnFlor.Text = "Flor";
+            this.btnFlor.UseVisualStyleBackColor = true;
+            this.btnFlor.Click += new System.EventHandler(this.btnFlor_Click);
             // 
-            // button3
+            // btnValeCuatro
             // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button3.Location = new System.Drawing.Point(12, 67);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(118, 38);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Falta envido";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnValeCuatro.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnValeCuatro.Location = new System.Drawing.Point(12, 206);
+            this.btnValeCuatro.Name = "btnValeCuatro";
+            this.btnValeCuatro.Size = new System.Drawing.Size(118, 49);
+            this.btnValeCuatro.TabIndex = 5;
+            this.btnValeCuatro.Text = "Quiero vale cuatro";
+            this.btnValeCuatro.UseVisualStyleBackColor = true;
+            this.btnValeCuatro.Click += new System.EventHandler(this.btnValeCuatro_Click);
             // 
-            // button2
+            // btnReTruco
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button2.Location = new System.Drawing.Point(145, 6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(118, 38);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Real envido";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnReTruco.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnReTruco.Location = new System.Drawing.Point(145, 162);
+            this.btnReTruco.Name = "btnReTruco";
+            this.btnReTruco.Size = new System.Drawing.Size(118, 38);
+            this.btnReTruco.TabIndex = 4;
+            this.btnReTruco.Text = "Quiero re truco";
+            this.btnReTruco.UseVisualStyleBackColor = true;
+            this.btnReTruco.Click += new System.EventHandler(this.btnReTruco_Click);
             // 
-            // button1
+            // btnTruco
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.Location = new System.Drawing.Point(12, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 38);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Envido";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnTruco.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnTruco.Location = new System.Drawing.Point(12, 162);
+            this.btnTruco.Name = "btnTruco";
+            this.btnTruco.Size = new System.Drawing.Size(118, 38);
+            this.btnTruco.TabIndex = 3;
+            this.btnTruco.Text = "Truco";
+            this.btnTruco.UseVisualStyleBackColor = true;
+            this.btnTruco.Click += new System.EventHandler(this.btnTruco_Click);
+            // 
+            // btnFaltaEnvido
+            // 
+            this.btnFaltaEnvido.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnFaltaEnvido.Location = new System.Drawing.Point(12, 50);
+            this.btnFaltaEnvido.Name = "btnFaltaEnvido";
+            this.btnFaltaEnvido.Size = new System.Drawing.Size(118, 38);
+            this.btnFaltaEnvido.TabIndex = 2;
+            this.btnFaltaEnvido.Text = "Falta envido";
+            this.btnFaltaEnvido.UseVisualStyleBackColor = true;
+            this.btnFaltaEnvido.Click += new System.EventHandler(this.btnFaltaEnvido_Click);
+            // 
+            // btnRealEnvido
+            // 
+            this.btnRealEnvido.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnRealEnvido.Location = new System.Drawing.Point(145, 6);
+            this.btnRealEnvido.Name = "btnRealEnvido";
+            this.btnRealEnvido.Size = new System.Drawing.Size(118, 38);
+            this.btnRealEnvido.TabIndex = 1;
+            this.btnRealEnvido.Text = "Real envido";
+            this.btnRealEnvido.UseVisualStyleBackColor = true;
+            this.btnRealEnvido.Click += new System.EventHandler(this.btnRealEnvido_Click);
+            // 
+            // btnEnvido
+            // 
+            this.btnEnvido.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnEnvido.Location = new System.Drawing.Point(12, 6);
+            this.btnEnvido.Name = "btnEnvido";
+            this.btnEnvido.Size = new System.Drawing.Size(118, 38);
+            this.btnEnvido.TabIndex = 0;
+            this.btnEnvido.Text = "Envido";
+            this.btnEnvido.UseVisualStyleBackColor = true;
+            this.btnEnvido.Click += new System.EventHandler(this.btnEnvido_Click);
             // 
             // panelMesa
             // 
@@ -364,13 +412,13 @@ namespace WinFormsTruco
         private System.Windows.Forms.Panel panelSuperior;
         private System.Windows.Forms.Panel panelDerecho;
         private System.Windows.Forms.Panel panelIzquierdo;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnFlor;
+        private System.Windows.Forms.Button btnValeCuatro;
+        private System.Windows.Forms.Button btnReTruco;
+        private System.Windows.Forms.Button btnTruco;
+        private System.Windows.Forms.Button btnFaltaEnvido;
+        private System.Windows.Forms.Button btnRealEnvido;
+        private System.Windows.Forms.Button btnEnvido;
         private System.Windows.Forms.Panel panelMesa;
         private System.Windows.Forms.Label labelJugador1C3;
         private System.Windows.Forms.Label labelJugador1C2;
@@ -382,7 +430,10 @@ namespace WinFormsTruco
         private System.Windows.Forms.DataGridViewTextBoxColumn jugador1;
         private System.Windows.Forms.DataGridViewTextBoxColumn jugador2;
         private System.Windows.Forms.Label labelCantoJugador1;
-        private System.Windows.Forms.Label labelCantojugador2;
+        private System.Windows.Forms.Label labelCantoJugador2;
+        private System.Windows.Forms.Button btnAlMazo;
+        private System.Windows.Forms.Button btnNoQuiero;
+        private System.Windows.Forms.Button btnQuiero;
     }
 }
 

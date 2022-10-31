@@ -25,8 +25,12 @@ namespace Test
             Jugador jugador = new Jugador("Fede",3);
             Jugador jugador2 = new Jugador("Alan", 3);
 
-            mazo.RepartirCartas(3,jugador);
-            mazo.RepartirCartas(3, jugador2);
+            //mazo.RepartirCartas(3,jugador);
+            //mazo.RepartirCartas(3, jugador2);
+
+            JuegoDeCartas truco = new JuegoDeCartas(jugador,jugador2,mazo);
+
+            truco.EmpezarTruco();
 
             Console.WriteLine(jugador.ToString());
             Console.WriteLine(jugador2.ToString());

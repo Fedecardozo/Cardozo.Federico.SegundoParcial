@@ -158,6 +158,11 @@ namespace Entidades
             return this - carta;
         }
 
+        /// <summary>
+        /// Reparte cartas del mazo sin quitarlas
+        /// </summary>
+        /// <param name="cantidadCartas"></param>
+        /// <returns>Un array de cartas</returns>
         public Carta[] RepartirCartas(int cantidadCartas)
         {
             Random random = new Random();
@@ -185,14 +190,25 @@ namespace Entidades
 
         }
 
-        public bool RepartirCartas(int cantidadCartas, Jugador jugador)
+        /// <summary>
+        /// Reparte cartas del mazo a un jugador sin quitarlas
+        /// </summary>
+        /// <param name="cantidadCartas"></param>
+        /// <param name="jugador"></param>
+        /// <returns> true si le pudo repartir cartas al jugador. false sino</returns>
+        public Carta[] RepartirCartas(int cantidadCartas, Jugador jugador)
         {
             Random random = new Random();
-            bool retorno = false;
+            Carta[] retorno;
 
             if(jugador is not null && cantidadCartas > 0)
             {
-                retorno = jugador.AgregarCarta(this.RepartirCartas(cantidadCartas)); 
+                retorno = this.RepartirCartas(cantidadCartas);
+                jugador.AgregarCarta(retorno); 
+            }
+            else
+            {
+                retorno = null;
             }
 
             return retorno;

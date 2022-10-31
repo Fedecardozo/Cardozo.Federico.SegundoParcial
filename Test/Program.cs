@@ -22,6 +22,15 @@ namespace Test
 
             Console.WriteLine($"{mazo.ToString()}");
 
+            Jugador jugador = new Jugador("Fede",3);
+            Jugador jugador2 = new Jugador("Alan", 3);
+
+            mazo.RepartirCartas(3,jugador);
+            mazo.RepartirCartas(3, jugador2);
+
+            Console.WriteLine(jugador.ToString());
+            Console.WriteLine(jugador2.ToString());
+
         }
     }
 }

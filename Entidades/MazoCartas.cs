@@ -158,6 +158,47 @@ namespace Entidades
             return this - carta;
         }
 
+        public Carta[] RepartirCartas(int cantidadCartas)
+        {
+            Random random = new Random();
+            int index;
+            Carta[] retorno;
+
+            if (cantidadCartas > 0)
+            {
+                retorno = new Carta[cantidadCartas];
+
+                for (int i = 0; i < cantidadCartas; i++)
+                {
+                    index = random.Next(0, (int)this - 1);
+
+                    retorno[i] = this[index];
+                }
+            }
+            else
+            {
+                //Lanzar exepcion
+                retorno = null;
+            }
+
+            return retorno;
+
+        }
+
+        public bool RepartirCartas(int cantidadCartas, Jugador jugador)
+        {
+            Random random = new Random();
+            bool retorno = false;
+
+            if(jugador is not null && cantidadCartas > 0)
+            {
+                retorno = jugador.AgregarCarta(this.RepartirCartas(cantidadCartas)); 
+            }
+
+            return retorno;
+
+        }
+
         #endregion
 
         #region Polimorfismo

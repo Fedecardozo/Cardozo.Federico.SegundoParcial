@@ -33,14 +33,14 @@ namespace WinFormsTruco
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelInferior = new System.Windows.Forms.Panel();
             this.labelCantoJugador1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelJugador1C3 = new System.Windows.Forms.Label();
+            this.labelJugador1C2 = new System.Windows.Forms.Label();
+            this.labelJugador1C1 = new System.Windows.Forms.Label();
             this.panelSuperior = new System.Windows.Forms.Panel();
             this.labelCantojugador2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelJugador2C3 = new System.Windows.Forms.Label();
+            this.labelJugador2C2 = new System.Windows.Forms.Label();
+            this.labelJugador2C1 = new System.Windows.Forms.Label();
             this.panelDerecho = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.jugador1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,13 +65,13 @@ namespace WinFormsTruco
             // 
             this.panelInferior.BackColor = System.Drawing.Color.RoyalBlue;
             this.panelInferior.Controls.Add(this.labelCantoJugador1);
-            this.panelInferior.Controls.Add(this.label3);
-            this.panelInferior.Controls.Add(this.label2);
-            this.panelInferior.Controls.Add(this.label1);
+            this.panelInferior.Controls.Add(this.labelJugador1C3);
+            this.panelInferior.Controls.Add(this.labelJugador1C2);
+            this.panelInferior.Controls.Add(this.labelJugador1C1);
             this.panelInferior.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelInferior.Location = new System.Drawing.Point(0, 367);
+            this.panelInferior.Location = new System.Drawing.Point(0, 389);
             this.panelInferior.Name = "panelInferior";
-            this.panelInferior.Size = new System.Drawing.Size(1005, 135);
+            this.panelInferior.Size = new System.Drawing.Size(1015, 129);
             this.panelInferior.TabIndex = 0;
             // 
             // labelCantoJugador1
@@ -85,53 +85,55 @@ namespace WinFormsTruco
             this.labelCantoJugador1.TabIndex = 7;
             this.labelCantoJugador1.Text = "Lo que se canta";
             // 
-            // label3
+            // labelJugador1C3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.AliceBlue;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(614, 38);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 38);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "3 Oro";
+            this.labelJugador1C3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelJugador1C3.AutoSize = true;
+            this.labelJugador1C3.BackColor = System.Drawing.Color.AliceBlue;
+            this.labelJugador1C3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelJugador1C3.Location = new System.Drawing.Point(624, 38);
+            this.labelJugador1C3.Name = "labelJugador1C3";
+            this.labelJugador1C3.Size = new System.Drawing.Size(87, 38);
+            this.labelJugador1C3.TabIndex = 2;
+            this.labelJugador1C3.Text = "3 Oro";
+            this.labelJugador1C3.Click += new System.EventHandler(this.labelJugador1C3_Click);
             // 
-            // label2
+            // labelJugador1C2
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.AliceBlue;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(458, 88);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 38);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "7 Copa";
+            this.labelJugador1C2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.labelJugador1C2.AutoSize = true;
+            this.labelJugador1C2.BackColor = System.Drawing.Color.AliceBlue;
+            this.labelJugador1C2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelJugador1C2.Location = new System.Drawing.Point(463, 82);
+            this.labelJugador1C2.Name = "labelJugador1C2";
+            this.labelJugador1C2.Size = new System.Drawing.Size(103, 38);
+            this.labelJugador1C2.TabIndex = 1;
+            this.labelJugador1C2.Text = "7 Copa";
+            this.labelJugador1C2.Click += new System.EventHandler(this.labelJugador1C2_Click);
             // 
-            // label1
+            // labelJugador1C1
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.AliceBlue;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(295, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 38);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "1 Espada";
-            this.label1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.label1_MouseClick);
+            this.labelJugador1C1.AutoSize = true;
+            this.labelJugador1C1.BackColor = System.Drawing.Color.AliceBlue;
+            this.labelJugador1C1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelJugador1C1.Location = new System.Drawing.Point(295, 38);
+            this.labelJugador1C1.Name = "labelJugador1C1";
+            this.labelJugador1C1.Size = new System.Drawing.Size(126, 38);
+            this.labelJugador1C1.TabIndex = 0;
+            this.labelJugador1C1.Text = "1 Espada";
+            this.labelJugador1C1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.label1_MouseClick);
             // 
             // panelSuperior
             // 
             this.panelSuperior.BackColor = System.Drawing.Color.Red;
             this.panelSuperior.Controls.Add(this.labelCantojugador2);
-            this.panelSuperior.Controls.Add(this.label4);
-            this.panelSuperior.Controls.Add(this.label5);
-            this.panelSuperior.Controls.Add(this.label6);
+            this.panelSuperior.Controls.Add(this.labelJugador2C3);
+            this.panelSuperior.Controls.Add(this.labelJugador2C2);
+            this.panelSuperior.Controls.Add(this.labelJugador2C1);
             this.panelSuperior.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSuperior.Location = new System.Drawing.Point(0, 0);
             this.panelSuperior.Name = "panelSuperior";
-            this.panelSuperior.Size = new System.Drawing.Size(1005, 134);
+            this.panelSuperior.Size = new System.Drawing.Size(1015, 128);
             this.panelSuperior.TabIndex = 1;
             // 
             // labelCantojugador2
@@ -145,49 +147,52 @@ namespace WinFormsTruco
             this.labelCantojugador2.TabIndex = 6;
             this.labelCantojugador2.Text = "Lo que se canta";
             // 
-            // label4
+            // labelJugador2C3
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.AliceBlue;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(610, 23);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 38);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "7 Oro";
+            this.labelJugador2C3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelJugador2C3.AutoSize = true;
+            this.labelJugador2C3.BackColor = System.Drawing.Color.AliceBlue;
+            this.labelJugador2C3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelJugador2C3.Location = new System.Drawing.Point(620, 23);
+            this.labelJugador2C3.Name = "labelJugador2C3";
+            this.labelJugador2C3.Size = new System.Drawing.Size(87, 38);
+            this.labelJugador2C3.TabIndex = 5;
+            this.labelJugador2C3.Text = "7 Oro";
+            this.labelJugador2C3.Click += new System.EventHandler(this.labelJugador3C3_Click);
             // 
-            // label5
+            // labelJugador2C2
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.AliceBlue;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(454, 73);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 38);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "1 Basto";
+            this.labelJugador2C2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.labelJugador2C2.AutoSize = true;
+            this.labelJugador2C2.BackColor = System.Drawing.Color.AliceBlue;
+            this.labelJugador2C2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelJugador2C2.Location = new System.Drawing.Point(459, 67);
+            this.labelJugador2C2.Name = "labelJugador2C2";
+            this.labelJugador2C2.Size = new System.Drawing.Size(107, 38);
+            this.labelJugador2C2.TabIndex = 4;
+            this.labelJugador2C2.Text = "1 Basto";
+            this.labelJugador2C2.Click += new System.EventHandler(this.labelJugador2C2_Click);
             // 
-            // label6
+            // labelJugador2C1
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.AliceBlue;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(291, 23);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 38);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "6 Oro";
+            this.labelJugador2C1.AutoSize = true;
+            this.labelJugador2C1.BackColor = System.Drawing.Color.AliceBlue;
+            this.labelJugador2C1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelJugador2C1.Location = new System.Drawing.Point(291, 23);
+            this.labelJugador2C1.Name = "labelJugador2C1";
+            this.labelJugador2C1.Size = new System.Drawing.Size(87, 38);
+            this.labelJugador2C1.TabIndex = 3;
+            this.labelJugador2C1.Text = "6 Oro";
+            this.labelJugador2C1.Click += new System.EventHandler(this.labelJugador2C1_Click);
             // 
             // panelDerecho
             // 
             this.panelDerecho.BackColor = System.Drawing.Color.AliceBlue;
             this.panelDerecho.Controls.Add(this.dataGridView1);
             this.panelDerecho.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelDerecho.Location = new System.Drawing.Point(730, 134);
+            this.panelDerecho.Location = new System.Drawing.Point(740, 128);
             this.panelDerecho.Name = "panelDerecho";
-            this.panelDerecho.Size = new System.Drawing.Size(275, 233);
+            this.panelDerecho.Size = new System.Drawing.Size(275, 261);
             this.panelDerecho.TabIndex = 2;
             // 
             // dataGridView1
@@ -244,9 +249,9 @@ namespace WinFormsTruco
             this.panelIzquierdo.Controls.Add(this.button2);
             this.panelIzquierdo.Controls.Add(this.button1);
             this.panelIzquierdo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelIzquierdo.Location = new System.Drawing.Point(0, 134);
+            this.panelIzquierdo.Location = new System.Drawing.Point(0, 128);
             this.panelIzquierdo.Name = "panelIzquierdo";
-            this.panelIzquierdo.Size = new System.Drawing.Size(282, 233);
+            this.panelIzquierdo.Size = new System.Drawing.Size(282, 261);
             this.panelIzquierdo.TabIndex = 3;
             // 
             // button7
@@ -262,7 +267,7 @@ namespace WinFormsTruco
             // button6
             // 
             this.button6.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button6.Location = new System.Drawing.Point(77, 189);
+            this.button6.Location = new System.Drawing.Point(77, 217);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(118, 38);
             this.button6.TabIndex = 5;
@@ -272,7 +277,7 @@ namespace WinFormsTruco
             // button5
             // 
             this.button5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button5.Location = new System.Drawing.Point(145, 134);
+            this.button5.Location = new System.Drawing.Point(145, 162);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(118, 38);
             this.button5.TabIndex = 4;
@@ -282,7 +287,7 @@ namespace WinFormsTruco
             // button4
             // 
             this.button4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button4.Location = new System.Drawing.Point(12, 134);
+            this.button4.Location = new System.Drawing.Point(12, 162);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(118, 38);
             this.button4.TabIndex = 3;
@@ -323,16 +328,16 @@ namespace WinFormsTruco
             // 
             this.panelMesa.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.panelMesa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMesa.Location = new System.Drawing.Point(282, 134);
+            this.panelMesa.Location = new System.Drawing.Point(282, 128);
             this.panelMesa.Name = "panelMesa";
-            this.panelMesa.Size = new System.Drawing.Size(448, 233);
+            this.panelMesa.Size = new System.Drawing.Size(458, 261);
             this.panelMesa.TabIndex = 4;
             // 
             // FrmTruco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1005, 502);
+            this.ClientSize = new System.Drawing.Size(1015, 518);
             this.Controls.Add(this.panelMesa);
             this.Controls.Add(this.panelIzquierdo);
             this.Controls.Add(this.panelDerecho);
@@ -341,6 +346,7 @@ namespace WinFormsTruco
             this.Name = "FrmTruco";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Truco";
+            this.Load += new System.EventHandler(this.FrmTruco_Load);
             this.panelInferior.ResumeLayout(false);
             this.panelInferior.PerformLayout();
             this.panelSuperior.ResumeLayout(false);
@@ -366,12 +372,12 @@ namespace WinFormsTruco
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panelMesa;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelJugador1C3;
+        private System.Windows.Forms.Label labelJugador1C2;
+        private System.Windows.Forms.Label labelJugador1C1;
+        private System.Windows.Forms.Label labelJugador2C3;
+        private System.Windows.Forms.Label labelJugador2C2;
+        private System.Windows.Forms.Label labelJugador2C1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn jugador1;
         private System.Windows.Forms.DataGridViewTextBoxColumn jugador2;

@@ -33,7 +33,7 @@ namespace Entidades
             {
                 bool retorno = false;
 
-                if(this.cartas.Count == this)
+                if(this.cartas.Count == (int)this)
                 {
                     retorno = true;
                 }
@@ -46,12 +46,14 @@ namespace Entidades
         {
             get 
             {
-                Carta carta = null;
+                Carta carta;
 
-                if(index > 0 && index <= this.cartas.Count)
+                if (index >= 0 && index < this.cartas.Count)
                 {
                     carta = this.cartas[index];
                 }
+                else
+                    carta = null;
 
                 return carta;
             } 
@@ -75,6 +77,7 @@ namespace Entidades
             if (indice < 0)
             {
                 mazo.cartas.Add(c1);
+                retorno = true;
             }
 
             return retorno;
@@ -95,11 +98,16 @@ namespace Entidades
             if (indice >= 0)
             {
                 mazo.cartas.RemoveAt(indice);
+                retorno = true;
             }
 
             return retorno;
         }
 
+        /// <summary>
+        /// Devuelve de cuantas cartas es el mazo
+        /// </summary>
+        /// <param name="mazo"></param>
         public static implicit operator int(MazoCartas mazo)
         {
             return (int)mazo.cantidad;
@@ -158,7 +166,7 @@ namespace Entidades
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("Cantidad de cartas: " + this);
+            sb.AppendLine($"Cantidad de cartas: {(int)this}");
             sb.AppendLine("Cartas del mazo: ");
 
             foreach (Carta item in this.cartas)

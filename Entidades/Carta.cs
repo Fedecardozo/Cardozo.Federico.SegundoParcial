@@ -59,7 +59,7 @@ namespace Entidades
 
         public override string ToString()
         {
-            return $"Numero de carta: {this.numero} - Tipo: {this.tipo.ToString()}";
+            return $"{this.numero} {this.tipo.ToString()}";
         }
 
         public override int GetHashCode()

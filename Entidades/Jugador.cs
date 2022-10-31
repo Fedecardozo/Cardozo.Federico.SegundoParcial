@@ -35,7 +35,7 @@ namespace Entidades
             {
                 Carta carta;
                 //Despues intentar hacer con exepciones
-                if(index > 0 && index < this.cartas.Count)
+                if(index >= 0 && index < this.cartas.Count)
                 {
                     carta = this.cartas[index];
                 }

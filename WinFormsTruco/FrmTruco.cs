@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Entidades;
 
 namespace WinFormsTruco
 {
@@ -16,7 +17,10 @@ namespace WinFormsTruco
 
         private int contJugador1;
         private int contJugador2;
-        private int turno=1;
+        private int turno;
+        private MazoCartas mazo;
+        private Jugador jugador01;
+        private Jugador jugador02;
 
         #endregion
 
@@ -26,11 +30,23 @@ namespace WinFormsTruco
         {
             InitializeComponent();
         }
+        public FrmTruco(Jugador jugador1, Jugador jugador2) : this()
+        {
+            this.jugador01 = jugador1;
+            this.jugador02 = jugador2;
+        }
 
         private void FrmTruco_Load(object sender, EventArgs e)
         {
+            Harcodeo.Global();
             this.contJugador1 = 0;
             this.contJugador2 = 0;
+            this.turno = 1;
+            this.Botones(true,false,false,true,true,true,true,false,false);
+            this.mazo = Harcodeo.MazoCartas;
+            this.jugador01 = new Jugador("Fede",3);
+            this.jugador02 = new Jugador("Alan",3);
+            this.RepartirCartas();
         }
 
         #endregion
@@ -176,6 +192,51 @@ namespace WinFormsTruco
             this.CambiarLabelJugador("Me voy al mazo");
         }
 
+
+        #endregion
+
+        #region Inahabilitar botones, Logica del truco
+
+        private void Botones(bool flor,bool quiero,bool noQuiero, bool envido, bool faltaEnvido, 
+            bool realEnvido, bool truco, bool reTruco, bool valeCuatro)
+        {
+
+            //Flor
+            this.btnFlor.Enabled = flor;
+
+            //Quiero - No quiero
+            this.btnQuiero.Enabled = quiero;
+            this.btnNoQuiero.Enabled = noQuiero ;
+
+            //Envidos
+            this.btnEnvido.Enabled = envido;
+            this.btnFaltaEnvido.Enabled = faltaEnvido;
+            this.btnRealEnvido.Enabled = realEnvido;
+
+            //Trucos
+            this.btnTruco.Enabled = truco;
+            this.btnReTruco.Enabled = reTruco;
+            this.btnValeCuatro.Enabled = valeCuatro;
+        }
+
+
+        #endregion
+
+        #region Cargar cartas
+
+        private void RepartirCartas()
+        {
+            JuegoDeCartas truco = new JuegoDeCartas(this.jugador01,this.jugador02,this.mazo);
+            truco.EmpezarTruco();
+
+            this.labelJugador1C1.Text = this.jugador01[0].ToString();
+            this.labelJugador1C2.Text = this.jugador01[1].ToString();
+            this.labelJugador1C3.Text = this.jugador01[2].ToString();
+
+            this.labelJugador2C1.Text = this.jugador02[0].ToString();
+            this.labelJugador2C2.Text = this.jugador02[1].ToString();
+            this.labelJugador2C3.Text = this.jugador02[2].ToString();
+        }
 
         #endregion
 

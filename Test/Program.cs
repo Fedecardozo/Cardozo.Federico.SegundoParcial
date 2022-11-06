@@ -38,13 +38,13 @@ namespace Test
             for (int i = 1; i < 13; i++)
             {
 
-                Carta c1 = new Carta(i, ETipoCarta.Espada);
-                Carta c2 = new Carta(i, ETipoCarta.Basto);
+                Carta c1 = new Carta(i, ETipoCarta.Oro);
+                Carta c2 = new Carta(i, ETipoCarta.Espada);
 
                 Console.WriteLine("Carta 1: " + c1.ToString());
                 Console.WriteLine("Carta 2: " + c2.ToString());
 
-                int resultado = JuegoDeCartas.CartaGanadora(c1, c2);
+                int resultado = JuegoDeCartas.CartaGanadoraTruco(c1, c2);
 
                 if (resultado == 1)
                 {

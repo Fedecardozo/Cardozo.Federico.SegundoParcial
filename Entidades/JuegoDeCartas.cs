@@ -72,7 +72,13 @@ namespace Entidades
 
         #region Logica del truco
 
-        public static int CartaGanadora(Carta c1, Carta c2)
+        /// <summary>
+        /// Valores de las cartas en el truco
+        /// </summary>
+        /// <param name="c1"></param>
+        /// <param name="c2"></param>
+        /// <returns> 1 si c1 tiene mas valor que c2. 0 si son iguales. -1 si c2 tiene mas valor que c1</returns>
+        public static int CartaGanadoraTruco(Carta c1, Carta c2)
         {
             int retorno = -1;
 
@@ -84,7 +90,7 @@ namespace Entidades
                 new Carta(7,ETipoCarta.Oro),
             };
 
-            bool c2IgualCartaGanadoras = c2 != cartasGanadoras[1] && c2 != cartasGanadoras[2] && c2 != cartasGanadoras[3];
+            bool c2IgualCartaGanadoras = c2 != cartasGanadoras[0] && c2 != cartasGanadoras[1] && c2 != cartasGanadoras[2] && c2 != cartasGanadoras[3];
 
             //Verifico si c1 es el uno de espada
             if (c1 == cartasGanadoras[0])

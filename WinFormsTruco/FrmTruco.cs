@@ -31,6 +31,10 @@ namespace WinFormsTruco
         private Carta[] cartaJugadaJ2;
         private Carta cartaEnJuegoJ1; 
         private Carta cartaEnJuegoJ2;
+        private short primera;
+        private short segunda;
+        private short tercera;
+
 
         #endregion
 
@@ -40,22 +44,18 @@ namespace WinFormsTruco
         {
             InitializeComponent();
         }
-        /*public FrmTruco(Jugador jugador1, Jugador jugador2) : this()
-        {
-            this.jugador01 = jugador1;
-            this.jugador02 = jugador2;
-        }*/
 
         private void FrmTruco_Load(object sender, EventArgs e)
         {
             Harcodeo.Global();
+            this.primera = 0;
+            this.segunda = 0;
+            this.tercera = 0;
             this.contJugador1 = 0;
             this.contJugador2 = 0;
             this.turno = 1;
             this.Botones(true,false,false,true,true,true,true,false,false);
             this.mazo = Harcodeo.MazoCartas;
-            //this.jugador01 = new Jugador("Fede",3);
-            //this.jugador02 = new Jugador("Alan",3);
             this.RepartirCartas();
             this.CargarLabels();
         }
@@ -162,39 +162,49 @@ namespace WinFormsTruco
                 if(jugador == 1)
                 {
                     this.cartaEnJuegoJ1 = carta;
-                    //MessageBox.Show($"{this.panelMesa.Controls.Count}");
                 }
                 else if(jugador == 2)
                 {
                     this.cartaEnJuegoJ2 = carta;
-                    //MessageBox.Show($"{this.panelMesa.Controls.Count}");
                 }
 
 
                 switch (this.panelMesa.Controls.Count)
                 {
-                    case 2: this.GanadorPrimera(this.cartaEnJuegoJ1, this.cartaEnJuegoJ2); break;
-                    case 4: this.GanadorPrimera(this.cartaEnJuegoJ1, this.cartaEnJuegoJ2); break;
-                    case 6: this.GanadorPrimera(this.cartaEnJuegoJ1, this.cartaEnJuegoJ2); break;
+                    case 2: this.GanadorRonda(this.cartaEnJuegoJ1, this.cartaEnJuegoJ2); break;
+                    case 4: this.GanadorRonda(this.cartaEnJuegoJ1, this.cartaEnJuegoJ2); break;
+                    case 6: this.GanadorRonda(this.cartaEnJuegoJ1, this.cartaEnJuegoJ2); break;
                 }
             }
         }
 
-        private void GanadorPrimera(Carta c1, Carta c2)
+        private void GanadorRonda(Carta c1, Carta c2)
         {
             int resultado = JuegoDeCartas.CartaGanadoraTruco(c1, c2);
 
             if (resultado == 1)
             {
-                MessageBox.Show("Mas grande carta 1");
+                MessageBox.Show("Mas grande carta del jugador 1");
+                //Turno del jugador jugador 1
+                this.turno = 1;
+                //Ganador de la rodonda jugador 1
+                this.AnotadorRondas(1);
+                
             }
             else if (resultado == 0)
             {
-                MessageBox.Show("Son iguales ");
+                //parda
+                MessageBox.Show("Parda");
+                //Empate es igual a 3
+                this.AnotadorRondas(3);
             }
             else if (resultado == -1)
             {
-                MessageBox.Show("Mas grande carta 2");
+                MessageBox.Show("Mas grande carta del jugador 2");
+                //Turno del jugador jugador 2
+                this.turno = 2;
+                //Ganador de la rodonda jugador 2
+                this.AnotadorRondas(2);
             }
             else
             {
@@ -202,6 +212,54 @@ namespace WinFormsTruco
             }
         }
 
+        private void AnotadorRondas(short jugadorganador)
+        {
+            //Si primera todavia no gano nadie
+            if (this.primera == 0)
+            {
+                //Primera del jugador pasado por parametro
+                this.primera = jugadorganador;
+            }
+            else if(this.primera > 0 && this.segunda == 0)
+            {
+                //Si primera ya fue y segunda todavia no. Se asigna a segunda el jugador ganador
+                this.segunda = jugadorganador;
+            }
+            else if(this.primera > 0 && this.segunda > 0 && this.tercera == 0 )
+            {
+                //Si primera y segunda ya fueron ganadas y tercera todavia no. Se asinga a tercera el jugador ganador
+                this.tercera = jugadorganador;
+            }
+
+            //Avisa si alguien ya gano
+            this.GanadorDeLaPartida();
+
+        }
+
+        private void GanadorDeLaPartida()
+        {
+            if((this.primera == 1 && this.segunda == 1) || (this.primera == 3 && this.segunda == 1))
+            {
+                MessageBox.Show("Ganador jugador 1");
+            }
+            else if ((this.primera == 2 && this.segunda == 2) || (this.primera == 3 && this.segunda == 2))
+            {
+                MessageBox.Show("Ganador jugador 2");
+            }
+            else if ((this.primera == 1 && this.segunda == 2 && this.tercera == 1) || (this.primera == 3 && this.segunda == 3 && this.tercera == 1))
+            {
+                MessageBox.Show("Ganador jugador 1");
+            }
+            else if ((this.primera == 2 && this.segunda == 1 && this.tercera == 2) || (this.primera == 3 && this.segunda == 3 && this.tercera == 2))
+            {
+                MessageBox.Show("Ganador jugador 2");
+            }
+            else if( this.primera == 3 && this.segunda == 3 && this.tercera == 3)
+            {
+                MessageBox.Show("Ganador jugador 1");
+            }
+        }
+        
         #endregion
 
         #region Botones

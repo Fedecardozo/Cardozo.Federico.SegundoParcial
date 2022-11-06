@@ -35,11 +35,11 @@ namespace Test
             Console.WriteLine(jugador.ToString());
             Console.WriteLine(jugador2.ToString());*/
 
-            for (int i = 1; i < 13; i++)
+            /*for (int i = 1; i < 13; i++)
             {
 
                 Carta c1 = new Carta(i, ETipoCarta.Oro);
-                Carta c2 = new Carta(i, ETipoCarta.Espada);
+                Carta c2 = new Carta(i, ETipoCarta.Copa);
 
                 Console.WriteLine("Carta 1: " + c1.ToString());
                 Console.WriteLine("Carta 2: " + c2.ToString());
@@ -62,6 +62,28 @@ namespace Test
                 {
                     Console.WriteLine("Algo fallo");
                 }
+            }*/
+
+            Carta c1 = new Carta(5, ETipoCarta.Oro);
+            Carta c2 = new Carta(6, ETipoCarta.Copa);
+
+            int resultado = JuegoDeCartas.CartaGanadoraTruco(c1, c2);
+
+            if (resultado == 1)
+            {
+                Console.WriteLine("Mas grande carta 1");
+            }
+            else if (resultado == 0)
+            {
+                Console.WriteLine("Son iguales ");
+            }
+            else if (resultado == -1)
+            {
+                Console.WriteLine("Mas grande carta 2");
+            }
+            else
+            {
+                Console.WriteLine("Algo fallo");
             }
 
         }

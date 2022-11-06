@@ -16,7 +16,7 @@ namespace Test
 
             Console.WriteLine(carta.ToString());*/
 
-            Harcodeo.Global();
+            /*Harcodeo.Global();
 
             MazoCartas mazo = Harcodeo.MazoCartas;
 
@@ -33,7 +33,36 @@ namespace Test
             truco.EmpezarTruco();
 
             Console.WriteLine(jugador.ToString());
-            Console.WriteLine(jugador2.ToString());
+            Console.WriteLine(jugador2.ToString());*/
+
+            for (int i = 1; i < 13; i++)
+            {
+
+                Carta c1 = new Carta(i, ETipoCarta.Espada);
+                Carta c2 = new Carta(i, ETipoCarta.Basto);
+
+                Console.WriteLine("Carta 1: " + c1.ToString());
+                Console.WriteLine("Carta 2: " + c2.ToString());
+
+                int resultado = JuegoDeCartas.CartaGanadora(c1, c2);
+
+                if (resultado == 1)
+                {
+                    Console.WriteLine("Mas grande carta 1");
+                }
+                else if (resultado == 0)
+                {
+                    Console.WriteLine("Son iguales ");
+                }
+                else if (resultado == -1)
+                {
+                    Console.WriteLine("Mas grande carta 2");
+                }
+                else
+                {
+                    Console.WriteLine("Algo fallo");
+                }
+            }
 
         }
     }

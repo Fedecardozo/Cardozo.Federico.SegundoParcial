@@ -53,7 +53,7 @@ namespace Entidades
                 }
 
                 //Agrego las cartas a cada jugador
-                switch(i)
+                switch (i)
                 {
                     case 0: this.jugador1.AgregarCarta(cartas); break;
                     case 1: this.jugador2.AgregarCarta(cartas); break;
@@ -66,6 +66,116 @@ namespace Entidades
             {
                 this.mazo.AgregarCarta(item);
             }
+        }
+
+        #endregion
+
+        #region Logica del truco
+
+        public static int CartaGanadora(Carta c1, Carta c2)
+        {
+            int retorno = -1;
+
+            Carta[] cartasGanadoras =
+            {
+                new Carta(1,ETipoCarta.Espada),
+                new Carta(1,ETipoCarta.Basto),
+                new Carta(7,ETipoCarta.Espada),
+                new Carta(7,ETipoCarta.Oro),
+            };
+
+            bool c2IgualCartaGanadoras = c2 != cartasGanadoras[1] && c2 != cartasGanadoras[2] && c2 != cartasGanadoras[3];
+
+            //Verifico si c1 es el uno de espada
+            if (c1 == cartasGanadoras[0])
+            {
+                retorno = 1;
+            }
+            //c1 es el uno de basto y c2 no es el uno de espada. 
+            else if(c1 == cartasGanadoras[1] && c2 != cartasGanadoras[0])
+            {
+                retorno = 1;
+            }
+            //c1 es el siete espada y c2 no es el uno de espada, ni el uno de basto. 
+            else if (c1 == cartasGanadoras[2] && c2 != cartasGanadoras[0] && c2 != cartasGanadoras[1])
+            {
+                retorno = 1;
+            }
+            //c1 es el siete oro y c2 no es el uno de espada, ni el uno de basto, ni el 7 de espada.
+            else if (c1 == cartasGanadoras[3] && c2IgualCartaGanadoras)
+            {
+                retorno = 1;
+            }
+            //Sino si los numeros son iguales retorna 0
+            else if(c2IgualCartaGanadoras && c1.Numero == c2.Numero)
+            {
+                retorno = 0;
+            }
+            else if(c2IgualCartaGanadoras)
+            {
+                switch (c1.Numero)
+                {
+                    case 1:
+                        if (!(c2.Numero > 1 && c2.Numero <= 3))
+                        {
+                            retorno = 1;
+                        }
+                        break;
+                    case 2:
+                        if (!(c2.Numero == 3))
+                        {
+                            retorno = 1;
+                        }
+                        break;
+                    case 3:
+                        retorno = 1;
+                        break;
+                    case 4:
+                        if(c2.Numero != 4)
+                        {
+                            retorno = -1;
+                        }
+                        break;
+                    case 5:
+                        if (c2.Numero != 4 && c2.Numero != 5)
+                        {
+                            retorno = -1;
+                        }
+                        break;
+                    case 6:
+                        if (c2.Numero != 4 && c2.Numero != 5 && c2.Numero != 6)
+                        {
+                            retorno = -1;
+                        }
+                        break;
+                    case 7:
+                        if (c2.Numero == 4 || c2.Numero == 5 || c2.Numero == 6)
+                        {
+                            retorno = 1;
+                        }
+                        break;
+                    case 10:
+                        if (c2.Numero == 4 || c2.Numero == 5 || c2.Numero == 6 || c2.Numero == 7)
+                        {
+                            retorno = 1;
+                        }
+                        break;
+                    case 11:
+                        if (c2.Numero == 4 || c2.Numero == 5 || c2.Numero == 6 || c2.Numero == 7 || c2.Numero == 10)
+                        {
+                            retorno = 1;
+                        }
+                        break;
+                    case 12:
+                        if (c2.Numero == 4 || c2.Numero == 5 || c2.Numero == 6 || c2.Numero == 7 || c2.Numero == 10 || c2.Numero == 11)
+                        {
+                            retorno = 1;
+                        }
+                        break;
+                }
+            }
+
+            return retorno;
         }
 
         #endregion

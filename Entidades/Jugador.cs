@@ -53,6 +53,14 @@ namespace Entidades
         #endregion
 
         #region Sobrecarga operadores
+        public static bool operator ==(Jugador j1, Jugador j2)
+        {
+            return j1.nick == j2.nick;
+        }
+        public static bool operator !=(Jugador j1, Jugador j2)
+        {
+            return !(j1 == j2);
+        }
 
         /// <summary>
         /// Si no se encuentra la carta la agrega a la mano del jugador

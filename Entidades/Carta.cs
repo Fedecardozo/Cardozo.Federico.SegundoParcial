@@ -33,7 +33,14 @@ namespace Entidades
 
         public static bool operator ==(Carta c1, Carta c2)
         {
-            return c1.tipo == c2.tipo && c1.numero == c2.numero;
+            if(c1 is not null && c2 is not null)
+            {
+                return c1.tipo == c2.tipo && c1.numero == c2.numero;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public static bool operator !=(Carta c1, Carta c2)

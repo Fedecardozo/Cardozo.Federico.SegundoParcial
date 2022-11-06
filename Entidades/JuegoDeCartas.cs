@@ -17,11 +17,16 @@ namespace Entidades
         #endregion
 
         #region Constructor
-        public JuegoDeCartas(Jugador jugador1, Jugador jugador2, MazoCartas mazo)
+
+        public JuegoDeCartas(MazoCartas mazo)
+        {
+            this.mazo = mazo;
+        }
+
+        public JuegoDeCartas(Jugador jugador1, Jugador jugador2, MazoCartas mazo) : this(mazo)
         {
             this.jugador1 = jugador1;
             this.jugador2 = jugador2;
-            this.mazo = mazo;
         }
 
         #endregion

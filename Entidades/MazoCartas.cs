@@ -137,7 +137,38 @@ namespace Entidades
 
             return retorno;
         }
-        
+
+        /// <summary>
+        /// Busca si la carta pasada por parametro esta dentro del mazo
+        /// </summary>
+        /// <param name="carta"></param>
+        /// <returns>mayor a 0 si encuentra la carta. -1 sino la encuentra</returns>
+        public Carta BuscarCarta(string carta)
+        {
+            Carta retorno;
+            int indice = -1;
+
+            for (int i = 0; i < this.cartas.Count; i++)
+            {
+                if (this[i].ToString() == carta)
+                {
+                    indice = i;
+                    break;
+                }
+            }
+
+            if(indice >= 0)
+            {
+                retorno = this[indice];
+            }
+            else
+            {
+                retorno = null;
+            }
+
+            return retorno;
+        }
+
         /// <summary>
         /// Agrega una carta al mazo
         /// </summary>
@@ -213,6 +244,68 @@ namespace Entidades
 
             return retorno;
 
+        }
+
+        /// <summary>
+        /// Reparte cartas del mazo sin repetir
+        /// </summary>
+        /// <param name="cantidadCartas"></param>
+        /// <returns>Un array de cartas</returns>
+        public Carta[] RepartirCartasSinRepetir(int cantidadCartas)
+        {
+            Random random = new Random();
+            int index;
+            Carta[] retorno;
+            Carta[] aReponer;
+
+            if (cantidadCartas > 0)
+            {
+                aReponer = new Carta[cantidadCartas];
+                retorno = new Carta[cantidadCartas];
+
+                for (int i = 0; i < cantidadCartas; i++)
+                {
+                    index = random.Next(0, (int)this - 1);
+
+                    while(this[index] is null)
+                    {
+                        index = random.Next(0, (int)this - 1);
+                    }
+
+                    //Agrego la carta al retorno
+                    retorno[i] = this[index];
+
+                    //Saco la carta del mazo
+                    if(this.QuitarCarta(retorno[i]))
+                    {
+                        //Guardo la carta sacada del mazo
+                        aReponer[i] = retorno[i];
+                    }
+
+                }
+                //Repongo las cartas sacadas del mazo
+                this.ReponerCartas(aReponer);
+            }
+            else
+            {
+                //Lanzar exepcion
+                retorno = null;
+            }
+
+            return retorno;
+
+        }
+
+        /// <summary>
+        /// Repone las cartas en el mismo mazo de instancia
+        /// </summary>
+        /// <param name="cartas"></param>
+        private void ReponerCartas(Carta[] cartas)
+        {
+            foreach (Carta item in cartas)
+            {
+                this.AgregarCarta(item);
+            }
         }
 
         #endregion

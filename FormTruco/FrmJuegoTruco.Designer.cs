@@ -29,8 +29,13 @@ namespace FormTruco
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelContenedor = new System.Windows.Forms.Panel();
             this.panelMesa = new System.Windows.Forms.Panel();
+            this.labelCanto = new System.Windows.Forms.Label();
             this.pictureBoxMazo1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxMazo2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxJ2C3 = new System.Windows.Forms.PictureBox();
@@ -40,6 +45,9 @@ namespace FormTruco
             this.pictureBoxJ1C2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxJ1C1 = new System.Windows.Forms.PictureBox();
             this.panelLateralDer = new System.Windows.Forms.Panel();
+            this.dataGridViewAnotador = new System.Windows.Forms.DataGridView();
+            this.J1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.J2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxJ1 = new System.Windows.Forms.GroupBox();
             this.panelLateralIzq = new System.Windows.Forms.Panel();
             this.groupBoxJ2 = new System.Windows.Forms.GroupBox();
@@ -54,6 +62,7 @@ namespace FormTruco
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJ1C2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJ1C1)).BeginInit();
             this.panelLateralDer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAnotador)).BeginInit();
             this.panelLateralIzq.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +81,7 @@ namespace FormTruco
             // panelMesa
             // 
             this.panelMesa.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panelMesa.Controls.Add(this.labelCanto);
             this.panelMesa.Controls.Add(this.pictureBoxMazo1);
             this.panelMesa.Controls.Add(this.pictureBoxMazo2);
             this.panelMesa.Controls.Add(this.pictureBoxJ2C3);
@@ -85,6 +95,18 @@ namespace FormTruco
             this.panelMesa.Name = "panelMesa";
             this.panelMesa.Size = new System.Drawing.Size(772, 628);
             this.panelMesa.TabIndex = 3;
+            // 
+            // labelCanto
+            // 
+            this.labelCanto.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelCanto.AutoSize = true;
+            this.labelCanto.Font = new System.Drawing.Font("Segoe UI", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelCanto.Location = new System.Drawing.Point(221, 287);
+            this.labelCanto.Name = "labelCanto";
+            this.labelCanto.Size = new System.Drawing.Size(332, 57);
+            this.labelCanto.TabIndex = 19;
+            this.labelCanto.Text = "Jugador 1: Truco";
+            this.labelCanto.Visible = false;
             // 
             // pictureBoxMazo1
             // 
@@ -176,12 +198,81 @@ namespace FormTruco
             // panelLateralDer
             // 
             this.panelLateralDer.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panelLateralDer.Controls.Add(this.dataGridViewAnotador);
             this.panelLateralDer.Controls.Add(this.groupBoxJ1);
             this.panelLateralDer.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelLateralDer.Location = new System.Drawing.Point(1066, 0);
             this.panelLateralDer.Name = "panelLateralDer";
             this.panelLateralDer.Size = new System.Drawing.Size(294, 628);
             this.panelLateralDer.TabIndex = 2;
+            // 
+            // dataGridViewAnotador
+            // 
+            this.dataGridViewAnotador.AllowUserToDeleteRows = false;
+            this.dataGridViewAnotador.AllowUserToResizeColumns = false;
+            this.dataGridViewAnotador.AllowUserToResizeRows = false;
+            this.dataGridViewAnotador.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewAnotador.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridViewAnotador.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewAnotador.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewAnotador.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewAnotador.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAnotador.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.J1,
+            this.J2});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewAnotador.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewAnotador.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dataGridViewAnotador.Enabled = false;
+            this.dataGridViewAnotador.EnableHeadersVisualStyles = false;
+            this.dataGridViewAnotador.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewAnotador.Name = "dataGridViewAnotador";
+            this.dataGridViewAnotador.ReadOnly = true;
+            this.dataGridViewAnotador.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewAnotador.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewAnotador.RowHeadersVisible = false;
+            this.dataGridViewAnotador.RowHeadersWidth = 51;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.dataGridViewAnotador.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewAnotador.RowTemplate.Height = 29;
+            this.dataGridViewAnotador.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewAnotador.Size = new System.Drawing.Size(294, 217);
+            this.dataGridViewAnotador.TabIndex = 2;
+            // 
+            // J1
+            // 
+            this.J1.HeaderText = "Jugador 1";
+            this.J1.MinimumWidth = 6;
+            this.J1.Name = "J1";
+            this.J1.ReadOnly = true;
+            // 
+            // J2
+            // 
+            this.J2.HeaderText = "Jugador 2";
+            this.J2.MinimumWidth = 6;
+            this.J2.Name = "J2";
+            this.J2.ReadOnly = true;
             // 
             // groupBoxJ1
             // 
@@ -226,6 +317,7 @@ namespace FormTruco
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelContenedor.ResumeLayout(false);
             this.panelMesa.ResumeLayout(false);
+            this.panelMesa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMazo1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMazo2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJ2C3)).EndInit();
@@ -235,6 +327,7 @@ namespace FormTruco
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJ1C2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJ1C1)).EndInit();
             this.panelLateralDer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAnotador)).EndInit();
             this.panelLateralIzq.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -256,6 +349,10 @@ namespace FormTruco
         private System.Windows.Forms.PictureBox pictureBoxJ1C2;
         private System.Windows.Forms.PictureBox pictureBoxJ1C1;
         private System.Windows.Forms.GroupBox groupBoxJ1;
+        private System.Windows.Forms.Label labelCanto;
+        private System.Windows.Forms.DataGridView dataGridViewAnotador;
+        private System.Windows.Forms.DataGridViewTextBoxColumn J1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn J2;
     }
 }
 

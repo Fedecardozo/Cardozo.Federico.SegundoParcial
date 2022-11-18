@@ -148,15 +148,15 @@ namespace Entidades
                         }
                         break;
                     case 5:
-                        if (c2.Numero != 4 && c2.Numero != 5)
+                        if (c2.Numero == 4)
                         {
-                            retorno = -1;
+                            retorno = 1;
                         }
                         break;
                     case 6:
-                        if (c2.Numero != 4 && c2.Numero != 5 && c2.Numero != 6)
+                        if (c2.Numero == 4 || c2.Numero == 5)
                         {
-                            retorno = -1;
+                            retorno = 1;
                         }
                         break;
                     case 7:

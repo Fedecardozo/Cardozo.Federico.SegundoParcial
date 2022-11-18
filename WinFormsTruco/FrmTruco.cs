@@ -48,16 +48,9 @@ namespace WinFormsTruco
         private void FrmTruco_Load(object sender, EventArgs e)
         {
             Harcodeo.Global();
-            this.primera = 0;
-            this.segunda = 0;
-            this.tercera = 0;
-            this.contJugador1 = 0;
-            this.contJugador2 = 0;
-            this.turno = 1;
-            this.Botones(true,false,false,true,true,true,true,false,false);
             this.mazo = Harcodeo.MazoCartas;
-            this.RepartirCartas();
-            this.CargarLabels();
+            this.turno = 2;
+            this.CargarJuego();
         }
 
         #endregion
@@ -220,44 +213,78 @@ namespace WinFormsTruco
                 //Primera del jugador pasado por parametro
                 this.primera = jugadorganador;
             }
-            else if(this.primera > 0 && this.segunda == 0)
+            else if (this.primera > 0 && this.segunda == 0)
             {
                 //Si primera ya fue y segunda todavia no. Se asigna a segunda el jugador ganador
                 this.segunda = jugadorganador;
             }
-            else if(this.primera > 0 && this.segunda > 0 && this.tercera == 0 )
+            else if (this.primera > 0 && this.segunda > 0 && this.tercera == 0)
             {
                 //Si primera y segunda ya fueron ganadas y tercera todavia no. Se asinga a tercera el jugador ganador
                 this.tercera = jugadorganador;
             }
 
             //Avisa si alguien ya gano
-            this.GanadorDeLaPartida();
+            if (this.GanadorDeLaPartida())
+            {
+                Application.Restart();
+            }
 
         }
 
-        private void GanadorDeLaPartida()
+        private void CargarJuego()
         {
+            this.primera = 0;
+            this.segunda = 0;
+            this.tercera = 0;
+            this.contJugador1 = 0;
+            this.contJugador2 = 0;
+
+            if(this.turno == 1)
+            {
+                this.turno = 2;
+            }
+            else
+            {
+                this.turno = 1;
+            }
+
+            this.Botones(true, false, false, true, true, true, true, false, false);
+            this.RepartirCartas();
+            this.CargarLabels();
+        }
+
+        private bool GanadorDeLaPartida()
+        {
+            bool retorno = false;
+
             if((this.primera == 1 && this.segunda == 1) || (this.primera == 3 && this.segunda == 1))
             {
                 MessageBox.Show("Ganador jugador 1");
+                retorno = true;
             }
             else if ((this.primera == 2 && this.segunda == 2) || (this.primera == 3 && this.segunda == 2))
             {
+                retorno = true;
                 MessageBox.Show("Ganador jugador 2");
             }
             else if ((this.primera == 1 && this.segunda == 2 && this.tercera == 1) || (this.primera == 3 && this.segunda == 3 && this.tercera == 1))
             {
+                retorno = true;
                 MessageBox.Show("Ganador jugador 1");
             }
             else if ((this.primera == 2 && this.segunda == 1 && this.tercera == 2) || (this.primera == 3 && this.segunda == 3 && this.tercera == 2))
             {
+                retorno = true;
                 MessageBox.Show("Ganador jugador 2");
             }
             else if( this.primera == 3 && this.segunda == 3 && this.tercera == 3)
             {
+                retorno = true;
                 MessageBox.Show("Ganador jugador 1");
             }
+
+            return retorno;
         }
         
         #endregion

@@ -257,7 +257,7 @@ namespace FormTruco
             // 
             this.pictureBoxJ2C2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBoxJ2C2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxJ2C2.Image = global::FormTruco.Properties.Resources._1oro;
+            this.pictureBoxJ2C2.Image = global::FormTruco.Properties.Resources._10oro;
             this.pictureBoxJ2C2.Location = new System.Drawing.Point(344, 24);
             this.pictureBoxJ2C2.Name = "pictureBoxJ2C2";
             this.pictureBoxJ2C2.Size = new System.Drawing.Size(100, 153);

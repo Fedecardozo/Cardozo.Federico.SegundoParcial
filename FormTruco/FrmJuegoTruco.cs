@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Entidades;
+using System.IO;
 
 namespace FormTruco
 {
@@ -23,6 +25,8 @@ namespace FormTruco
         private int rondaJ2;
         private bool turnoJ1;
         private bool turnoJ2;
+        private MazoCartas mazo;
+        private Carta[] cartas;
         #endregion
 
         #region Inicio Form
@@ -33,6 +37,7 @@ namespace FormTruco
         }
         private void FrmJuegoTruco_Load(object sender, EventArgs e)
         {
+            Harcodeo.Global();
             this.conteoTime = 0;
             this.minutos = 0;
             this.ronda = 1;
@@ -40,6 +45,9 @@ namespace FormTruco
             this.rondaJ2 = 1;
             this.turnoJ1 = true;
             this.turnoJ2 = false;
+            this.mazo = Harcodeo.MazoCartas;
+            this.cartas = new Carta[6];
+            this.RepartirCartas();
         }
 
         #endregion
@@ -406,6 +414,23 @@ namespace FormTruco
         }
 
         #endregion
-    
+
+        #region Repartir cartas
+        private void RepartirCartas()
+        {
+            this.cartas = this.mazo.RepartirCartasSinRepetir(6);
+
+            this.pictureBoxJ1C1.Image = Image.FromFile($@"..\..\..\Resources\{this.cartas[0].ToString()}.png");
+            this.pictureBoxJ1C2.Image = Image.FromFile($@"..\..\..\Resources\{this.cartas[1].ToString()}.png");
+            this.pictureBoxJ1C3.Image = Image.FromFile($@"..\..\..\Resources\{this.cartas[2].ToString()}.png");
+            this.pictureBoxJ2C1.Image = Image.FromFile($@"..\..\..\Resources\{this.cartas[3].ToString()}.png");
+            this.pictureBoxJ2C2.Image = Image.FromFile($@"..\..\..\Resources\{this.cartas[4].ToString()}.png");
+            this.pictureBoxJ2C3.Image = Image.FromFile($@"..\..\..\Resources\{this.cartas[5].ToString()}.png");
+            //this.pictureBoxPrimeraJ1.Visible = true;
+
+        }
+
+        #endregion
+
     }
 }

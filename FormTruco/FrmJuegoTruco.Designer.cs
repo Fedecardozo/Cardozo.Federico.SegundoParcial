@@ -211,10 +211,10 @@ namespace FormTruco
             // 
             this.labelCanto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelCanto.AutoSize = true;
-            this.labelCanto.Font = new System.Drawing.Font("Segoe UI", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelCanto.Location = new System.Drawing.Point(231, 384);
+            this.labelCanto.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelCanto.Location = new System.Drawing.Point(250, 397);
             this.labelCanto.Name = "labelCanto";
-            this.labelCanto.Size = new System.Drawing.Size(332, 57);
+            this.labelCanto.Size = new System.Drawing.Size(236, 41);
             this.labelCanto.TabIndex = 19;
             this.labelCanto.Text = "Jugador 1: Truco";
             this.labelCanto.Visible = false;

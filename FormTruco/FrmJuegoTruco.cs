@@ -13,7 +13,6 @@ namespace FormTruco
 {
     public partial class FrmJuegoTruco : Form
     {
-        public delegate void HabilitacionBotones(Button[] btns, GroupBox group);
 
         #region Atributos
 
@@ -320,7 +319,7 @@ namespace FormTruco
         
         private void ReTruco(int jugador)
         {
-            this.CambiarTextoLabel($"J{jugador}: Quiero re \ntruco!");
+            this.CambiarTextoLabel($"J{jugador}: Quiero re truco!");
             if (jugador == 2)
             {
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnVale4J1, this.btnMazoJ1 }, this.groupBoxJ2);
@@ -334,7 +333,7 @@ namespace FormTruco
 
         private void ValeCuatro(int jugador)
         {
-            this.CambiarTextoLabel($"J{jugador}: Quiero vale \ncuatro!");
+            this.CambiarTextoLabel($"J{jugador}: Quiero vale cuatro!");
             if (jugador == 2)
             {
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnMazoJ1 }, this.groupBoxJ2);
@@ -407,5 +406,6 @@ namespace FormTruco
         }
 
         #endregion
+    
     }
 }

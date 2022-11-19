@@ -17,6 +17,10 @@ namespace FormTruco
         private int conteoTime;
         private int minutos;
         private int ronda;
+        private int rondaJ1;
+        private int rondaJ2;
+        private bool turnoJ1;
+        private bool turnoJ2;
         #endregion
 
         #region Inicio Form
@@ -30,6 +34,10 @@ namespace FormTruco
             this.conteoTime = 0;
             this.minutos = 0;
             this.ronda = 1;
+            this.rondaJ1 = 1;
+            this.rondaJ2 = 1;
+            this.turnoJ1 = true;
+            this.turnoJ2 = false;
         }
 
         #endregion
@@ -108,34 +116,71 @@ namespace FormTruco
 
         #region Metodos movimientos de cartas
 
+        /// <summary>
+        /// Si es el turno del jugador 1, dependiendo la ronda va a mover la carta que haya jugado
+        /// a la mesa
+        /// </summary>
+        /// <param name="picture"></param>
         private void MovientoJ1(PictureBox picture)
         {
             //picture.Location = new Point(picture.Location.X, 420);
-            switch(this.ronda)
+            if(this.turnoJ1)
             {
-                case 1: this.MoverImagen(picture,this.pictureBoxPrimeraJ1);  break;
-                case 2: this.MoverImagen(picture, this.pictureBoxSegundaJ1); break;
-                case 3: this.MoverImagen(picture, this.pictureBoxTerceraJ1); break;
-            }
-            
-        }
-        private void MovientoJ2(PictureBox picture)
-        {
-            //picture.Location = new Point(picture.Location.X, 210);
-            switch (this.ronda)
-            {
-                case 1: this.MoverImagen(picture, this.pictureBoxPrimeraJ2); break;
-                case 2: this.MoverImagen(picture, this.pictureBoxSegundaJ2); break;
-                case 3: this.MoverImagen(picture, this.pictureBoxTerceraJ2); break;
+                this.rondaJ1++;
+
+                switch(this.ronda)
+                {
+                    case 1: this.MoverImagen(picture,this.pictureBoxPrimeraJ1);  break;
+                    case 2: this.MoverImagen(picture, this.pictureBoxSegundaJ1); break;
+                    case 3: this.MoverImagen(picture, this.pictureBoxTerceraJ1); break;
+                }
+
+                this.turnoJ1 = false;
+                this.turnoJ2 = true;
             }
         }
 
+        /// <summary>
+        /// Si es el turno del jugador 2, dependiendo la ronda va a mover la carta que haya jugado
+        /// a la mesa
+        /// </summary>
+        /// <param name="picture"></param>
+        private void MovientoJ2(PictureBox picture)
+        {
+            //picture.Location = new Point(picture.Location.X, 210);
+            if (this.turnoJ2)
+            {
+                this.rondaJ2++;
+                
+                switch (this.ronda)
+                {
+                    case 1: this.MoverImagen(picture, this.pictureBoxPrimeraJ2); break;
+                    case 2: this.MoverImagen(picture, this.pictureBoxSegundaJ2); break;
+                    case 3: this.MoverImagen(picture, this.pictureBoxTerceraJ2); break;
+                }
+
+                this.turnoJ1 = true;
+                this.turnoJ2 = false;
+            }
+
+        }
+
+        /// <summary>
+        /// Cambia de lugar la imagen y pone invisible el lugar anterior de la imagen y si
+        /// las rondas de cada jugador son iguales suma 1 a la ronda general
+        /// </summary>
+        /// <param name="picture"></param>
+        /// <param name="pictureMesa"></param>
         private void MoverImagen(PictureBox picture, PictureBox pictureMesa)
         {
             pictureMesa.Image = picture.Image;
             pictureMesa.Visible = true;
             picture.Visible = false;
-            //this.ronda++;
+            
+            if(this.rondaJ1 == this.rondaJ2)
+            {
+                this.ronda++;
+            }
         }
 
         #endregion

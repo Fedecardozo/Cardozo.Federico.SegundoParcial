@@ -36,6 +36,12 @@ namespace FormTruco
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelContenedor = new System.Windows.Forms.Panel();
             this.panelMesa = new System.Windows.Forms.Panel();
+            this.pictureBoxTerceraJ2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxSegundaJ2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPrimeraJ2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxTerceraJ1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxSegundaJ1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPrimeraJ1 = new System.Windows.Forms.PictureBox();
             this.labelCanto = new System.Windows.Forms.Label();
             this.pictureBoxMazo1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxMazo2 = new System.Windows.Forms.PictureBox();
@@ -78,6 +84,12 @@ namespace FormTruco
             this.timerJuego = new System.Windows.Forms.Timer(this.components);
             this.panelContenedor.SuspendLayout();
             this.panelMesa.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTerceraJ2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSegundaJ2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPrimeraJ2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTerceraJ1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSegundaJ1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPrimeraJ1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMazo1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMazo2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJ2C3)).BeginInit();
@@ -102,12 +114,18 @@ namespace FormTruco
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedor.Location = new System.Drawing.Point(0, 0);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(1360, 628);
+            this.panelContenedor.Size = new System.Drawing.Size(1360, 826);
             this.panelContenedor.TabIndex = 0;
             // 
             // panelMesa
             // 
             this.panelMesa.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panelMesa.Controls.Add(this.pictureBoxTerceraJ2);
+            this.panelMesa.Controls.Add(this.pictureBoxSegundaJ2);
+            this.panelMesa.Controls.Add(this.pictureBoxPrimeraJ2);
+            this.panelMesa.Controls.Add(this.pictureBoxTerceraJ1);
+            this.panelMesa.Controls.Add(this.pictureBoxSegundaJ1);
+            this.panelMesa.Controls.Add(this.pictureBoxPrimeraJ1);
             this.panelMesa.Controls.Add(this.labelCanto);
             this.panelMesa.Controls.Add(this.pictureBoxMazo1);
             this.panelMesa.Controls.Add(this.pictureBoxMazo2);
@@ -120,15 +138,81 @@ namespace FormTruco
             this.panelMesa.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMesa.Location = new System.Drawing.Point(294, 0);
             this.panelMesa.Name = "panelMesa";
-            this.panelMesa.Size = new System.Drawing.Size(772, 628);
+            this.panelMesa.Size = new System.Drawing.Size(772, 826);
             this.panelMesa.TabIndex = 3;
+            // 
+            // pictureBoxTerceraJ2
+            // 
+            this.pictureBoxTerceraJ2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pictureBoxTerceraJ2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxTerceraJ2.Location = new System.Drawing.Point(493, 210);
+            this.pictureBoxTerceraJ2.Name = "pictureBoxTerceraJ2";
+            this.pictureBoxTerceraJ2.Size = new System.Drawing.Size(100, 153);
+            this.pictureBoxTerceraJ2.TabIndex = 25;
+            this.pictureBoxTerceraJ2.TabStop = false;
+            this.pictureBoxTerceraJ2.Visible = false;
+            // 
+            // pictureBoxSegundaJ2
+            // 
+            this.pictureBoxSegundaJ2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pictureBoxSegundaJ2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxSegundaJ2.Location = new System.Drawing.Point(344, 210);
+            this.pictureBoxSegundaJ2.Name = "pictureBoxSegundaJ2";
+            this.pictureBoxSegundaJ2.Size = new System.Drawing.Size(100, 153);
+            this.pictureBoxSegundaJ2.TabIndex = 24;
+            this.pictureBoxSegundaJ2.TabStop = false;
+            this.pictureBoxSegundaJ2.Visible = false;
+            // 
+            // pictureBoxPrimeraJ2
+            // 
+            this.pictureBoxPrimeraJ2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pictureBoxPrimeraJ2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxPrimeraJ2.Location = new System.Drawing.Point(192, 210);
+            this.pictureBoxPrimeraJ2.Name = "pictureBoxPrimeraJ2";
+            this.pictureBoxPrimeraJ2.Size = new System.Drawing.Size(100, 153);
+            this.pictureBoxPrimeraJ2.TabIndex = 23;
+            this.pictureBoxPrimeraJ2.TabStop = false;
+            this.pictureBoxPrimeraJ2.Visible = false;
+            // 
+            // pictureBoxTerceraJ1
+            // 
+            this.pictureBoxTerceraJ1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pictureBoxTerceraJ1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxTerceraJ1.Location = new System.Drawing.Point(493, 465);
+            this.pictureBoxTerceraJ1.Name = "pictureBoxTerceraJ1";
+            this.pictureBoxTerceraJ1.Size = new System.Drawing.Size(100, 153);
+            this.pictureBoxTerceraJ1.TabIndex = 22;
+            this.pictureBoxTerceraJ1.TabStop = false;
+            this.pictureBoxTerceraJ1.Visible = false;
+            // 
+            // pictureBoxSegundaJ1
+            // 
+            this.pictureBoxSegundaJ1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pictureBoxSegundaJ1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxSegundaJ1.Location = new System.Drawing.Point(344, 465);
+            this.pictureBoxSegundaJ1.Name = "pictureBoxSegundaJ1";
+            this.pictureBoxSegundaJ1.Size = new System.Drawing.Size(100, 153);
+            this.pictureBoxSegundaJ1.TabIndex = 21;
+            this.pictureBoxSegundaJ1.TabStop = false;
+            this.pictureBoxSegundaJ1.Visible = false;
+            // 
+            // pictureBoxPrimeraJ1
+            // 
+            this.pictureBoxPrimeraJ1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pictureBoxPrimeraJ1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxPrimeraJ1.Location = new System.Drawing.Point(192, 465);
+            this.pictureBoxPrimeraJ1.Name = "pictureBoxPrimeraJ1";
+            this.pictureBoxPrimeraJ1.Size = new System.Drawing.Size(100, 153);
+            this.pictureBoxPrimeraJ1.TabIndex = 20;
+            this.pictureBoxPrimeraJ1.TabStop = false;
+            this.pictureBoxPrimeraJ1.Visible = false;
             // 
             // labelCanto
             // 
             this.labelCanto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelCanto.AutoSize = true;
             this.labelCanto.Font = new System.Drawing.Font("Segoe UI", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelCanto.Location = new System.Drawing.Point(221, 287);
+            this.labelCanto.Location = new System.Drawing.Point(221, 386);
             this.labelCanto.Name = "labelCanto";
             this.labelCanto.Size = new System.Drawing.Size(332, 57);
             this.labelCanto.TabIndex = 19;
@@ -139,18 +223,19 @@ namespace FormTruco
             // 
             this.pictureBoxMazo1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBoxMazo1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxMazo1.Location = new System.Drawing.Point(30, 238);
+            this.pictureBoxMazo1.Location = new System.Drawing.Point(30, 337);
             this.pictureBoxMazo1.Name = "pictureBoxMazo1";
             this.pictureBoxMazo1.Size = new System.Drawing.Size(100, 153);
             this.pictureBoxMazo1.TabIndex = 18;
             this.pictureBoxMazo1.TabStop = false;
+            this.pictureBoxMazo1.Visible = false;
             // 
             // pictureBoxMazo2
             // 
             this.pictureBoxMazo2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBoxMazo2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxMazo2.Image = global::FormTruco.Properties.Resources.mazo;
-            this.pictureBoxMazo2.Location = new System.Drawing.Point(643, 238);
+            this.pictureBoxMazo2.Location = new System.Drawing.Point(643, 337);
             this.pictureBoxMazo2.Name = "pictureBoxMazo2";
             this.pictureBoxMazo2.Size = new System.Drawing.Size(100, 153);
             this.pictureBoxMazo2.TabIndex = 17;
@@ -166,6 +251,7 @@ namespace FormTruco
             this.pictureBoxJ2C3.Size = new System.Drawing.Size(100, 153);
             this.pictureBoxJ2C3.TabIndex = 16;
             this.pictureBoxJ2C3.TabStop = false;
+            this.pictureBoxJ2C3.Click += new System.EventHandler(this.pictureBoxJ2C3_Click);
             // 
             // pictureBoxJ2C2
             // 
@@ -177,6 +263,7 @@ namespace FormTruco
             this.pictureBoxJ2C2.Size = new System.Drawing.Size(100, 153);
             this.pictureBoxJ2C2.TabIndex = 15;
             this.pictureBoxJ2C2.TabStop = false;
+            this.pictureBoxJ2C2.Click += new System.EventHandler(this.pictureBoxJ2C2_Click);
             // 
             // pictureBoxJ2C1
             // 
@@ -188,39 +275,43 @@ namespace FormTruco
             this.pictureBoxJ2C1.Size = new System.Drawing.Size(100, 153);
             this.pictureBoxJ2C1.TabIndex = 14;
             this.pictureBoxJ2C1.TabStop = false;
+            this.pictureBoxJ2C1.Click += new System.EventHandler(this.pictureBoxJ2C1_Click);
             // 
             // pictureBoxJ1C3
             // 
             this.pictureBoxJ1C3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pictureBoxJ1C3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxJ1C3.Image = global::FormTruco.Properties.Resources._1espada;
-            this.pictureBoxJ1C3.Location = new System.Drawing.Point(493, 452);
+            this.pictureBoxJ1C3.Location = new System.Drawing.Point(493, 650);
             this.pictureBoxJ1C3.Name = "pictureBoxJ1C3";
             this.pictureBoxJ1C3.Size = new System.Drawing.Size(100, 153);
             this.pictureBoxJ1C3.TabIndex = 13;
             this.pictureBoxJ1C3.TabStop = false;
+            this.pictureBoxJ1C3.Click += new System.EventHandler(this.pictureBoxJ1C3_Click);
             // 
             // pictureBoxJ1C2
             // 
             this.pictureBoxJ1C2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pictureBoxJ1C2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxJ1C2.Image = global::FormTruco.Properties.Resources._10oro;
-            this.pictureBoxJ1C2.Location = new System.Drawing.Point(344, 452);
+            this.pictureBoxJ1C2.Location = new System.Drawing.Point(344, 650);
             this.pictureBoxJ1C2.Name = "pictureBoxJ1C2";
             this.pictureBoxJ1C2.Size = new System.Drawing.Size(100, 153);
             this.pictureBoxJ1C2.TabIndex = 12;
             this.pictureBoxJ1C2.TabStop = false;
+            this.pictureBoxJ1C2.Click += new System.EventHandler(this.pictureBoxJ1C2_Click);
             // 
             // pictureBoxJ1C1
             // 
             this.pictureBoxJ1C1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pictureBoxJ1C1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxJ1C1.Image = global::FormTruco.Properties.Resources._11basto;
-            this.pictureBoxJ1C1.Location = new System.Drawing.Point(192, 452);
+            this.pictureBoxJ1C1.Location = new System.Drawing.Point(192, 650);
             this.pictureBoxJ1C1.Name = "pictureBoxJ1C1";
             this.pictureBoxJ1C1.Size = new System.Drawing.Size(100, 153);
             this.pictureBoxJ1C1.TabIndex = 11;
             this.pictureBoxJ1C1.TabStop = false;
+            this.pictureBoxJ1C1.Click += new System.EventHandler(this.pictureBoxJ1C1_Click);
             // 
             // panelLateralDer
             // 
@@ -230,7 +321,7 @@ namespace FormTruco
             this.panelLateralDer.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelLateralDer.Location = new System.Drawing.Point(1066, 0);
             this.panelLateralDer.Name = "panelLateralDer";
-            this.panelLateralDer.Size = new System.Drawing.Size(294, 628);
+            this.panelLateralDer.Size = new System.Drawing.Size(294, 826);
             this.panelLateralDer.TabIndex = 2;
             // 
             // dataGridViewAnotador
@@ -314,7 +405,7 @@ namespace FormTruco
             this.groupBoxJ1.Controls.Add(this.btnNoQuieroJ1);
             this.groupBoxJ1.Controls.Add(this.btnQuieroJ1);
             this.groupBoxJ1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBoxJ1.Location = new System.Drawing.Point(0, 277);
+            this.groupBoxJ1.Location = new System.Drawing.Point(0, 475);
             this.groupBoxJ1.Name = "groupBoxJ1";
             this.groupBoxJ1.Size = new System.Drawing.Size(294, 351);
             this.groupBoxJ1.TabIndex = 1;
@@ -461,7 +552,7 @@ namespace FormTruco
             this.panelLateralIzq.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLateralIzq.Location = new System.Drawing.Point(0, 0);
             this.panelLateralIzq.Name = "panelLateralIzq";
-            this.panelLateralIzq.Size = new System.Drawing.Size(294, 628);
+            this.panelLateralIzq.Size = new System.Drawing.Size(294, 826);
             this.panelLateralIzq.TabIndex = 1;
             // 
             // labelSegundos
@@ -491,7 +582,7 @@ namespace FormTruco
             this.btnSalir.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnSalir.FlatAppearance.BorderSize = 0;
             this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSalir.Location = new System.Drawing.Point(25, 548);
+            this.btnSalir.Location = new System.Drawing.Point(25, 746);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(245, 57);
             this.btnSalir.TabIndex = 5;
@@ -658,15 +749,22 @@ namespace FormTruco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1360, 628);
+            this.ClientSize = new System.Drawing.Size(1360, 826);
             this.Controls.Add(this.panelContenedor);
             this.MinimumSize = new System.Drawing.Size(1378, 675);
             this.Name = "FrmJuegoTruco";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Truco";
+            this.Load += new System.EventHandler(this.FrmJuegoTruco_Load);
             this.panelContenedor.ResumeLayout(false);
             this.panelMesa.ResumeLayout(false);
             this.panelMesa.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTerceraJ2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSegundaJ2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPrimeraJ2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTerceraJ1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSegundaJ1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPrimeraJ1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMazo1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMazo2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJ2C3)).EndInit();
@@ -729,6 +827,12 @@ namespace FormTruco
         private System.Windows.Forms.Label labelSegundos;
         private System.Windows.Forms.Label labelTiempo;
         private System.Windows.Forms.Timer timerJuego;
+        private System.Windows.Forms.PictureBox pictureBoxTerceraJ2;
+        private System.Windows.Forms.PictureBox pictureBoxSegundaJ2;
+        private System.Windows.Forms.PictureBox pictureBoxPrimeraJ2;
+        private System.Windows.Forms.PictureBox pictureBoxTerceraJ1;
+        private System.Windows.Forms.PictureBox pictureBoxSegundaJ1;
+        private System.Windows.Forms.PictureBox pictureBoxPrimeraJ1;
     }
 }
 

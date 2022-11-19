@@ -27,6 +27,9 @@ namespace FormTruco
         private bool turnoJ2;
         private MazoCartas mazo;
         private Carta[] cartas;
+        private Carta cartaJuagadaJ1;
+        private Carta cartaJuagadaJ2;
+
         #endregion
 
         #region Inicio Form
@@ -85,17 +88,17 @@ namespace FormTruco
         
         private void pictureBoxJ1C1_Click(object sender, EventArgs e)
         {
-            this.MovientoJ1(this.pictureBoxJ1C1);
+            this.MovientoJ1(this.pictureBoxJ1C1,0);
         }
 
         private void pictureBoxJ1C2_Click(object sender, EventArgs e)
         {
-            this.MovientoJ1(this.pictureBoxJ1C2);
+            this.MovientoJ1(this.pictureBoxJ1C2,1);
         }
 
         private void pictureBoxJ1C3_Click(object sender, EventArgs e)
         {
-            this.MovientoJ1(this.pictureBoxJ1C3);
+            this.MovientoJ1(this.pictureBoxJ1C3,2);
         }
 
         #endregion
@@ -104,17 +107,17 @@ namespace FormTruco
 
         private void pictureBoxJ2C1_Click(object sender, EventArgs e)
         {
-            this.MovientoJ2(this.pictureBoxJ2C1);
+            this.MovientoJ2(this.pictureBoxJ2C1,3);
         }
 
         private void pictureBoxJ2C2_Click(object sender, EventArgs e)
         {
-            this.MovientoJ2(this.pictureBoxJ2C2);
+            this.MovientoJ2(this.pictureBoxJ2C2,4);
         }
 
         private void pictureBoxJ2C3_Click(object sender, EventArgs e)
         {
-            this.MovientoJ2(this.pictureBoxJ2C3);
+            this.MovientoJ2(this.pictureBoxJ2C3,5);
         }
 
         #endregion
@@ -126,12 +129,13 @@ namespace FormTruco
         /// a la mesa
         /// </summary>
         /// <param name="picture"></param>
-        private void MovientoJ1(PictureBox picture)
+        private void MovientoJ1(PictureBox picture,int numeroCarta)
         {
             //picture.Location = new Point(picture.Location.X, 420);
             if(this.turnoJ1)
             {
                 this.rondaJ1++;
+                this.cartaJuagadaJ1 = this.cartas[numeroCarta];
 
                 switch(this.ronda)
                 {
@@ -150,13 +154,14 @@ namespace FormTruco
         /// a la mesa
         /// </summary>
         /// <param name="picture"></param>
-        private void MovientoJ2(PictureBox picture)
+        private void MovientoJ2(PictureBox picture, int numeroCarta)
         {
             //picture.Location = new Point(picture.Location.X, 210);
             if (this.turnoJ2)
             {
                 this.rondaJ2++;
-                
+                this.cartaJuagadaJ2 = this.cartas[numeroCarta];
+
                 switch (this.ronda)
                 {
                     case 1: this.MoverImagen(picture, this.pictureBoxPrimeraJ2); break;
@@ -181,10 +186,18 @@ namespace FormTruco
             pictureMesa.Image = picture.Image;
             pictureMesa.Visible = true;
             picture.Visible = false;
-            
-            if(this.rondaJ1 == this.rondaJ2)
+
+            if (this.rondaJ1 == this.rondaJ2)
             {
                 this.ronda++;
+
+                switch (JuegoDeCartas.CartaGanadoraTruco(this.cartaJuagadaJ1,this.cartaJuagadaJ2))
+                {
+                    case 1: this.CambiarTextoLabel("Ganador jugador 1"); break;
+                    case -1: this.CambiarTextoLabel("Ganador jugador 2"); break;
+                    case 0: this.CambiarTextoLabel("Parda"); break;
+                }
+
             }
         }
 
@@ -416,6 +429,10 @@ namespace FormTruco
         #endregion
 
         #region Repartir cartas
+
+        /// <summary>
+        /// Reparte 3 cartas para cada jugador de manera aleatoria
+        /// </summary>
         private void RepartirCartas()
         {
             this.cartas = this.mazo.RepartirCartasSinRepetir(6);

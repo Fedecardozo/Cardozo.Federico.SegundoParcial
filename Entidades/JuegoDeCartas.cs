@@ -82,7 +82,7 @@ namespace Entidades
         /// </summary>
         /// <param name="c1"></param>
         /// <param name="c2"></param>
-        /// <returns> 1 si c1 tiene mas valor que c2. 0 si son iguales. -1 si c2 tiene mas valor que c1</returns>
+        /// <returns> 1 si carta 1(c1) tiene mas valor que carta 2(c2). 0 si son iguales. -1 si carta 2(c2) tiene mas valor que carta 1(c1)</returns>
         public static int CartaGanadoraTruco(Carta c1, Carta c2)
         {
             int retorno = -1;
@@ -127,7 +127,7 @@ namespace Entidades
                 switch (c1.Numero)
                 {
                     case 1:
-                        if (!(c2.Numero > 1 && c2.Numero <= 3))
+                        if (!(c2.Numero == 2 || c2.Numero == 3))
                         {
                             retorno = 1;
                         }

@@ -245,7 +245,6 @@ namespace FormTruco
             // 
             this.pictureBoxJ2C3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBoxJ2C3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxJ2C3.Image = global::FormTruco.Properties.Resources._2copa;
             this.pictureBoxJ2C3.Location = new System.Drawing.Point(493, 24);
             this.pictureBoxJ2C3.Name = "pictureBoxJ2C3";
             this.pictureBoxJ2C3.Size = new System.Drawing.Size(100, 153);
@@ -257,7 +256,6 @@ namespace FormTruco
             // 
             this.pictureBoxJ2C2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBoxJ2C2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxJ2C2.Image = global::FormTruco.Properties.Resources._10oro;
             this.pictureBoxJ2C2.Location = new System.Drawing.Point(344, 24);
             this.pictureBoxJ2C2.Name = "pictureBoxJ2C2";
             this.pictureBoxJ2C2.Size = new System.Drawing.Size(100, 153);
@@ -269,7 +267,6 @@ namespace FormTruco
             // 
             this.pictureBoxJ2C1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBoxJ2C1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxJ2C1.Image = global::FormTruco.Properties.Resources._7oro;
             this.pictureBoxJ2C1.Location = new System.Drawing.Point(192, 24);
             this.pictureBoxJ2C1.Name = "pictureBoxJ2C1";
             this.pictureBoxJ2C1.Size = new System.Drawing.Size(100, 153);
@@ -281,7 +278,6 @@ namespace FormTruco
             // 
             this.pictureBoxJ1C3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pictureBoxJ1C3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxJ1C3.Image = global::FormTruco.Properties.Resources._1espada;
             this.pictureBoxJ1C3.Location = new System.Drawing.Point(493, 650);
             this.pictureBoxJ1C3.Name = "pictureBoxJ1C3";
             this.pictureBoxJ1C3.Size = new System.Drawing.Size(100, 153);
@@ -293,7 +289,6 @@ namespace FormTruco
             // 
             this.pictureBoxJ1C2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pictureBoxJ1C2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxJ1C2.Image = global::FormTruco.Properties.Resources._10oro;
             this.pictureBoxJ1C2.Location = new System.Drawing.Point(344, 650);
             this.pictureBoxJ1C2.Name = "pictureBoxJ1C2";
             this.pictureBoxJ1C2.Size = new System.Drawing.Size(100, 153);
@@ -305,7 +300,6 @@ namespace FormTruco
             // 
             this.pictureBoxJ1C1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pictureBoxJ1C1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxJ1C1.Image = global::FormTruco.Properties.Resources._11basto;
             this.pictureBoxJ1C1.Location = new System.Drawing.Point(192, 650);
             this.pictureBoxJ1C1.Name = "pictureBoxJ1C1";
             this.pictureBoxJ1C1.Size = new System.Drawing.Size(100, 153);

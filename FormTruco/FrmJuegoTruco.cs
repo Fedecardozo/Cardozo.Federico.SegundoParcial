@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,6 +13,8 @@ namespace FormTruco
 {
     public partial class FrmJuegoTruco : Form
     {
+        public delegate void HabilitacionBotones(Button[] btns, GroupBox group);
+
         #region Atributos
 
         private int conteoTime;
@@ -68,11 +71,6 @@ namespace FormTruco
 
             this.labelSegundos.Text = $"{minutosCadena} : {segundosCadena}";
         }
-
-        #endregion
-
-        #region Funcionalidad de botones
-
 
         #endregion
 
@@ -184,6 +182,168 @@ namespace FormTruco
         }
 
         #endregion
+
+        #region Label de lo que se canto
+     
+        private void CambiarTextoLabel(string mensaje)
+        {
+            this.labelCanto.Text = mensaje;
+            this.labelCanto.Visible = true;
+            //this.labelCanto.Visible = false;
+        }
+
+        #endregion
+
+        #region Botones J1
+
+        private void btnQuieroJ1_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J1: Quiero!");
+        }
+
+        private void btnNoQuieroJ1_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J1: No quiero!");
+        }
+
+        private void btnEnvidoJ1_Click(object sender, EventArgs e)
+        {
+            this.CantoEnvido(1);
+        }
+
+        private void btnRealEnvidoJ1_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J1: Real envido!");
+        }
+
+        private void btnFaltaEnvidoJ1_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J1: Falta envido!");
+        }
+
+        private void btnFlorJ1_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J1: Flor!");
+        }
+
+        private void btnTrucoJ1_Click(object sender, EventArgs e)
+        {
+            this.CantoTruco(1);
+        }
+
+        private void btnReTrucoJ1_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J1: Quiero re truco!");
+        }
+
+        private void btnVale4J1_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J1: Quiero vale cuatro!");
+        }
+
+        private void btnMazoJ1_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J1: Me voy al mazo!");
+        }
+
+        #endregion
+
+        #region Botones J2
+
+        private void btnQuieroJ2_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J2: Quiero!");
+        }
+
+        private void btnNoQuieroJ2_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J2: No quiero!");
+        }
+
+        private void btnEnvidoJ2_Click(object sender, EventArgs e)
+        {
+            this.CantoEnvido(2);
+        }
+
+        private void btnRealEnvidoJ2_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J2: Real envido!");
+        }
+
+        private void btnFaltaEnvidoJ2_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J2: Falta envido!");
+        }
+
+        private void btnFlorJ2_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J2: Flor!");
+        }
+
+        private void btnTrucoJ2_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J2: Truco!");
+            this.CantoTruco(2);
+        }
+
+        private void btnReTrucoJ2_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J2: Quiero re truco!");
+        }
+
+        private void btnValeCuatroJ2_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J2: Quiero vale cuatro!");
+        }
+
+        private void btnMazoJ2_Click(object sender, EventArgs e)
+        {
+            this.CambiarTextoLabel("J2: Me voy al mazo!");
+        }
+
+        #endregion
+
+        private void CantoTruco(int jugador)
+        {
+            this.CambiarTextoLabel($"J{jugador} Truco!");
+            if(jugador == 2)
+            {
+                this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnReTrucoJ1, this.btnMazoJ1},this.groupBoxJ2);
+            }
+            else
+            {
+                this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2, this.btnReTrucoJ2, this.btnMazoJ2 }, this.groupBoxJ1);
+            }
+
+        }
+
+        private void CantoEnvido(int jugador)
+        {
+            this.CambiarTextoLabel($"J{jugador} Envido!");
+            if (jugador == 2)
+            {
+                this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnEnvidoJ1, this.btnRealEnvidoJ1, 
+                    this.btnFaltaEnvidoJ1, this.btnMazoJ1 }, this.groupBoxJ2);
+            }
+            else
+            {
+                this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2,this.btnEnvidoJ2, this.btnRealEnvidoJ2,
+                    this.btnFaltaEnvidoJ2, this.btnMazoJ2 }, this.groupBoxJ1);
+            }
+        }
+
+        private void HabilitarBotones(Button[] btns, GroupBox group)
+        {
+            foreach (Button item in btns)
+            {
+                item.Enabled = true;
+            }
+
+            foreach (Button item in group.Controls)
+            {
+                item.Enabled = false;
+            }
+        } 
 
     }
 }

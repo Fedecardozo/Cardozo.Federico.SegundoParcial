@@ -30,10 +30,10 @@ namespace FormTruco
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelContenedor = new System.Windows.Forms.Panel();
             this.panelMesa = new System.Windows.Forms.Panel();
             this.pictureBoxTerceraJ2 = new System.Windows.Forms.PictureBox();
@@ -333,26 +333,26 @@ namespace FormTruco
             this.dataGridViewAnotador.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewAnotador.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewAnotador.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewAnotador.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle37.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle37.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle37.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewAnotador.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
             this.dataGridViewAnotador.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAnotador.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.J1,
             this.J2});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewAnotador.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle38.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewAnotador.DefaultCellStyle = dataGridViewCellStyle38;
             this.dataGridViewAnotador.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridViewAnotador.Enabled = false;
             this.dataGridViewAnotador.EnableHeadersVisualStyles = false;
@@ -360,19 +360,19 @@ namespace FormTruco
             this.dataGridViewAnotador.Name = "dataGridViewAnotador";
             this.dataGridViewAnotador.ReadOnly = true;
             this.dataGridViewAnotador.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewAnotador.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle39.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewAnotador.RowHeadersDefaultCellStyle = dataGridViewCellStyle39;
             this.dataGridViewAnotador.RowHeadersVisible = false;
             this.dataGridViewAnotador.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridViewAnotador.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle40.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.dataGridViewAnotador.RowsDefaultCellStyle = dataGridViewCellStyle40;
             this.dataGridViewAnotador.RowTemplate.Height = 29;
             this.dataGridViewAnotador.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewAnotador.Size = new System.Drawing.Size(294, 217);
@@ -416,6 +416,7 @@ namespace FormTruco
             // 
             this.btnFlorJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnFlorJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnFlorJ1.Enabled = false;
             this.btnFlorJ1.FlatAppearance.BorderSize = 0;
             this.btnFlorJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnFlorJ1.Location = new System.Drawing.Point(157, 169);
@@ -424,6 +425,7 @@ namespace FormTruco
             this.btnFlorJ1.TabIndex = 13;
             this.btnFlorJ1.Text = "Flor";
             this.btnFlorJ1.UseVisualStyleBackColor = false;
+            this.btnFlorJ1.Click += new System.EventHandler(this.btnFlorJ1_Click);
             // 
             // btnFaltaEnvidoJ1
             // 
@@ -437,6 +439,7 @@ namespace FormTruco
             this.btnFaltaEnvidoJ1.TabIndex = 12;
             this.btnFaltaEnvidoJ1.Text = "Falta envido";
             this.btnFaltaEnvidoJ1.UseVisualStyleBackColor = false;
+            this.btnFaltaEnvidoJ1.Click += new System.EventHandler(this.btnFaltaEnvidoJ1_Click);
             // 
             // btnRealEnvidoJ1
             // 
@@ -450,6 +453,7 @@ namespace FormTruco
             this.btnRealEnvidoJ1.TabIndex = 11;
             this.btnRealEnvidoJ1.Text = "Real Envido";
             this.btnRealEnvidoJ1.UseVisualStyleBackColor = false;
+            this.btnRealEnvidoJ1.Click += new System.EventHandler(this.btnRealEnvidoJ1_Click);
             // 
             // btnEnvidoJ1
             // 
@@ -463,6 +467,7 @@ namespace FormTruco
             this.btnEnvidoJ1.TabIndex = 10;
             this.btnEnvidoJ1.Text = "Envido";
             this.btnEnvidoJ1.UseVisualStyleBackColor = false;
+            this.btnEnvidoJ1.Click += new System.EventHandler(this.btnEnvidoJ1_Click);
             // 
             // btnMazoJ1
             // 
@@ -476,11 +481,13 @@ namespace FormTruco
             this.btnMazoJ1.TabIndex = 9;
             this.btnMazoJ1.Text = "Mazo";
             this.btnMazoJ1.UseVisualStyleBackColor = false;
+            this.btnMazoJ1.Click += new System.EventHandler(this.btnMazoJ1_Click);
             // 
             // btnVale4J1
             // 
             this.btnVale4J1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnVale4J1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnVale4J1.Enabled = false;
             this.btnVale4J1.FlatAppearance.BorderSize = 0;
             this.btnVale4J1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnVale4J1.Location = new System.Drawing.Point(20, 297);
@@ -489,11 +496,13 @@ namespace FormTruco
             this.btnVale4J1.TabIndex = 8;
             this.btnVale4J1.Text = "Vale 4";
             this.btnVale4J1.UseVisualStyleBackColor = false;
+            this.btnVale4J1.Click += new System.EventHandler(this.btnVale4J1_Click);
             // 
             // btnReTrucoJ1
             // 
             this.btnReTrucoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnReTrucoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnReTrucoJ1.Enabled = false;
             this.btnReTrucoJ1.FlatAppearance.BorderSize = 0;
             this.btnReTrucoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnReTrucoJ1.Location = new System.Drawing.Point(157, 234);
@@ -502,6 +511,7 @@ namespace FormTruco
             this.btnReTrucoJ1.TabIndex = 7;
             this.btnReTrucoJ1.Text = "Re truco";
             this.btnReTrucoJ1.UseVisualStyleBackColor = false;
+            this.btnReTrucoJ1.Click += new System.EventHandler(this.btnReTrucoJ1_Click);
             // 
             // btnTrucoJ1
             // 
@@ -515,11 +525,13 @@ namespace FormTruco
             this.btnTrucoJ1.TabIndex = 6;
             this.btnTrucoJ1.Text = "Truco";
             this.btnTrucoJ1.UseVisualStyleBackColor = false;
+            this.btnTrucoJ1.Click += new System.EventHandler(this.btnTrucoJ1_Click);
             // 
             // btnNoQuieroJ1
             // 
             this.btnNoQuieroJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnNoQuieroJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnNoQuieroJ1.Enabled = false;
             this.btnNoQuieroJ1.FlatAppearance.BorderSize = 0;
             this.btnNoQuieroJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnNoQuieroJ1.Location = new System.Drawing.Point(157, 42);
@@ -528,11 +540,13 @@ namespace FormTruco
             this.btnNoQuieroJ1.TabIndex = 5;
             this.btnNoQuieroJ1.Text = "No quiero";
             this.btnNoQuieroJ1.UseVisualStyleBackColor = false;
+            this.btnNoQuieroJ1.Click += new System.EventHandler(this.btnNoQuieroJ1_Click);
             // 
             // btnQuieroJ1
             // 
             this.btnQuieroJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnQuieroJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnQuieroJ1.Enabled = false;
             this.btnQuieroJ1.FlatAppearance.BorderSize = 0;
             this.btnQuieroJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnQuieroJ1.Location = new System.Drawing.Point(20, 42);
@@ -541,6 +555,7 @@ namespace FormTruco
             this.btnQuieroJ1.TabIndex = 4;
             this.btnQuieroJ1.Text = "Quiero";
             this.btnQuieroJ1.UseVisualStyleBackColor = false;
+            this.btnQuieroJ1.Click += new System.EventHandler(this.btnQuieroJ1_Click);
             // 
             // panelLateralIzq
             // 
@@ -613,6 +628,7 @@ namespace FormTruco
             // 
             this.btnFlorJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnFlorJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnFlorJ2.Enabled = false;
             this.btnFlorJ2.FlatAppearance.BorderSize = 0;
             this.btnFlorJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnFlorJ2.Location = new System.Drawing.Point(162, 156);
@@ -621,11 +637,13 @@ namespace FormTruco
             this.btnFlorJ2.TabIndex = 23;
             this.btnFlorJ2.Text = "Flor";
             this.btnFlorJ2.UseVisualStyleBackColor = false;
+            this.btnFlorJ2.Click += new System.EventHandler(this.btnFlorJ2_Click);
             // 
             // btnFaltaEnvidoJ2
             // 
             this.btnFaltaEnvidoJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnFaltaEnvidoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnFaltaEnvidoJ2.Enabled = false;
             this.btnFaltaEnvidoJ2.FlatAppearance.BorderSize = 0;
             this.btnFaltaEnvidoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnFaltaEnvidoJ2.Location = new System.Drawing.Point(25, 156);
@@ -634,11 +652,13 @@ namespace FormTruco
             this.btnFaltaEnvidoJ2.TabIndex = 22;
             this.btnFaltaEnvidoJ2.Text = "Falta envido";
             this.btnFaltaEnvidoJ2.UseVisualStyleBackColor = false;
+            this.btnFaltaEnvidoJ2.Click += new System.EventHandler(this.btnFaltaEnvidoJ2_Click);
             // 
             // btnRealEnvidoJ2
             // 
             this.btnRealEnvidoJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnRealEnvidoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnRealEnvidoJ2.Enabled = false;
             this.btnRealEnvidoJ2.FlatAppearance.BorderSize = 0;
             this.btnRealEnvidoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnRealEnvidoJ2.Location = new System.Drawing.Point(162, 93);
@@ -647,11 +667,13 @@ namespace FormTruco
             this.btnRealEnvidoJ2.TabIndex = 21;
             this.btnRealEnvidoJ2.Text = "Real Envido";
             this.btnRealEnvidoJ2.UseVisualStyleBackColor = false;
+            this.btnRealEnvidoJ2.Click += new System.EventHandler(this.btnRealEnvidoJ2_Click);
             // 
             // btnEnvidoJ2
             // 
             this.btnEnvidoJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnEnvidoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnEnvidoJ2.Enabled = false;
             this.btnEnvidoJ2.FlatAppearance.BorderSize = 0;
             this.btnEnvidoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnEnvidoJ2.Location = new System.Drawing.Point(25, 93);
@@ -660,11 +682,13 @@ namespace FormTruco
             this.btnEnvidoJ2.TabIndex = 20;
             this.btnEnvidoJ2.Text = "Envido";
             this.btnEnvidoJ2.UseVisualStyleBackColor = false;
+            this.btnEnvidoJ2.Click += new System.EventHandler(this.btnEnvidoJ2_Click);
             // 
             // btnMazoJ2
             // 
             this.btnMazoJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMazoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnMazoJ2.Enabled = false;
             this.btnMazoJ2.FlatAppearance.BorderSize = 0;
             this.btnMazoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnMazoJ2.Location = new System.Drawing.Point(162, 284);
@@ -673,11 +697,13 @@ namespace FormTruco
             this.btnMazoJ2.TabIndex = 19;
             this.btnMazoJ2.Text = "Mazo";
             this.btnMazoJ2.UseVisualStyleBackColor = false;
+            this.btnMazoJ2.Click += new System.EventHandler(this.btnMazoJ2_Click);
             // 
             // btnValeCuatroJ2
             // 
             this.btnValeCuatroJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnValeCuatroJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnValeCuatroJ2.Enabled = false;
             this.btnValeCuatroJ2.FlatAppearance.BorderSize = 0;
             this.btnValeCuatroJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnValeCuatroJ2.Location = new System.Drawing.Point(25, 284);
@@ -686,11 +712,13 @@ namespace FormTruco
             this.btnValeCuatroJ2.TabIndex = 18;
             this.btnValeCuatroJ2.Text = "Vale 4";
             this.btnValeCuatroJ2.UseVisualStyleBackColor = false;
+            this.btnValeCuatroJ2.Click += new System.EventHandler(this.btnValeCuatroJ2_Click);
             // 
             // btnReTrucoJ2
             // 
             this.btnReTrucoJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnReTrucoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnReTrucoJ2.Enabled = false;
             this.btnReTrucoJ2.FlatAppearance.BorderSize = 0;
             this.btnReTrucoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnReTrucoJ2.Location = new System.Drawing.Point(162, 221);
@@ -699,11 +727,13 @@ namespace FormTruco
             this.btnReTrucoJ2.TabIndex = 17;
             this.btnReTrucoJ2.Text = "Re truco";
             this.btnReTrucoJ2.UseVisualStyleBackColor = false;
+            this.btnReTrucoJ2.Click += new System.EventHandler(this.btnReTrucoJ2_Click);
             // 
             // btnTrucoJ2
             // 
             this.btnTrucoJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnTrucoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnTrucoJ2.Enabled = false;
             this.btnTrucoJ2.FlatAppearance.BorderSize = 0;
             this.btnTrucoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnTrucoJ2.Location = new System.Drawing.Point(25, 221);
@@ -712,11 +742,13 @@ namespace FormTruco
             this.btnTrucoJ2.TabIndex = 16;
             this.btnTrucoJ2.Text = "Truco";
             this.btnTrucoJ2.UseVisualStyleBackColor = false;
+            this.btnTrucoJ2.Click += new System.EventHandler(this.btnTrucoJ2_Click);
             // 
             // btnNoQuieroJ2
             // 
             this.btnNoQuieroJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnNoQuieroJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnNoQuieroJ2.Enabled = false;
             this.btnNoQuieroJ2.FlatAppearance.BorderSize = 0;
             this.btnNoQuieroJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnNoQuieroJ2.Location = new System.Drawing.Point(162, 29);
@@ -725,11 +757,13 @@ namespace FormTruco
             this.btnNoQuieroJ2.TabIndex = 15;
             this.btnNoQuieroJ2.Text = "No quiero";
             this.btnNoQuieroJ2.UseVisualStyleBackColor = false;
+            this.btnNoQuieroJ2.Click += new System.EventHandler(this.btnNoQuieroJ2_Click);
             // 
             // btnQuieroJ2
             // 
             this.btnQuieroJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnQuieroJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnQuieroJ2.Enabled = false;
             this.btnQuieroJ2.FlatAppearance.BorderSize = 0;
             this.btnQuieroJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnQuieroJ2.Location = new System.Drawing.Point(25, 29);
@@ -738,6 +772,7 @@ namespace FormTruco
             this.btnQuieroJ2.TabIndex = 14;
             this.btnQuieroJ2.Text = "Quiero";
             this.btnQuieroJ2.UseVisualStyleBackColor = false;
+            this.btnQuieroJ2.Click += new System.EventHandler(this.btnQuieroJ2_Click);
             // 
             // timerJuego
             // 

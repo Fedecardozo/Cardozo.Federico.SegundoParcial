@@ -82,10 +82,10 @@ namespace Entidades
         /// </summary>
         /// <param name="c1"></param>
         /// <param name="c2"></param>
-        /// <returns> 1 si carta 1(c1) tiene mas valor que carta 2(c2). 0 si son iguales. -1 si carta 2(c2) tiene mas valor que carta 1(c1)</returns>
+        /// <returns> 1 si carta 1(c1) tiene mas valor que carta 2(c2). 0 si son iguales. 2 si carta 2(c2) tiene mas valor que carta 1(c1)</returns>
         public static int CartaGanadoraTruco(Carta c1, Carta c2)
         {
-            int retorno = -1;
+            int retorno = 2;
 
             Carta[] cartasGanadoras =
             {

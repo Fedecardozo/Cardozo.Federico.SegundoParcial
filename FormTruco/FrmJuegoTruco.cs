@@ -21,6 +21,9 @@ namespace FormTruco
         private int conteoTime;
         private int minutos;
         private int ronda;
+        private int ganadorPrimera;
+        private int ganadorSegunda;
+        private int ganadorTercera;
         private int rondaJ1;
         private int rondaJ2;
         private bool turnoJ1;
@@ -29,6 +32,7 @@ namespace FormTruco
         private Carta[] cartas;
         private Carta cartaJuagadaJ1;
         private Carta cartaJuagadaJ2;
+        private int mano;
 
         #endregion
 
@@ -44,13 +48,26 @@ namespace FormTruco
             this.conteoTime = 0;
             this.minutos = 0;
             this.ronda = 1;
-            this.rondaJ1 = 1;
-            this.rondaJ2 = 1;
-            this.turnoJ1 = true;
-            this.turnoJ2 = false;
+            this.rondaJ1 = 0;
+            this.rondaJ2 = 0;
             this.mazo = Harcodeo.MazoCartas;
             this.cartas = new Carta[6];
             this.RepartirCartas();
+            this.mano = 2;
+            this.InicioDelJuego();
+        }
+        private void InicioDelJuego()
+        {
+            if(this.mano == 1)
+            {
+                this.turnoJ1 = true;
+                this.turnoJ2 = false;
+            }
+            else
+            {
+                this.turnoJ1 = false;
+                this.turnoJ2 = true;
+            }
         }
 
         #endregion
@@ -136,6 +153,8 @@ namespace FormTruco
             {
                 this.rondaJ1++;
                 this.cartaJuagadaJ1 = this.cartas[numeroCarta];
+                this.turnoJ1 = false;
+                this.turnoJ2 = true;
 
                 switch(this.ronda)
                 {
@@ -144,8 +163,6 @@ namespace FormTruco
                     case 3: this.MoverImagen(picture, this.pictureBoxTerceraJ1); break;
                 }
 
-                this.turnoJ1 = false;
-                this.turnoJ2 = true;
             }
         }
 
@@ -161,6 +178,8 @@ namespace FormTruco
             {
                 this.rondaJ2++;
                 this.cartaJuagadaJ2 = this.cartas[numeroCarta];
+                this.turnoJ1 = true;
+                this.turnoJ2 = false;
 
                 switch (this.ronda)
                 {
@@ -169,8 +188,6 @@ namespace FormTruco
                     case 3: this.MoverImagen(picture, this.pictureBoxTerceraJ2); break;
                 }
 
-                this.turnoJ1 = true;
-                this.turnoJ2 = false;
             }
 
         }
@@ -187,18 +204,100 @@ namespace FormTruco
             pictureMesa.Visible = true;
             picture.Visible = false;
 
-            if (this.rondaJ1 == this.rondaJ2)
+            //Verifica que los 2 jugadores ya hayan tirado las cartas 
+            if (this.rondaJ1 == this.rondaJ2 && this.rondaJ1 > 0 && this.rondaJ2 > 0)
             {
+                //Verifico quien gano las rondas y se anota
+                this.GanadorRondas();
+
+                //Verifico si ya hay un ganador del juego
+                this.GanadorDelJuego();
+
+                //Sumo en uno la ronda
                 this.ronda++;
-
-                switch (JuegoDeCartas.CartaGanadoraTruco(this.cartaJuagadaJ1,this.cartaJuagadaJ2))
-                {
-                    case 1: this.CambiarTextoLabel("Ganador jugador 1"); break;
-                    case -1: this.CambiarTextoLabel("Ganador jugador 2"); break;
-                    case 0: this.CambiarTextoLabel("Parda"); break;
-                }
-
             }
+        }
+
+        /// <summary>
+        /// Compara quien gano en cada ronda y anota que jugador gano en cada ronda
+        /// </summary>
+        private void GanadorRondas()
+        {
+            int ganador = JuegoDeCartas.CartaGanadoraTruco(this.cartaJuagadaJ1, this.cartaJuagadaJ2);
+
+            switch (ganador)
+            {
+                case 1: this.CambiarTextoLabel("Ganador jugador 1"); this.turnoJ1 = true; this.turnoJ2 = false; break;
+                case 2: this.CambiarTextoLabel("Ganador jugador 2"); this.turnoJ1 = false; this.turnoJ2 = true; break;
+                case 0:
+
+                    if (this.ronda == 1 || (this.ganadorPrimera == 0 && this.ronda < 3))
+                    {
+                        this.CambiarTextoLabel("Parda");
+                        if(this.mano == 1)
+                        {
+                            this.turnoJ1 = true;
+                            this.turnoJ2 = false;
+                        }
+                        else
+                        {
+                            this.turnoJ1 = false;
+                            this.turnoJ2 = true;
+                        }
+                    }
+
+                    break;
+            }
+
+            switch (this.ronda)
+            {
+                case 1: this.ganadorPrimera = ganador; break;
+                case 2: this.ganadorSegunda = ganador; break;
+                case 3: this.ganadorTercera = ganador; break;
+            }
+
+        }
+
+        /// <summary>
+        /// En cada ronda comprueba si ya hay un ganador del juego
+        /// </summary>
+        private void GanadorDelJuego()
+        {
+            string ganadorJ1 = "Ganador jugador 1";
+
+            if (this.ganadorPrimera == 1 && this.ganadorSegunda == 1)
+            {
+                this.MensajeGanador(ganadorJ1);
+            }
+            else if(this.ganadorPrimera == 1 && this.ganadorTercera == 1)
+            {
+                this.MensajeGanador(ganadorJ1);
+            }
+            else if(this.ganadorPrimera == 0 && this.ganadorSegunda == 1)
+            {
+                this.MensajeGanador(ganadorJ1);
+            }
+            else if (this.ganadorPrimera == 0 && this.ganadorSegunda == 0 && this.ganadorTercera == 1)
+            {
+                this.MensajeGanador(ganadorJ1);
+            }
+            else if (this.ganadorPrimera == 0 && this.ganadorSegunda == 0 && this.ganadorTercera == 0 && this.mano == 1)
+            {
+                this.MensajeGanador(ganadorJ1);
+            }
+            else if(this.ronda > 2)
+            {
+                this.MensajeGanador("Ganador jugador 2");
+            }
+        }
+
+        /// <summary>
+        /// Message box de quien gano el juego
+        /// </summary>
+        /// <param name="msj"></param>
+        private void MensajeGanador(string msj)
+        {
+            MessageBox.Show(msj, "Ganador", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #endregion

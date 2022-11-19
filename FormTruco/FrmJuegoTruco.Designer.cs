@@ -29,6 +29,7 @@ namespace FormTruco
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -49,8 +50,32 @@ namespace FormTruco
             this.J1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.J2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxJ1 = new System.Windows.Forms.GroupBox();
+            this.btnFlorJ1 = new System.Windows.Forms.Button();
+            this.btnFaltaEnvidoJ1 = new System.Windows.Forms.Button();
+            this.btnRealEnvidoJ1 = new System.Windows.Forms.Button();
+            this.btnEnvidoJ1 = new System.Windows.Forms.Button();
+            this.btnMazoJ1 = new System.Windows.Forms.Button();
+            this.btnVale4J1 = new System.Windows.Forms.Button();
+            this.btnReTrucoJ1 = new System.Windows.Forms.Button();
+            this.btnTrucoJ1 = new System.Windows.Forms.Button();
+            this.btnNoQuieroJ1 = new System.Windows.Forms.Button();
+            this.btnQuieroJ1 = new System.Windows.Forms.Button();
             this.panelLateralIzq = new System.Windows.Forms.Panel();
+            this.labelSegundos = new System.Windows.Forms.Label();
+            this.labelTiempo = new System.Windows.Forms.Label();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.groupBoxJ2 = new System.Windows.Forms.GroupBox();
+            this.btnFlorJ2 = new System.Windows.Forms.Button();
+            this.btnFaltaEnvidoJ2 = new System.Windows.Forms.Button();
+            this.btnRealEnvidoJ2 = new System.Windows.Forms.Button();
+            this.btnEnvidoJ2 = new System.Windows.Forms.Button();
+            this.btnMazoJ2 = new System.Windows.Forms.Button();
+            this.btnValeCuatroJ2 = new System.Windows.Forms.Button();
+            this.btnReTrucoJ2 = new System.Windows.Forms.Button();
+            this.btnTrucoJ2 = new System.Windows.Forms.Button();
+            this.btnNoQuieroJ2 = new System.Windows.Forms.Button();
+            this.btnQuieroJ2 = new System.Windows.Forms.Button();
+            this.timerJuego = new System.Windows.Forms.Timer(this.components);
             this.panelContenedor.SuspendLayout();
             this.panelMesa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMazo1)).BeginInit();
@@ -63,7 +88,9 @@ namespace FormTruco
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJ1C1)).BeginInit();
             this.panelLateralDer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAnotador)).BeginInit();
+            this.groupBoxJ1.SuspendLayout();
             this.panelLateralIzq.SuspendLayout();
+            this.groupBoxJ2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelContenedor
@@ -276,17 +303,160 @@ namespace FormTruco
             // 
             // groupBoxJ1
             // 
+            this.groupBoxJ1.Controls.Add(this.btnFlorJ1);
+            this.groupBoxJ1.Controls.Add(this.btnFaltaEnvidoJ1);
+            this.groupBoxJ1.Controls.Add(this.btnRealEnvidoJ1);
+            this.groupBoxJ1.Controls.Add(this.btnEnvidoJ1);
+            this.groupBoxJ1.Controls.Add(this.btnMazoJ1);
+            this.groupBoxJ1.Controls.Add(this.btnVale4J1);
+            this.groupBoxJ1.Controls.Add(this.btnReTrucoJ1);
+            this.groupBoxJ1.Controls.Add(this.btnTrucoJ1);
+            this.groupBoxJ1.Controls.Add(this.btnNoQuieroJ1);
+            this.groupBoxJ1.Controls.Add(this.btnQuieroJ1);
             this.groupBoxJ1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBoxJ1.Location = new System.Drawing.Point(0, 352);
+            this.groupBoxJ1.Location = new System.Drawing.Point(0, 277);
             this.groupBoxJ1.Name = "groupBoxJ1";
-            this.groupBoxJ1.Size = new System.Drawing.Size(294, 276);
+            this.groupBoxJ1.Size = new System.Drawing.Size(294, 351);
             this.groupBoxJ1.TabIndex = 1;
             this.groupBoxJ1.TabStop = false;
             this.groupBoxJ1.Text = "Botones Jugador 1";
             // 
+            // btnFlorJ1
+            // 
+            this.btnFlorJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnFlorJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnFlorJ1.FlatAppearance.BorderSize = 0;
+            this.btnFlorJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnFlorJ1.Location = new System.Drawing.Point(157, 169);
+            this.btnFlorJ1.Name = "btnFlorJ1";
+            this.btnFlorJ1.Size = new System.Drawing.Size(108, 37);
+            this.btnFlorJ1.TabIndex = 13;
+            this.btnFlorJ1.Text = "Flor";
+            this.btnFlorJ1.UseVisualStyleBackColor = false;
+            // 
+            // btnFaltaEnvidoJ1
+            // 
+            this.btnFaltaEnvidoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnFaltaEnvidoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnFaltaEnvidoJ1.FlatAppearance.BorderSize = 0;
+            this.btnFaltaEnvidoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnFaltaEnvidoJ1.Location = new System.Drawing.Point(20, 169);
+            this.btnFaltaEnvidoJ1.Name = "btnFaltaEnvidoJ1";
+            this.btnFaltaEnvidoJ1.Size = new System.Drawing.Size(108, 37);
+            this.btnFaltaEnvidoJ1.TabIndex = 12;
+            this.btnFaltaEnvidoJ1.Text = "Falta envido";
+            this.btnFaltaEnvidoJ1.UseVisualStyleBackColor = false;
+            // 
+            // btnRealEnvidoJ1
+            // 
+            this.btnRealEnvidoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRealEnvidoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnRealEnvidoJ1.FlatAppearance.BorderSize = 0;
+            this.btnRealEnvidoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRealEnvidoJ1.Location = new System.Drawing.Point(157, 106);
+            this.btnRealEnvidoJ1.Name = "btnRealEnvidoJ1";
+            this.btnRealEnvidoJ1.Size = new System.Drawing.Size(108, 37);
+            this.btnRealEnvidoJ1.TabIndex = 11;
+            this.btnRealEnvidoJ1.Text = "Real Envido";
+            this.btnRealEnvidoJ1.UseVisualStyleBackColor = false;
+            // 
+            // btnEnvidoJ1
+            // 
+            this.btnEnvidoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEnvidoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnEnvidoJ1.FlatAppearance.BorderSize = 0;
+            this.btnEnvidoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnEnvidoJ1.Location = new System.Drawing.Point(20, 106);
+            this.btnEnvidoJ1.Name = "btnEnvidoJ1";
+            this.btnEnvidoJ1.Size = new System.Drawing.Size(108, 37);
+            this.btnEnvidoJ1.TabIndex = 10;
+            this.btnEnvidoJ1.Text = "Envido";
+            this.btnEnvidoJ1.UseVisualStyleBackColor = false;
+            // 
+            // btnMazoJ1
+            // 
+            this.btnMazoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnMazoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnMazoJ1.FlatAppearance.BorderSize = 0;
+            this.btnMazoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnMazoJ1.Location = new System.Drawing.Point(157, 297);
+            this.btnMazoJ1.Name = "btnMazoJ1";
+            this.btnMazoJ1.Size = new System.Drawing.Size(108, 37);
+            this.btnMazoJ1.TabIndex = 9;
+            this.btnMazoJ1.Text = "Mazo";
+            this.btnMazoJ1.UseVisualStyleBackColor = false;
+            // 
+            // btnVale4J1
+            // 
+            this.btnVale4J1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnVale4J1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnVale4J1.FlatAppearance.BorderSize = 0;
+            this.btnVale4J1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnVale4J1.Location = new System.Drawing.Point(20, 297);
+            this.btnVale4J1.Name = "btnVale4J1";
+            this.btnVale4J1.Size = new System.Drawing.Size(108, 37);
+            this.btnVale4J1.TabIndex = 8;
+            this.btnVale4J1.Text = "Vale 4";
+            this.btnVale4J1.UseVisualStyleBackColor = false;
+            // 
+            // btnReTrucoJ1
+            // 
+            this.btnReTrucoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnReTrucoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnReTrucoJ1.FlatAppearance.BorderSize = 0;
+            this.btnReTrucoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnReTrucoJ1.Location = new System.Drawing.Point(157, 234);
+            this.btnReTrucoJ1.Name = "btnReTrucoJ1";
+            this.btnReTrucoJ1.Size = new System.Drawing.Size(108, 37);
+            this.btnReTrucoJ1.TabIndex = 7;
+            this.btnReTrucoJ1.Text = "Re truco";
+            this.btnReTrucoJ1.UseVisualStyleBackColor = false;
+            // 
+            // btnTrucoJ1
+            // 
+            this.btnTrucoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnTrucoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnTrucoJ1.FlatAppearance.BorderSize = 0;
+            this.btnTrucoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnTrucoJ1.Location = new System.Drawing.Point(20, 234);
+            this.btnTrucoJ1.Name = "btnTrucoJ1";
+            this.btnTrucoJ1.Size = new System.Drawing.Size(108, 37);
+            this.btnTrucoJ1.TabIndex = 6;
+            this.btnTrucoJ1.Text = "Truco";
+            this.btnTrucoJ1.UseVisualStyleBackColor = false;
+            // 
+            // btnNoQuieroJ1
+            // 
+            this.btnNoQuieroJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnNoQuieroJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnNoQuieroJ1.FlatAppearance.BorderSize = 0;
+            this.btnNoQuieroJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnNoQuieroJ1.Location = new System.Drawing.Point(157, 42);
+            this.btnNoQuieroJ1.Name = "btnNoQuieroJ1";
+            this.btnNoQuieroJ1.Size = new System.Drawing.Size(108, 37);
+            this.btnNoQuieroJ1.TabIndex = 5;
+            this.btnNoQuieroJ1.Text = "No quiero";
+            this.btnNoQuieroJ1.UseVisualStyleBackColor = false;
+            // 
+            // btnQuieroJ1
+            // 
+            this.btnQuieroJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnQuieroJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnQuieroJ1.FlatAppearance.BorderSize = 0;
+            this.btnQuieroJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnQuieroJ1.Location = new System.Drawing.Point(20, 42);
+            this.btnQuieroJ1.Name = "btnQuieroJ1";
+            this.btnQuieroJ1.Size = new System.Drawing.Size(108, 37);
+            this.btnQuieroJ1.TabIndex = 4;
+            this.btnQuieroJ1.Text = "Quiero";
+            this.btnQuieroJ1.UseVisualStyleBackColor = false;
+            // 
             // panelLateralIzq
             // 
             this.panelLateralIzq.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panelLateralIzq.Controls.Add(this.labelSegundos);
+            this.panelLateralIzq.Controls.Add(this.labelTiempo);
+            this.panelLateralIzq.Controls.Add(this.btnSalir);
             this.panelLateralIzq.Controls.Add(this.groupBoxJ2);
             this.panelLateralIzq.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLateralIzq.Location = new System.Drawing.Point(0, 0);
@@ -294,15 +464,195 @@ namespace FormTruco
             this.panelLateralIzq.Size = new System.Drawing.Size(294, 628);
             this.panelLateralIzq.TabIndex = 1;
             // 
+            // labelSegundos
+            // 
+            this.labelSegundos.AutoSize = true;
+            this.labelSegundos.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelSegundos.Location = new System.Drawing.Point(92, 445);
+            this.labelSegundos.Name = "labelSegundos";
+            this.labelSegundos.Size = new System.Drawing.Size(99, 38);
+            this.labelSegundos.TabIndex = 7;
+            this.labelSegundos.Text = "00 : 00";
+            // 
+            // labelTiempo
+            // 
+            this.labelTiempo.AutoSize = true;
+            this.labelTiempo.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelTiempo.Location = new System.Drawing.Point(42, 400);
+            this.labelTiempo.Name = "labelTiempo";
+            this.labelTiempo.Size = new System.Drawing.Size(203, 38);
+            this.labelTiempo.TabIndex = 6;
+            this.labelTiempo.Text = "Tiempo jugado";
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalir.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnSalir.FlatAppearance.BorderSize = 0;
+            this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnSalir.Location = new System.Drawing.Point(25, 548);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(245, 57);
+            this.btnSalir.TabIndex = 5;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = false;
+            // 
             // groupBoxJ2
             // 
+            this.groupBoxJ2.Controls.Add(this.btnFlorJ2);
+            this.groupBoxJ2.Controls.Add(this.btnFaltaEnvidoJ2);
+            this.groupBoxJ2.Controls.Add(this.btnRealEnvidoJ2);
+            this.groupBoxJ2.Controls.Add(this.btnEnvidoJ2);
+            this.groupBoxJ2.Controls.Add(this.btnMazoJ2);
+            this.groupBoxJ2.Controls.Add(this.btnValeCuatroJ2);
+            this.groupBoxJ2.Controls.Add(this.btnReTrucoJ2);
+            this.groupBoxJ2.Controls.Add(this.btnTrucoJ2);
+            this.groupBoxJ2.Controls.Add(this.btnNoQuieroJ2);
+            this.groupBoxJ2.Controls.Add(this.btnQuieroJ2);
             this.groupBoxJ2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBoxJ2.Location = new System.Drawing.Point(0, 0);
             this.groupBoxJ2.Name = "groupBoxJ2";
-            this.groupBoxJ2.Size = new System.Drawing.Size(294, 276);
+            this.groupBoxJ2.Size = new System.Drawing.Size(294, 351);
             this.groupBoxJ2.TabIndex = 0;
             this.groupBoxJ2.TabStop = false;
             this.groupBoxJ2.Text = "Botones Jugador 2";
+            // 
+            // btnFlorJ2
+            // 
+            this.btnFlorJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnFlorJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnFlorJ2.FlatAppearance.BorderSize = 0;
+            this.btnFlorJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnFlorJ2.Location = new System.Drawing.Point(162, 156);
+            this.btnFlorJ2.Name = "btnFlorJ2";
+            this.btnFlorJ2.Size = new System.Drawing.Size(108, 37);
+            this.btnFlorJ2.TabIndex = 23;
+            this.btnFlorJ2.Text = "Flor";
+            this.btnFlorJ2.UseVisualStyleBackColor = false;
+            // 
+            // btnFaltaEnvidoJ2
+            // 
+            this.btnFaltaEnvidoJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnFaltaEnvidoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnFaltaEnvidoJ2.FlatAppearance.BorderSize = 0;
+            this.btnFaltaEnvidoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnFaltaEnvidoJ2.Location = new System.Drawing.Point(25, 156);
+            this.btnFaltaEnvidoJ2.Name = "btnFaltaEnvidoJ2";
+            this.btnFaltaEnvidoJ2.Size = new System.Drawing.Size(108, 37);
+            this.btnFaltaEnvidoJ2.TabIndex = 22;
+            this.btnFaltaEnvidoJ2.Text = "Falta envido";
+            this.btnFaltaEnvidoJ2.UseVisualStyleBackColor = false;
+            // 
+            // btnRealEnvidoJ2
+            // 
+            this.btnRealEnvidoJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRealEnvidoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnRealEnvidoJ2.FlatAppearance.BorderSize = 0;
+            this.btnRealEnvidoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRealEnvidoJ2.Location = new System.Drawing.Point(162, 93);
+            this.btnRealEnvidoJ2.Name = "btnRealEnvidoJ2";
+            this.btnRealEnvidoJ2.Size = new System.Drawing.Size(108, 37);
+            this.btnRealEnvidoJ2.TabIndex = 21;
+            this.btnRealEnvidoJ2.Text = "Real Envido";
+            this.btnRealEnvidoJ2.UseVisualStyleBackColor = false;
+            // 
+            // btnEnvidoJ2
+            // 
+            this.btnEnvidoJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEnvidoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnEnvidoJ2.FlatAppearance.BorderSize = 0;
+            this.btnEnvidoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnEnvidoJ2.Location = new System.Drawing.Point(25, 93);
+            this.btnEnvidoJ2.Name = "btnEnvidoJ2";
+            this.btnEnvidoJ2.Size = new System.Drawing.Size(108, 37);
+            this.btnEnvidoJ2.TabIndex = 20;
+            this.btnEnvidoJ2.Text = "Envido";
+            this.btnEnvidoJ2.UseVisualStyleBackColor = false;
+            // 
+            // btnMazoJ2
+            // 
+            this.btnMazoJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnMazoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnMazoJ2.FlatAppearance.BorderSize = 0;
+            this.btnMazoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnMazoJ2.Location = new System.Drawing.Point(162, 284);
+            this.btnMazoJ2.Name = "btnMazoJ2";
+            this.btnMazoJ2.Size = new System.Drawing.Size(108, 37);
+            this.btnMazoJ2.TabIndex = 19;
+            this.btnMazoJ2.Text = "Mazo";
+            this.btnMazoJ2.UseVisualStyleBackColor = false;
+            // 
+            // btnValeCuatroJ2
+            // 
+            this.btnValeCuatroJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnValeCuatroJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnValeCuatroJ2.FlatAppearance.BorderSize = 0;
+            this.btnValeCuatroJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnValeCuatroJ2.Location = new System.Drawing.Point(25, 284);
+            this.btnValeCuatroJ2.Name = "btnValeCuatroJ2";
+            this.btnValeCuatroJ2.Size = new System.Drawing.Size(108, 37);
+            this.btnValeCuatroJ2.TabIndex = 18;
+            this.btnValeCuatroJ2.Text = "Vale 4";
+            this.btnValeCuatroJ2.UseVisualStyleBackColor = false;
+            // 
+            // btnReTrucoJ2
+            // 
+            this.btnReTrucoJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnReTrucoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnReTrucoJ2.FlatAppearance.BorderSize = 0;
+            this.btnReTrucoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnReTrucoJ2.Location = new System.Drawing.Point(162, 221);
+            this.btnReTrucoJ2.Name = "btnReTrucoJ2";
+            this.btnReTrucoJ2.Size = new System.Drawing.Size(108, 37);
+            this.btnReTrucoJ2.TabIndex = 17;
+            this.btnReTrucoJ2.Text = "Re truco";
+            this.btnReTrucoJ2.UseVisualStyleBackColor = false;
+            // 
+            // btnTrucoJ2
+            // 
+            this.btnTrucoJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnTrucoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnTrucoJ2.FlatAppearance.BorderSize = 0;
+            this.btnTrucoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnTrucoJ2.Location = new System.Drawing.Point(25, 221);
+            this.btnTrucoJ2.Name = "btnTrucoJ2";
+            this.btnTrucoJ2.Size = new System.Drawing.Size(108, 37);
+            this.btnTrucoJ2.TabIndex = 16;
+            this.btnTrucoJ2.Text = "Truco";
+            this.btnTrucoJ2.UseVisualStyleBackColor = false;
+            // 
+            // btnNoQuieroJ2
+            // 
+            this.btnNoQuieroJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnNoQuieroJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnNoQuieroJ2.FlatAppearance.BorderSize = 0;
+            this.btnNoQuieroJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnNoQuieroJ2.Location = new System.Drawing.Point(162, 29);
+            this.btnNoQuieroJ2.Name = "btnNoQuieroJ2";
+            this.btnNoQuieroJ2.Size = new System.Drawing.Size(108, 37);
+            this.btnNoQuieroJ2.TabIndex = 15;
+            this.btnNoQuieroJ2.Text = "No quiero";
+            this.btnNoQuieroJ2.UseVisualStyleBackColor = false;
+            // 
+            // btnQuieroJ2
+            // 
+            this.btnQuieroJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnQuieroJ2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnQuieroJ2.FlatAppearance.BorderSize = 0;
+            this.btnQuieroJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnQuieroJ2.Location = new System.Drawing.Point(25, 29);
+            this.btnQuieroJ2.Name = "btnQuieroJ2";
+            this.btnQuieroJ2.Size = new System.Drawing.Size(108, 37);
+            this.btnQuieroJ2.TabIndex = 14;
+            this.btnQuieroJ2.Text = "Quiero";
+            this.btnQuieroJ2.UseVisualStyleBackColor = false;
+            // 
+            // timerJuego
+            // 
+            this.timerJuego.Enabled = true;
+            this.timerJuego.Interval = 1000;
+            this.timerJuego.Tick += new System.EventHandler(this.timerJuego_Tick);
             // 
             // FrmJuegoTruco
             // 
@@ -314,7 +664,6 @@ namespace FormTruco
             this.Name = "FrmJuegoTruco";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Truco";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelContenedor.ResumeLayout(false);
             this.panelMesa.ResumeLayout(false);
             this.panelMesa.PerformLayout();
@@ -328,7 +677,10 @@ namespace FormTruco
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJ1C1)).EndInit();
             this.panelLateralDer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAnotador)).EndInit();
+            this.groupBoxJ1.ResumeLayout(false);
             this.panelLateralIzq.ResumeLayout(false);
+            this.panelLateralIzq.PerformLayout();
+            this.groupBoxJ2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -353,6 +705,30 @@ namespace FormTruco
         private System.Windows.Forms.DataGridView dataGridViewAnotador;
         private System.Windows.Forms.DataGridViewTextBoxColumn J1;
         private System.Windows.Forms.DataGridViewTextBoxColumn J2;
+        private System.Windows.Forms.Button btnNoQuieroJ1;
+        private System.Windows.Forms.Button btnQuieroJ1;
+        private System.Windows.Forms.Button btnFlorJ1;
+        private System.Windows.Forms.Button btnFaltaEnvidoJ1;
+        private System.Windows.Forms.Button btnRealEnvidoJ1;
+        private System.Windows.Forms.Button btnEnvidoJ1;
+        private System.Windows.Forms.Button btnMazoJ1;
+        private System.Windows.Forms.Button btnVale4J1;
+        private System.Windows.Forms.Button btnReTrucoJ1;
+        private System.Windows.Forms.Button btnTrucoJ1;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnFlorJ2;
+        private System.Windows.Forms.Button btnFaltaEnvidoJ2;
+        private System.Windows.Forms.Button btnRealEnvidoJ2;
+        private System.Windows.Forms.Button btnEnvidoJ2;
+        private System.Windows.Forms.Button btnMazoJ2;
+        private System.Windows.Forms.Button btnValeCuatroJ2;
+        private System.Windows.Forms.Button btnReTrucoJ2;
+        private System.Windows.Forms.Button btnTrucoJ2;
+        private System.Windows.Forms.Button btnNoQuieroJ2;
+        private System.Windows.Forms.Button btnQuieroJ2;
+        private System.Windows.Forms.Label labelSegundos;
+        private System.Windows.Forms.Label labelTiempo;
+        private System.Windows.Forms.Timer timerJuego;
     }
 }
 

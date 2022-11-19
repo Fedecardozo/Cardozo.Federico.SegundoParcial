@@ -213,12 +213,12 @@ namespace FormTruco
 
         private void btnRealEnvidoJ1_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J1: Real envido!");
+            this.RealEnvido(1);
         }
 
         private void btnFaltaEnvidoJ1_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J1: Falta envido!");
+            this.FaltaEnvido(1);
         }
 
         private void btnFlorJ1_Click(object sender, EventArgs e)
@@ -233,12 +233,12 @@ namespace FormTruco
 
         private void btnReTrucoJ1_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J1: Quiero re truco!");
+            this.ReTruco(1);
         }
 
         private void btnVale4J1_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J1: Quiero vale cuatro!");
+            this.ValeCuatro(1);
         }
 
         private void btnMazoJ1_Click(object sender, EventArgs e)
@@ -267,12 +267,12 @@ namespace FormTruco
 
         private void btnRealEnvidoJ2_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J2: Real envido!");
+            this.RealEnvido(2);
         }
 
         private void btnFaltaEnvidoJ2_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J2: Falta envido!");
+            this.FaltaEnvido(2);
         }
 
         private void btnFlorJ2_Click(object sender, EventArgs e)
@@ -282,18 +282,17 @@ namespace FormTruco
 
         private void btnTrucoJ2_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J2: Truco!");
             this.CantoTruco(2);
         }
 
         private void btnReTrucoJ2_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J2: Quiero re truco!");
+            this.ReTruco(2);
         }
 
         private void btnValeCuatroJ2_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J2: Quiero vale cuatro!");
+            this.ValeCuatro(2);
         }
 
         private void btnMazoJ2_Click(object sender, EventArgs e)
@@ -303,9 +302,11 @@ namespace FormTruco
 
         #endregion
 
+        #region Habilitación botones
+
         private void CantoTruco(int jugador)
         {
-            this.CambiarTextoLabel($"J{jugador} Truco!");
+            this.CambiarTextoLabel($"J{jugador}: Truco!");
             if(jugador == 2)
             {
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnReTrucoJ1, this.btnMazoJ1},this.groupBoxJ2);
@@ -313,6 +314,34 @@ namespace FormTruco
             else
             {
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2, this.btnReTrucoJ2, this.btnMazoJ2 }, this.groupBoxJ1);
+            }
+
+        }
+        
+        private void ReTruco(int jugador)
+        {
+            this.CambiarTextoLabel($"J{jugador}: Quiero re \ntruco!");
+            if (jugador == 2)
+            {
+                this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnVale4J1, this.btnMazoJ1 }, this.groupBoxJ2);
+            }
+            else
+            {
+                this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2, this.btnValeCuatroJ2, this.btnMazoJ2 }, this.groupBoxJ1);
+            }
+
+        }
+
+        private void ValeCuatro(int jugador)
+        {
+            this.CambiarTextoLabel($"J{jugador}: Quiero vale \ncuatro!");
+            if (jugador == 2)
+            {
+                this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnMazoJ1 }, this.groupBoxJ2);
+            }
+            else
+            {
+                this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2, this.btnMazoJ2 }, this.groupBoxJ1);
             }
 
         }
@@ -332,6 +361,38 @@ namespace FormTruco
             }
         }
 
+        private void RealEnvido(int jugador)
+        {
+            this.CambiarTextoLabel($"J{jugador}: Real envido!");
+            if (jugador == 2)
+            {
+                this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnFaltaEnvidoJ1, this.btnMazoJ1 }, this.groupBoxJ2);
+            }
+            else
+            {
+                this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2,this.btnFaltaEnvidoJ2, this.btnMazoJ2 }, this.groupBoxJ1);
+            }
+        }
+
+        private void FaltaEnvido(int jugador)
+        {
+            this.CambiarTextoLabel($"J{jugador}: Falta envido!");
+            if (jugador == 2)
+            {
+                this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnMazoJ1 }, this.groupBoxJ2);
+            }
+            else
+            {
+                this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2, this.btnMazoJ2 }, this.groupBoxJ1);
+            }
+        }
+
+
+        /// <summary>
+        /// Habilita los botones de un jugador y desahabilita el del otro jugador
+        /// </summary>
+        /// <param name="btns"></param>
+        /// <param name="group"></param>
         private void HabilitarBotones(Button[] btns, GroupBox group)
         {
             foreach (Button item in btns)
@@ -343,7 +404,8 @@ namespace FormTruco
             {
                 item.Enabled = false;
             }
-        } 
+        }
 
+        #endregion
     }
 }

@@ -35,9 +35,13 @@ namespace FormTruco
         private Carta cartaJuagadaJ1;
         private Carta cartaJuagadaJ2;
         private int mano;
+        private int puntoEnjuego;
         private int quienCantoTruco;
         private int quienCantoRetruco;
         private int quienCantoVale4;
+        private int puntosGanadorTruco;
+        private int puntosGanadorEnvido;
+        private EQueSeCanto QueSeCanto;
         #endregion
 
         #region Inicio Form
@@ -49,18 +53,17 @@ namespace FormTruco
         private void FrmJuegoTruco_Load(object sender, EventArgs e)
         {
             Harcodeo.Global();
+            this.puntoEnjuego = 1;
             this.conteoTime = 0;
             this.minutos = 0;
             this.ronda = 1;
             this.rondaJ1 = 0;
             this.rondaJ2 = 0;
             this.mazo = Harcodeo.MazoCartas;
-            //this.cartas = new Carta[6];
-            //this.cartasJ1 = new Carta[3];
-            //this.cartasJ2 = new Carta[3];
             this.RepartirCartas();
             this.mano = 1;
             this.InicioDelJuego();
+            this.QueSeCanto = EQueSeCanto.Nada;
             this.dataGridViewAnotador.Rows.Add(0,0);
             this.dataGridViewAnotador.Rows.Add(0,0);
             this.dataGridViewAnotador.Rows.Add(0,0);
@@ -311,12 +314,19 @@ namespace FormTruco
         private void MensajeGanador(string msj)
         {
             MessageBox.Show(msj, "Ganador", MessageBoxButtons.OK, MessageBoxIcon.Information);
+           
         }
 
         #endregion
 
         #region Label de lo que se canto
-     
+
+        private void CambiarLabelYAsignarPuntoEnjuego(int numero)
+        {
+            this.puntoEnjuego = numero;
+            this.labelPuntoJuego.Text = numero.ToString();
+        }
+
         private void CambiarTextoLabel(string mensaje)
         {
             this.labelCanto.Text = mensaje;
@@ -329,8 +339,8 @@ namespace FormTruco
 
         private void btnQuieroJ1_Click(object sender, EventArgs e)
         {
-            this.IniciarHiloSecundario("J1: Quiero!");
-            this.IniciarHiloSecundario($"{JuegoDeCartas.CalcularTantos(this.cartasJ1)}");
+            this.ContestarQuiero(1);
+            //this.IniciarHiloSecundario($"{JuegoDeCartas.CalcularTantos(this.cartasJ1)}");
         }
 
         private void btnNoQuieroJ1_Click(object sender, EventArgs e)
@@ -384,8 +394,7 @@ namespace FormTruco
 
         private void btnQuieroJ2_Click(object sender, EventArgs e)
         {
-            //this.IniciarHiloSecundario("J2: Quiero!");
-            this.IniciarHiloSecundario($"J2: Quiero! {JuegoDeCartas.CalcularTantos(this.cartasJ2)}");
+            this.ContestarQuiero(2);
         }
 
         private void btnNoQuieroJ2_Click(object sender, EventArgs e)
@@ -437,6 +446,25 @@ namespace FormTruco
 
         #region Habilitación botones
 
+        /// <summary>
+        /// Segun lo que este en juego, si quiso el truco se pone en juego 2 puntos.
+        /// Si es el envido cada jugador tiene que cantar sus tantos y se pone en juego los puntos necesarios
+        /// </summary>
+        /// <param name="jugador">1 o 2</param>
+        /// <param name="canto">truco, envido</param>
+        private void ContestarQuiero(int jugador)
+        {
+            this.IniciarHiloSecundario($"J{jugador}: Quiero!");
+            switch (this.QueSeCanto)
+            {
+                case EQueSeCanto.Truco: this.CambiarLabelYAsignarPuntoEnjuego(2); break;
+                case EQueSeCanto.ReTruco: this.CambiarLabelYAsignarPuntoEnjuego(3); break;
+                case EQueSeCanto.ValeCuatro: this.CambiarLabelYAsignarPuntoEnjuego(4); break;
+            }
+
+            this.HabilitarImagenes(true);
+        }
+
         private void CantoTruco(int jugador)
         {
             this.IniciarHiloSecundario($"J{jugador}: Truco!");
@@ -450,7 +478,9 @@ namespace FormTruco
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2, this.btnReTrucoJ2, this.btnMazoJ2 }, this.groupBoxJ1);
             }
 
+            this.QueSeCanto = EQueSeCanto.Truco;
             this.quienCantoTruco = jugador;
+            this.HabilitarImagenes(false);
         }
         
         private void ReTruco(int jugador)
@@ -465,7 +495,9 @@ namespace FormTruco
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2, this.btnValeCuatroJ2, this.btnMazoJ2 }, this.groupBoxJ1);
             }
 
+            this.QueSeCanto = EQueSeCanto.ReTruco;
             this.quienCantoRetruco = jugador;
+            this.HabilitarImagenes(false);
         }
 
         private void ValeCuatro(int jugador)
@@ -480,7 +512,9 @@ namespace FormTruco
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2, this.btnMazoJ2 }, this.groupBoxJ1);
             }
 
+            this.QueSeCanto = EQueSeCanto.ValeCuatro;
             this.quienCantoVale4 = jugador;
+            this.HabilitarImagenes(false);
         }
 
         private void CantoEnvido(int jugador)
@@ -497,6 +531,7 @@ namespace FormTruco
                     this.btnFaltaEnvidoJ2, this.btnMazoJ2 }, this.groupBoxJ1);
             }
 
+            this.HabilitarImagenes(false);
             //MessageBox.Show($"{JuegoDeCartas.CalcularTantos(new Carta[] { this.cartas[0],this.cartas[1],this.cartas[2]})}");
         }
 
@@ -511,6 +546,7 @@ namespace FormTruco
             {
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2,this.btnFaltaEnvidoJ2, this.btnMazoJ2 }, this.groupBoxJ1);
             }
+            this.HabilitarImagenes(false);
         }
 
         private void FaltaEnvido(int jugador)
@@ -524,6 +560,7 @@ namespace FormTruco
             {
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2, this.btnMazoJ2 }, this.groupBoxJ1);
             }
+            this.HabilitarImagenes(false);
         }
 
         /// <summary>
@@ -574,6 +611,25 @@ namespace FormTruco
             foreach (Button item in group.Controls)
             {
                 item.Enabled = false;
+            }
+        }
+
+        #endregion
+
+        #region Inhabilitar imagenes
+        
+        /// <summary>
+        /// Cambia el enabled de las imagenes segun lo pasado por parametro
+        /// </summary>
+        /// <param name="habiltacion"></param>
+        private void HabilitarImagenes(bool habiltacion)
+        {
+            foreach (Control item in this.panelMesa.Controls)
+            {
+                if(item is PictureBox)
+                {
+                    ((PictureBox)item).Enabled = habiltacion;
+                }
             }
         }
 

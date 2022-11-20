@@ -52,6 +52,8 @@ namespace FormTruco
             this.pictureBoxJ1C2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxJ1C1 = new System.Windows.Forms.PictureBox();
             this.panelLateralDer = new System.Windows.Forms.Panel();
+            this.labelPuntoJuego = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.labelJ2Puntos = new System.Windows.Forms.Label();
             this.labelJ1Puntos = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -315,6 +317,8 @@ namespace FormTruco
             // panelLateralDer
             // 
             this.panelLateralDer.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panelLateralDer.Controls.Add(this.labelPuntoJuego);
+            this.panelLateralDer.Controls.Add(this.label4);
             this.panelLateralDer.Controls.Add(this.labelJ2Puntos);
             this.panelLateralDer.Controls.Add(this.labelJ1Puntos);
             this.panelLateralDer.Controls.Add(this.label2);
@@ -328,11 +332,31 @@ namespace FormTruco
             this.panelLateralDer.Size = new System.Drawing.Size(294, 826);
             this.panelLateralDer.TabIndex = 2;
             // 
+            // labelPuntoJuego
+            // 
+            this.labelPuntoJuego.AutoSize = true;
+            this.labelPuntoJuego.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelPuntoJuego.Location = new System.Drawing.Point(226, 299);
+            this.labelPuntoJuego.Name = "labelPuntoJuego";
+            this.labelPuntoJuego.Size = new System.Drawing.Size(26, 31);
+            this.labelPuntoJuego.TabIndex = 14;
+            this.labelPuntoJuego.Text = "1";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(36, 299);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(184, 31);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Puntos en juego:";
+            // 
             // labelJ2Puntos
             // 
             this.labelJ2Puntos.AutoSize = true;
             this.labelJ2Puntos.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelJ2Puntos.Location = new System.Drawing.Point(157, 393);
+            this.labelJ2Puntos.Location = new System.Drawing.Point(161, 407);
             this.labelJ2Puntos.Name = "labelJ2Puntos";
             this.labelJ2Puntos.Size = new System.Drawing.Size(103, 31);
             this.labelJ2Puntos.TabIndex = 12;
@@ -342,7 +366,7 @@ namespace FormTruco
             // 
             this.labelJ1Puntos.AutoSize = true;
             this.labelJ1Puntos.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelJ1Puntos.Location = new System.Drawing.Point(157, 320);
+            this.labelJ1Puntos.Location = new System.Drawing.Point(161, 354);
             this.labelJ1Puntos.Name = "labelJ1Puntos";
             this.labelJ1Puntos.Size = new System.Drawing.Size(103, 31);
             this.labelJ1Puntos.TabIndex = 11;
@@ -352,7 +376,7 @@ namespace FormTruco
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(32, 393);
+            this.label2.Location = new System.Drawing.Point(36, 407);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(119, 31);
             this.label2.TabIndex = 10;
@@ -362,7 +386,7 @@ namespace FormTruco
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(32, 320);
+            this.label1.Location = new System.Drawing.Point(36, 354);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 31);
             this.label1.TabIndex = 9;
@@ -935,6 +959,8 @@ namespace FormTruco
         private System.Windows.Forms.Label labelJ2Puntos;
         private System.Windows.Forms.Label labelJ1Puntos;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelPuntoJuego;
+        private System.Windows.Forms.Label label4;
     }
 }
 

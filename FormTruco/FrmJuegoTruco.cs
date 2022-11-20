@@ -57,6 +57,13 @@ namespace FormTruco
             this.RepartirCartas();
             this.mano = 1;
             this.InicioDelJuego();
+           // this.dataGridViewAnotador.Rows[0].Cells[0].Value = 1;
+            //this.dataGridViewAnotador.Rows[0].Cells[1].Value = 0;
+            this.dataGridViewAnotador.Rows.Add(0,0);
+            this.dataGridViewAnotador.Rows.Add(0,0);
+            this.dataGridViewAnotador.Rows.Add(0,0);
+            this.dataGridViewAnotador.Rows.Add(0,0);
+            this.dataGridViewAnotador.Rows.Add(0,0);
         }
         private void InicioDelJuego()
         {
@@ -234,13 +241,13 @@ namespace FormTruco
 
             switch (ganador)
             {
-                case 1: this.CambiarTextoLabel("Ganador jugador 1"); this.turnoJ1 = true; this.turnoJ2 = false; break;
-                case 2: this.CambiarTextoLabel("Ganador jugador 2"); this.turnoJ1 = false; this.turnoJ2 = true; break;
+                case 1: this.IniciarHiloSecundario("Ganador jugador 1"); this.turnoJ1 = true; this.turnoJ2 = false; break;
+                case 2: this.IniciarHiloSecundario("Ganador jugador 2"); this.turnoJ1 = false; this.turnoJ2 = true; break;
                 case 0:
 
                     if (this.ronda == 1 || (this.ganadorPrimera == 0 && this.ronda < 3))
                     {
-                        this.CambiarTextoLabel("Parda!");
+                        this.IniciarHiloSecundario("Parda!");
                         if(this.mano == 1)
                         {
                             this.turnoJ1 = true;
@@ -320,12 +327,12 @@ namespace FormTruco
 
         private void btnQuieroJ1_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J1: Quiero!");
+            this.IniciarHiloSecundario("J1: Quiero!");
         }
 
         private void btnNoQuieroJ1_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J1: No quiero!");
+            this.IniciarHiloSecundario("J1: No quiero!");
         }
 
         private void btnEnvidoJ1_Click(object sender, EventArgs e)
@@ -365,7 +372,7 @@ namespace FormTruco
 
         private void btnMazoJ1_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J1: Me voy al mazo!");
+            this.IniciarHiloSecundario("J1: Me voy al mazo!");
         }
 
         #endregion
@@ -374,12 +381,12 @@ namespace FormTruco
 
         private void btnQuieroJ2_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J2: Quiero!");
+            this.IniciarHiloSecundario("J2: Quiero!");
         }
 
         private void btnNoQuieroJ2_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J2: No quiero!");
+            this.IniciarHiloSecundario("J2: No quiero!");
         }
 
         private void btnEnvidoJ2_Click(object sender, EventArgs e)
@@ -399,7 +406,7 @@ namespace FormTruco
 
         private void btnFlorJ2_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J2: Flor!");
+            this.IniciarHiloSecundario("J2: Flor!");
         }
 
         private void btnTrucoJ2_Click(object sender, EventArgs e)
@@ -419,7 +426,7 @@ namespace FormTruco
 
         private void btnMazoJ2_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J2: Me voy al mazo!");
+            this.IniciarHiloSecundario("J2: Me voy al mazo!");
         }
 
         #endregion
@@ -595,7 +602,7 @@ namespace FormTruco
                 Action<string> action = this.MostrarInformacionConPausa;
                 //invoca el mismo metodo que lo esta llamando en el hilo principal
                 this.Invoke(action,new object[] {msj});
-                Thread.Sleep(2000);
+                Thread.Sleep(3000);
                 this.Invoke(ocultar);
             }
             else
@@ -615,5 +622,6 @@ namespace FormTruco
         }
 
         #endregion
+
     }
 }

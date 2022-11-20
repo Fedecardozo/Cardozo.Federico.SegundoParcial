@@ -39,6 +39,7 @@ namespace FormTruco
         private int puntoEnjuego;
         private int puntosEnvido;
         private EQueSeCanto QueSeCanto;
+        private bool hayGanador;
         #endregion
 
         #region Inicio Form
@@ -50,6 +51,7 @@ namespace FormTruco
         private void FrmJuegoTruco_Load(object sender, EventArgs e)
         {
             Harcodeo.Global();
+            this.hayGanador = false;
             this.ganadorPrimera = -1;
             this.ganadorSegunda = -1;
             this.ganadorTercera = -1;
@@ -241,6 +243,9 @@ namespace FormTruco
                 //Sumo en uno la ronda
                 this.ronda++;
             }
+
+            //Habilitar botones
+            this.HabilitarBotonesPorRonda();
         }
 
         /// <summary>
@@ -326,6 +331,7 @@ namespace FormTruco
         private void MensajeGanador(string msj)
         {
             MessageBox.Show(msj, "Ganador", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.hayGanador = true;
         }
 
         #endregion
@@ -481,6 +487,8 @@ namespace FormTruco
             if(this.QueSeCanto == EQueSeCanto.Truco || this.QueSeCanto == EQueSeCanto.ReTruco || this.QueSeCanto == EQueSeCanto.ValeCuatro)
             {
                 this.CambiarLabelYAsignarPuntoEnjuego();
+
+                this.HabilitarSoloBtnMazo();
             }
             else
             {
@@ -650,7 +658,7 @@ namespace FormTruco
             bool isFlorJ1 = JuegoDeCartas.IsFlor(this.cartasJ1[0], this.cartasJ1[1], this.cartasJ1[2]);
             bool isFlorJ2 = JuegoDeCartas.IsFlor(this.cartasJ2[0], this.cartasJ2[1], this.cartasJ2[2]);
 
-            if (this.mano == 1)
+            if (this.turnoJ1)
             {
                 if (!isFlorJ1)
                 {
@@ -661,7 +669,7 @@ namespace FormTruco
                     this.HabilitarBotones(new Button[] { this.btnMazoJ1, this.btnFlorJ1, this.btnTrucoJ1 }, this.groupBoxJ2);
                 }
             }
-            else if(this.mano == 2 && !isFlorJ2)
+            else if(this.turnoJ2)
             {
                 if(!isFlorJ2)
                 {
@@ -700,6 +708,75 @@ namespace FormTruco
             foreach (Button item in group.Controls)
             {
                 item.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Habilita los botones para la segunda ronda y deshabilita los que no se usan
+        /// </summary>
+        private void HabilitarBotones2ronda()
+        {
+            this.HabilitarSoloBtnMazo();
+
+            if (this.puntoEnjuego == 1)
+            { 
+                if (this.turnoJ1)
+                {
+                    this.DesHabilitarBotones(this.groupBoxJ1);
+                    this.HabilitarBotones(new Button[] { this.btnTrucoJ1, this.btnMazoJ1 }, this.groupBoxJ2);
+                }
+                else if(this.turnoJ2)
+                {
+                    this.DesHabilitarBotones(this.groupBoxJ2);
+                    this.HabilitarBotones(new Button[] { this.btnTrucoJ2, this.btnMazoJ2 }, this.groupBoxJ1);
+                }
+            
+            }
+        }
+
+        private void HabilitarSoloBtnMazo()
+        {
+            this.DesHabilitarBotones(this.groupBoxJ1);
+            this.DesHabilitarBotones(this.groupBoxJ2);
+
+            if (this.turnoJ1)
+            {
+                this.btnMazoJ1.Enabled = true;
+            }
+            else if (this.turnoJ2)
+            {
+                this.btnMazoJ2.Enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Segun en que ronda este va habilitando botones y deshabilitando otros
+        /// </summary>
+        private void HabilitarBotonesPorRonda()
+        {
+            switch(this.ronda)
+            {
+                case 1:
+                    if(this.puntoEnjuego == 1)
+                    {
+                        this.IniciarBotones(); 
+                    }
+                    else
+                    {
+                        this.HabilitarSoloBtnMazo();
+                    }
+                    break;
+
+                case 2: this.HabilitarBotones2ronda(); break;
+
+                default:
+                    this.HabilitarBotones2ronda();
+                    if (this.hayGanador)
+                    {
+                        this.DesHabilitarBotones(this.groupBoxJ1);
+                        this.DesHabilitarBotones(this.groupBoxJ2);
+                    }
+                    break;
             }
         }
 

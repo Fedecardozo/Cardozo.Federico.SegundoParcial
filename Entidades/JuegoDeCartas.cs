@@ -189,6 +189,116 @@ namespace Entidades
             return retorno;
         }
 
+        /// <summary>
+        /// Se fija quien gano en el envido
+        /// </summary>
+        /// <param name="cartasJ1"></param>
+        /// <param name="cartasJ2"></param>
+        /// <param name="mano"></param>
+        /// <returns>(1) Gana jugador 1 (2) Gana jugador 2</returns>
+        public static int GanadorEnvido(Carta[] cartasJ1, Carta[] cartasJ2, int mano)
+        {
+            //arranca ganando jugador 2
+            int retorno = 2;
+
+            int tantoJ1 = JuegoDeCartas.CalcularTantos(cartasJ1);
+            int tantoJ2 = JuegoDeCartas.CalcularTantos(cartasJ2);
+
+            //gana jugador 1
+            if(tantoJ1 > tantoJ2)
+            {
+                retorno = 1;
+            }
+            //si son iguales gana quien es mano
+            else if(tantoJ2 == tantoJ1)
+            {
+                retorno = mano;
+            }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Calcula los tantos de las cartas
+        /// </summary>
+        /// <param name="cartas"></param>
+        /// <returns>Devuelve el total de tantos</returns>
+        public static int CalcularTantos(Carta[] cartas)
+        {
+            int retorno = 0;
+            bool isFlor;
+            
+            if(cartas.Length == 3)
+            {
+                isFlor = JuegoDeCartas.IsFlor(cartas[0],cartas[1],cartas[2]);
+
+                if(isFlor)
+                {
+                    retorno = (cartas[0].ValorCartaEnvido + cartas[1].ValorCartaEnvido + cartas[2].ValorCartaEnvido) + 20; 
+                }
+                else
+                {
+                    if(cartas[0] == cartas[1].Tipo)
+                    {
+                        retorno = (cartas[0].ValorCartaEnvido + cartas[1].ValorCartaEnvido) + 20;
+                    }
+                    else if(cartas[1] == cartas[2].Tipo)
+                    {
+                        retorno = (cartas[1].ValorCartaEnvido + cartas[2].ValorCartaEnvido) + 20;
+                    }
+                    else
+                    {
+                        retorno = JuegoDeCartas.BuscarMaximoValor(cartas);
+                    }
+                }
+
+            }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Busca la carta con mas valor para el envido
+        /// </summary>
+        /// <param name="cartas"></param>
+        /// <returns>la carta con mas valor para el envido</returns>
+        private static int BuscarMaximoValor(Carta[] cartas)
+        {
+            int retorno = 0;
+            
+            for(int i=0; i < cartas.Length; i++)
+            {
+                if(cartas[i].ValorCartaEnvido > retorno)
+                {
+                    retorno = cartas[i].ValorCartaEnvido;
+                }
+            }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Verifica si hay flor o no
+        /// </summary>
+        /// <param name="c1"></param>
+        /// <param name="c2"></param>
+        /// <param name="c3"></param>
+        /// <returns>true hay flor, false no hay</returns>
+        public static bool IsFlor(Carta c1, Carta c2, Carta c3)
+        {
+            //No hay flor 
+            bool retorno = false;
+
+            //Entra si hay flor
+            if (c1 == c2.Tipo && c1 == c3.Tipo)
+            {
+                //Hay flor
+                retorno = true;
+            }
+
+            return retorno;
+        }
+
         #endregion
 
     }

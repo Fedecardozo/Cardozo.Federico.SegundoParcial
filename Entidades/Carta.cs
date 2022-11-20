@@ -17,6 +17,19 @@ namespace Entidades
 
         public ETipoCarta Tipo { get { return this.tipo; } }
 
+        public int ValorCartaEnvido 
+        { 
+            get 
+            {
+                int valor = this.Numero;
+                if(valor >= 10)
+                {
+                    valor = 0;
+                }
+                return valor;
+            } 
+        }
+
         #endregion
 
         #region Constructores
@@ -31,11 +44,28 @@ namespace Entidades
 
         #region Sobrecarga operadores
 
+        public static bool operator ==(Carta c1, ETipoCarta tipoCarta)
+        {
+            if (c1 is not null)
+            {
+                return c1.tipo == tipoCarta;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool operator !=(Carta c1, ETipoCarta tipoCarta)
+        {
+            return !(c1 == tipoCarta);
+        }
+
         public static bool operator ==(Carta c1, Carta c2)
         {
             if(c1 is not null && c2 is not null)
             {
-                return c1.tipo == c2.tipo && c1.numero == c2.numero;
+                return c1 == c2.tipo && c1.numero == c2.numero;
             }
             else
             {

@@ -57,8 +57,6 @@ namespace FormTruco
             this.RepartirCartas();
             this.mano = 1;
             this.InicioDelJuego();
-           // this.dataGridViewAnotador.Rows[0].Cells[0].Value = 1;
-            //this.dataGridViewAnotador.Rows[0].Cells[1].Value = 0;
             this.dataGridViewAnotador.Rows.Add(0,0);
             this.dataGridViewAnotador.Rows.Add(0,0);
             this.dataGridViewAnotador.Rows.Add(0,0);
@@ -328,6 +326,7 @@ namespace FormTruco
         private void btnQuieroJ1_Click(object sender, EventArgs e)
         {
             this.IniciarHiloSecundario("J1: Quiero!");
+            this.IniciarHiloSecundario($"{JuegoDeCartas.CalcularTantos(new Carta[] { this.cartas[0], this.cartas[1], this.cartas[2]})}");
         }
 
         private void btnNoQuieroJ1_Click(object sender, EventArgs e)
@@ -382,6 +381,7 @@ namespace FormTruco
         private void btnQuieroJ2_Click(object sender, EventArgs e)
         {
             this.IniciarHiloSecundario("J2: Quiero!");
+            this.IniciarHiloSecundario($"{JuegoDeCartas.CalcularTantos(new Carta[] { this.cartas[3], this.cartas[4], this.cartas[5]})}");
         }
 
         private void btnNoQuieroJ2_Click(object sender, EventArgs e)
@@ -492,6 +492,8 @@ namespace FormTruco
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2,this.btnEnvidoJ2, this.btnRealEnvidoJ2,
                     this.btnFaltaEnvidoJ2, this.btnMazoJ2 }, this.groupBoxJ1);
             }
+
+            //MessageBox.Show($"{JuegoDeCartas.CalcularTantos(new Carta[] { this.cartas[0],this.cartas[1],this.cartas[2]})}");
         }
 
         private void RealEnvido(int jugador)

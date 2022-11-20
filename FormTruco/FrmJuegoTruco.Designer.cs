@@ -486,6 +486,7 @@ namespace FormTruco
             // 
             this.btnFaltaEnvidoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnFaltaEnvidoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnFaltaEnvidoJ1.Enabled = false;
             this.btnFaltaEnvidoJ1.FlatAppearance.BorderSize = 0;
             this.btnFaltaEnvidoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnFaltaEnvidoJ1.Location = new System.Drawing.Point(20, 169);
@@ -500,6 +501,7 @@ namespace FormTruco
             // 
             this.btnRealEnvidoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnRealEnvidoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnRealEnvidoJ1.Enabled = false;
             this.btnRealEnvidoJ1.FlatAppearance.BorderSize = 0;
             this.btnRealEnvidoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnRealEnvidoJ1.Location = new System.Drawing.Point(157, 106);
@@ -514,6 +516,7 @@ namespace FormTruco
             // 
             this.btnEnvidoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnEnvidoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnEnvidoJ1.Enabled = false;
             this.btnEnvidoJ1.FlatAppearance.BorderSize = 0;
             this.btnEnvidoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnEnvidoJ1.Location = new System.Drawing.Point(20, 106);
@@ -528,6 +531,7 @@ namespace FormTruco
             // 
             this.btnMazoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMazoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnMazoJ1.Enabled = false;
             this.btnMazoJ1.FlatAppearance.BorderSize = 0;
             this.btnMazoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnMazoJ1.Location = new System.Drawing.Point(157, 297);
@@ -572,6 +576,7 @@ namespace FormTruco
             // 
             this.btnTrucoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnTrucoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnTrucoJ1.Enabled = false;
             this.btnTrucoJ1.FlatAppearance.BorderSize = 0;
             this.btnTrucoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnTrucoJ1.Location = new System.Drawing.Point(20, 234);

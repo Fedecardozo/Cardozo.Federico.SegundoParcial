@@ -30,6 +30,8 @@ namespace FormTruco
         private bool turnoJ2;
         private MazoCartas mazo;
         private Carta[] cartas;
+        private Carta[] cartasJ1;
+        private Carta[] cartasJ2;
         private Carta cartaJuagadaJ1;
         private Carta cartaJuagadaJ2;
         private int mano;
@@ -53,7 +55,9 @@ namespace FormTruco
             this.rondaJ1 = 0;
             this.rondaJ2 = 0;
             this.mazo = Harcodeo.MazoCartas;
-            this.cartas = new Carta[6];
+            //this.cartas = new Carta[6];
+            //this.cartasJ1 = new Carta[3];
+            //this.cartasJ2 = new Carta[3];
             this.RepartirCartas();
             this.mano = 1;
             this.InicioDelJuego();
@@ -326,7 +330,7 @@ namespace FormTruco
         private void btnQuieroJ1_Click(object sender, EventArgs e)
         {
             this.IniciarHiloSecundario("J1: Quiero!");
-            this.IniciarHiloSecundario($"{JuegoDeCartas.CalcularTantos(new Carta[] { this.cartas[0], this.cartas[1], this.cartas[2]})}");
+            this.IniciarHiloSecundario($"{JuegoDeCartas.CalcularTantos(this.cartasJ1)}");
         }
 
         private void btnNoQuieroJ1_Click(object sender, EventArgs e)
@@ -380,8 +384,8 @@ namespace FormTruco
 
         private void btnQuieroJ2_Click(object sender, EventArgs e)
         {
-            this.IniciarHiloSecundario("J2: Quiero!");
-            this.IniciarHiloSecundario($"{JuegoDeCartas.CalcularTantos(new Carta[] { this.cartas[3], this.cartas[4], this.cartas[5]})}");
+            //this.IniciarHiloSecundario("J2: Quiero!");
+            this.IniciarHiloSecundario($"J2: Quiero! {JuegoDeCartas.CalcularTantos(this.cartasJ2)}");
         }
 
         private void btnNoQuieroJ2_Click(object sender, EventArgs e)
@@ -527,13 +531,31 @@ namespace FormTruco
         /// </summary>
         private void IniciarBotones()
         {
+            bool isFlorJ1 = JuegoDeCartas.IsFlor(this.cartasJ1[0], this.cartasJ1[1], this.cartasJ1[2]);
+            bool isFlorJ2 = JuegoDeCartas.IsFlor(this.cartasJ2[0], this.cartasJ2[1], this.cartasJ2[2]);
+
             if (this.mano == 1)
             {
-                this.HabilitarBotones(new Button[] { this.btnMazoJ1,this.btnEnvidoJ1,this.btnFaltaEnvidoJ1,this.btnRealEnvidoJ1, this.btnTrucoJ1 },this.groupBoxJ2);
+                if (!isFlorJ1)
+                {
+                    this.HabilitarBotones(new Button[] { this.btnMazoJ1,this.btnEnvidoJ1,this.btnFaltaEnvidoJ1,this.btnRealEnvidoJ1, this.btnTrucoJ1 },this.groupBoxJ2);
+                }
+                else if(isFlorJ1)
+                {
+                    this.HabilitarBotones(new Button[] { this.btnMazoJ1, this.btnFlorJ1, this.btnTrucoJ1 }, this.groupBoxJ2);
+                }
             }
-            else if(this.mano == 2)
+            else if(this.mano == 2 && !isFlorJ2)
             {
-                this.HabilitarBotones(new Button[] { this.btnMazoJ2, this.btnEnvidoJ2, this.btnFaltaEnvidoJ2, this.btnRealEnvidoJ2, this.btnTrucoJ2}, this.groupBoxJ1);
+                if(!isFlorJ2)
+                {
+                    this.HabilitarBotones(new Button[] { this.btnMazoJ2, this.btnEnvidoJ2, this.btnFaltaEnvidoJ2, this.btnRealEnvidoJ2, this.btnTrucoJ2}, this.groupBoxJ1);
+                }
+                else if(isFlorJ2)
+                {
+                    this.HabilitarBotones(new Button[] { this.btnMazoJ2, this.btnFlorJ2, this.btnTrucoJ2 }, this.groupBoxJ1);
+                }
+
             }
         }
          
@@ -565,6 +587,11 @@ namespace FormTruco
         private void RepartirCartas()
         {
             this.cartas = this.mazo.RepartirCartasSinRepetir(6);
+            //this.cartas[0] = new Carta(7, ETipoCarta.Oro);
+            //this.cartas[1] = new Carta(1, ETipoCarta.Oro);
+            //this.cartas[2] = new Carta(10, ETipoCarta.Espada);
+            this.cartasJ1 = new Carta[] { this.cartas[0], this.cartas[1], this.cartas[2] };
+            this.cartasJ2 = new Carta[] { this.cartas[3], this.cartas[4], this.cartas[5] };
 
             this.pictureBoxJ1C1.Image = Image.FromFile($@"..\..\..\Resources\{this.cartas[0].ToString()}.png");
             this.pictureBoxJ1C2.Image = Image.FromFile($@"..\..\..\Resources\{this.cartas[1].ToString()}.png");

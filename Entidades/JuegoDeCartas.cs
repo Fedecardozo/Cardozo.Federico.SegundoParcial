@@ -141,12 +141,6 @@ namespace Entidades
                     case 3:
                         retorno = 1;
                         break;
-                    case 4:
-                        if(c2.Numero != 4)
-                        {
-                            retorno = -1;
-                        }
-                        break;
                     case 5:
                         if (c2.Numero == 4)
                         {

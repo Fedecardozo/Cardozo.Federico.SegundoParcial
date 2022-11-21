@@ -165,7 +165,7 @@ namespace FormTruco
 
         #endregion
 
-        #region Metodos movimientos de cartas
+        #region Mover imagenes
 
         /// <summary>
         /// Si es el turno del jugador 1, dependiendo la ronda va a mover la carta que haya jugado
@@ -250,6 +250,10 @@ namespace FormTruco
             this.HabilitarBotonesPorRonda();
         }
 
+        #endregion
+
+        #region Metodos ganadores
+
         /// <summary>
         /// Compara quien gano en cada ronda y anota que jugador gano en cada ronda
         /// </summary>
@@ -297,17 +301,13 @@ namespace FormTruco
         {
             string ganadorJ1 = $"Ganador jugador {jugador}";
 
-            if (this.ganadorPrimera == jugador && this.ganadorSegunda == jugador)
+            if (this.ganadorPrimera == jugador && (this.ganadorSegunda == jugador || this.ganadorTercera == jugador || 
+                this.ganadorSegunda == 0 || this.ganadorTercera == 0))
             {
                 CambiarLabelPuntoParcialesTruco(jugador);
                 this.MensajeGanador(ganadorJ1);
             }
-            else if(this.ganadorPrimera == jugador && this.ganadorTercera == jugador)
-            {
-                CambiarLabelPuntoParcialesTruco(jugador);
-                this.MensajeGanador(ganadorJ1);
-            }
-            else if(this.ganadorPrimera == 0 && this.ganadorSegunda == jugador)
+            else if (this.ganadorPrimera == 0 && this.ganadorSegunda == jugador)
             {
                 CambiarLabelPuntoParcialesTruco(jugador);
                 this.MensajeGanador(ganadorJ1);
@@ -321,6 +321,12 @@ namespace FormTruco
             {
                 CambiarLabelPuntoParcialesTruco(jugador);
                 //MessageBox.Show("Entra aca!");
+                this.MensajeGanador(ganadorJ1);
+            }
+            else if(this.ganadorPrimera == jugador && this.ganadorSegunda == this.CambiarJugador(jugador) && this.ganadorTercera == this.CambiarJugador(jugador))
+            {
+                ganadorJ1 = $"Ganador jugador {this.CambiarJugador(jugador)}";
+                CambiarLabelPuntoParcialesTruco(this.CambiarJugador(jugador));
                 this.MensajeGanador(ganadorJ1);
             }
 
@@ -901,10 +907,13 @@ namespace FormTruco
         private void RepartirCartas()
         {
             this.cartas = this.mazo.RepartirCartasSinRepetir(6);
-            //this.cartas[0] = new Carta(7, ETipoCarta.Oro);
+            //this.cartas[0] = new Carta(3, ETipoCarta.Oro);
             //this.cartas[1] = new Carta(1, ETipoCarta.Oro);
-            //this.cartas[2] = new Carta(10, ETipoCarta.Espada);
+            //this.cartas[2] = new Carta(12, ETipoCarta.Espada);
             this.cartasJ1 = new Carta[] { this.cartas[0], this.cartas[1], this.cartas[2] };
+            //this.cartas[3] = new Carta(3, ETipoCarta.Copa);
+            //this.cartas[4] = new Carta(1, ETipoCarta.Copa);
+            //this.cartas[5] = new Carta(2, ETipoCarta.Copa);
             this.cartasJ2 = new Carta[] { this.cartas[3], this.cartas[4], this.cartas[5] };
 
             this.pictureBoxJ1C1.Image = Image.FromFile($@"..\..\..\Resources\{this.cartas[0].ToString()}.png");

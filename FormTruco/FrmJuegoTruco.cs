@@ -69,7 +69,7 @@ namespace FormTruco
             this.rondaJ2 = 0;
             this.mazo = Harcodeo.MazoCartas;
             this.RepartirCartas();
-            this.mano = 1;
+            this.mano = 2;
             this.puntosJ1 = 0;
             this.puntosJ2 = 0;
             this.InicioDelJuego();
@@ -339,10 +339,20 @@ namespace FormTruco
         /// <param name="jugador"></param>
         private void JuntarFuncionesGanadorJuego(int jugador)
         {
-            this.CambiarLabelPuntoParcialesTruco(jugador);
             this.MensajeGanador($"Ganador jugador {jugador}");
-            this.CambiarDataGrid();
             this.hayGanador = true;
+
+            if(jugador == 1)
+            {
+                this.puntosJ1 += this.puntoEnjuego;
+            }
+            else if (jugador == 2)
+            {
+                this.puntosJ2 += this.puntoEnjuego;
+            }
+
+            this.CambiarLabelPuntoParcialesTruco(jugador);
+            this.CambiarDataGrid();
         }
 
         #endregion
@@ -360,16 +370,8 @@ namespace FormTruco
 
         private void CambiarLabelPuntoParcialesTruco(int ganador)
         {
-            if(ganador == 1)
-            {
-                this.puntosJ1 += this.puntoEnjuego;
-                this.labelJ1Puntos.Text = $"{this.puntoEnjuego} puntos";
-            }
-            else if(ganador == 2)
-            {
-                this.puntosJ2 += this.puntoEnjuego;
-                this.labelJ2Puntos.Text = $"{this.puntoEnjuego} puntos";
-            }
+            this.labelJ1Puntos.Text = $"{this.puntosJ1} puntos";
+            this.labelJ2Puntos.Text = $"{this.puntosJ2} puntos";
         }
 
         private void CambiarLabelYAsignarPuntoEnjuego()
@@ -416,7 +418,7 @@ namespace FormTruco
 
         private void btnFlorJ1_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J1: Flor!",this.labelCanto);
+            this.CantoFlor(1);
         }
 
         private void btnTrucoJ1_Click(object sender, EventArgs e)
@@ -471,7 +473,7 @@ namespace FormTruco
 
         private void btnFlorJ2_Click(object sender, EventArgs e)
         {
-            this.IniciarHiloSecundario("J2: Flor!", this.labelCanto);
+            this.CantoFlor(2);
         }
 
         private void btnTrucoJ2_Click(object sender, EventArgs e)
@@ -675,15 +677,15 @@ namespace FormTruco
         private void MeVoyAlMazo(int jugador)
         {
             int otroJugador = this.CambiarJugador(jugador);
-            this.ganadorPrimera = otroJugador;
-            this.ganadorSegunda = otroJugador;
+            //this.ganadorPrimera = otroJugador;
+            //this.ganadorSegunda = otroJugador;
 
             //DesHabilito los botones y las imagenes
             this.DesHabilitarBotones(this.groupBoxJ1);
             this.DesHabilitarBotones(this.groupBoxJ2);
             this.HabilitarImagenes(false);
 
-            if (!this.seCantoQuieroTruco)
+            if (!this.seCantoQuieroTruco && this.puntoEnjuego > 1)
             {
                 this.puntoEnjuego--;
             }
@@ -693,9 +695,29 @@ namespace FormTruco
             }
 
             this.IniciarHiloSecundario($"J{jugador}: Me voy al mazo!", this.labelCanto);
+            this.JuntarFuncionesGanadorJuego(otroJugador);
 
-            this.GanadorDelJuego(otroJugador);
+            //this.GanadorDelJuego(otroJugador);
 
+        }
+
+        private void CantoFlor(int jugador)
+        {
+            this.IniciarHiloSecundario($"J{jugador}: Flor!",this.labelCanto);
+            this.HabilitarBotonesSegunTruco();
+
+            if (jugador == 1)
+            {
+                this.btnFlorJ1.Enabled = false;
+                this.puntosJ1 += 3;
+                this.labelJ1Puntos.Text = $"3 puntos";
+            }
+            else if(jugador == 2)
+            {
+                this.btnFlorJ2.Enabled = false;
+                this.puntosJ2 += 3;
+                this.labelJ2Puntos.Text = $"3 puntos";
+            }
         }
 
         #endregion
@@ -953,13 +975,13 @@ namespace FormTruco
         private void RepartirCartas()
         {
             this.cartas = this.mazo.RepartirCartasSinRepetir(6);
-            //this.cartas[0] = new Carta(3, ETipoCarta.Oro);
-            //this.cartas[1] = new Carta(1, ETipoCarta.Oro);
-            //this.cartas[2] = new Carta(12, ETipoCarta.Espada);
+            this.cartas[0] = new Carta(3, ETipoCarta.Oro);
+            this.cartas[1] = new Carta(1, ETipoCarta.Oro);
+            this.cartas[2] = new Carta(12, ETipoCarta.Oro);
             this.cartasJ1 = new Carta[] { this.cartas[0], this.cartas[1], this.cartas[2] };
-            //this.cartas[3] = new Carta(3, ETipoCarta.Copa);
-            //this.cartas[4] = new Carta(1, ETipoCarta.Copa);
-            //this.cartas[5] = new Carta(2, ETipoCarta.Copa);
+            this.cartas[3] = new Carta(3, ETipoCarta.Copa);
+            this.cartas[4] = new Carta(1, ETipoCarta.Copa);
+            this.cartas[5] = new Carta(2, ETipoCarta.Copa);
             this.cartasJ2 = new Carta[] { this.cartas[3], this.cartas[4], this.cartas[5] };
 
             this.pictureBoxJ1C1.Image = Image.FromFile($@"..\..\..\Resources\{this.cartas[0].ToString()}.png");

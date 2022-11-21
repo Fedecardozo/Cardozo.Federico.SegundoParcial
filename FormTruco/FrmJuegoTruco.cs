@@ -43,6 +43,7 @@ namespace FormTruco
         private int quienCantoTruco;
         private int puntosJ1;
         private int puntosJ2;
+        private bool seCantoQuieroTruco;
         #endregion
 
         #region Inicio Form
@@ -73,6 +74,7 @@ namespace FormTruco
             this.puntosJ2 = 0;
             this.InicioDelJuego();
             this.QueSeCanto = EQueSeCanto.Nada;
+            this.seCantoQuieroTruco = false;
         }
         private void InicioDelJuego()
         {
@@ -297,40 +299,27 @@ namespace FormTruco
         /// </summary>
         private void GanadorDelJuego(int jugador)
         {
-            string ganadorJ1 = $"Ganador jugador {jugador}";
 
             if (this.ganadorPrimera == jugador && (this.ganadorSegunda == jugador || this.ganadorTercera == jugador || 
                 this.ganadorSegunda == 0 || this.ganadorTercera == 0))
             {
-                this.CambiarLabelPuntoParcialesTruco(jugador);
-                this.MensajeGanador(ganadorJ1);
-                this.CambiarDataGrid(jugador);
+                this.JuntarFuncionesGanadorJuego(jugador);
             }
             else if (this.ganadorPrimera == 0 && this.ganadorSegunda == jugador)
             {
-                this.CambiarLabelPuntoParcialesTruco(jugador);
-                this.MensajeGanador(ganadorJ1);
-                this.CambiarDataGrid(jugador);
+                this.JuntarFuncionesGanadorJuego(jugador);
             }
             else if (this.ganadorPrimera == 0 && this.ganadorSegunda == 0 && this.ganadorTercera == jugador)
             {
-                this.CambiarLabelPuntoParcialesTruco(jugador);
-                this.MensajeGanador(ganadorJ1);
-                this.CambiarDataGrid(jugador);
+                this.JuntarFuncionesGanadorJuego(jugador);
             }
             else if (this.ganadorPrimera == 0 && this.ganadorSegunda == 0 && this.ganadorTercera == 0 && this.mano == jugador)
             {
-                this.CambiarLabelPuntoParcialesTruco(jugador);
-                //MessageBox.Show("Entra aca!");
-                this.MensajeGanador(ganadorJ1);
-                this.CambiarDataGrid(jugador);
+                this.JuntarFuncionesGanadorJuego(jugador);
             }
             else if(this.ganadorPrimera == jugador && this.ganadorSegunda == this.CambiarJugador(jugador) && this.ganadorTercera == this.CambiarJugador(jugador))
             {
-                ganadorJ1 = $"Ganador jugador {this.CambiarJugador(jugador)}";
-                this.CambiarLabelPuntoParcialesTruco(this.CambiarJugador(jugador));
-                this.MensajeGanador(ganadorJ1);
-                this.CambiarDataGrid(jugador);
+                this.JuntarFuncionesGanadorJuego(this.CambiarJugador(jugador));
             }
 
         }
@@ -340,8 +329,19 @@ namespace FormTruco
         /// </summary>
         /// <param name="msj"></param>
         private void MensajeGanador(string msj)
-        {           
+        {
             MessageBox.Show(msj, "Ganador", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        /// <summary>
+        /// Junta todas las funciones del que sale ganador
+        /// </summary>
+        /// <param name="jugador"></param>
+        private void JuntarFuncionesGanadorJuego(int jugador)
+        {
+            this.CambiarLabelPuntoParcialesTruco(jugador);
+            this.MensajeGanador($"Ganador jugador {jugador}");
+            this.CambiarDataGrid();
             this.hayGanador = true;
         }
 
@@ -349,7 +349,7 @@ namespace FormTruco
 
         #region Metodos dataGridView
 
-        private void CambiarDataGrid(int ganador)
+        private void CambiarDataGrid()
         {
             this.dataGridViewAnotador.Rows.Add(this.puntosJ1, this.puntosJ2);
         }
@@ -437,7 +437,7 @@ namespace FormTruco
         private void btnMazoJ1_Click(object sender, EventArgs e)
         {
             //Le paso el jugador contrario
-            this.MeVoyAlMazo(1,2);
+            this.MeVoyAlMazo(1);
         }
 
         #endregion
@@ -492,7 +492,7 @@ namespace FormTruco
         private void btnMazoJ2_Click(object sender, EventArgs e)
         {
             //Le paso el jugador contrario
-            this.MeVoyAlMazo(2,1);
+            this.MeVoyAlMazo(2);
         }
 
         #endregion
@@ -518,19 +518,11 @@ namespace FormTruco
 
             if(this.QueSeCanto == EQueSeCanto.Truco || this.QueSeCanto == EQueSeCanto.ReTruco || this.QueSeCanto == EQueSeCanto.ValeCuatro)
             {
+                this.seCantoQuieroTruco = true;
+
                 this.CambiarLabelYAsignarPuntoEnjuego();
 
                 this.HabilitarSoloBtnMazo();
-            }
-            else
-            {
-                switch (this.QueSeCanto)
-                {
-                    case EQueSeCanto.Envido: this.CambiarLabelYAsignarPuntoEnjuego(); break;
-                    case EQueSeCanto.RealEnvido: this.CambiarLabelYAsignarPuntoEnjuego(); break;
-                    case EQueSeCanto.FaltaEnvido: this.CambiarLabelYAsignarPuntoEnjuego(); break;
-                }
-
             }
 
             this.HabilitarImagenes(true);
@@ -547,6 +539,7 @@ namespace FormTruco
 
             if (this.QueSeCanto == EQueSeCanto.Envido || this.QueSeCanto == EQueSeCanto.RealEnvido || this.QueSeCanto == EQueSeCanto.FaltaEnvido)
             {
+                this.puntosEnvido--;
                 //Funcion que le de los puntos al otro jugador
                 this.DarPuntosEnvido(this.CambiarJugador(jugador));
                 this.HabilitarBotonesPorRonda();
@@ -589,7 +582,7 @@ namespace FormTruco
             this.IniciarHiloSecundario($"J{jugador}: Quiero re truco!", this.labelCanto);
 
             this.HabilitarBotonesReTruco(jugador);
-
+            this.seCantoQuieroTruco = false;
             this.QueSeCanto = EQueSeCanto.ReTruco;
             this.puntoEnjuego++;
             this.quienCantoTruco = jugador;
@@ -608,6 +601,7 @@ namespace FormTruco
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2, this.btnMazoJ2 }, this.groupBoxJ1);
             }
 
+            this.seCantoQuieroTruco = false;
             this.puntoEnjuego++;
             this.QueSeCanto = EQueSeCanto.ValeCuatro;
             this.HabilitarImagenes(false);
@@ -653,7 +647,7 @@ namespace FormTruco
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2,this.btnFaltaEnvidoJ2, this.btnMazoJ2 }, this.groupBoxJ1);
             }
             this.QueSeCanto = EQueSeCanto.RealEnvido;
-            this.puntosEnvido += 2;
+            this.puntosEnvido += 3;
             this.HabilitarImagenes(false);
         }
 
@@ -678,13 +672,29 @@ namespace FormTruco
         /// Gana el jugador que no apreto el boton
         /// </summary>
         /// <param name="jugador"></param>
-        private void MeVoyAlMazo(int jugador, int jugador2)
+        private void MeVoyAlMazo(int jugador)
         {
-            this.ganadorPrimera = jugador2;
-            this.ganadorSegunda = jugador2;
-            this.GanadorDelJuego(jugador2);
+            int otroJugador = this.CambiarJugador(jugador);
+            this.ganadorPrimera = otroJugador;
+            this.ganadorSegunda = otroJugador;
+
+            //DesHabilito los botones y las imagenes
+            this.DesHabilitarBotones(this.groupBoxJ1);
+            this.DesHabilitarBotones(this.groupBoxJ2);
+            this.HabilitarImagenes(false);
+
+            if (!this.seCantoQuieroTruco)
+            {
+                this.puntoEnjuego--;
+            }
+            else if (this.QueSeCanto == EQueSeCanto.Envido || this.QueSeCanto == EQueSeCanto.RealEnvido || this.QueSeCanto == EQueSeCanto.FaltaEnvido)
+            {
+                this.puntosEnvido--;
+            }
 
             this.IniciarHiloSecundario($"J{jugador}: Me voy al mazo!", this.labelCanto);
+
+            this.GanadorDelJuego(otroJugador);
 
         }
 
@@ -882,6 +892,7 @@ namespace FormTruco
                     this.HabilitarBotones2ronda();
                     if (this.hayGanador)
                     {
+                        //MessageBox.Show("Entro aca");
                         this.DesHabilitarBotones(this.groupBoxJ1);
                         this.DesHabilitarBotones(this.groupBoxJ2);
                     }
@@ -1003,32 +1014,46 @@ namespace FormTruco
 
         #region Metodos Envido
 
+        /// <summary>
+        /// Verifica quien gano el envido y le da los puntos al jugador ganador
+        /// </summary>
         private void GanadorEnvido()
         {
             int ganadorEnvido = JuegoDeCartas.GanadorEnvido(this.cartasJ1, this.cartasJ2, this.mano);
+
+            this.DarPuntosEnvido(ganadorEnvido);
+
             if(ganadorEnvido == 1)
             {
-                this.puntosJ1 += this.puntosEnvido;
                 this.labelJ1Puntos.Text = $"{this.puntosEnvido} puntos";
             }
             else if (ganadorEnvido == 2)
             {
-                this.puntosJ2 += this.puntosEnvido;
                 this.labelJ2Puntos.Text = $"{this.puntosEnvido} puntos";
             }
+
             this.MensajeGanador($"Gano los tantos jugador {ganadorEnvido}");
         }
 
+        /// <summary>
+        /// Muestra los tantos en los labels
+        /// </summary>
         private void MostrarLosTantos()
         {
             int tantoJ1 = JuegoDeCartas.CalcularTantos(this.cartasJ1);
             int tantoJ2 = JuegoDeCartas.CalcularTantos(this.cartasJ2);
 
-            this.IniciarHiloSecundario($"Tantos J1: {tantoJ1}", this.labelTantoJ1);
-            this.IniciarHiloSecundario($"Tantos J2: {tantoJ2}", this.labelTantosJ2);
+            this.labelTantoJ1.Text = $"Tantos J1: {tantoJ1}";
+            this.labelTantosJ2.Text = $"Tantos J2: {tantoJ2}";
+            this.labelTantoJ1.Visible = true;
+            this.labelTantosJ2.Visible = true;
 
         }
 
+        /// <summary>
+        /// Suma los puntos al jugador que gano en sus respectivo atributo
+        /// </summary>
+        /// <param name="jugador"></param>
         private void DarPuntosEnvido(int jugador)
         {
             if (jugador == 1)

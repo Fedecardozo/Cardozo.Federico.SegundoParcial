@@ -240,6 +240,10 @@ namespace Entidades
                     {
                         retorno = (cartas[1].ValorCartaEnvido + cartas[2].ValorCartaEnvido) + 20;
                     }
+                    else if (cartas[0] == cartas[2].Tipo)
+                    {
+                        retorno = (cartas[0].ValorCartaEnvido + cartas[2].ValorCartaEnvido) + 20;
+                    }
                     else
                     {
                         retorno = JuegoDeCartas.BuscarMaximoValor(cartas);

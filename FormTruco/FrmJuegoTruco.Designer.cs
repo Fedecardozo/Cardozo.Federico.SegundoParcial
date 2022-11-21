@@ -91,6 +91,8 @@ namespace FormTruco
             this.btnNoQuieroJ2 = new System.Windows.Forms.Button();
             this.btnQuieroJ2 = new System.Windows.Forms.Button();
             this.timerJuego = new System.Windows.Forms.Timer(this.components);
+            this.labelTantoJ1 = new System.Windows.Forms.Label();
+            this.labelTantosJ2 = new System.Windows.Forms.Label();
             this.panelContenedor.SuspendLayout();
             this.panelMesa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTerceraJ2)).BeginInit();
@@ -669,6 +671,8 @@ namespace FormTruco
             // panelLateralIzq
             // 
             this.panelLateralIzq.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panelLateralIzq.Controls.Add(this.labelTantosJ2);
+            this.panelLateralIzq.Controls.Add(this.labelTantoJ1);
             this.panelLateralIzq.Controls.Add(this.labelSegundos);
             this.panelLateralIzq.Controls.Add(this.labelTiempo);
             this.panelLateralIzq.Controls.Add(this.btnSalir);
@@ -890,6 +894,30 @@ namespace FormTruco
             this.timerJuego.Interval = 1000;
             this.timerJuego.Tick += new System.EventHandler(this.timerJuego_Tick);
             // 
+            // labelTantoJ1
+            // 
+            this.labelTantoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelTantoJ1.AutoSize = true;
+            this.labelTantoJ1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelTantoJ1.Location = new System.Drawing.Point(42, 537);
+            this.labelTantoJ1.Name = "labelTantoJ1";
+            this.labelTantoJ1.Size = new System.Drawing.Size(189, 41);
+            this.labelTantoJ1.TabIndex = 26;
+            this.labelTantoJ1.Text = "Envido J1: 27";
+            this.labelTantoJ1.Visible = false;
+            // 
+            // labelTantosJ2
+            // 
+            this.labelTantosJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelTantosJ2.AutoSize = true;
+            this.labelTantosJ2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelTantosJ2.Location = new System.Drawing.Point(42, 602);
+            this.labelTantosJ2.Name = "labelTantosJ2";
+            this.labelTantosJ2.Size = new System.Drawing.Size(189, 41);
+            this.labelTantosJ2.TabIndex = 27;
+            this.labelTantosJ2.Text = "Envido J2: 27";
+            this.labelTantosJ2.Visible = false;
+            // 
             // FrmJuegoTruco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -988,6 +1016,8 @@ namespace FormTruco
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label labelPuntoEnvido;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelTantosJ2;
+        private System.Windows.Forms.Label labelTantoJ1;
     }
 }
 

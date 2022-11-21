@@ -41,7 +41,8 @@ namespace FormTruco
         private EQueSeCanto QueSeCanto;
         private bool hayGanador;
         private int quienCantoTruco;
-
+        private int puntosJ1;
+        private int puntosJ2;
         #endregion
 
         #region Inicio Form
@@ -68,13 +69,10 @@ namespace FormTruco
             this.mazo = Harcodeo.MazoCartas;
             this.RepartirCartas();
             this.mano = 1;
+            this.puntosJ1 = 0;
+            this.puntosJ2 = 0;
             this.InicioDelJuego();
             this.QueSeCanto = EQueSeCanto.Nada;
-            this.dataGridViewAnotador.Rows.Add(0,0);
-            this.dataGridViewAnotador.Rows.Add(0,0);
-            this.dataGridViewAnotador.Rows.Add(0,0);
-            this.dataGridViewAnotador.Rows.Add(0,0);
-            this.dataGridViewAnotador.Rows.Add(0,0);
         }
         private void InicioDelJuego()
         {
@@ -263,13 +261,13 @@ namespace FormTruco
 
             switch (ganador)
             {
-                case 1: this.IniciarHiloSecundario("Ganador jugador 1"); this.turnoJ1 = true; this.turnoJ2 = false; break;
-                case 2: this.IniciarHiloSecundario("Ganador jugador 2"); this.turnoJ1 = false; this.turnoJ2 = true; break;
+                case 1: this.IniciarHiloSecundario("Ganador jugador 1",this.labelCanto); this.turnoJ1 = true; this.turnoJ2 = false; break;
+                case 2: this.IniciarHiloSecundario("Ganador jugador 2", this.labelCanto); this.turnoJ1 = false; this.turnoJ2 = true; break;
                 case 0:
 
                     if (this.ronda == 1 || (this.ganadorPrimera == 0 && this.ronda == 2))
                     {
-                        this.IniciarHiloSecundario("Parda!");
+                        this.IniciarHiloSecundario("Parda!", this.labelCanto);
                         if(this.mano == 1)
                         {
                             this.turnoJ1 = true;
@@ -304,30 +302,35 @@ namespace FormTruco
             if (this.ganadorPrimera == jugador && (this.ganadorSegunda == jugador || this.ganadorTercera == jugador || 
                 this.ganadorSegunda == 0 || this.ganadorTercera == 0))
             {
-                CambiarLabelPuntoParcialesTruco(jugador);
+                this.CambiarLabelPuntoParcialesTruco(jugador);
                 this.MensajeGanador(ganadorJ1);
+                this.CambiarDataGrid(jugador);
             }
             else if (this.ganadorPrimera == 0 && this.ganadorSegunda == jugador)
             {
-                CambiarLabelPuntoParcialesTruco(jugador);
+                this.CambiarLabelPuntoParcialesTruco(jugador);
                 this.MensajeGanador(ganadorJ1);
+                this.CambiarDataGrid(jugador);
             }
             else if (this.ganadorPrimera == 0 && this.ganadorSegunda == 0 && this.ganadorTercera == jugador)
             {
-                CambiarLabelPuntoParcialesTruco(jugador);
+                this.CambiarLabelPuntoParcialesTruco(jugador);
                 this.MensajeGanador(ganadorJ1);
+                this.CambiarDataGrid(jugador);
             }
             else if (this.ganadorPrimera == 0 && this.ganadorSegunda == 0 && this.ganadorTercera == 0 && this.mano == jugador)
             {
-                CambiarLabelPuntoParcialesTruco(jugador);
+                this.CambiarLabelPuntoParcialesTruco(jugador);
                 //MessageBox.Show("Entra aca!");
                 this.MensajeGanador(ganadorJ1);
+                this.CambiarDataGrid(jugador);
             }
             else if(this.ganadorPrimera == jugador && this.ganadorSegunda == this.CambiarJugador(jugador) && this.ganadorTercera == this.CambiarJugador(jugador))
             {
                 ganadorJ1 = $"Ganador jugador {this.CambiarJugador(jugador)}";
-                CambiarLabelPuntoParcialesTruco(this.CambiarJugador(jugador));
+                this.CambiarLabelPuntoParcialesTruco(this.CambiarJugador(jugador));
                 this.MensajeGanador(ganadorJ1);
+                this.CambiarDataGrid(jugador);
             }
 
         }
@@ -337,9 +340,18 @@ namespace FormTruco
         /// </summary>
         /// <param name="msj"></param>
         private void MensajeGanador(string msj)
-        {
+        {           
             MessageBox.Show(msj, "Ganador", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.hayGanador = true;
+        }
+
+        #endregion
+
+        #region Metodos dataGridView
+
+        private void CambiarDataGrid(int ganador)
+        {
+            this.dataGridViewAnotador.Rows.Add(this.puntosJ1, this.puntosJ2);
         }
 
         #endregion
@@ -350,10 +362,12 @@ namespace FormTruco
         {
             if(ganador == 1)
             {
+                this.puntosJ1 += this.puntoEnjuego;
                 this.labelJ1Puntos.Text = $"{this.puntoEnjuego} puntos";
             }
             else if(ganador == 2)
             {
+                this.puntosJ2 += this.puntoEnjuego;
                 this.labelJ2Puntos.Text = $"{this.puntoEnjuego} puntos";
             }
         }
@@ -364,10 +378,10 @@ namespace FormTruco
             this.labelPuntoEnvido.Text = this.puntosEnvido.ToString();
         }
 
-        private void CambiarTextoLabel(string mensaje)
+        private void CambiarTextoLabel(string mensaje,Label label)
         {
-            this.labelCanto.Text = mensaje;
-            this.labelCanto.Visible = true;
+            label.Text = mensaje;
+            label.Visible = true;
         }
 
         #endregion
@@ -382,7 +396,7 @@ namespace FormTruco
 
         private void btnNoQuieroJ1_Click(object sender, EventArgs e)
         {
-            this.ContestarNoQuiero(1,2);
+            this.ContestarNoQuiero(1);
         }
 
         private void btnEnvidoJ1_Click(object sender, EventArgs e)
@@ -402,7 +416,7 @@ namespace FormTruco
 
         private void btnFlorJ1_Click(object sender, EventArgs e)
         {
-            this.CambiarTextoLabel("J1: Flor!");
+            this.CambiarTextoLabel("J1: Flor!",this.labelCanto);
         }
 
         private void btnTrucoJ1_Click(object sender, EventArgs e)
@@ -437,7 +451,7 @@ namespace FormTruco
 
         private void btnNoQuieroJ2_Click(object sender, EventArgs e)
         {
-            this.ContestarNoQuiero(2,1);
+            this.ContestarNoQuiero(2);
         }
 
         private void btnEnvidoJ2_Click(object sender, EventArgs e)
@@ -457,7 +471,7 @@ namespace FormTruco
 
         private void btnFlorJ2_Click(object sender, EventArgs e)
         {
-            this.IniciarHiloSecundario("J2: Flor!");
+            this.IniciarHiloSecundario("J2: Flor!", this.labelCanto);
         }
 
         private void btnTrucoJ2_Click(object sender, EventArgs e)
@@ -492,7 +506,15 @@ namespace FormTruco
         /// <param name="jugador">1 o 2</param>
         private void ContestarQuiero(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador}: Quiero!");
+            this.IniciarHiloSecundario($"J{jugador}: Quiero!", this.labelCanto);
+
+            if(this.QueSeCanto == EQueSeCanto.Envido || this.QueSeCanto == EQueSeCanto.RealEnvido || this.QueSeCanto == EQueSeCanto.FaltaEnvido)
+            {
+                //Funcion que muestre los puntos de los 2 jugadores
+                this.MostrarLosTantos();
+                this.GanadorEnvido();
+                this.HabilitarBotonesPorRonda();
+            }
 
             if(this.QueSeCanto == EQueSeCanto.Truco || this.QueSeCanto == EQueSeCanto.ReTruco || this.QueSeCanto == EQueSeCanto.ValeCuatro)
             {
@@ -519,22 +541,31 @@ namespace FormTruco
         /// Tambien se vuelve habilitar para mover las imagenes(continuar el juego)
         /// </summary>
         /// <param name="jugador"></param>
-        private void ContestarNoQuiero(int jugador, int jugador2)
+        private void ContestarNoQuiero(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador}: No quiero!");
+            this.IniciarHiloSecundario($"J{jugador}: No quiero!", this.labelCanto);
+
+            if (this.QueSeCanto == EQueSeCanto.Envido || this.QueSeCanto == EQueSeCanto.RealEnvido || this.QueSeCanto == EQueSeCanto.FaltaEnvido)
+            {
+                //Funcion que le de los puntos al otro jugador
+                this.DarPuntosEnvido(this.CambiarJugador(jugador));
+                this.HabilitarBotonesPorRonda();
+            }
 
             if (this.QueSeCanto == EQueSeCanto.Truco || this.QueSeCanto == EQueSeCanto.ReTruco || this.QueSeCanto == EQueSeCanto.ValeCuatro)
             {
+                int ganador = this.CambiarJugador(jugador);
+
                 this.puntoEnjuego--;
                 this.CambiarLabelYAsignarPuntoEnjuego();
-                
-                this.ganadorPrimera = jugador2;
-                this.ganadorSegunda = jugador2;
+
+                this.ganadorPrimera = ganador;
+                this.ganadorSegunda = ganador;
 
                 this.DesHabilitarBotones(this.groupBoxJ1);
                 this.DesHabilitarBotones(this.groupBoxJ2);
 
-                this.GanadorDelJuego(jugador2);
+                this.GanadorDelJuego(ganador);
             }
 
             this.HabilitarImagenes(true);
@@ -542,7 +573,7 @@ namespace FormTruco
         
         private void CantoTruco(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador}: Truco!");
+            this.IniciarHiloSecundario($"J{jugador}: Truco!", this.labelCanto);
 
             this.HabilitarBotonesDelTruco(jugador);
 
@@ -555,7 +586,7 @@ namespace FormTruco
         
         private void ReTruco(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador}: Quiero re truco!");
+            this.IniciarHiloSecundario($"J{jugador}: Quiero re truco!", this.labelCanto);
 
             this.HabilitarBotonesReTruco(jugador);
 
@@ -567,7 +598,7 @@ namespace FormTruco
 
         private void ValeCuatro(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador}: Quiero vale cuatro!");
+            this.IniciarHiloSecundario($"J{jugador}: Quiero vale cuatro!", this.labelCanto);
             if (jugador == 2)
             {
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnMazoJ1 }, this.groupBoxJ2);
@@ -584,7 +615,7 @@ namespace FormTruco
 
         private void CantoEnvido(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador} Envido!");
+            this.IniciarHiloSecundario($"J{jugador} Envido!", this.labelCanto);
             this.ContadorEnvidos++;
 
             if (jugador == 2)
@@ -612,7 +643,7 @@ namespace FormTruco
 
         private void RealEnvido(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador}: Real envido!");
+            this.IniciarHiloSecundario($"J{jugador}: Real envido!", this.labelCanto);
             if (jugador == 2)
             {
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnFaltaEnvidoJ1, this.btnMazoJ1 }, this.groupBoxJ2);
@@ -621,13 +652,14 @@ namespace FormTruco
             {
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2,this.btnFaltaEnvidoJ2, this.btnMazoJ2 }, this.groupBoxJ1);
             }
+            this.QueSeCanto = EQueSeCanto.RealEnvido;
             this.puntosEnvido += 2;
             this.HabilitarImagenes(false);
         }
 
         private void FaltaEnvido(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador}: Falta envido!");
+            this.IniciarHiloSecundario($"J{jugador}: Falta envido!", this.labelCanto);
             if (jugador == 2)
             {
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnMazoJ1 }, this.groupBoxJ2);
@@ -636,6 +668,8 @@ namespace FormTruco
             {
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2, this.btnMazoJ2 }, this.groupBoxJ1);
             }
+
+            this.QueSeCanto = EQueSeCanto.FaltaEnvido;
             this.puntosEnvido += 10;
             this.HabilitarImagenes(false);
         }
@@ -650,7 +684,7 @@ namespace FormTruco
             this.ganadorSegunda = jugador2;
             this.GanadorDelJuego(jugador2);
 
-            this.IniciarHiloSecundario($"J{jugador}: Me voy al mazo!");
+            this.IniciarHiloSecundario($"J{jugador}: Me voy al mazo!", this.labelCanto);
 
         }
 
@@ -831,13 +865,14 @@ namespace FormTruco
             switch(this.ronda)
             {
                 case 1:
-                    if (this.puntoEnjuego == 1)
+                    
+                    if (this.puntoEnjuego >= 2 || this.puntosEnvido > 0)
+                    {
+                        this.HabilitarBotones2ronda();
+                    }
+                    else if (this.puntoEnjuego == 1)
                     {
                         this.IniciarBotones();
-                    }
-                    else if(this.puntoEnjuego >= 2)
-                    {
-                        this.HabilitarBotonesSegunTruco();
                     }
                     break;
 
@@ -930,36 +965,79 @@ namespace FormTruco
 
         #region Hilos
         
-        private void IniciarHiloSecundario(string msj)
+        private void IniciarHiloSecundario(string msj,Label label)
         {
-            Task hilo = new Task(() => this.MostrarInformacionConPausa(msj));
+            Task hilo = new Task(() => this.MostrarInformacionConPausa(msj,label));
             hilo.Start();
         }
         
-        private void OcultarLabel()
+        private void OcultarLabel(Label label)
         {
-            this.labelCanto.Visible = false;
+            label.Visible = false;
         }
 
         /// <summary>
         /// Muestro la inforamcion en un hilo secundario de manera recursiva
         /// </summary>
         /// <param name="numero"></param>
-        private void MostrarInformacionConPausa(string msj)
+        private void MostrarInformacionConPausa(string msj, Label label)
         {
             //Pregunta si esta iniciando en un hilo distinto al formulario
             if (this.InvokeRequired)
             {
-                Action ocultar = this.OcultarLabel;
-                Action<string> action = this.MostrarInformacionConPausa;
+                Action ocultar = () => this.OcultarLabel(label);
+                Action<string,Label> action = this.MostrarInformacionConPausa;
                 //invoca el mismo metodo que lo esta llamando en el hilo principal
-                this.Invoke(action,new object[] {msj});
+                this.Invoke(action,new object[] {msj,label});
                 Thread.Sleep(3000);
                 this.Invoke(ocultar);
             }
             else
             {
-                this.CambiarTextoLabel(msj);
+                this.CambiarTextoLabel(msj,label);
+            }
+
+        }
+
+        #endregion
+
+        #region Metodos Envido
+
+        private void GanadorEnvido()
+        {
+            int ganadorEnvido = JuegoDeCartas.GanadorEnvido(this.cartasJ1, this.cartasJ2, this.mano);
+            if(ganadorEnvido == 1)
+            {
+                this.puntosJ1 += this.puntosEnvido;
+                this.labelJ1Puntos.Text = $"{this.puntosEnvido} puntos";
+            }
+            else if (ganadorEnvido == 2)
+            {
+                this.puntosJ2 += this.puntosEnvido;
+                this.labelJ2Puntos.Text = $"{this.puntosEnvido} puntos";
+            }
+            this.MensajeGanador($"Gano los tantos jugador {ganadorEnvido}");
+        }
+
+        private void MostrarLosTantos()
+        {
+            int tantoJ1 = JuegoDeCartas.CalcularTantos(this.cartasJ1);
+            int tantoJ2 = JuegoDeCartas.CalcularTantos(this.cartasJ2);
+
+            this.IniciarHiloSecundario($"Tantos J1: {tantoJ1}", this.labelTantoJ1);
+            this.IniciarHiloSecundario($"Tantos J2: {tantoJ2}", this.labelTantosJ2);
+
+        }
+
+        private void DarPuntosEnvido(int jugador)
+        {
+            if (jugador == 1)
+            {
+                this.puntosJ1 += this.puntosEnvido;
+            }
+            else if(jugador == 2)
+            {
+                this.puntosJ2 += this.puntosEnvido;
             }
 
         }

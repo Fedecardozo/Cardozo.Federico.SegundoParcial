@@ -52,8 +52,6 @@ namespace FormTruco
             this.pictureBoxJ1C2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxJ1C1 = new System.Windows.Forms.PictureBox();
             this.panelLateralDer = new System.Windows.Forms.Panel();
-            this.labelPuntoEnvido = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.labelPuntoJuego = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.labelJ2Puntos = new System.Windows.Forms.Label();
@@ -76,6 +74,8 @@ namespace FormTruco
             this.btnNoQuieroJ1 = new System.Windows.Forms.Button();
             this.btnQuieroJ1 = new System.Windows.Forms.Button();
             this.panelLateralIzq = new System.Windows.Forms.Panel();
+            this.labelTantosJ2 = new System.Windows.Forms.Label();
+            this.labelTantoJ1 = new System.Windows.Forms.Label();
             this.labelSegundos = new System.Windows.Forms.Label();
             this.labelTiempo = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -91,8 +91,6 @@ namespace FormTruco
             this.btnNoQuieroJ2 = new System.Windows.Forms.Button();
             this.btnQuieroJ2 = new System.Windows.Forms.Button();
             this.timerJuego = new System.Windows.Forms.Timer(this.components);
-            this.labelTantoJ1 = new System.Windows.Forms.Label();
-            this.labelTantosJ2 = new System.Windows.Forms.Label();
             this.panelContenedor.SuspendLayout();
             this.panelMesa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTerceraJ2)).BeginInit();
@@ -322,8 +320,6 @@ namespace FormTruco
             // panelLateralDer
             // 
             this.panelLateralDer.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panelLateralDer.Controls.Add(this.labelPuntoEnvido);
-            this.panelLateralDer.Controls.Add(this.label5);
             this.panelLateralDer.Controls.Add(this.labelPuntoJuego);
             this.panelLateralDer.Controls.Add(this.label4);
             this.panelLateralDer.Controls.Add(this.labelJ2Puntos);
@@ -339,31 +335,11 @@ namespace FormTruco
             this.panelLateralDer.Size = new System.Drawing.Size(294, 826);
             this.panelLateralDer.TabIndex = 2;
             // 
-            // labelPuntoEnvido
-            // 
-            this.labelPuntoEnvido.AutoSize = true;
-            this.labelPuntoEnvido.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPuntoEnvido.Location = new System.Drawing.Point(226, 379);
-            this.labelPuntoEnvido.Name = "labelPuntoEnvido";
-            this.labelPuntoEnvido.Size = new System.Drawing.Size(26, 31);
-            this.labelPuntoEnvido.TabIndex = 16;
-            this.labelPuntoEnvido.Text = "0";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(20, 379);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(202, 31);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Puntos del envido:";
-            // 
             // labelPuntoJuego
             // 
             this.labelPuntoJuego.AutoSize = true;
             this.labelPuntoJuego.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPuntoJuego.Location = new System.Drawing.Point(210, 426);
+            this.labelPuntoJuego.Location = new System.Drawing.Point(214, 416);
             this.labelPuntoJuego.Name = "labelPuntoJuego";
             this.labelPuntoJuego.Size = new System.Drawing.Size(26, 31);
             this.labelPuntoJuego.TabIndex = 14;
@@ -373,7 +349,7 @@ namespace FormTruco
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(20, 426);
+            this.label4.Location = new System.Drawing.Point(24, 416);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(184, 31);
             this.label4.TabIndex = 13;
@@ -383,7 +359,7 @@ namespace FormTruco
             // 
             this.labelJ2Puntos.AutoSize = true;
             this.labelJ2Puntos.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelJ2Puntos.Location = new System.Drawing.Point(149, 332);
+            this.labelJ2Puntos.Location = new System.Drawing.Point(149, 361);
             this.labelJ2Puntos.Name = "labelJ2Puntos";
             this.labelJ2Puntos.Size = new System.Drawing.Size(103, 31);
             this.labelJ2Puntos.TabIndex = 12;
@@ -393,7 +369,7 @@ namespace FormTruco
             // 
             this.labelJ1Puntos.AutoSize = true;
             this.labelJ1Puntos.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelJ1Puntos.Location = new System.Drawing.Point(149, 283);
+            this.labelJ1Puntos.Location = new System.Drawing.Point(149, 302);
             this.labelJ1Puntos.Name = "labelJ1Puntos";
             this.labelJ1Puntos.Size = new System.Drawing.Size(103, 31);
             this.labelJ1Puntos.TabIndex = 11;
@@ -403,7 +379,7 @@ namespace FormTruco
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(24, 332);
+            this.label2.Location = new System.Drawing.Point(24, 361);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(119, 31);
             this.label2.TabIndex = 10;
@@ -413,7 +389,7 @@ namespace FormTruco
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(24, 283);
+            this.label1.Location = new System.Drawing.Point(24, 302);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 31);
             this.label1.TabIndex = 9;
@@ -683,6 +659,30 @@ namespace FormTruco
             this.panelLateralIzq.Size = new System.Drawing.Size(294, 826);
             this.panelLateralIzq.TabIndex = 1;
             // 
+            // labelTantosJ2
+            // 
+            this.labelTantosJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelTantosJ2.AutoSize = true;
+            this.labelTantosJ2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelTantosJ2.Location = new System.Drawing.Point(42, 602);
+            this.labelTantosJ2.Name = "labelTantosJ2";
+            this.labelTantosJ2.Size = new System.Drawing.Size(189, 41);
+            this.labelTantosJ2.TabIndex = 27;
+            this.labelTantosJ2.Text = "Envido J2: 27";
+            this.labelTantosJ2.Visible = false;
+            // 
+            // labelTantoJ1
+            // 
+            this.labelTantoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelTantoJ1.AutoSize = true;
+            this.labelTantoJ1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelTantoJ1.Location = new System.Drawing.Point(42, 537);
+            this.labelTantoJ1.Name = "labelTantoJ1";
+            this.labelTantoJ1.Size = new System.Drawing.Size(189, 41);
+            this.labelTantoJ1.TabIndex = 26;
+            this.labelTantoJ1.Text = "Envido J1: 27";
+            this.labelTantoJ1.Visible = false;
+            // 
             // labelSegundos
             // 
             this.labelSegundos.AutoSize = true;
@@ -894,30 +894,6 @@ namespace FormTruco
             this.timerJuego.Interval = 1000;
             this.timerJuego.Tick += new System.EventHandler(this.timerJuego_Tick);
             // 
-            // labelTantoJ1
-            // 
-            this.labelTantoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelTantoJ1.AutoSize = true;
-            this.labelTantoJ1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelTantoJ1.Location = new System.Drawing.Point(42, 537);
-            this.labelTantoJ1.Name = "labelTantoJ1";
-            this.labelTantoJ1.Size = new System.Drawing.Size(189, 41);
-            this.labelTantoJ1.TabIndex = 26;
-            this.labelTantoJ1.Text = "Envido J1: 27";
-            this.labelTantoJ1.Visible = false;
-            // 
-            // labelTantosJ2
-            // 
-            this.labelTantosJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelTantosJ2.AutoSize = true;
-            this.labelTantosJ2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelTantosJ2.Location = new System.Drawing.Point(42, 602);
-            this.labelTantosJ2.Name = "labelTantosJ2";
-            this.labelTantosJ2.Size = new System.Drawing.Size(189, 41);
-            this.labelTantosJ2.TabIndex = 27;
-            this.labelTantosJ2.Text = "Envido J2: 27";
-            this.labelTantosJ2.Visible = false;
-            // 
             // FrmJuegoTruco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1014,8 +990,6 @@ namespace FormTruco
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelPuntoJuego;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label labelPuntoEnvido;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label labelTantosJ2;
         private System.Windows.Forms.Label labelTantoJ1;
     }

@@ -44,6 +44,9 @@ namespace FormTruco
         private int puntosJ1;
         private int puntosJ2;
         private bool seCantoQuieroTruco;
+        private bool seCantoFlor;
+        private bool isFlorJ1;
+        private bool isFlorJ2;
         #endregion
 
         #region Inicio Form
@@ -75,6 +78,9 @@ namespace FormTruco
             this.InicioDelJuego();
             this.QueSeCanto = EQueSeCanto.Nada;
             this.seCantoQuieroTruco = false;
+            this.seCantoFlor = false;
+            this.isFlorJ1 = JuegoDeCartas.IsFlor(this.cartasJ1[0], this.cartasJ1[1], this.cartasJ1[2]);
+            this.isFlorJ2 = JuegoDeCartas.IsFlor(this.cartasJ2[0], this.cartasJ2[1], this.cartasJ2[2]);
         }
         private void InicioDelJuego()
         {
@@ -352,7 +358,9 @@ namespace FormTruco
             }
 
             this.CambiarLabelPuntoParcialesTruco(jugador);
+            this.HabilitarImagenes(false);
             this.CambiarDataGrid();
+            this.ReiniciarJuego();
         }
 
         #endregion
@@ -377,7 +385,6 @@ namespace FormTruco
         private void CambiarLabelYAsignarPuntoEnjuego()
         {
             this.labelPuntoJuego.Text = this.puntoEnjuego.ToString();
-            this.labelPuntoEnvido.Text = this.puntosEnvido.ToString();
         }
 
         private void CambiarTextoLabel(string mensaje,Label label)
@@ -614,18 +621,9 @@ namespace FormTruco
             this.IniciarHiloSecundario($"J{jugador} Envido!", this.labelCanto);
             this.ContadorEnvidos++;
 
-            if (jugador == 2)
-            {
-                this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnEnvidoJ1, this.btnRealEnvidoJ1, 
-                    this.btnFaltaEnvidoJ1, this.btnMazoJ1 }, this.groupBoxJ2);
-            }
-            else if(jugador == 1)
-            {
-                this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2,this.btnEnvidoJ2, this.btnRealEnvidoJ2,
-                    this.btnFaltaEnvidoJ2, this.btnMazoJ2 }, this.groupBoxJ1);
-            }
+            this.HabilitarBotonesFlor(this.CambiarJugador(jugador));
 
-            if(this.ContadorEnvidos == 2)
+            if (this.ContadorEnvidos == 2)
             {
                 this.btnEnvidoJ1.Enabled = false;
                 this.btnEnvidoJ2.Enabled = false;
@@ -718,6 +716,9 @@ namespace FormTruco
                 this.puntosJ2 += 3;
                 this.labelJ2Puntos.Text = $"3 puntos";
             }
+            //this.puntosEnvido += 3;
+            this.HabilitarBotonesPorRonda();
+            this.seCantoFlor = true;
         }
 
         #endregion
@@ -725,35 +726,50 @@ namespace FormTruco
         #region Habilitación botones
 
         /// <summary>
+        /// Habilita los botones dependiendo si hay flor del jugador pasado por parametro
+        /// </summary>
+        /// <param name="jugador"></param>
+        private void HabilitarBotonesFlor(int jugador)
+        {
+            if (jugador == 1)
+            {
+                if (!this.isFlorJ1)
+                {
+                    this.HabilitarBotones(new Button[] { this.btnMazoJ1, this.btnEnvidoJ1, this.btnFaltaEnvidoJ1, this.btnRealEnvidoJ1 }, this.groupBoxJ2);
+                }
+                else if (this.isFlorJ1)
+                {
+                    this.HabilitarBotones(new Button[] { this.btnMazoJ1, this.btnFlorJ1 }, this.groupBoxJ2);
+                }
+            }
+            else if (jugador == 2)
+            {
+                if (!this.isFlorJ2)
+                {
+                    this.HabilitarBotones(new Button[] { this.btnMazoJ2, this.btnEnvidoJ2, this.btnFaltaEnvidoJ2, this.btnRealEnvidoJ2}, this.groupBoxJ1);
+                }
+                else if (this.isFlorJ2)
+                {
+                    this.HabilitarBotones(new Button[] { this.btnMazoJ2, this.btnFlorJ2 }, this.groupBoxJ1);
+                }
+
+            }
+        }
+
+        /// <summary>
         /// Inicia botones segun quien sea mano
         /// </summary>
         private void IniciarBotones()
         {
-            bool isFlorJ1 = JuegoDeCartas.IsFlor(this.cartasJ1[0], this.cartasJ1[1], this.cartasJ1[2]);
-            bool isFlorJ2 = JuegoDeCartas.IsFlor(this.cartasJ2[0], this.cartasJ2[1], this.cartasJ2[2]);
-
             if (this.turnoJ1)
             {
-                if (!isFlorJ1)
-                {
-                    this.HabilitarBotones(new Button[] { this.btnMazoJ1,this.btnEnvidoJ1,this.btnFaltaEnvidoJ1,this.btnRealEnvidoJ1, this.btnTrucoJ1 },this.groupBoxJ2);
-                }
-                else if(isFlorJ1)
-                {
-                    this.HabilitarBotones(new Button[] { this.btnMazoJ1, this.btnFlorJ1, this.btnTrucoJ1 }, this.groupBoxJ2);
-                }
+                this.HabilitarBotonesFlor(1);
+                this.btnTrucoJ1.Enabled = true;
             }
             else if(this.turnoJ2)
             {
-                if(!isFlorJ2)
-                {
-                    this.HabilitarBotones(new Button[] { this.btnMazoJ2, this.btnEnvidoJ2, this.btnFaltaEnvidoJ2, this.btnRealEnvidoJ2, this.btnTrucoJ2}, this.groupBoxJ1);
-                }
-                else if(isFlorJ2)
-                {
-                    this.HabilitarBotones(new Button[] { this.btnMazoJ2, this.btnFlorJ2, this.btnTrucoJ2 }, this.groupBoxJ1);
-                }
-
+                this.HabilitarBotonesFlor(2);
+                this.btnTrucoJ2.Enabled = true;
             }
         }
          
@@ -898,7 +914,7 @@ namespace FormTruco
             {
                 case 1:
                     
-                    if (this.puntoEnjuego >= 2 || this.puntosEnvido > 0)
+                    if (this.puntoEnjuego >= 2 || this.puntosEnvido > 0 || this.seCantoFlor)
                     {
                         this.HabilitarBotones2ronda();
                     }
@@ -979,9 +995,9 @@ namespace FormTruco
             this.cartas[1] = new Carta(1, ETipoCarta.Oro);
             this.cartas[2] = new Carta(12, ETipoCarta.Oro);
             this.cartasJ1 = new Carta[] { this.cartas[0], this.cartas[1], this.cartas[2] };
-            this.cartas[3] = new Carta(3, ETipoCarta.Copa);
-            this.cartas[4] = new Carta(1, ETipoCarta.Copa);
-            this.cartas[5] = new Carta(2, ETipoCarta.Copa);
+            //this.cartas[3] = new Carta(3, ETipoCarta.Copa);
+            //this.cartas[4] = new Carta(1, ETipoCarta.Copa);
+            //this.cartas[5] = new Carta(2, ETipoCarta.Copa);
             this.cartasJ2 = new Carta[] { this.cartas[3], this.cartas[4], this.cartas[5] };
 
             this.pictureBoxJ1C1.Image = Image.FromFile($@"..\..\..\Resources\{this.cartas[0].ToString()}.png");
@@ -1107,10 +1123,97 @@ namespace FormTruco
 
         #endregion
 
+        #region Reiniciar juego
+
+        /// <summary>
+        /// Se reinicia el juego, pero sin borrar las puntuaciones
+        /// </summary>
+        private void ReiniciarJuego()
+        {
+            this.ReinciarAtributos();
+            this.InicioDelJuego();
+            this.HabilitarImagenes(true);
+            this.ReiniciarImagenesMesa();
+            this.ReiniciarImagenesManos();
+            this.ReiniciarLabels();
+        }
+
+        /// <summary>
+        /// Reincia todos los atributos necesario para continuar con el juego
+        /// </summary>
+        private void ReinciarAtributos()
+        {
+            this.hayGanador = false;
+            this.ganadorPrimera = -1;
+            this.ganadorSegunda = -1;
+            this.ganadorTercera = -1;
+            this.ContadorEnvidos = 0;
+            this.puntoEnjuego = 1;
+            this.puntosEnvido = 0;
+            this.ronda = 1;
+            this.rondaJ1 = 0;
+            this.rondaJ2 = 0;           
+            this.mano = this.CambiarJugador(this.mano);
+            this.puntosJ1 = 0;
+            this.puntosJ2 = 0;
+            this.QueSeCanto = EQueSeCanto.Nada;
+            this.seCantoQuieroTruco = false;
+            this.seCantoFlor = false;
+            this.RepartirCartas();
+            this.isFlorJ1 = JuegoDeCartas.IsFlor(this.cartasJ1[0], this.cartasJ1[1], this.cartasJ1[2]);
+            this.isFlorJ2 = JuegoDeCartas.IsFlor(this.cartasJ2[0], this.cartasJ2[1], this.cartasJ2[2]);
+
+        }
+
+        /// <summary>
+        /// Saca las cartas ya jugadas en la mesa
+        /// </summary>
+        private void ReiniciarImagenesMesa()
+        {
+            this.pictureBoxPrimeraJ1.Visible = false;
+            this.pictureBoxSegundaJ1.Visible = false;
+            this.pictureBoxTerceraJ1.Visible = false;
+
+            this.pictureBoxPrimeraJ2.Visible = false;
+            this.pictureBoxSegundaJ2.Visible = false;
+            this.pictureBoxTerceraJ2.Visible = false;
+        }
+
+        /// <summary>
+        /// Reinicia las visibilidad de las cartas de cada jugador
+        /// </summary>
+        private void ReiniciarImagenesManos()
+        {
+            this.pictureBoxJ1C1.Visible = true;
+            this.pictureBoxJ1C2.Visible = true;
+            this.pictureBoxJ1C3.Visible = true;
+
+            this.pictureBoxJ2C1.Visible = true;
+            this.pictureBoxJ2C2.Visible = true;
+            this.pictureBoxJ2C3.Visible = true;
+        }
+
+        /// <summary>
+        /// Reinicia el estado de los labels como cuando cargo el form por primera vez
+        /// </summary>
+        private void ReiniciarLabels()
+        {
+            this.labelJ1Puntos.Text = "0 puntos";
+            this.labelJ2Puntos.Text = "0 puntos";
+
+            this.labelPuntoJuego.Text = "1";
+
+            this.labelTantoJ1.Visible = false;
+            this.labelTantosJ2.Visible = false;
+        }
+
+        #endregion
+
         #region Cerrar Programa
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+            //this.ReiniciarJuego();
             this.Close();
         }
 

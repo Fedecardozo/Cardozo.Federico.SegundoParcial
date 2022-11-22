@@ -242,14 +242,15 @@ namespace FormTruco
                 //Verifico quien gano las rondas y se anota
                 this.GanadorRondas();
 
+                //Sumo en uno la ronda
+                this.ronda++;
+
                 //Verifico si el jugador 1 ya gano el juego
                 this.GanadorDelJuego(1);
 
                 //Verifico si el jugador 2 ya gano el juego
                 this.GanadorDelJuego(2);
 
-                //Sumo en uno la ronda
-                this.ronda++;
             }
 
             //Habilitar botones
@@ -266,6 +267,14 @@ namespace FormTruco
         private void GanadorRondas()
         {
             int ganador = JuegoDeCartas.CartaGanadoraTruco(this.cartaJuagadaJ1, this.cartaJuagadaJ2);
+
+            switch (this.ronda)
+            {
+                case 1: this.ganadorPrimera = ganador; break;
+                case 2: this.ganadorSegunda = ganador; break;
+                case 3: this.ganadorTercera = ganador; break;
+                //default: MessageBox.Show("Entro aca"); break;
+            }
 
             switch (ganador)
             {
@@ -291,12 +300,6 @@ namespace FormTruco
                     break;
             }
 
-            switch (this.ronda)
-            {
-                case 1: this.ganadorPrimera = ganador; break;
-                case 2: this.ganadorSegunda = ganador; break;
-                case 3: this.ganadorTercera = ganador; break;
-            }
 
         }
 
@@ -529,7 +532,6 @@ namespace FormTruco
         {
             if (this.QueSeCanto == EQueSeCanto.Truco || this.QueSeCanto == EQueSeCanto.ReTruco || this.QueSeCanto == EQueSeCanto.ValeCuatro)
             {
-                this.seCantoQuieroTruco = true;
                 action.Invoke();
             }
         }
@@ -552,6 +554,7 @@ namespace FormTruco
 
             //Si se canto truco
             Action actionTruco = new Action(this.CambiarLabelYAsignarPuntoEnjuego);
+            actionTruco += ()=> this.seCantoQuieroTruco = true;
             actionTruco += this.HabilitarSoloBtnMazo;
             this.AccionarTruco(actionTruco);
 
@@ -1016,9 +1019,9 @@ namespace FormTruco
             //this.cartas[1] = new Carta(1, ETipoCarta.Oro);
             //this.cartas[2] = new Carta(12, ETipoCarta.Oro);
             this.cartasJ1 = new Carta[] { this.cartas[0], this.cartas[1], this.cartas[2] };
-            this.cartas[3] = new Carta(3, ETipoCarta.Copa);
-            this.cartas[4] = new Carta(1, ETipoCarta.Copa);
-            this.cartas[5] = new Carta(2, ETipoCarta.Copa);
+            //this.cartas[3] = new Carta(3, ETipoCarta.Copa);
+            //this.cartas[4] = new Carta(1, ETipoCarta.Copa);
+            //this.cartas[5] = new Carta(2, ETipoCarta.Copa);
             this.cartasJ2 = new Carta[] { this.cartas[3], this.cartas[4], this.cartas[5] };
 
             this.pictureBoxJ1C1.Image = Image.FromFile($@"..\..\..\Resources\{this.cartas[0].ToString()}.png");

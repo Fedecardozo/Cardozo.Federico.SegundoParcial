@@ -18,6 +18,7 @@ namespace FormTruco
 
         #region Atributos
 
+        private int contadorManos;
         private int ContadorEnvidos;
         private int conteoTime;
         private int minutos;
@@ -55,33 +56,19 @@ namespace FormTruco
         {
             InitializeComponent();
         }
+        
         private void FrmJuegoTruco_Load(object sender, EventArgs e)
         {
             Harcodeo.Global();
-            this.hayGanador = false;
-            this.ganadorPrimera = -1;
-            this.ganadorSegunda = -1;
-            this.ganadorTercera = -1;
-            this.ContadorEnvidos = 0;
-            this.puntoEnjuego = 1;
-            this.puntosEnvido = 0;
             this.conteoTime = 0;
             this.minutos = 0;
-            this.ronda = 1;
-            this.rondaJ1 = 0;
-            this.rondaJ2 = 0;
             this.mazo = Harcodeo.MazoCartas;
-            this.RepartirCartas();
             this.mano = 2;
-            this.puntosJ1 = 0;
-            this.puntosJ2 = 0;
-            this.isFlorJ1 = JuegoDeCartas.IsFlor(this.cartasJ1[0], this.cartasJ1[1], this.cartasJ1[2]);
-            this.isFlorJ2 = JuegoDeCartas.IsFlor(this.cartasJ2[0], this.cartasJ2[1], this.cartasJ2[2]);
-            this.InicioDelJuego();
-            this.QueSeCanto = EQueSeCanto.Nada;
-            this.seCantoQuieroTruco = false;
-            this.seCantoFlor = false;
+            this.contadorManos = 0;
+            this.IniciarAtributos();
+            
         }
+
         private void InicioDelJuego()
         {
             if(this.mano == 1)
@@ -100,6 +87,30 @@ namespace FormTruco
             }
 
             this.IniciarBotones();
+        }
+
+        private void IniciarAtributos()
+        {
+            this.hayGanador = false;
+            this.ganadorPrimera = -1;
+            this.ganadorSegunda = -1;
+            this.ganadorTercera = -1;
+            this.ContadorEnvidos = 0;
+            this.puntoEnjuego = 1;
+            this.puntosEnvido = 0;
+            this.ronda = 1;
+            this.rondaJ1 = 0;
+            this.rondaJ2 = 0;
+            this.puntosJ1 = 0;
+            this.puntosJ2 = 0;
+            this.RepartirCartas();
+            this.isFlorJ1 = JuegoDeCartas.IsFlor(this.cartasJ1[0], this.cartasJ1[1], this.cartasJ1[2]);
+            this.isFlorJ2 = JuegoDeCartas.IsFlor(this.cartasJ2[0], this.cartasJ2[1], this.cartasJ2[2]);
+            this.InicioDelJuego();
+            this.QueSeCanto = EQueSeCanto.Nada;
+            this.seCantoQuieroTruco = false;
+            this.seCantoFlor = false;
+            this.quienCantoTruco = 0;
         }
 
         #endregion
@@ -363,6 +374,7 @@ namespace FormTruco
             this.CambiarLabelPuntoParcialesTruco(jugador);
             this.HabilitarImagenes(false);
             this.CambiarDataGrid();
+            this.contadorManos++;
             this.ReiniciarJuego();
         }
 
@@ -962,6 +974,10 @@ namespace FormTruco
             }
         }
 
+        /// <summary>
+        /// Habilita los botones para el que canto truco
+        /// </summary>
+        /// <param name="jugador"></param>
         private void HabilitarBotonesDelTruco(int jugador)
         {
             if (jugador == 2)
@@ -974,6 +990,10 @@ namespace FormTruco
             }
         }
 
+        /// <summary>
+        /// Habilita los botones para el que canto re truco
+        /// </summary>
+        /// <param name="jugador"></param>
         private void HabilitarBotonesReTruco(int jugador)
         {
             if (jugador == 2)
@@ -1155,12 +1175,19 @@ namespace FormTruco
         /// </summary>
         private void ReiniciarJuego()
         {
-            this.ReinciarAtributos();
-            this.InicioDelJuego();
-            this.ReiniciarImagenesMesa();
-            this.ReiniciarImagenesManos();
-            this.HabilitarImagenes(true);
-            this.ReiniciarLabels();
+            if(this.contadorManos > 3)
+            {
+                MessageBox.Show($"Ganador del juego jugador {1}","Fin del juego",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
+            }
+            else if(this.mano <= 3)
+            {
+                this.ReinciarAtributos();
+                this.InicioDelJuego();
+                this.ReiniciarImagenesMesa();
+                this.ReiniciarImagenesManos();
+                this.HabilitarImagenes(true);
+                this.ReiniciarLabels();
+            }
         }
 
         /// <summary>
@@ -1168,27 +1195,8 @@ namespace FormTruco
         /// </summary>
         private void ReinciarAtributos()
         {
-            this.hayGanador = false;
-            this.ganadorPrimera = -1;
-            this.ganadorSegunda = -1;
-            this.ganadorTercera = -1;
-            this.ContadorEnvidos = 0;
-            this.puntoEnjuego = 1;
-            this.puntosEnvido = 0;
-            this.ronda = 1;
-            this.rondaJ1 = 0;
-            this.rondaJ2 = 0;           
+            this.IniciarAtributos();
             this.mano = this.CambiarJugador(this.mano);
-            this.puntosJ1 = 0;
-            this.puntosJ2 = 0;
-            this.QueSeCanto = EQueSeCanto.Nada;
-            this.seCantoQuieroTruco = false;
-            this.seCantoFlor = false;
-            this.RepartirCartas();
-            this.isFlorJ1 = JuegoDeCartas.IsFlor(this.cartasJ1[0], this.cartasJ1[1], this.cartasJ1[2]);
-            this.isFlorJ2 = JuegoDeCartas.IsFlor(this.cartasJ2[0], this.cartasJ2[1], this.cartasJ2[2]);
-            this.quienCantoTruco = 0;
-
         }
 
         /// <summary>

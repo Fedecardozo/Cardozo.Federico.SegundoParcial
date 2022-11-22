@@ -1177,7 +1177,7 @@ namespace FormTruco
         {
             if(this.contadorManos > 3)
             {
-                MessageBox.Show($"Ganador del juego jugador {1}","Fin del juego",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
+                MessageBox.Show(this.MensajeGanador(),"Fin del juego",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
             }
             else if(this.mano <= 3)
             {
@@ -1239,6 +1239,73 @@ namespace FormTruco
 
             this.labelTantoJ1.Visible = false;
             this.labelTantosJ2.Visible = false;
+        }
+
+        #endregion
+
+        #region Juego terminado
+
+        /// <summary>
+        /// (1) Ganador J1 (2) Ganador J2 (0) Empate
+        /// </summary>
+        /// <returns>0, 1, 2</returns>
+        private int CalcularGanadorJuego()
+        {
+            int totalJ1 = this.CalcularTotalPuntos(1);
+            int totalJ2 = this.CalcularTotalPuntos(2);
+            int retorno = 0;
+
+            if(totalJ1 > totalJ2)
+            {
+                retorno = 1;
+            }
+            else if (totalJ2 > totalJ1)
+            {
+                retorno = 2;
+            }
+
+            return retorno;
+            //MessageBox.Show($"Jugador 1:{totalJ1} \nJugador 2:{totalJ2}");
+        }
+
+        /// <summary>
+        /// Calcula los puntos del jugador pasador pasado por parametro
+        /// </summary>
+        /// <param name="jugador">1 o 2</param>
+        /// <returns>int >= 0</returns>
+        private int CalcularTotalPuntos(int jugador)
+        {
+            int total = 0;
+
+            for (int i = 0; i < this.dataGridViewAnotador.Rows.Count - 1; i++)
+            {
+                total += (int)this.dataGridViewAnotador.Rows[i].Cells[jugador-1].Value;
+            }
+
+            return total;
+        }
+
+        /// <summary>
+        /// Verifica quien gano
+        /// </summary>
+        /// <returns>string mensaje ganador o empate</returns>
+        private string MensajeGanador()
+        {
+            int ganador = this.CalcularGanadorJuego();
+            StringBuilder  retorno =  new StringBuilder();
+            
+            if (ganador == 0)
+            {
+                retorno.AppendLine("Empate!");
+            }
+            else
+            {
+                retorno.AppendLine($"Ganador del juego jugador {ganador}");
+            }
+           
+            retorno.AppendLine($"Puntos J1: {this.CalcularTotalPuntos(1)} \nPuntos J2: {this.CalcularTotalPuntos(2)}");
+
+            return retorno.ToString();
         }
 
         #endregion

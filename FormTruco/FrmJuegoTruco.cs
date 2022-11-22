@@ -391,6 +391,18 @@ namespace FormTruco
 
         #region Labels
 
+        private void CambiarPuntosLabel(int ganador)
+        {
+            if (ganador == 1)
+            {
+                this.labelJ1Puntos.Text = $"{this.puntosEnvido} puntos";
+            }
+            else if (ganador == 2)
+            {
+                this.labelJ2Puntos.Text = $"{this.puntosEnvido} puntos";
+            }
+        }
+
         private void CambiarLabelPuntoParcialesTruco(int ganador)
         {
             this.labelJ1Puntos.Text = $"{this.puntosJ1} puntos";
@@ -580,13 +592,15 @@ namespace FormTruco
         /// <param name="jugador"></param>
         private void ContestarNoQuiero(int jugador)
         {
+            int elOtroJugador = this.CambiarJugador(jugador);
             this.IniciarHiloSecundario($"J{jugador}: No quiero!", this.labelCanto);
 
             //Si se canto envido
             Action actionEnvido = new Action(()=> this.puntosEnvido--);
             //Funcion que le de los puntos al otro jugador
-            actionEnvido += () => this.DarPuntosEnvido(this.CambiarJugador(jugador));
+            actionEnvido += () => this.DarPuntosEnvido(elOtroJugador);
             actionEnvido += this.HabilitarBotonesPorRonda;
+            actionEnvido += () => this.CambiarPuntosLabel(elOtroJugador);
             this.AccionarEnvido(actionEnvido);
 
             //Si se canto truco
@@ -594,9 +608,9 @@ namespace FormTruco
             actionTruco += this.CambiarLabelYAsignarPuntoEnjuego;
             actionTruco += () => this.DesHabilitarBotones(this.groupBoxJ1);
             actionTruco += () => this.DesHabilitarBotones(this.groupBoxJ2);
-            actionTruco += () => this.ganadorPrimera = this.CambiarJugador(jugador);
-            actionTruco += () => this.ganadorSegunda = this.CambiarJugador(jugador);
-            actionTruco += () => this.GanadorDelJuego(this.CambiarJugador(jugador));
+            actionTruco += () => this.ganadorPrimera = elOtroJugador;
+            actionTruco += () => this.ganadorSegunda = elOtroJugador;
+            actionTruco += () => this.GanadorDelJuego(elOtroJugador);
             this.AccionarTruco(actionTruco);
 
             this.HabilitarImagenes(true);
@@ -652,6 +666,8 @@ namespace FormTruco
 
             this.HabilitarBotonesFlor(this.CambiarJugador(jugador));
 
+            this.HabilitarBotonesQuieroYNoQuiero(jugador);
+
             if (this.ContadorEnvidos == 2)
             {
                 this.btnEnvidoJ1.Enabled = false;
@@ -667,13 +683,20 @@ namespace FormTruco
         private void RealEnvido(int jugador)
         {
             this.IniciarHiloSecundario($"J{jugador}: Real envido!", this.labelCanto);
-            if (jugador == 2)
+
+            this.HabilitarBotonesFlor(this.CambiarJugador(jugador));
+
+            if (jugador == 2 && !this.isFlorJ1)
             {
-                this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnFaltaEnvidoJ1, this.btnMazoJ1 }, this.groupBoxJ2);
+                this.HabilitarBotonesQuieroYNoQuiero(jugador);
+                this.btnEnvidoJ1.Enabled = false;
+                this.btnRealEnvidoJ1.Enabled = false;
             }
-            else
+            else if(jugador == 1 && !this.isFlorJ2)
             {
-                this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2,this.btnFaltaEnvidoJ2, this.btnMazoJ2 }, this.groupBoxJ1);
+                this.HabilitarBotonesQuieroYNoQuiero(jugador);
+                this.btnEnvidoJ2.Enabled = false;
+                this.btnRealEnvidoJ2.Enabled = false;
             }
             this.QueSeCanto = EQueSeCanto.RealEnvido;
             this.puntosEnvido += 3;
@@ -683,13 +706,20 @@ namespace FormTruco
         private void FaltaEnvido(int jugador)
         {
             this.IniciarHiloSecundario($"J{jugador}: Falta envido!", this.labelCanto);
-            if (jugador == 2)
+
+            this.HabilitarBotonesFlor(this.CambiarJugador(jugador));
+
+            if (jugador == 2 && !this.isFlorJ1)
             {
-                this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnMazoJ1 }, this.groupBoxJ2);
+                this.DesHabilitarBotones(this.groupBoxJ1);
+                this.HabilitarBotonesQuieroYNoQuiero(jugador);
+                this.btnMazoJ1.Enabled = true;
             }
-            else
+            else if(jugador == 1 && !this.isFlorJ2)
             {
-                this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2, this.btnMazoJ2 }, this.groupBoxJ1);
+                this.DesHabilitarBotones(this.groupBoxJ2);
+                this.HabilitarBotonesQuieroYNoQuiero(jugador);
+                this.btnMazoJ2.Enabled = true;
             }
 
             this.QueSeCanto = EQueSeCanto.FaltaEnvido;
@@ -760,6 +790,24 @@ namespace FormTruco
         #endregion
 
         #region Habilitación botones
+
+        /// <summary>
+        /// Habilita los botones de quiero o no quiero
+        /// </summary>
+        /// <param name="jugador">1 o 2</param>
+        private void HabilitarBotonesQuieroYNoQuiero(int jugador)
+        {
+            if (jugador == 1)
+            {
+                this.btnQuieroJ2.Enabled = true;
+                this.btnNoQuieroJ2.Enabled = true;
+            }
+            else if (jugador == 2)
+            {
+                this.btnQuieroJ1.Enabled = true;
+                this.btnNoQuieroJ1.Enabled = true;
+            }
+        }
 
         /// <summary>
         /// Habilita los botones dependiendo si hay flor del jugador pasado por parametro
@@ -1106,14 +1154,7 @@ namespace FormTruco
 
             this.DarPuntosEnvido(ganadorEnvido);
 
-            if(ganadorEnvido == 1)
-            {
-                this.labelJ1Puntos.Text = $"{this.puntosEnvido} puntos";
-            }
-            else if (ganadorEnvido == 2)
-            {
-                this.labelJ2Puntos.Text = $"{this.puntosEnvido} puntos";
-            }
+            this.CambiarPuntosLabel(ganadorEnvido);
 
             this.MensajeGanador($"Gano los tantos jugador {ganadorEnvido}");
         }

@@ -75,12 +75,12 @@ namespace FormTruco
             this.mano = 2;
             this.puntosJ1 = 0;
             this.puntosJ2 = 0;
+            this.isFlorJ1 = JuegoDeCartas.IsFlor(this.cartasJ1[0], this.cartasJ1[1], this.cartasJ1[2]);
+            this.isFlorJ2 = JuegoDeCartas.IsFlor(this.cartasJ2[0], this.cartasJ2[1], this.cartasJ2[2]);
             this.InicioDelJuego();
             this.QueSeCanto = EQueSeCanto.Nada;
             this.seCantoQuieroTruco = false;
             this.seCantoFlor = false;
-            this.isFlorJ1 = JuegoDeCartas.IsFlor(this.cartasJ1[0], this.cartasJ1[1], this.cartasJ1[2]);
-            this.isFlorJ2 = JuegoDeCartas.IsFlor(this.cartasJ2[0], this.cartasJ2[1], this.cartasJ2[2]);
         }
         private void InicioDelJuego()
         {
@@ -112,7 +112,7 @@ namespace FormTruco
             string minutosCadena = $"0{this.minutos}";
             string segundosCadena = $"0{this.conteoTime}";
 
-            if (this.conteoTime %60 == 0)
+            if (this.conteoTime %59 == 0)
             {
                 this.minutos++;
                 this.conteoTime = 0;
@@ -188,7 +188,7 @@ namespace FormTruco
                 this.turnoJ1 = false;
                 this.turnoJ2 = true;
 
-                switch(this.ronda)
+                switch(this.rondaJ1)
                 {
                     case 1: this.MoverImagen(picture,this.pictureBoxPrimeraJ1);  break;
                     case 2: this.MoverImagen(picture, this.pictureBoxSegundaJ1); break;
@@ -213,7 +213,7 @@ namespace FormTruco
                 this.turnoJ1 = true;
                 this.turnoJ2 = false;
 
-                switch (this.ronda)
+                switch (this.rondaJ2)
                 {
                     case 1: this.MoverImagen(picture, this.pictureBoxPrimeraJ2); break;
                     case 2: this.MoverImagen(picture, this.pictureBoxSegundaJ2); break;
@@ -509,6 +509,32 @@ namespace FormTruco
         #region Metodos de que se canto
 
         /// <summary>
+        /// Si se canto algunos de tipos de envido activa el action
+        /// </summary>
+        /// <param name="action"></param>
+        private void AccionarEnvido(Action action)
+        {
+            if (this.QueSeCanto == EQueSeCanto.Envido || this.QueSeCanto == EQueSeCanto.RealEnvido || this.QueSeCanto == EQueSeCanto.FaltaEnvido)
+            {
+                action.Invoke();
+            }
+
+        }
+
+        /// <summary>
+        /// Si esta en juego algunos de los derivados del truco invoka el action
+        /// </summary>
+        /// <param name="action"></param>
+        private void AccionarTruco(Action action)
+        {
+            if (this.QueSeCanto == EQueSeCanto.Truco || this.QueSeCanto == EQueSeCanto.ReTruco || this.QueSeCanto == EQueSeCanto.ValeCuatro)
+            {
+                this.seCantoQuieroTruco = true;
+                action.Invoke();
+            }
+        }
+
+        /// <summary>
         /// Segun lo que este en juego, si quiso el truco se pone en juego 2 puntos.
         /// Si es el envido cada jugador tiene que cantar sus tantos y se pone en juego los puntos necesarios
         /// </summary>
@@ -516,23 +542,18 @@ namespace FormTruco
         private void ContestarQuiero(int jugador)
         {
             this.IniciarHiloSecundario($"J{jugador}: Quiero!", this.labelCanto);
+            
+            //Si se canto envido
+            Action actionEnvido = new Action(this.MostrarLosTantos);
+            actionEnvido += this.GanadorEnvido;
+            actionEnvido += this.HabilitarBotonesPorRonda;
 
-            if(this.QueSeCanto == EQueSeCanto.Envido || this.QueSeCanto == EQueSeCanto.RealEnvido || this.QueSeCanto == EQueSeCanto.FaltaEnvido)
-            {
-                //Funcion que muestre los puntos de los 2 jugadores
-                this.MostrarLosTantos();
-                this.GanadorEnvido();
-                this.HabilitarBotonesPorRonda();
-            }
+            this.AccionarEnvido(actionEnvido);
 
-            if(this.QueSeCanto == EQueSeCanto.Truco || this.QueSeCanto == EQueSeCanto.ReTruco || this.QueSeCanto == EQueSeCanto.ValeCuatro)
-            {
-                this.seCantoQuieroTruco = true;
-
-                this.CambiarLabelYAsignarPuntoEnjuego();
-
-                this.HabilitarSoloBtnMazo();
-            }
+            //Si se canto truco
+            Action actionTruco = new Action(this.CambiarLabelYAsignarPuntoEnjuego);
+            actionTruco += this.HabilitarSoloBtnMazo;
+            this.AccionarTruco(actionTruco);
 
             this.HabilitarImagenes(true);
         }
@@ -546,29 +567,22 @@ namespace FormTruco
         {
             this.IniciarHiloSecundario($"J{jugador}: No quiero!", this.labelCanto);
 
-            if (this.QueSeCanto == EQueSeCanto.Envido || this.QueSeCanto == EQueSeCanto.RealEnvido || this.QueSeCanto == EQueSeCanto.FaltaEnvido)
-            {
-                this.puntosEnvido--;
-                //Funcion que le de los puntos al otro jugador
-                this.DarPuntosEnvido(this.CambiarJugador(jugador));
-                this.HabilitarBotonesPorRonda();
-            }
+            //Si se canto envido
+            Action actionEnvido = new Action(()=> this.puntosEnvido--);
+            //Funcion que le de los puntos al otro jugador
+            actionEnvido += () => this.DarPuntosEnvido(this.CambiarJugador(jugador));
+            actionEnvido += this.HabilitarBotonesPorRonda;
+            this.AccionarEnvido(actionEnvido);
 
-            if (this.QueSeCanto == EQueSeCanto.Truco || this.QueSeCanto == EQueSeCanto.ReTruco || this.QueSeCanto == EQueSeCanto.ValeCuatro)
-            {
-                int ganador = this.CambiarJugador(jugador);
-
-                this.puntoEnjuego--;
-                this.CambiarLabelYAsignarPuntoEnjuego();
-
-                this.ganadorPrimera = ganador;
-                this.ganadorSegunda = ganador;
-
-                this.DesHabilitarBotones(this.groupBoxJ1);
-                this.DesHabilitarBotones(this.groupBoxJ2);
-
-                this.GanadorDelJuego(ganador);
-            }
+            //Si se canto truco
+            Action actionTruco = new Action(() => this.puntoEnjuego--);
+            actionTruco += this.CambiarLabelYAsignarPuntoEnjuego;
+            actionTruco += () => this.DesHabilitarBotones(this.groupBoxJ1);
+            actionTruco += () => this.DesHabilitarBotones(this.groupBoxJ2);
+            actionTruco += () => this.ganadorPrimera = this.CambiarJugador(jugador);
+            actionTruco += () => this.ganadorSegunda = this.CambiarJugador(jugador);
+            actionTruco += () => this.GanadorDelJuego(this.CambiarJugador(jugador));
+            this.AccionarTruco(actionTruco);
 
             this.HabilitarImagenes(true);
         }
@@ -699,9 +713,15 @@ namespace FormTruco
 
         }
 
+        /// <summary>
+        /// Si canto flor le deshabilito los botones al otro al jugador del envido
+        /// Cambia los labels y habilita los enabled de las imagenes
+        /// </summary>
+        /// <param name="jugador"></param>
         private void CantoFlor(int jugador)
         {
             this.IniciarHiloSecundario($"J{jugador}: Flor!",this.labelCanto);
+            this.seCantoFlor = true;
             this.HabilitarBotonesSegunTruco();
 
             if (jugador == 1)
@@ -716,9 +736,10 @@ namespace FormTruco
                 this.puntosJ2 += 3;
                 this.labelJ2Puntos.Text = $"3 puntos";
             }
+
             //this.puntosEnvido += 3;
             this.HabilitarBotonesPorRonda();
-            this.seCantoFlor = true;
+            this.HabilitarImagenes(true);
         }
 
         #endregion
@@ -991,13 +1012,13 @@ namespace FormTruco
         private void RepartirCartas()
         {
             this.cartas = this.mazo.RepartirCartasSinRepetir(6);
-            this.cartas[0] = new Carta(3, ETipoCarta.Oro);
-            this.cartas[1] = new Carta(1, ETipoCarta.Oro);
-            this.cartas[2] = new Carta(12, ETipoCarta.Oro);
+            //this.cartas[0] = new Carta(3, ETipoCarta.Oro);
+            //this.cartas[1] = new Carta(1, ETipoCarta.Oro);
+            //this.cartas[2] = new Carta(12, ETipoCarta.Oro);
             this.cartasJ1 = new Carta[] { this.cartas[0], this.cartas[1], this.cartas[2] };
-            //this.cartas[3] = new Carta(3, ETipoCarta.Copa);
-            //this.cartas[4] = new Carta(1, ETipoCarta.Copa);
-            //this.cartas[5] = new Carta(2, ETipoCarta.Copa);
+            this.cartas[3] = new Carta(3, ETipoCarta.Copa);
+            this.cartas[4] = new Carta(1, ETipoCarta.Copa);
+            this.cartas[5] = new Carta(2, ETipoCarta.Copa);
             this.cartasJ2 = new Carta[] { this.cartas[3], this.cartas[4], this.cartas[5] };
 
             this.pictureBoxJ1C1.Image = Image.FromFile($@"..\..\..\Resources\{this.cartas[0].ToString()}.png");
@@ -1038,7 +1059,8 @@ namespace FormTruco
                 Action<string,Label> action = this.MostrarInformacionConPausa;
                 //invoca el mismo metodo que lo esta llamando en el hilo principal
                 this.Invoke(action,new object[] {msj,label});
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
+                //Task.Delay(1500);
                 this.Invoke(ocultar);
             }
             else
@@ -1132,9 +1154,9 @@ namespace FormTruco
         {
             this.ReinciarAtributos();
             this.InicioDelJuego();
-            this.HabilitarImagenes(true);
             this.ReiniciarImagenesMesa();
             this.ReiniciarImagenesManos();
+            this.HabilitarImagenes(true);
             this.ReiniciarLabels();
         }
 
@@ -1162,6 +1184,7 @@ namespace FormTruco
             this.RepartirCartas();
             this.isFlorJ1 = JuegoDeCartas.IsFlor(this.cartasJ1[0], this.cartasJ1[1], this.cartasJ1[2]);
             this.isFlorJ2 = JuegoDeCartas.IsFlor(this.cartasJ2[0], this.cartasJ2[1], this.cartasJ2[2]);
+            this.quienCantoTruco = 0;
 
         }
 
@@ -1211,9 +1234,16 @@ namespace FormTruco
 
         #region Cerrar Programa
 
+        private void FrmJuegoTruco_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("¿Desea salir de la partida?", "Exit!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            //this.ReiniciarJuego();
             this.Close();
         }
 

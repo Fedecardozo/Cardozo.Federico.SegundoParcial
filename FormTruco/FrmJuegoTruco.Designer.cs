@@ -904,6 +904,7 @@ namespace FormTruco
             this.Name = "FrmJuegoTruco";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Truco";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmJuegoTruco_FormClosing);
             this.Load += new System.EventHandler(this.FrmJuegoTruco_Load);
             this.panelContenedor.ResumeLayout(false);
             this.panelMesa.ResumeLayout(false);

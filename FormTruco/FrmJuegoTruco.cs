@@ -377,8 +377,20 @@ namespace FormTruco
             this.CambiarLabelPuntoParcialesTruco(jugador);
             this.HabilitarImagenes(false);
             this.CambiarDataGrid();
+            this.SumarManosJugadas();
+        }
+
+        /// <summary>
+        /// Suma las manos jugadas y si es mayor o igual 3 Finaliza el juego
+        /// </summary>
+        private void SumarManosJugadas()
+        {
             this.contadorManos++;
-            this.ReiniciarJuego();
+
+            if (this.contadorManos >= 3)
+            {
+                this.PreguntarAntesDeFinalizarJuego();
+            }
         }
 
         #endregion
@@ -1271,19 +1283,12 @@ namespace FormTruco
         /// </summary>
         private void ReiniciarJuego()
         {
-            if(this.contadorManos > 3)
-            {
-                MessageBox.Show(this.MensajeGanador(),"Fin del juego",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
-            }
-            else if(this.mano <= 3)
-            {
-                this.ReinciarAtributos();
-                this.InicioDelJuego();
-                this.ReiniciarImagenesMesa();
-                this.ReiniciarImagenesManos();
-                this.HabilitarImagenes(true);
-                this.ReiniciarLabels();
-            }
+            this.ReinciarAtributos();
+            this.InicioDelJuego();
+            this.ReiniciarImagenesMesa();
+            this.ReiniciarImagenesManos();
+            this.HabilitarImagenes(true);
+            this.ReiniciarLabels();   
         }
 
         /// <summary>
@@ -1404,13 +1409,41 @@ namespace FormTruco
             return retorno.ToString();
         }
 
+        /// <summary>
+        /// Avisa quien gano y pregunta si desea continuar jugando otra partida 
+        /// </summary>
+        private void PreguntarAntesDeFinalizarJuego()
+        { 
+            DialogResult respuesta;
+            respuesta = MessageBox.Show($"{this.MensajeGanador()} \n¿Desea jugar de nuevo?", "Fin del juego", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (respuesta == DialogResult.Yes)
+            {
+                this.ReiniciarJuego();
+            }
+            else if(respuesta == DialogResult.No)
+            {
+                //Aca deberia hacer otra cosa con la base de datos y demas cosas
+                this.Close();
+            }
+            
+        }
+
+        #endregion
+
+        #region Boton Reiniciar Juego
+
+        private void btnReinciarJuego_Click(object sender, EventArgs e)
+        {
+            this.PreguntarAntesDeFinalizarJuego();
+        }
+
         #endregion
 
         #region Cerrar Programa
 
         private void FrmJuegoTruco_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("¿Desea salir de la partida?", "Exit!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            if (MessageBox.Show("¿Desea salir del juego?", "Exit!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 e.Cancel = true;
             }

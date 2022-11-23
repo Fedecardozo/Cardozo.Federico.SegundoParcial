@@ -75,6 +75,7 @@ namespace FormTruco
             this.btnNoQuieroJ1 = new System.Windows.Forms.Button();
             this.btnQuieroJ1 = new System.Windows.Forms.Button();
             this.panelLateralIzq = new System.Windows.Forms.Panel();
+            this.btnReinciarJuego = new System.Windows.Forms.Button();
             this.labelTantosJ2 = new System.Windows.Forms.Label();
             this.labelTantoJ1 = new System.Windows.Forms.Label();
             this.labelSegundos = new System.Windows.Forms.Label();
@@ -648,6 +649,7 @@ namespace FormTruco
             // panelLateralIzq
             // 
             this.panelLateralIzq.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panelLateralIzq.Controls.Add(this.btnReinciarJuego);
             this.panelLateralIzq.Controls.Add(this.labelTantosJ2);
             this.panelLateralIzq.Controls.Add(this.labelTantoJ1);
             this.panelLateralIzq.Controls.Add(this.labelSegundos);
@@ -660,12 +662,27 @@ namespace FormTruco
             this.panelLateralIzq.Size = new System.Drawing.Size(294, 826);
             this.panelLateralIzq.TabIndex = 1;
             // 
+            // btnReinciarJuego
+            // 
+            this.btnReinciarJuego.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReinciarJuego.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnReinciarJuego.FlatAppearance.BorderSize = 0;
+            this.btnReinciarJuego.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnReinciarJuego.Location = new System.Drawing.Point(25, 664);
+            this.btnReinciarJuego.Name = "btnReinciarJuego";
+            this.btnReinciarJuego.Size = new System.Drawing.Size(245, 57);
+            this.btnReinciarJuego.TabIndex = 28;
+            this.btnReinciarJuego.Text = "Finalizar partida";
+            this.btnReinciarJuego.UseVisualStyleBackColor = false;
+            this.btnReinciarJuego.Click += new System.EventHandler(this.btnReinciarJuego_Click);
+            // 
             // labelTantosJ2
             // 
             this.labelTantosJ2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelTantosJ2.AutoSize = true;
             this.labelTantosJ2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelTantosJ2.Location = new System.Drawing.Point(42, 602);
+            this.labelTantosJ2.Location = new System.Drawing.Point(42, 582);
             this.labelTantosJ2.Name = "labelTantosJ2";
             this.labelTantosJ2.Size = new System.Drawing.Size(189, 41);
             this.labelTantosJ2.TabIndex = 27;
@@ -677,7 +694,7 @@ namespace FormTruco
             this.labelTantoJ1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelTantoJ1.AutoSize = true;
             this.labelTantoJ1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelTantoJ1.Location = new System.Drawing.Point(42, 537);
+            this.labelTantoJ1.Location = new System.Drawing.Point(42, 517);
             this.labelTantoJ1.Name = "labelTantoJ1";
             this.labelTantoJ1.Size = new System.Drawing.Size(189, 41);
             this.labelTantoJ1.TabIndex = 26;
@@ -995,6 +1012,7 @@ namespace FormTruco
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label labelTantosJ2;
         private System.Windows.Forms.Label labelTantoJ1;
+        private System.Windows.Forms.Button btnReinciarJuego;
     }
 }
 

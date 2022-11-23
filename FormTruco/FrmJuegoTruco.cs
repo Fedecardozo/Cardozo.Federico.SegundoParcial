@@ -1435,8 +1435,10 @@ namespace FormTruco
             }
             else if(respuesta == DialogResult.No)
             {
+
                 //Aca deberia hacer otra cosa con la base de datos y demas cosas
-                this.Close();
+                this.Dispose(true);
+                //this.Close();
             }
             
         }
@@ -1460,6 +1462,7 @@ namespace FormTruco
             {
                 e.Cancel = true;
             }
+            
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

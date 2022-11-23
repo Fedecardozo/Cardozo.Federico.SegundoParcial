@@ -111,6 +111,7 @@ namespace FormTruco
             this.seCantoQuieroTruco = false;
             this.seCantoFlor = false;
             this.quienCantoTruco = 0;
+        
         }
 
         #endregion
@@ -123,10 +124,10 @@ namespace FormTruco
             string minutosCadena = $"0{this.minutos}";
             string segundosCadena = $"0{this.conteoTime}";
 
-            if (this.conteoTime %59 == 0)
+            if (this.conteoTime %60 == 0)
             {
-                this.minutos++;
                 this.conteoTime = 0;
+                this.minutos++;
             }
             
             if(this.minutos >= 10)
@@ -544,6 +545,7 @@ namespace FormTruco
             if (this.QueSeCanto == EQueSeCanto.Envido || this.QueSeCanto == EQueSeCanto.RealEnvido || this.QueSeCanto == EQueSeCanto.FaltaEnvido)
             {
                 action.Invoke();
+
             }
 
         }
@@ -596,7 +598,7 @@ namespace FormTruco
             this.IniciarHiloSecundario($"J{jugador}: No quiero!", this.labelCanto);
 
             //Si se canto envido
-            Action actionEnvido = new Action(()=> this.puntosEnvido--);
+            Action actionEnvido = new Action(this.RestarTantosNoQueridos);
             //Funcion que le de los puntos al otro jugador
             actionEnvido += () => this.DarPuntosEnvido(elOtroJugador);
             actionEnvido += this.HabilitarBotonesPorRonda;
@@ -1189,6 +1191,28 @@ namespace FormTruco
                 this.puntosJ2 += this.puntosEnvido;
             }
 
+        }
+
+        /// <summary>
+        /// Determina los puntos del envido no querido
+        /// </summary>
+        private void RestarTantosNoQueridos()
+        {
+            switch(this.puntosEnvido)
+            {
+                //Envido no querido
+                case 2: this.puntosEnvido = 1; break;
+                //Real Envido no querido
+                case 3: this.puntosEnvido = 1; break;
+                //Envido, Envido no querido
+                case 4: this.puntosEnvido = 2; break;
+                //Envido, Real envido no querido
+                case 5: this.puntosEnvido = 2; break;
+                //Envido, Envido, Real Envido, no querido
+                case 7: this.puntosEnvido = 3; break;
+                //Envido, Envido, Real Envido, Falta Envio, no querido
+                default: this.puntosEnvido = 4; break;
+            }
         }
 
         #endregion

@@ -34,6 +34,7 @@ namespace FormTruco
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmJuegoTruco));
             this.panelContenedor = new System.Windows.Forms.Panel();
             this.panelMesa = new System.Windows.Forms.Panel();
             this.pictureBoxTerceraJ2 = new System.Windows.Forms.PictureBox();
@@ -900,6 +901,7 @@ namespace FormTruco
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1360, 826);
             this.Controls.Add(this.panelContenedor);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1378, 675);
             this.Name = "FrmJuegoTruco";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

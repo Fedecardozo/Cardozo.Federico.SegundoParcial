@@ -387,9 +387,13 @@ namespace FormTruco
         {
             this.contadorManos++;
 
-            if (this.contadorManos >= 3)
+            if (this.contadorManos >= 4)
             {
                 this.PreguntarAntesDeFinalizarJuego();
+            }
+            else if(this.contadorManos < 4)
+            {
+                this.ReiniciarJuego();
             }
         }
 
@@ -1288,7 +1292,7 @@ namespace FormTruco
             this.ReiniciarImagenesMesa();
             this.ReiniciarImagenesManos();
             this.HabilitarImagenes(true);
-            this.ReiniciarLabels();   
+            this.ReiniciarLabels();
         }
 
         /// <summary>
@@ -1340,6 +1344,14 @@ namespace FormTruco
 
             this.labelTantoJ1.Visible = false;
             this.labelTantosJ2.Visible = false;
+        }
+
+        /// <summary>
+        /// Reinicia data grid
+        /// </summary>
+        private void ReiniciarDataGrid()
+        {
+            this.dataGridViewAnotador.Rows.Clear();
         }
 
         #endregion
@@ -1419,6 +1431,7 @@ namespace FormTruco
             if (respuesta == DialogResult.Yes)
             {
                 this.ReiniciarJuego();
+                this.ReiniciarDataGrid();
             }
             else if(respuesta == DialogResult.No)
             {

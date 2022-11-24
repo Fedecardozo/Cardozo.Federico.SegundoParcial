@@ -292,8 +292,8 @@ namespace FormTruco
 
             switch (ganador)
             {
-                case 1: this.IniciarHiloSecundario($"Ganador jugador {JUGADOR_1}",this.labelCanto); this.turnoJ1 = true; this.turnoJ2 = false; break;
-                case 2: this.IniciarHiloSecundario($"Ganador jugador {JUGADOR_2}", this.labelCanto); this.turnoJ1 = false; this.turnoJ2 = true; break;
+                case 1: this.IniciarHiloSecundario($"Gana J{JUGADOR_1}",this.labelCanto); this.turnoJ1 = true; this.turnoJ2 = false; break;
+                case 2: this.IniciarHiloSecundario($"Gana J{JUGADOR_2}", this.labelCanto); this.turnoJ1 = false; this.turnoJ2 = true; break;
                 case 0:
 
                     if (this.ronda == 1 || (this.ganadorPrimera == 0 && this.ronda == 2))
@@ -587,7 +587,7 @@ namespace FormTruco
         /// <param name="jugador">1 o 2</param>
         private void ContestarQuiero(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador}: Quiero!", this.labelCanto);
+            this.MostrarCantoJugador(jugador,$"J{jugador}: Quiero!");
             
             //Si se canto envido
             Action actionEnvido = new Action(this.MostrarLosTantos);
@@ -613,7 +613,7 @@ namespace FormTruco
         private void ContestarNoQuiero(int jugador)
         {
             int elOtroJugador = this.CambiarJugador(jugador);
-            this.IniciarHiloSecundario($"J{jugador}: No quiero!", this.labelCanto);
+            this.MostrarCantoJugador(jugador, $"J{jugador}: No quiero!");
 
             //Si se canto envido
             Action actionEnvido = new Action(this.RestarTantosNoQueridos);
@@ -642,7 +642,7 @@ namespace FormTruco
         /// <param name="jugador">1 o 2</param>
         private void CantarTruco(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador}: Truco!", this.labelCanto);
+            this.MostrarCantoJugador(jugador, $"J{jugador}: Truco!");
 
             this.HabilitarBotonesDelTruco(jugador);
 
@@ -659,7 +659,7 @@ namespace FormTruco
         /// <param name="jugador">1 o 2</param>
         private void CantarReTruco(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador}: Quiero re truco!", this.labelCanto);
+            this.MostrarCantoJugador(jugador, $"J{jugador}: Quiero re truco!");
 
             this.HabilitarBotonesReTruco(jugador);
             this.seCantoQuieroTruco = false;
@@ -675,7 +675,7 @@ namespace FormTruco
         /// <param name="jugador">1 o 2</param>
         private void CantarValeCuatro(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador}: Quiero vale cuatro!", this.labelCanto);
+            this.MostrarCantoJugador(jugador, $"J{jugador}: Quiero vale cuatro!");
             if (jugador == JUGADOR_2)
             {
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnMazoJ1 }, this.groupBoxJ2);
@@ -697,7 +697,7 @@ namespace FormTruco
         /// <param name="jugador">1 o 2</param>
         private void CantarEnvido(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador} Envido!", this.labelCanto);
+            this.MostrarCantoJugador(jugador, $"J{jugador} Envido!");
             this.ContadorEnvidos++;
 
             this.HabilitarBotonesFlor(this.CambiarJugador(jugador));
@@ -722,7 +722,7 @@ namespace FormTruco
         /// <param name="jugador">1 o 2</param>
         private void CantarRealEnvido(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador}: Real envido!", this.labelCanto);
+            this.MostrarCantoJugador(jugador, $"J{jugador}: Real envido!");
 
             this.HabilitarBotonesFlor(this.CambiarJugador(jugador));
 
@@ -749,7 +749,7 @@ namespace FormTruco
         /// <param name="jugador">1 o 2</param>
         private void CantarFaltaEnvido(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador}: Falta envido!", this.labelCanto);
+            this.MostrarCantoJugador(jugador, $"J{jugador}: Falta envido!");
 
             this.HabilitarBotonesFlor(this.CambiarJugador(jugador));
 
@@ -777,6 +777,8 @@ namespace FormTruco
         /// <param name="jugador"></param>
         private void IrAlMazo(int jugador)
         {
+            this.MostrarCantoJugador(jugador, $"J{jugador}: Me voy al mazo");
+
             int otroJugador = this.CambiarJugador(jugador);
             //this.ganadorPrimera = otroJugador;
             //this.ganadorSegunda = otroJugador;
@@ -809,7 +811,7 @@ namespace FormTruco
         /// <param name="jugador"></param>
         private void CantarFlor(int jugador)
         {
-            this.IniciarHiloSecundario($"J{jugador}: Flor!",this.labelCanto);
+            this.MostrarCantoJugador(jugador, $"J{jugador}: Flor!");
             this.seCantoFlor = true;
             this.HabilitarBotonesSegunTruco();
 
@@ -829,6 +831,23 @@ namespace FormTruco
             //this.puntosEnvido += 3;
             this.HabilitarBotonesPorRonda();
             this.HabilitarImagenes(true);
+        }
+
+        /// <summary>
+        /// Muestra lo canto el jugador en su label
+        /// </summary>
+        /// <param name="jugador"></param>
+        /// <param name="msj"></param>
+        private void MostrarCantoJugador(int jugador, string msj)
+        {
+            if(jugador == JUGADOR_1)
+            {
+                this.IniciarHiloSecundario(msj, this.labelCantoJ1);
+            }
+            else if (jugador == JUGADOR_2)
+            {
+                this.IniciarHiloSecundario(msj, this.labelCantoJ2);
+            }
         }
 
         #endregion
@@ -1072,11 +1091,11 @@ namespace FormTruco
         /// <param name="jugador"></param>
         private void HabilitarBotonesDelTruco(int jugador)
         {
-            if (jugador == JUGADOR_1)
+            if (jugador == JUGADOR_2)
             {
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ1, this.btnNoQuieroJ1, this.btnReTrucoJ1, this.btnMazoJ1 }, this.groupBoxJ2);
             }
-            else if (jugador == JUGADOR_2)
+            else if (jugador == JUGADOR_1)
             {
                 this.HabilitarBotones(new Button[] { this.btnQuieroJ2, this.btnNoQuieroJ2, this.btnReTrucoJ2, this.btnMazoJ2 }, this.groupBoxJ1);
             }

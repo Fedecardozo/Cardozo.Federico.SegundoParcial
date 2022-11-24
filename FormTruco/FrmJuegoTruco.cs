@@ -61,10 +61,10 @@ namespace FormTruco
         
         private void FrmJuegoTruco_Load(object sender, EventArgs e)
         {
-            Harcodeo.Global();
+
             this.conteoTime = 0;
             this.minutos = 0;
-            this.mazo = Harcodeo.MazoCartas;
+            this.mazo = JuegoDeCartas.Mazo;
             this.mano = 2;
             this.contadorManos = 0;
             this.IniciarAtributos();
@@ -122,15 +122,9 @@ namespace FormTruco
         
         private void timerJuego_Tick(object sender, EventArgs e)
         {
-            this.conteoTime++;
             string minutosCadena = $"0{this.minutos}";
             string segundosCadena = $"0{this.conteoTime}";
 
-            if (this.conteoTime %60 == 0)
-            {
-                this.conteoTime = 0;
-                this.minutos++;
-            }
             
             if(this.minutos >= 10)
             {
@@ -142,7 +136,14 @@ namespace FormTruco
                 segundosCadena = $"{this.conteoTime}";
             }
 
+            if (this.conteoTime > 0 && this.conteoTime %59 == 0)
+            {
+                this.minutos++;
+                this.conteoTime = -1;
+            }
+
             this.labelSegundos.Text = $"{minutosCadena} : {segundosCadena}";
+            this.conteoTime++;
         }
 
         #endregion

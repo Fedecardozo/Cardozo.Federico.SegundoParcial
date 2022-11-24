@@ -23,24 +23,17 @@ namespace Entidades
             this.cartas = new List<Carta>();
         }
 
+        public MazoCartas(List<Carta> cartas, ECantidadCartas cantidad)
+        {
+            this.cartas = cartas;
+            this.cantidad = cantidad;
+        }
+
         #endregion
 
         #region Propiedades
 
-        public bool MazoCompleto 
-        { 
-            get 
-            {
-                bool retorno = false;
-
-                if(this.cartas.Count == (int)this)
-                {
-                    retorno = true;
-                }
-
-                return retorno;
-            } 
-        }
+        public List<Carta> Cartas { get { return this.cartas; } }
 
         public Carta this[int index]
         {

@@ -1,5 +1,9 @@
 ﻿using System;
 using Entidades;
+using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.IO;
 
 namespace Test
 {
@@ -7,84 +11,61 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            /*Carta carta = new Carta(1,ETipoCarta.Espada);
-            MazoCartas mazoCartas = new MazoCartas(ECantidadCartas.Cuarenta);
+            Console.WriteLine("Mazo completo de cartas: ");
 
-            bool flag = mazoCartas.AgregarCarta(carta);
+            //Harcodeo.Global();
+            
 
-            Console.WriteLine(flag);
-
-            Console.WriteLine(carta.ToString());*/
-
-            /*Harcodeo.Global();
-
-            MazoCartas mazo = Harcodeo.MazoCartas;
-
-            Console.WriteLine($"{mazo.ToString()}");
-
-            Jugador jugador = new Jugador("Fede",3);
-            Jugador jugador2 = new Jugador("Alan", 3);
-
-            //mazo.RepartirCartas(3,jugador);
-            //mazo.RepartirCartas(3, jugador2);
-
-            JuegoDeCartas truco = new JuegoDeCartas(jugador,jugador2,mazo);
-
-            truco.EmpezarTruco();
-
-            Console.WriteLine(jugador.ToString());
-            Console.WriteLine(jugador2.ToString());*/
-
-            /*for (int i = 1; i < 13; i++)
+            for (int i = 0; i < 40; i++)
             {
-
-                Carta c1 = new Carta(i, ETipoCarta.Oro);
-                Carta c2 = new Carta(i, ETipoCarta.Copa);
-
-                Console.WriteLine("Carta 1: " + c1.ToString());
-                Console.WriteLine("Carta 2: " + c2.ToString());
-
-                int resultado = JuegoDeCartas.CartaGanadoraTruco(c1, c2);
-
-                if (resultado == 1)
-                {
-                    Console.WriteLine("Mas grande carta 1");
-                }
-                else if (resultado == 0)
-                {
-                    Console.WriteLine("Son iguales ");
-                }
-                else if (resultado == -1)
-                {
-                    Console.WriteLine("Mas grande carta 2");
-                }
-                else
-                {
-                    Console.WriteLine("Algo fallo");
-                }
-            }*/
-
-            Carta c1 = new Carta(5, ETipoCarta.Oro);
-            Carta c2 = new Carta(6, ETipoCarta.Copa);
-
-            int resultado = JuegoDeCartas.CartaGanadoraTruco(c1, c2);
-
-            if (resultado == 1)
-            {
-                Console.WriteLine("Mas grande carta 1");
+                Console.WriteLine(JuegoDeCartas.Mazo.Cartas[i].ToString());
+                        
             }
-            else if (resultado == 0)
+
+
+            #region Serializar Json cartas 50
+            /*
+            string path2 = @"..\..\..\..\Archivos\MazoCartas50.json";
+
+            Harcodeo.CargarCartas50(ETipoCarta.Espada);
+            Harcodeo.CargarCartas50(ETipoCarta.Basto);
+            Harcodeo.CargarCartas50(ETipoCarta.Oro);
+            Harcodeo.CargarCartas50(ETipoCarta.Copa);
+            Harcodeo.mazoCartas2.AgregarCarta(new Carta(13,ETipoCarta.Comodin));
+            Harcodeo.mazoCartas2.AgregarCarta(new Carta(14, ETipoCarta.Comodin));
+
+            foreach (Carta item in Harcodeo.mazoCartas2.Cartas)
             {
-                Console.WriteLine("Son iguales ");
+                Console.WriteLine(item.ToString());
             }
-            else if (resultado == -1)
+
+
+            if(Serializacion.SerializarJson<Carta>(path2, Harcodeo.mazoCartas2.Cartas))
             {
-                Console.WriteLine("Mas grande carta 2");
+                Console.WriteLine("Un exito!");
             }
-            else
+            */
+            #endregion
+
+            #region Deserializar Json
+            /*
+            string path = @"..\..\..\..\Archivos\MazoCartas40.json";
+            //string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            List<Carta> listCartasJson;
+
+            if(Serializacion.DeserializarJson<Carta>(path,out listCartasJson))
             {
-                Console.WriteLine("Algo fallo");
+                Console.WriteLine("Un Exito!");
+
+                foreach (Carta item in listCartasJson)
+                {
+                    Console.WriteLine(item.ToString());
+                }
+
             }
+            */
+
+            #endregion
 
         }
     }

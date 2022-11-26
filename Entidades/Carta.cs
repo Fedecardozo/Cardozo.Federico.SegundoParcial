@@ -34,11 +34,13 @@ namespace Entidades
 
         #region Constructores
 
+
         public Carta(int numero, ETipoCarta tipo)
         {
             this.numero = numero;
             this.tipo = tipo;
         }
+        //public Carta(){ }
 
         #endregion
 

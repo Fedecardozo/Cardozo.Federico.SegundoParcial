@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Entidades
 {
@@ -74,6 +76,81 @@ namespace Entidades
             {
                 retorno = false;
                 Console.WriteLine(e.Message);
+            }
+
+            return retorno;
+        }
+
+        #endregion
+
+        #region Serializar XML
+
+        /// <summary>
+        /// Serializa una lista generica en el xml
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="listXML"></param>
+        /// <returns>true o false</returns>
+        public static bool SerializarXML<T>(string path, List<T> listXML)
+        {
+            StreamWriter writer;
+            //StreamReader reader;
+            XmlSerializer serializer;
+            bool retorno = true;
+            //string path2 = @"..\..\..\..\Archivos\MazoCartasCuarenta.xml";
+
+            try
+            {
+                using (writer = new StreamWriter(path))
+                {
+                    serializer = new XmlSerializer(typeof(List<T>));
+
+                    serializer.Serialize(writer, listXML);
+                }
+
+            }
+            catch (Exception e)
+            {
+                //Lanzar exepciones propias
+                Console.WriteLine(e.Message);
+                retorno = false;
+            }
+
+            return retorno;
+        }
+
+        #endregion
+
+        #region Deserializar XML
+
+        /// <summary>
+        /// Deserializa un archivo xml y lo guarda en la lista pasada por parametro de salida
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="listaXML"></param>
+        /// <returns>true: salio correctamente, false: Falló</returns>
+        public static bool DeserializarXML<T>(string path ,out List<T> listaXML)
+        {
+            listaXML  = new List<T>();
+            StreamReader reader;
+            XmlSerializer serializer;
+            bool retorno = true;
+
+            try
+            {
+                using (reader = new StreamReader(path))
+                {
+                    serializer = new XmlSerializer(typeof(List<T>));
+
+                    listaXML = (List<T>)serializer.Deserialize(reader);
+                }
+            }
+            catch (Exception)
+            {
+                //Console.WriteLine(e.Message);
+                retorno = false;
             }
 
             return retorno;

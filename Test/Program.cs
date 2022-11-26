@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Test
 {
@@ -16,11 +18,10 @@ namespace Test
             //Harcodeo.Global();
             
 
-            for (int i = 0; i < 40; i++)
-            {
-                Console.WriteLine(JuegoDeCartas.Mazo.Cartas[i].ToString());
-                        
-            }
+            //for (int i = 0; i < 40; i++)
+            //{
+            //    Console.WriteLine(JuegoDeCartas.Mazo.Cartas[i].ToString());
+            //}
 
 
             #region Serializar Json cartas 50
@@ -48,7 +49,7 @@ namespace Test
             #endregion
 
             #region Deserializar Json
-            /*
+            
             string path = @"..\..\..\..\Archivos\MazoCartas40.json";
             //string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             List<Carta> listCartasJson;
@@ -63,9 +64,11 @@ namespace Test
                 }
 
             }
-            */
+            
 
             #endregion
+
+           
 
         }
     }

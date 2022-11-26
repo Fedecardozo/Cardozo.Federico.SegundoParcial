@@ -13,28 +13,33 @@ namespace FormTruco
 {
     public partial class FrmSesion : Form
     {
-    
+
+        #region Constructor 
+
         public FrmSesion()
         {
             InitializeComponent();
         }
 
-        private void FrmSesion_Load(object sender, EventArgs e)
-        {
+        #endregion
 
-        }
+        #region Boton
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             this.InicioSesion();
         }
 
+        #endregion
+
+        #region Login
+
         private void InicioSesion()
         {
             Usuario user;
 
             //MessageBox.Show(Validacion.ValidarUsuario(user).ToString());
-            if (Usuario.ConsultarCorreo(this.textBoxUser.Text, out user))
+            if (Usuario.ConsultarCorreo(this.textBoxUser.Text,this.textBoxPassword.Text, out user))
             {
                 //Nuevo formulario con el menu de opciones 
                 this.AbrirMenuUsuario(user);
@@ -62,5 +67,34 @@ namespace FormTruco
 
         }
 
+
+        private void TeclaEnterAbreMenu(KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.InicioSesion();
+            }
+        }
+
+        #endregion
+
+        #region Textbox evento enter
+
+        private void btnLogin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            this.TeclaEnterAbreMenu(e);
+        }
+
+        private void textBoxPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            this.TeclaEnterAbreMenu(e);
+        }
+
+        private void textBoxUser_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            this.TeclaEnterAbreMenu(e);
+        }
+
+        #endregion
     }
 }

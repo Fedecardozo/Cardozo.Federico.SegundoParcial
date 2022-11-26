@@ -69,6 +69,7 @@ namespace FormTruco
             this.btnLogin.Text = "ACCEDER";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.btnLogin_KeyPress);
             // 
             // textBoxPassword
             // 
@@ -81,6 +82,7 @@ namespace FormTruco
             this.textBoxPassword.PlaceholderText = "CONTRASEÑA";
             this.textBoxPassword.Size = new System.Drawing.Size(398, 33);
             this.textBoxPassword.TabIndex = 12;
+            this.textBoxPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPassword_KeyPress);
             // 
             // textBoxUser
             // 
@@ -93,6 +95,7 @@ namespace FormTruco
             this.textBoxUser.PlaceholderText = "USUARIO";
             this.textBoxUser.Size = new System.Drawing.Size(398, 33);
             this.textBoxUser.TabIndex = 11;
+            this.textBoxUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxUser_KeyPress);
             // 
             // labelTitulo
             // 
@@ -138,7 +141,6 @@ namespace FormTruco
             this.Name = "FrmSesion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.FrmSesion_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelContenedorImage.ResumeLayout(false);

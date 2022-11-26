@@ -57,6 +57,10 @@ namespace Entidades
 
         #region Consultas SQL
 
+        /// <summary>
+        /// Obtiene una lista de usuarios de las base de datos
+        /// </summary>
+        /// <param name="usuarios"></param>
         public static void ObtenerListaUsuarios_Sql(List<Usuario> usuarios)
         {
             int id = (int)ControlSql.Lector["id"];
@@ -68,6 +72,10 @@ namespace Entidades
 
         }
 
+        /// <summary>
+        /// Obtener de la base de datos un Usuario
+        /// </summary>
+        /// <returns>Usuario</returns>
         public static Usuario ObtenerUsuario_Sql()
         {
             int id = (int)ControlSql.Lector["id"];
@@ -79,10 +87,16 @@ namespace Entidades
 
         }
 
-        public static bool ConsultarCorreo(string correo, out Usuario user)
+        /// <summary>
+        /// Verifica en la base de datos si esta el usuario pasado por parametro. Por parametro devuelve el usuario
+        /// </summary>
+        /// <param name="correo"></param>
+        /// <param name="user"></param>
+        /// <returns>true si esta, false sino</returns>
+        public static bool ConsultarCorreo(string correo,string password, out Usuario user)
         {
 
-            string select = $"select id, correo, nombre, apellido from [Base_Truco].[dbo].[usuarios] where correo = '{correo}'";
+            string select = $"select id, correo, nombre, apellido from [Base_Truco].[dbo].[truco_usuarios] where correo = '{correo}' and password = '{password}'";
 
             return ControlSql.RealizarConsultaSql(select, Usuario.ObtenerUsuario_Sql,out user);
         } 

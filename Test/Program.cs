@@ -16,7 +16,7 @@ namespace Test
             Console.WriteLine("Mazo completo de cartas: ");
 
             //Harcodeo.Global();
-            
+
 
             //for (int i = 0; i < 40; i++)
             //{
@@ -49,7 +49,7 @@ namespace Test
             #endregion
 
             #region Deserializar Json
-            
+            /*
             string path = @"..\..\..\..\Archivos\MazoCartas40.json";
             //string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             List<Carta> listCartasJson;
@@ -64,12 +64,45 @@ namespace Test
                 }
 
             }
-            
+            */
 
             #endregion
 
-           
+            if(ControlSql.ProbarConexion())
+            {
+                Console.WriteLine("Un exito!");
+            }
+
+            #region Sql
+
+            #region Select
+
+            //string select = " select id, correo, nombre, apellido from [Base_Truco].[dbo].[usuarios]";
+
+            //List<Usuario> usuarios = new List<Usuario>();
+
+            //ControlSql.RealizarConsultaSql(select,Usuario.ConsultaSql, usuarios);
+
+            //foreach (Usuario item in usuarios)
+            //{
+            //    Console.WriteLine(item.ToString());
+            //}
+
+
+            #endregion
+
+            #region Select 2
+
+            //Console.WriteLine("Se encontro usuario: " + 
+            //    ControlSql.RealizarConsultaSql("select id, correo, nombre, apellido from [Base_Truco].[dbo].[usuarios] where correo = 'fff@gmail.com'"));
+
+            #endregion
+
+            #endregion
+
 
         }
+        //private static List<Usuario> usuarios;
+
     }
 }

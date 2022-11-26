@@ -68,6 +68,7 @@ namespace FormTruco
             this.btnLogin.TabIndex = 13;
             this.btnLogin.Text = "ACCEDER";
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // textBoxPassword
             // 
@@ -137,6 +138,7 @@ namespace FormTruco
             this.Name = "FrmSesion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.FrmSesion_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelContenedorImage.ResumeLayout(false);

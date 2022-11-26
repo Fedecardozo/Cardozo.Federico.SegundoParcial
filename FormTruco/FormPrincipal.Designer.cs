@@ -143,6 +143,7 @@ namespace FormTruco
             this.Name = "FormPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
+            this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.panelizq.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -19,8 +19,6 @@ namespace Entidades
 
         #region Constructor
 
-        //public Usuario() { }
-
         public Usuario(string correo, string nombre, string apellido, int id)
         {
             this.correo = correo;
@@ -31,29 +29,13 @@ namespace Entidades
 
         #endregion
 
-        //#region Sobrecarga operadores
+        #region Propiedades
 
-        //public static bool operator ==(Usuario usuario, Usuario usuario1)
-        //{
-        //    return usuario == usuario1.correo;
-        //}
+        public string Correo{ get { return this.correo; } }
+        public string Nombre { get { return this.nombre; } }
+        public string Apellido { get { return this.apellido; } }
 
-        //public static bool operator !=(Usuario usuario, Usuario usuario1)
-        //{
-        //    return !(usuario == usuario1);
-        //}
-
-        //public static bool operator ==(Usuario usuario, string correo)
-        //{
-        //    return usuario.correo == correo;
-        //}
-
-        //public static bool operator !=(Usuario usuario, string correo)
-        //{
-        //    return !(usuario == correo);
-        //}
-
-        //#endregion
+        #endregion
 
         #region Consultas SQL
 

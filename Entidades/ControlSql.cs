@@ -22,7 +22,7 @@ namespace Entidades
         public delegate T delegateSelectObj<T>();
 
         #endregion
-
+        
         #region Constructores
 
         static ControlSql()

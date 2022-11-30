@@ -39,7 +39,7 @@ namespace FormTruco
             Usuario user;
 
             //MessageBox.Show(Validacion.ValidarUsuario(user).ToString());
-            if (Usuario.ConsultarCorreo(this.textBoxUser.Text,this.textBoxPassword.Text, out user))
+            if (Usuario.ConsultarCorreo(this.textBoxUser.Text + "@gmail.com",this.textBoxPassword.Text, out user))
             {
                 //Nuevo formulario con el menu de opciones 
                 this.AbrirMenuUsuario(user);

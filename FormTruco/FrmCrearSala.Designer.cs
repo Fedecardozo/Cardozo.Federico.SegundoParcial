@@ -30,118 +30,221 @@ namespace FormTruco
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCrearSala));
-            this.panelMas = new System.Windows.Forms.Panel();
-            this.labelNombreJ2 = new System.Windows.Forms.Label();
-            this.labelNombreJ1 = new System.Windows.Forms.Label();
-            this.labelJ2 = new System.Windows.Forms.Label();
-            this.labelJ1 = new System.Windows.Forms.Label();
-            this.labelSala = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBoxMas = new System.Windows.Forms.PictureBox();
-            this.panelMas.SuspendLayout();
+            this.dataGridViewSalas = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.J1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.J2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnJugar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalas)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panelMas
-            // 
-            this.panelMas.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panelMas.Controls.Add(this.labelNombreJ2);
-            this.panelMas.Controls.Add(this.labelNombreJ1);
-            this.panelMas.Controls.Add(this.labelJ2);
-            this.panelMas.Controls.Add(this.labelJ1);
-            this.panelMas.Controls.Add(this.labelSala);
-            this.panelMas.Location = new System.Drawing.Point(197, 12);
-            this.panelMas.Name = "panelMas";
-            this.panelMas.Size = new System.Drawing.Size(162, 135);
-            this.panelMas.TabIndex = 0;
-            this.panelMas.Visible = false;
-            // 
-            // labelNombreJ2
-            // 
-            this.labelNombreJ2.AutoSize = true;
-            this.labelNombreJ2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelNombreJ2.Location = new System.Drawing.Point(53, 96);
-            this.labelNombreJ2.Name = "labelNombreJ2";
-            this.labelNombreJ2.Size = new System.Drawing.Size(80, 28);
-            this.labelNombreJ2.TabIndex = 4;
-            this.labelNombreJ2.Text = "Esteban";
-            // 
-            // labelNombreJ1
-            // 
-            this.labelNombreJ1.AutoSize = true;
-            this.labelNombreJ1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelNombreJ1.Location = new System.Drawing.Point(53, 53);
-            this.labelNombreJ1.Name = "labelNombreJ1";
-            this.labelNombreJ1.Size = new System.Drawing.Size(87, 28);
-            this.labelNombreJ1.TabIndex = 3;
-            this.labelNombreJ1.Text = "Federico";
-            // 
-            // labelJ2
-            // 
-            this.labelJ2.AutoSize = true;
-            this.labelJ2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelJ2.Location = new System.Drawing.Point(13, 96);
-            this.labelJ2.Name = "labelJ2";
-            this.labelJ2.Size = new System.Drawing.Size(34, 28);
-            this.labelJ2.TabIndex = 2;
-            this.labelJ2.Text = "J2:";
-            // 
-            // labelJ1
-            // 
-            this.labelJ1.AutoSize = true;
-            this.labelJ1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelJ1.Location = new System.Drawing.Point(13, 53);
-            this.labelJ1.Name = "labelJ1";
-            this.labelJ1.Size = new System.Drawing.Size(34, 28);
-            this.labelJ1.TabIndex = 1;
-            this.labelJ1.Text = "J1:";
-            // 
-            // labelSala
-            // 
-            this.labelSala.AutoSize = true;
-            this.labelSala.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
-            this.labelSala.Location = new System.Drawing.Point(57, 13);
-            this.labelSala.Name = "labelSala";
-            this.labelSala.Size = new System.Drawing.Size(48, 28);
-            this.labelSala.TabIndex = 0;
-            this.labelSala.Text = "Sala";
             // 
             // pictureBoxMas
             // 
             this.pictureBoxMas.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.pictureBoxMas.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMas.Image")));
-            this.pictureBoxMas.Location = new System.Drawing.Point(12, 12);
+            this.pictureBoxMas.Location = new System.Drawing.Point(24, 102);
             this.pictureBoxMas.Name = "pictureBoxMas";
-            this.pictureBoxMas.Size = new System.Drawing.Size(162, 135);
+            this.pictureBoxMas.Size = new System.Drawing.Size(192, 59);
             this.pictureBoxMas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxMas.TabIndex = 1;
             this.pictureBoxMas.TabStop = false;
             this.pictureBoxMas.Click += new System.EventHandler(this.pictureBoxMas_Click);
+            // 
+            // dataGridViewSalas
+            // 
+            this.dataGridViewSalas.AllowUserToAddRows = false;
+            this.dataGridViewSalas.AllowUserToDeleteRows = false;
+            this.dataGridViewSalas.AllowUserToResizeRows = false;
+            this.dataGridViewSalas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewSalas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewSalas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewSalas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSalas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id,
+            this.nameSala,
+            this.estado,
+            this.J1,
+            this.J2});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewSalas.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewSalas.EnableHeadersVisualStyles = false;
+            this.dataGridViewSalas.Location = new System.Drawing.Point(239, 88);
+            this.dataGridViewSalas.Name = "dataGridViewSalas";
+            this.dataGridViewSalas.ReadOnly = true;
+            this.dataGridViewSalas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewSalas.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewSalas.RowHeadersVisible = false;
+            this.dataGridViewSalas.RowHeadersWidth = 51;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Control;
+            this.dataGridViewSalas.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewSalas.RowTemplate.Height = 29;
+            this.dataGridViewSalas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewSalas.Size = new System.Drawing.Size(467, 264);
+            this.dataGridViewSalas.TabIndex = 2;
+            // 
+            // id
+            // 
+            this.id.HeaderText = "Id";
+            this.id.MinimumWidth = 6;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.id.Visible = false;
+            // 
+            // nameSala
+            // 
+            this.nameSala.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameSala.HeaderText = "Nombre Sala";
+            this.nameSala.MinimumWidth = 6;
+            this.nameSala.Name = "nameSala";
+            this.nameSala.ReadOnly = true;
+            this.nameSala.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // estado
+            // 
+            this.estado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.estado.HeaderText = "Estado";
+            this.estado.MinimumWidth = 6;
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
+            this.estado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // J1
+            // 
+            this.J1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.J1.HeaderText = "Jugador 1";
+            this.J1.MinimumWidth = 6;
+            this.J1.Name = "J1";
+            this.J1.ReadOnly = true;
+            this.J1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // J2
+            // 
+            this.J2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.J2.HeaderText = "Jugador 2";
+            this.J2.MinimumWidth = 6;
+            this.J2.Name = "J2";
+            this.J2.ReadOnly = true;
+            this.J2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 22.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.Location = new System.Drawing.Point(24, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(192, 50);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Crear sala";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 22.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label2.Location = new System.Drawing.Point(359, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(248, 50);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Lista de salas";
+            // 
+            // btnJugar
+            // 
+            this.btnJugar.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnJugar.FlatAppearance.BorderSize = 0;
+            this.btnJugar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnJugar.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnJugar.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnJugar.Location = new System.Drawing.Point(24, 189);
+            this.btnJugar.Name = "btnJugar";
+            this.btnJugar.Size = new System.Drawing.Size(192, 59);
+            this.btnJugar.TabIndex = 7;
+            this.btnJugar.Text = "Jugar";
+            this.btnJugar.UseVisualStyleBackColor = false;
+            this.btnJugar.Click += new System.EventHandler(this.btnJugar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnCancelar.Location = new System.Drawing.Point(24, 280);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(192, 59);
+            this.btnCancelar.TabIndex = 8;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
             // 
             // FrmCrearSala
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 364);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnJugar);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dataGridViewSalas);
             this.Controls.Add(this.pictureBoxMas);
-            this.Controls.Add(this.panelMas);
             this.Name = "FrmCrearSala";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmCrearSala";
-            this.panelMas.ResumeLayout(false);
-            this.panelMas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalas)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panelMas;
         private System.Windows.Forms.PictureBox pictureBoxMas;
-        private System.Windows.Forms.Label labelNombreJ2;
-        private System.Windows.Forms.Label labelNombreJ1;
-        private System.Windows.Forms.Label labelJ2;
-        private System.Windows.Forms.Label labelJ1;
-        private System.Windows.Forms.Label labelSala;
+        private System.Windows.Forms.DataGridView dataGridViewSalas;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnJugar;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameSala;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn J1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn J2;
     }
 }

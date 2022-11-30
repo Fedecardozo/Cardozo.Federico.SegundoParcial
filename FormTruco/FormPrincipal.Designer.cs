@@ -136,7 +136,7 @@ namespace FormTruco
             this.btnCrearSala.Name = "btnCrearSala";
             this.btnCrearSala.Size = new System.Drawing.Size(254, 80);
             this.btnCrearSala.TabIndex = 1;
-            this.btnCrearSala.Text = "Crear sala";
+            this.btnCrearSala.Text = "Salas";
             this.btnCrearSala.UseVisualStyleBackColor = false;
             this.btnCrearSala.Click += new System.EventHandler(this.btnCrearSala_Click);
             // 

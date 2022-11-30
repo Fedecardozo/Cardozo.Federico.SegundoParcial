@@ -31,8 +31,8 @@ namespace FormTruco
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCrearSala));
             this.panelMas = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelNombreJ2 = new System.Windows.Forms.Label();
+            this.labelNombreJ1 = new System.Windows.Forms.Label();
             this.labelJ2 = new System.Windows.Forms.Label();
             this.labelJ1 = new System.Windows.Forms.Label();
             this.labelSala = new System.Windows.Forms.Label();
@@ -44,8 +44,8 @@ namespace FormTruco
             // panelMas
             // 
             this.panelMas.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panelMas.Controls.Add(this.label2);
-            this.panelMas.Controls.Add(this.label1);
+            this.panelMas.Controls.Add(this.labelNombreJ2);
+            this.panelMas.Controls.Add(this.labelNombreJ1);
             this.panelMas.Controls.Add(this.labelJ2);
             this.panelMas.Controls.Add(this.labelJ1);
             this.panelMas.Controls.Add(this.labelSala);
@@ -55,25 +55,25 @@ namespace FormTruco
             this.panelMas.TabIndex = 0;
             this.panelMas.Visible = false;
             // 
-            // label2
+            // labelNombreJ2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(53, 96);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 28);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Esteban";
+            this.labelNombreJ2.AutoSize = true;
+            this.labelNombreJ2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelNombreJ2.Location = new System.Drawing.Point(53, 96);
+            this.labelNombreJ2.Name = "labelNombreJ2";
+            this.labelNombreJ2.Size = new System.Drawing.Size(80, 28);
+            this.labelNombreJ2.TabIndex = 4;
+            this.labelNombreJ2.Text = "Esteban";
             // 
-            // label1
+            // labelNombreJ1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(53, 53);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 28);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Federico";
+            this.labelNombreJ1.AutoSize = true;
+            this.labelNombreJ1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelNombreJ1.Location = new System.Drawing.Point(53, 53);
+            this.labelNombreJ1.Name = "labelNombreJ1";
+            this.labelNombreJ1.Size = new System.Drawing.Size(87, 28);
+            this.labelNombreJ1.TabIndex = 3;
+            this.labelNombreJ1.Text = "Federico";
             // 
             // labelJ2
             // 
@@ -138,8 +138,8 @@ namespace FormTruco
 
         private System.Windows.Forms.Panel panelMas;
         private System.Windows.Forms.PictureBox pictureBoxMas;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelNombreJ2;
+        private System.Windows.Forms.Label labelNombreJ1;
         private System.Windows.Forms.Label labelJ2;
         private System.Windows.Forms.Label labelJ1;
         private System.Windows.Forms.Label labelSala;

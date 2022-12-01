@@ -55,8 +55,8 @@ namespace FormTruco
 
         private void MostrarCreador()
         {
-            Usuario usuario;
-            if(Usuario.ObtenerUsuarioId_Sql((int)this.dataGridViewSalas.CurrentRow.Cells[0].Value,out usuario))
+        
+            if(Usuario.ObtenerUsuarioId_Sql((int)this.dataGridViewSalas.CurrentRow.Cells[4].Value,out Usuario usuario))
             {
                 MessageBox.Show(usuario.ToString(), "Información creador",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
@@ -67,6 +67,19 @@ namespace FormTruco
 
         }
 
+        private void MostrarResultado()
+        {
+
+            if (Resultado.ObtenerResultadoId_Sql((int)this.dataGridViewSalas.CurrentRow.Cells[6].Value, out Resultado resultado))
+            {
+                MessageBox.Show(resultado.ToString(), "Información resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Error al obtener información", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         #endregion
 
         #region Botones
@@ -74,6 +87,11 @@ namespace FormTruco
         private void btnCreador_Click(object sender, EventArgs e)
         {
             this.MostrarCreador();
+        }
+
+        private void btnPartida_Click(object sender, EventArgs e)
+        {
+            this.MostrarResultado();
         }
 
         #endregion

@@ -189,6 +189,7 @@ namespace FormTruco
             this.btnPartida.TabIndex = 8;
             this.btnPartida.Text = "Ver partida";
             this.btnPartida.UseVisualStyleBackColor = false;
+            this.btnPartida.Click += new System.EventHandler(this.btnPartida_Click);
             // 
             // btnCreador
             // 

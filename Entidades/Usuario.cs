@@ -58,7 +58,7 @@ namespace Entidades
         /// Obtener de la base de datos un Usuario
         /// </summary>
         /// <returns>Usuario</returns>
-        public static Usuario ObtenerUsuario_Sql()
+        private static Usuario ObtenerUsuario_Sql()
         {
             int id = (int)ControlSql.Lector["id"];
             string correo = ControlSql.Lector[1].ToString();
@@ -83,13 +83,25 @@ namespace Entidades
             return ControlSql.RealizarConsultaSql(select, Usuario.ObtenerUsuario_Sql,out user);
         } 
 
+        /// <summary>
+        /// Obtener usuario por el id, de la base de datos
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public static bool ObtenerUsuarioId_Sql(int id,out Usuario user)
+        {
+            string select = $"select id, correo, nombre, apellido from [Base_Truco].[dbo].[truco_usuarios] where id = {id}";
+            return ControlSql.RealizarConsultaSql(select, Usuario.ObtenerUsuario_Sql, out user);
+        }
+
         #endregion
         
         #region Polimorfismo
 
         public override string ToString()
         {
-            return $"Correo: {this.correo} - Nombre: {this.nombre} - Apellido: {this.apellido} - Id: {this.id}";
+            return $"Correo: {this.correo} \nNombre: {this.nombre} \nApellido: {this.apellido}";
         }
 
         #endregion

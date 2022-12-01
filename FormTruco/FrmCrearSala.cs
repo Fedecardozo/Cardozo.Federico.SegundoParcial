@@ -13,17 +13,30 @@ namespace FormTruco
 {
     public partial class FrmCrearSala : FrmPadre
     {
+
+        #region Atributos
+
         private int contSala;
         private List<FrmJuegoTruco> trucos;
         ///private Point posicionPanel;
 
+        #endregion
+
+        #region Inicio Form
+
         public FrmCrearSala()
         {
             InitializeComponent();
-            this.contSala = 0;
-            this.trucos = new List<FrmJuegoTruco>();
             // this.posicionPanel = new Point(197, 12);
         }
+
+        private void FrmCrearSala_Load(object sender, EventArgs e)
+        {
+            this.contSala = 0;
+            this.trucos = new List<FrmJuegoTruco>();
+        }
+
+        #endregion
 
         #region Botones
 
@@ -134,5 +147,6 @@ namespace FormTruco
 
         #endregion
 
+        
     }
 }

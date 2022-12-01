@@ -40,7 +40,6 @@ namespace FormTruco
             this.ForeColor = System.Drawing.SystemColors.Control;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmPadre";
-            this.Load += new System.EventHandler(this.FrmPadre_Load);
             this.ResumeLayout(false);
 
         }

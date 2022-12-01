@@ -1,7 +1,7 @@
 ﻿
 namespace FormTruco
 {
-    partial class FrmCrearSala
+    partial class FrmHistorial
     {
         /// <summary>
         /// Required designer variable.
@@ -29,37 +29,24 @@ namespace FormTruco
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCrearSala));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.pictureBoxMas = new System.Windows.Forms.PictureBox();
             this.dataGridViewSalas = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.J1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.J2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnJugar = new System.Windows.Forms.Button();
+            this.fk_usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fk_juego = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnPartida = new System.Windows.Forms.Button();
+            this.btnCreador = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalas)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBoxMas
-            // 
-            this.pictureBoxMas.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.pictureBoxMas.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMas.Image")));
-            this.pictureBoxMas.Location = new System.Drawing.Point(24, 102);
-            this.pictureBoxMas.Name = "pictureBoxMas";
-            this.pictureBoxMas.Size = new System.Drawing.Size(192, 59);
-            this.pictureBoxMas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxMas.TabIndex = 1;
-            this.pictureBoxMas.TabStop = false;
-            this.pictureBoxMas.Click += new System.EventHandler(this.pictureBoxMas_Click);
             // 
             // dataGridViewSalas
             // 
@@ -80,9 +67,12 @@ namespace FormTruco
             this.dataGridViewSalas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.nameSala,
-            this.estado,
             this.J1,
-            this.J2});
+            this.J2,
+            this.fk_usuario,
+            this.estado,
+            this.fecha,
+            this.fk_juego});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -91,8 +81,9 @@ namespace FormTruco
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewSalas.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewSalas.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridViewSalas.EnableHeadersVisualStyles = false;
-            this.dataGridViewSalas.Location = new System.Drawing.Point(239, 88);
+            this.dataGridViewSalas.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewSalas.Name = "dataGridViewSalas";
             this.dataGridViewSalas.ReadOnly = true;
             this.dataGridViewSalas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -114,8 +105,8 @@ namespace FormTruco
             this.dataGridViewSalas.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewSalas.RowTemplate.Height = 29;
             this.dataGridViewSalas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewSalas.Size = new System.Drawing.Size(467, 264);
-            this.dataGridViewSalas.TabIndex = 2;
+            this.dataGridViewSalas.Size = new System.Drawing.Size(732, 292);
+            this.dataGridViewSalas.TabIndex = 3;
             // 
             // id
             // 
@@ -135,15 +126,6 @@ namespace FormTruco
             this.nameSala.ReadOnly = true;
             this.nameSala.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // estado
-            // 
-            this.estado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.estado.HeaderText = "Estado";
-            this.estado.MinimumWidth = 6;
-            this.estado.Name = "estado";
-            this.estado.ReadOnly = true;
-            this.estado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // J1
             // 
             this.J1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -162,91 +144,112 @@ namespace FormTruco
             this.J2.ReadOnly = true;
             this.J2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // label1
+            // fk_usuario
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 22.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(24, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(192, 50);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Crear sala";
+            this.fk_usuario.HeaderText = "Fk_usuario";
+            this.fk_usuario.MinimumWidth = 6;
+            this.fk_usuario.Name = "fk_usuario";
+            this.fk_usuario.ReadOnly = true;
+            this.fk_usuario.Visible = false;
             // 
-            // label2
+            // estado
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 22.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(359, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(248, 50);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Lista de salas";
+            this.estado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.estado.HeaderText = "Estado";
+            this.estado.MinimumWidth = 6;
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
+            this.estado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // btnJugar
+            // fecha
             // 
-            this.btnJugar.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnJugar.FlatAppearance.BorderSize = 0;
-            this.btnJugar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnJugar.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnJugar.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnJugar.Location = new System.Drawing.Point(24, 189);
-            this.btnJugar.Name = "btnJugar";
-            this.btnJugar.Size = new System.Drawing.Size(192, 59);
-            this.btnJugar.TabIndex = 7;
-            this.btnJugar.Text = "Jugar";
-            this.btnJugar.UseVisualStyleBackColor = false;
-            this.btnJugar.Click += new System.EventHandler(this.btnJugar_Click);
+            this.fecha.HeaderText = "Fecha";
+            this.fecha.MinimumWidth = 6;
+            this.fecha.Name = "fecha";
+            this.fecha.ReadOnly = true;
+            // 
+            // fk_juego
+            // 
+            this.fk_juego.HeaderText = "fk_juego";
+            this.fk_juego.MinimumWidth = 6;
+            this.fk_juego.Name = "fk_juego";
+            this.fk_juego.ReadOnly = true;
+            this.fk_juego.Visible = false;
+            // 
+            // btnPartida
+            // 
+            this.btnPartida.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnPartida.FlatAppearance.BorderSize = 0;
+            this.btnPartida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPartida.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnPartida.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnPartida.Location = new System.Drawing.Point(58, 308);
+            this.btnPartida.Name = "btnPartida";
+            this.btnPartida.Size = new System.Drawing.Size(159, 44);
+            this.btnPartida.TabIndex = 8;
+            this.btnPartida.Text = "Ver partida";
+            this.btnPartida.UseVisualStyleBackColor = false;
+            // 
+            // btnCreador
+            // 
+            this.btnCreador.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnCreador.FlatAppearance.BorderSize = 0;
+            this.btnCreador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreador.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCreador.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnCreador.Location = new System.Drawing.Point(289, 308);
+            this.btnCreador.Name = "btnCreador";
+            this.btnCreador.Size = new System.Drawing.Size(159, 44);
+            this.btnCreador.TabIndex = 9;
+            this.btnCreador.Text = "Ver creador";
+            this.btnCreador.UseVisualStyleBackColor = false;
+            this.btnCreador.Click += new System.EventHandler(this.btnCreador_Click);
             // 
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.btnCancelar.FlatAppearance.BorderSize = 0;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnCancelar.Location = new System.Drawing.Point(24, 280);
+            this.btnCancelar.Location = new System.Drawing.Point(512, 308);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(192, 59);
-            this.btnCancelar.TabIndex = 8;
+            this.btnCancelar.Size = new System.Drawing.Size(159, 44);
+            this.btnCancelar.TabIndex = 10;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // FrmCrearSala
+            // FrmHistorial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 364);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnJugar);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnCreador);
+            this.Controls.Add(this.btnPartida);
             this.Controls.Add(this.dataGridViewSalas);
-            this.Controls.Add(this.pictureBoxMas);
-            this.Name = "FrmCrearSala";
+            this.Name = "FrmHistorial";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmCrearSala";
-            this.Load += new System.EventHandler(this.FrmCrearSala_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMas)).EndInit();
+            this.Text = "FrmHistorial";
+            this.Load += new System.EventHandler(this.FrmHistorial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalas)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox pictureBoxMas;
+
         private System.Windows.Forms.DataGridView dataGridViewSalas;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnJugar;
-        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameSala;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn J1;
         private System.Windows.Forms.DataGridViewTextBoxColumn J2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fk_usuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fk_juego;
+        private System.Windows.Forms.Button btnPartida;
+        private System.Windows.Forms.Button btnCreador;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

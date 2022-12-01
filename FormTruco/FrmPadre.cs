@@ -16,11 +16,5 @@ namespace FormTruco
         {
             InitializeComponent();
         }
-
-        private void FrmPadre_Load(object sender, EventArgs e)
-        {
-            
-
-        }
     }
 }

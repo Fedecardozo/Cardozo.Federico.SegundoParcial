@@ -106,6 +106,7 @@ namespace FormTruco
             this.btnHistorial.TabIndex = 3;
             this.btnHistorial.Text = "Historial";
             this.btnHistorial.UseVisualStyleBackColor = false;
+            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
             // 
             // btnEstadistica
             // 

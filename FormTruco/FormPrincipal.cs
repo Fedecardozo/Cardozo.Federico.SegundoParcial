@@ -20,6 +20,7 @@ namespace FormTruco
         private FrmInicio formInicio;
         private FrmCrearSala formSala;
         private Form formActivo;
+        private FrmHistorial frmHistorial;
 
         #endregion
 
@@ -38,6 +39,7 @@ namespace FormTruco
             this.IniciarHilo();
             this.formInicio = new FrmInicio(this.usuario);
             this.formSala = new FrmCrearSala();
+            this.frmHistorial = new FrmHistorial();
             this.formActivo = this.formInicio;
             this.MostrarFormulario(this.formInicio);
         }
@@ -63,6 +65,11 @@ namespace FormTruco
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnHistorial_Click(object sender, EventArgs e)
+        {
+            this.MostrarFormulario(this.frmHistorial);
         }
 
         #endregion
@@ -123,5 +130,7 @@ namespace FormTruco
         }
 
         #endregion
+
+        
     }
 }

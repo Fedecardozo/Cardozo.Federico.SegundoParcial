@@ -112,7 +112,6 @@ namespace FormTruco
 
         #endregion
 
-
         #region Metodos
 
         private void MostrarFormulario(Form form)

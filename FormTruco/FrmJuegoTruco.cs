@@ -20,6 +20,8 @@ namespace FormTruco
 
         private const int JUGADOR_1 = 1;
         private const int JUGADOR_2 = 2;
+        private string nameJ1;
+        private string nameJ2;
         private int contadorManos;
         private int ContadorEnvidos;
         private int conteoTime;
@@ -54,9 +56,11 @@ namespace FormTruco
 
         #region Inicio Form
 
-        public FrmJuegoTruco()
+        public FrmJuegoTruco(string nameJ1, string nameJ2)
         {
             InitializeComponent();
+            this.nameJ1 = nameJ1;
+            this.nameJ2 = nameJ2;
         }
         
         private void FrmJuegoTruco_Load(object sender, EventArgs e)
@@ -113,7 +117,10 @@ namespace FormTruco
             this.seCantoQuieroTruco = false;
             this.seCantoFlor = false;
             this.quienCantoTruco = 0;
-        
+
+            this.labelNameJ1.Text = $"J1: {this.nameJ1}";
+            this.labelNameJ2.Text = $"J2: {this.nameJ2}";
+
         }
 
         #endregion

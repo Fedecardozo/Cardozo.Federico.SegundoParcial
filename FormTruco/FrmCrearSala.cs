@@ -7,20 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Entidades;
 
 namespace FormTruco
 {
     public partial class FrmCrearSala : FrmPadre
     {
-        //private int contSala;
+        private int contSala;
+        private List<FrmJuegoTruco> trucos;
         ///private Point posicionPanel;
 
         public FrmCrearSala()
         {
             InitializeComponent();
-            //this.contSala = 0;
-           // this.posicionPanel = new Point(197, 12);
+            this.contSala = 0;
+            this.trucos = new List<FrmJuegoTruco>();
+            // this.posicionPanel = new Point(197, 12);
         }
+
+        #region Botones
 
         private void pictureBoxMas_Click(object sender, EventArgs e)
         {
@@ -29,17 +34,45 @@ namespace FormTruco
             nuevaSala.ShowDialog();
         }
 
-        private void AgregarSala(string j1, string j2, string sala)
-        {
-            this.dataGridViewSalas.Rows.Add(1,sala,"En juego",j1,j2);
-        }
-
-
         private void btnJugar_Click(object sender, EventArgs e)
         {
-            FrmJuegoTruco frmJuego = new FrmJuegoTruco();
-            frmJuego.Show();
+            this.IniciarPartida();
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            int indexFilaSeleccionada = this.dataGridViewSalas.CurrentRow.Index;
+            this.trucos[indexFilaSeleccionada].Dispose();
+        }
+
+        #endregion
+
+        #region Metodos
+
+        private void AgregarSala(string j1, string j2, string sala)
+        {
+            //Agregar a la base de datos y de la base de datos al dataGrid
+            bool rta = Sala.AgregarSala_Sql(new Sala(j1,j2,sala,1,EestadoPartida.Finalizada,3));
+
+            MessageBox.Show($"REspuesta: {rta}");
+
+            this.dataGridViewSalas.Rows.Add(1, sala, "En juego", j1, j2);
+            this.contSala++;
+        }
+
+        private void IniciarPartida()
+        {
+            //Sala sala = (Sala)this.dataGridViewSalas.CurrentRow.DataBoundItem; //obtener sala seleccionada
+            int indexFilaSeleccionada = this.dataGridViewSalas.CurrentRow.Index;
+            string nameJ1 = (string)this.dataGridViewSalas.Rows[indexFilaSeleccionada].Cells[3].Value;
+            string nameJ2 = (string)this.dataGridViewSalas.Rows[indexFilaSeleccionada].Cells[4].Value;
+            //MessageBox.Show(nameJ1);
+
+            this.trucos.Add(new FrmJuegoTruco(nameJ1, nameJ2));
+            this.trucos[indexFilaSeleccionada].Show();
+        }
+
+        #endregion
 
         #region Idea mala
 

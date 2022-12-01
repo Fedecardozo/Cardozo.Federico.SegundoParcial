@@ -86,7 +86,7 @@ namespace Entidades
         /// <param name="comandoSql"></param>
         /// <param name="metodoSql"></param>
         /// <returns></returns>
-        public static bool RealizarConsultaSql(string comandoSql, delegateSql metodoSql)
+        public static bool RealizarConsultaSql(string comandoSql)
         {
             bool rta = true;
 
@@ -95,7 +95,7 @@ namespace Entidades
 
                 ControlSql.RelizarConexion(comandoSql);
 
-                rta = metodoSql.Invoke();
+                rta = ControlSql.ConsultarExecuteNonQuery();
 
             }
             catch (Exception)

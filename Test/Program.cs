@@ -13,7 +13,7 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Mazo completo de cartas: ");
+            //Console.WriteLine("Mazo completo de cartas: ");
 
             //Harcodeo.Global();
 
@@ -100,7 +100,7 @@ namespace Test
 
             #endregion
 
-
+           //Console.WriteLine(" ultimo id: " + Sala.ultimoId);
         }
         //private static List<Usuario> usuarios;
 

@@ -155,12 +155,13 @@ namespace Entidades
         }
 
         /// <summary>
-        /// Busca en el Select con el comando pasado por parametro
+        /// Realiza consulta SELECT, por parametro recibe una funcion para obtener la informacion, 
+        /// el otro parametro devuelve el objeto que guardo la funcion generica
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="comandoSql"></param>
-        /// <param name="action"></param>
-        /// <param name="listaGenerica"></param>
+        /// <param name="selectObj">Metodo generico, que retorne T y recibe nada</param>
+        /// <param name="obj"></param>
         /// <returns>true si encontro el dato, false sino</returns>
         public static bool RealizarConsultaSql<T>(string comandoSql,delegateSelectObj<T> selectObj, out T obj)
         {

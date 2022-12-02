@@ -10,6 +10,7 @@ namespace Entidades
     {
         #region Atributos
 
+        private static int ultimoId;
         private int id;
         private string nameJ1;
         private string nameJ2;
@@ -23,6 +24,11 @@ namespace Entidades
 
         #region Constructor
 
+        static Sala()
+        {
+            Sala.ultimoId = Sala.ObtenerUltimoId_Sql();
+        }
+
         public Sala(string nameJ1,string nameJ2, string nameSala)
         {
             this.nameJ1 = nameJ1;
@@ -30,11 +36,16 @@ namespace Entidades
             this.nameSala = nameSala;
         }
 
-        public Sala(string nameJ1, string nameJ2, string nameSala, int fk_Usuario, EestadoPartida estado, int fk_resultado) : this(nameJ1, nameJ2, nameSala)
+        public Sala(string nameJ1, string nameJ2, string nameSala, int fk_Usuario, EestadoPartida estado) : this(nameJ1, nameJ2, nameSala)
         {
-            //this.id = id;
             this.fk_Usuario = fk_Usuario;
             this.estado = estado;
+        }
+
+        public Sala(string nameJ1, string nameJ2, string nameSala, int fk_Usuario, EestadoPartida estado, int fk_resultado) 
+            : this(nameJ1, nameJ2, nameSala, fk_Usuario, estado)
+        {
+
             this.fk_resultado = fk_resultado;
         }
 
@@ -80,14 +91,29 @@ namespace Entidades
 
         #region Comando Sql
 
+        /// <summary>
+        /// Inserta una sala a la base de datos y guarda el id en la sala pasada por parametro
+        /// </summary>
+        /// <param name="sala"></param>
+        /// <returns></returns>
         public static bool AgregarSala_Sql(Sala sala)
         {
 
             string comando = $"insert into [Base_Truco].[dbo].[truco_salas] " +
-                $"(name_sala, name_j1, name_j2, fk_usuario, fecha, estado, fk_juego)" +
-                $"values('{sala.nameSala}', '{sala.nameJ1}', '{sala.nameJ2}', {sala.fk_Usuario}, GETDATE(), '{sala.estado.ToString()}', {sala.fk_resultado})";
+                $"(name_sala, name_j1, name_j2, fk_usuario, fecha, estado)" +
+                $"values('{sala.nameSala}', '{sala.nameJ1}', '{sala.nameJ2}', {sala.fk_Usuario}, GETDATE(), '{sala.estado}')";
 
-            return ControlSql.RealizarConsultaSql(comando);
+            bool retorno = ControlSql.RealizarConsultaSql(comando);
+
+            if (retorno)
+            {
+                //Sumo uno mas al ultimoId
+                Sala.ultimoId++;
+                //Guardo en la sala el id
+                sala.id = Sala.ultimoId;
+            }
+
+            return retorno;
         }
 
         private static void Select_Sql(List<Sala> salas)
@@ -111,6 +137,25 @@ namespace Entidades
 
             return ControlSql.RealizarConsultaSql(select,Sala.Select_Sql, salas);
 
+        }
+
+        public static bool ModificarSala(int id, int fk_juego)
+        {
+            string update = $"update [Base_Truco].[dbo].[truco_salas] set fk_juego = {fk_juego} where id = {id}";
+
+            return ControlSql.RealizarConsultaSql(update);
+        }
+
+        private static int ObtenerUltimoId_Sql()
+        {
+            string select = "select MAX(id) as id from [Base_Truco].[dbo].[truco_salas]";
+
+            if(!ControlSql.RealizarConsultaSql(select,() => { return (int)ControlSql.Lector["id"]; }, out int id))
+            {
+                id = 0;
+            }
+
+            return id;
         }
 
         #endregion

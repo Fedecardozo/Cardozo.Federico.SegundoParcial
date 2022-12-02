@@ -34,6 +34,7 @@ namespace Entidades
         public string Correo{ get { return this.correo; } }
         public string Nombre { get { return this.nombre; } }
         public string Apellido { get { return this.apellido; } }
+        public int Id { get { return this.id; } }
 
         #endregion
 

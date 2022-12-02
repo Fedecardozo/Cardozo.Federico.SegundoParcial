@@ -38,7 +38,7 @@ namespace FormTruco
         {
             this.IniciarHilo();
             this.formInicio = new FrmInicio(this.usuario);
-            this.formSala = new FrmCrearSala();
+            this.formSala = new FrmCrearSala(this.usuario);
             this.frmHistorial = new FrmHistorial();
             this.formActivo = this.formInicio;
             this.MostrarFormulario(this.formInicio);

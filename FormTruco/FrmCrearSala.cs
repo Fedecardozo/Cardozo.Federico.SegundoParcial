@@ -18,22 +18,24 @@ namespace FormTruco
 
         private int contSala;
         private List<FrmJuegoTruco> trucos;
-        ///private Point posicionPanel;
+        private List<Sala> salas;
+        private Usuario usuario;
 
         #endregion
 
         #region Inicio Form
 
-        public FrmCrearSala()
+        public FrmCrearSala(Usuario usuario)
         {
             InitializeComponent();
-            // this.posicionPanel = new Point(197, 12);
+            this.usuario = usuario;
         }
 
         private void FrmCrearSala_Load(object sender, EventArgs e)
         {
             this.contSala = 0;
             this.trucos = new List<FrmJuegoTruco>();
+            this.salas = new List<Sala>();
         }
 
         #endregion
@@ -62,88 +64,49 @@ namespace FormTruco
 
         #region Metodos
 
+        private void CargarSalasEnJuego()
+        {
+
+        }
+
         private void AgregarSala(string j1, string j2, string sala)
         {
+            Sala sala1 = new Sala(j1, j2, sala, this.usuario.Id, EestadoPartida.En_juego);
             //Agregar a la base de datos y de la base de datos al dataGrid
-            bool rta = Sala.AgregarSala_Sql(new Sala(j1,j2,sala,1,EestadoPartida.Finalizada,3));
+            if(Sala.AgregarSala_Sql(sala1))
+            {
+                MessageBox.Show($"Id generado: {sala1.Id}");
+                this.dataGridViewSalas.Rows.Add(sala1.Id, sala1.NameSala,sala1.Estado,sala1.NameJ1,sala1.NameJ2);
+                this.contSala++;
+                this.salas.Add(sala1);
+            }
+            else
+            {
+                MessageBox.Show("Error al crear la sala", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-            MessageBox.Show($"REspuesta: {rta}");
-
-            this.dataGridViewSalas.Rows.Add(1, sala, "En juego", j1, j2);
-            this.contSala++;
         }
 
         private void IniciarPartida()
         {
             //Sala sala = (Sala)this.dataGridViewSalas.CurrentRow.DataBoundItem; //obtener sala seleccionada
             int indexFilaSeleccionada = this.dataGridViewSalas.CurrentRow.Index;
-            string nameJ1 = (string)this.dataGridViewSalas.Rows[indexFilaSeleccionada].Cells[3].Value;
-            string nameJ2 = (string)this.dataGridViewSalas.Rows[indexFilaSeleccionada].Cells[4].Value;
+            Sala sala = this.salas[indexFilaSeleccionada];
             //MessageBox.Show(nameJ1);
 
-            this.trucos.Add(new FrmJuegoTruco(nameJ1, nameJ2));
-            this.trucos[indexFilaSeleccionada].Show();
-        }
-
-        #endregion
-
-        #region Idea mala
-
-        /*private void AgregarSala(string j1, string j2, string sala)
-        {
-            //this.labelNombreJ1.Text = j1;
-            //this.labelNombreJ2.Text = j2;
-            //this.labelSala.Text = sala;
-            //this.panelMas.Visible = true;
-
-            this.contSala++;
-
-            this.Controls.Add(this.CrearPanelSala(j1,j2,sala));
-        }
-
-        #region Crear controles
-
-        private Panel CrearPanelSala(string j1, string j2,string nombreSala)
-        {
-            Panel panel = new Panel();
-            panel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            panel.Controls.Add(this.CrearLabel($"labelNombreJ{2}_{this.contSala}",$"J2:  {j2}",96));
-            panel.Controls.Add(this.CrearLabel($"labelNombreJ{1}_{this.contSala}", $"J1:  {j1}",53));
-            panel.Controls.Add(this.CrearLabel(nombreSala,nombreSala,13));
-            panel.Location = this.posicionPanel;
-            panel.Name = $"panelMas{this.contSala}";
-            panel.Size = new System.Drawing.Size(162, 135);
-            panel.TabIndex = 0;
-            panel.Visible = true;
-
-            if(this.contSala == 3)
+            //Agrego resultado a la base datos                                                                  //La relaciono con la Sala (update)
+            if (Resultado.AgregarResultado_Sql(new Resultado(sala.NameJ1,sala.NameJ2,0,0,eResultado.Empatando)) && Sala.ModificarSala(sala.Id,4))
             {
-                this.posicionPanel.Y += 150;
-                this.posicionPanel.X = -165;
+                
+                this.trucos.Add(new FrmJuegoTruco(sala.NameJ1, sala.NameJ2));
+                this.trucos[indexFilaSeleccionada].Show();
+            }
+            else
+            {
+                MessageBox.Show("Error al crear la partida", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-           this.posicionPanel.X += 180;
-
-            return panel;
         }
-
-        private Label CrearLabel(string name,string msj, int posicion)
-        {
-            Label label = new Label();
-            label.AutoSize = true;
-            label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label.Location = new System.Drawing.Point(13, posicion);
-            label.Name = name;
-            label.Size = new System.Drawing.Size(80, 28);
-            label.Text = msj;
-
-            return label;
-        }
-
-
-        #endregion
-
-        */
 
         #endregion
 

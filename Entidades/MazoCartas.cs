@@ -17,6 +17,7 @@ namespace Entidades
         #endregion
 
         #region Constructor
+
         public MazoCartas(ECantidadCartas cantidad)
         {
             this.cantidad = cantidad;
@@ -207,31 +208,6 @@ namespace Entidades
             else
             {
                 //Lanzar exepcion
-                retorno = null;
-            }
-
-            return retorno;
-
-        }
-
-        /// <summary>
-        /// Reparte cartas del mazo a un jugador sin quitarlas
-        /// </summary>
-        /// <param name="cantidadCartas"></param>
-        /// <param name="jugador"></param>
-        /// <returns> true si le pudo repartir cartas al jugador. false sino</returns>
-        public Carta[] RepartirCartas(int cantidadCartas, Jugador jugador)
-        {
-            Random random = new Random();
-            Carta[] retorno;
-
-            if(jugador is not null && cantidadCartas > 0)
-            {
-                retorno = this.RepartirCartas(cantidadCartas);
-                jugador.AgregarCarta(retorno); 
-            }
-            else
-            {
                 retorno = null;
             }
 

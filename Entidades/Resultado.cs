@@ -15,20 +15,46 @@ namespace Entidades
         private string nameJ2;
         private int puntosJ1;
         private int puntosJ2;
-        private string resultado;
+        private eResultado resultado;
 
         #endregion
 
         #region Constructores
 
-        public Resultado(int id, string nameJ1, string nameJ2, int puntosJ1, int puntosJ2, string resultado)
+        public Resultado(string nameJ1, string nameJ2, int puntosJ1, int puntosJ2, eResultado resultado)
         {
-            this.id = id;
             this.nameJ1 = nameJ1;
             this.nameJ2 = nameJ2;
             this.puntosJ1 = puntosJ1;
             this.puntosJ2 = puntosJ2;
             this.resultado = resultado;
+        }
+
+        public Resultado(int id, string nameJ1, string nameJ2, int puntosJ1, int puntosJ2, eResultado resultado) : this(nameJ1,nameJ2,puntosJ1,puntosJ2,resultado)
+        {
+            this.id = id;         
+        }
+
+        #endregion
+
+        #region Metodos
+
+        public static eResultado ObtenerResultado(string resultado)
+        {
+            eResultado eResultado;
+
+            switch(resultado)
+            {
+                case "Ganador_J1": eResultado = eResultado.Ganador_J1; break;
+                case "Ganador_J2": eResultado = eResultado.Ganador_J2; break;
+                case "Empate": eResultado = eResultado.Empate; break;
+                case "Ganando_J1": eResultado = eResultado.Ganando_J1; break;
+                case "Ganando_J2": eResultado = eResultado.Ganando_J2; break;
+                case "Empatando": eResultado = eResultado.Empatando; break;
+                default: eResultado = eResultado.Cancelada; break;
+            }
+
+            return eResultado;
         }
 
         #endregion
@@ -43,7 +69,7 @@ namespace Entidades
             string nameJ2 = ControlSql.Lector["name_j2"].ToString();
             int puntosJ1 = (int)ControlSql.Lector["puntos_j1"];
             int puntosJ2 = (int)ControlSql.Lector["puntos_j2"];
-            string resultado = ControlSql.Lector["resultado"].ToString();
+            eResultado resultado = Resultado.ObtenerResultado(ControlSql.Lector["resultado"].ToString());
 
             return new Resultado(id,nameJ1,nameJ2,puntosJ1,puntosJ2,resultado);
         }
@@ -54,6 +80,14 @@ namespace Entidades
             string select = $"select id, name_j1, name_j2, puntos_j1, puntos_j2, resultado from [Base_Truco].[dbo].[truco_resultado] where id = {id}";
 
             return ControlSql.RealizarConsultaSql(select, Resultado.Select_Sql, out resultado);
+        }
+
+        public static bool AgregarResultado_Sql(Resultado resultado)
+        {
+            string insert = $"insert into [Base_Truco].[dbo].[truco_resultado] (name_j1, name_j2, puntos_j1, puntos_j2, resultado) " +
+                $"values ('{resultado.nameJ1}','{resultado.nameJ2}',{resultado.puntosJ1},{resultado.puntosJ2},'{resultado.resultado}')";
+
+            return ControlSql.RealizarConsultaSql(insert);
         }
 
         #endregion

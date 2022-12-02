@@ -173,6 +173,11 @@ namespace FormTruco
 
             if (rta)
             {
+                if(!Resultado.ModificarResultado((int)seleccion.Cells["id_resultado"].Value, eResultado.Cancelada))
+                {
+                    MessageBox.Show("No se pudo cancelar el resultado", "Cancelar resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
                 seleccion.Cells["estado"].Value = EestadoPartida.Cancelada;
                 MessageBox.Show("Se cancelo con exito", "Cancelar sala", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
@@ -185,6 +190,7 @@ namespace FormTruco
                 MessageBox.Show("Error al cancelar la sala", "Cancelar sala", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         #endregion
 

@@ -122,6 +122,14 @@ namespace Entidades
             return id;
         }
 
+        public static bool ModificarResultado(int id, eResultado estado)
+        {
+            string update = $"update [Base_Truco].[dbo].[truco_resultado] set resultado = '{estado}'  where id = {id}";
+
+            return ControlSql.RealizarConsultaSql(update);
+        }
+
+
         #endregion
 
         #region Polimorfismo

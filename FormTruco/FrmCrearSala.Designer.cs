@@ -36,15 +36,17 @@ namespace FormTruco
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBoxMas = new System.Windows.Forms.PictureBox();
             this.dataGridViewSalas = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnJugar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.J1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.J2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnJugar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
+            this.id_truco = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_resultado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalas)).BeginInit();
             this.SuspendLayout();
@@ -82,7 +84,9 @@ namespace FormTruco
             this.nameSala,
             this.estado,
             this.J1,
-            this.J2});
+            this.J2,
+            this.id_truco,
+            this.id_resultado});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -116,51 +120,6 @@ namespace FormTruco
             this.dataGridViewSalas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewSalas.Size = new System.Drawing.Size(467, 264);
             this.dataGridViewSalas.TabIndex = 2;
-            // 
-            // id
-            // 
-            this.id.HeaderText = "Id";
-            this.id.MinimumWidth = 6;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.id.Visible = false;
-            // 
-            // nameSala
-            // 
-            this.nameSala.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameSala.HeaderText = "Nombre Sala";
-            this.nameSala.MinimumWidth = 6;
-            this.nameSala.Name = "nameSala";
-            this.nameSala.ReadOnly = true;
-            this.nameSala.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // estado
-            // 
-            this.estado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.estado.HeaderText = "Estado";
-            this.estado.MinimumWidth = 6;
-            this.estado.Name = "estado";
-            this.estado.ReadOnly = true;
-            this.estado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // J1
-            // 
-            this.J1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.J1.HeaderText = "Jugador 1";
-            this.J1.MinimumWidth = 6;
-            this.J1.Name = "J1";
-            this.J1.ReadOnly = true;
-            this.J1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // J2
-            // 
-            this.J2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.J2.HeaderText = "Jugador 2";
-            this.J2.MinimumWidth = 6;
-            this.J2.Name = "J2";
-            this.J2.ReadOnly = true;
-            this.J2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // label1
             // 
@@ -214,6 +173,67 @@ namespace FormTruco
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // id
+            // 
+            this.id.HeaderText = "Id";
+            this.id.MinimumWidth = 6;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.id.Visible = false;
+            // 
+            // nameSala
+            // 
+            this.nameSala.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameSala.HeaderText = "Nombre Sala";
+            this.nameSala.MinimumWidth = 6;
+            this.nameSala.Name = "nameSala";
+            this.nameSala.ReadOnly = true;
+            this.nameSala.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // estado
+            // 
+            this.estado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.estado.HeaderText = "Estado";
+            this.estado.MinimumWidth = 6;
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
+            this.estado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // J1
+            // 
+            this.J1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.J1.HeaderText = "Jugador 1";
+            this.J1.MinimumWidth = 6;
+            this.J1.Name = "J1";
+            this.J1.ReadOnly = true;
+            this.J1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // J2
+            // 
+            this.J2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.J2.HeaderText = "Jugador 2";
+            this.J2.MinimumWidth = 6;
+            this.J2.Name = "J2";
+            this.J2.ReadOnly = true;
+            this.J2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // id_truco
+            // 
+            this.id_truco.HeaderText = "Id Truco";
+            this.id_truco.MinimumWidth = 6;
+            this.id_truco.Name = "id_truco";
+            this.id_truco.ReadOnly = true;
+            this.id_truco.Visible = false;
+            // 
+            // id_resultado
+            // 
+            this.id_resultado.HeaderText = "Id resultado";
+            this.id_resultado.MinimumWidth = 6;
+            this.id_resultado.Name = "id_resultado";
+            this.id_resultado.ReadOnly = true;
+            this.id_resultado.Visible = false;
+            // 
             // FrmCrearSala
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -248,5 +268,7 @@ namespace FormTruco
         private System.Windows.Forms.DataGridViewTextBoxColumn estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn J1;
         private System.Windows.Forms.DataGridViewTextBoxColumn J2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_truco;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_resultado;
     }
 }

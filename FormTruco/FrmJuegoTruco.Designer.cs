@@ -563,6 +563,7 @@ namespace FormTruco
             this.btnFlorJ1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnFlorJ1.Enabled = false;
             this.btnFlorJ1.FlatAppearance.BorderSize = 0;
+            this.btnFlorJ1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFlorJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnFlorJ1.Location = new System.Drawing.Point(157, 169);
             this.btnFlorJ1.Name = "btnFlorJ1";
@@ -578,6 +579,7 @@ namespace FormTruco
             this.btnFaltaEnvidoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnFaltaEnvidoJ1.Enabled = false;
             this.btnFaltaEnvidoJ1.FlatAppearance.BorderSize = 0;
+            this.btnFaltaEnvidoJ1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFaltaEnvidoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnFaltaEnvidoJ1.Location = new System.Drawing.Point(20, 169);
             this.btnFaltaEnvidoJ1.Name = "btnFaltaEnvidoJ1";
@@ -593,6 +595,7 @@ namespace FormTruco
             this.btnRealEnvidoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnRealEnvidoJ1.Enabled = false;
             this.btnRealEnvidoJ1.FlatAppearance.BorderSize = 0;
+            this.btnRealEnvidoJ1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRealEnvidoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnRealEnvidoJ1.Location = new System.Drawing.Point(157, 106);
             this.btnRealEnvidoJ1.Name = "btnRealEnvidoJ1";
@@ -608,6 +611,7 @@ namespace FormTruco
             this.btnEnvidoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnEnvidoJ1.Enabled = false;
             this.btnEnvidoJ1.FlatAppearance.BorderSize = 0;
+            this.btnEnvidoJ1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnvidoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnEnvidoJ1.Location = new System.Drawing.Point(20, 106);
             this.btnEnvidoJ1.Name = "btnEnvidoJ1";
@@ -623,6 +627,7 @@ namespace FormTruco
             this.btnMazoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnMazoJ1.Enabled = false;
             this.btnMazoJ1.FlatAppearance.BorderSize = 0;
+            this.btnMazoJ1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMazoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnMazoJ1.Location = new System.Drawing.Point(157, 297);
             this.btnMazoJ1.Name = "btnMazoJ1";
@@ -638,6 +643,7 @@ namespace FormTruco
             this.btnVale4J1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnVale4J1.Enabled = false;
             this.btnVale4J1.FlatAppearance.BorderSize = 0;
+            this.btnVale4J1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVale4J1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnVale4J1.Location = new System.Drawing.Point(20, 297);
             this.btnVale4J1.Name = "btnVale4J1";
@@ -653,6 +659,7 @@ namespace FormTruco
             this.btnReTrucoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnReTrucoJ1.Enabled = false;
             this.btnReTrucoJ1.FlatAppearance.BorderSize = 0;
+            this.btnReTrucoJ1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReTrucoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnReTrucoJ1.Location = new System.Drawing.Point(157, 234);
             this.btnReTrucoJ1.Name = "btnReTrucoJ1";
@@ -668,6 +675,7 @@ namespace FormTruco
             this.btnTrucoJ1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnTrucoJ1.Enabled = false;
             this.btnTrucoJ1.FlatAppearance.BorderSize = 0;
+            this.btnTrucoJ1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTrucoJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnTrucoJ1.Location = new System.Drawing.Point(20, 234);
             this.btnTrucoJ1.Name = "btnTrucoJ1";
@@ -683,6 +691,7 @@ namespace FormTruco
             this.btnNoQuieroJ1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnNoQuieroJ1.Enabled = false;
             this.btnNoQuieroJ1.FlatAppearance.BorderSize = 0;
+            this.btnNoQuieroJ1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNoQuieroJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnNoQuieroJ1.Location = new System.Drawing.Point(157, 42);
             this.btnNoQuieroJ1.Name = "btnNoQuieroJ1";
@@ -698,6 +707,7 @@ namespace FormTruco
             this.btnQuieroJ1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnQuieroJ1.Enabled = false;
             this.btnQuieroJ1.FlatAppearance.BorderSize = 0;
+            this.btnQuieroJ1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuieroJ1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnQuieroJ1.Location = new System.Drawing.Point(20, 42);
             this.btnQuieroJ1.Name = "btnQuieroJ1";
@@ -729,6 +739,7 @@ namespace FormTruco
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReinciarJuego.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnReinciarJuego.FlatAppearance.BorderSize = 0;
+            this.btnReinciarJuego.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReinciarJuego.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnReinciarJuego.Location = new System.Drawing.Point(25, 664);
             this.btnReinciarJuego.Name = "btnReinciarJuego";
@@ -788,6 +799,7 @@ namespace FormTruco
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalir.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnSalir.FlatAppearance.BorderSize = 0;
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSalir.Location = new System.Drawing.Point(25, 746);
             this.btnSalir.Name = "btnSalir";
@@ -823,6 +835,7 @@ namespace FormTruco
             this.btnFlorJ2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnFlorJ2.Enabled = false;
             this.btnFlorJ2.FlatAppearance.BorderSize = 0;
+            this.btnFlorJ2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFlorJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnFlorJ2.Location = new System.Drawing.Point(162, 156);
             this.btnFlorJ2.Name = "btnFlorJ2";
@@ -838,6 +851,7 @@ namespace FormTruco
             this.btnFaltaEnvidoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnFaltaEnvidoJ2.Enabled = false;
             this.btnFaltaEnvidoJ2.FlatAppearance.BorderSize = 0;
+            this.btnFaltaEnvidoJ2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFaltaEnvidoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnFaltaEnvidoJ2.Location = new System.Drawing.Point(25, 156);
             this.btnFaltaEnvidoJ2.Name = "btnFaltaEnvidoJ2";
@@ -853,6 +867,7 @@ namespace FormTruco
             this.btnRealEnvidoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnRealEnvidoJ2.Enabled = false;
             this.btnRealEnvidoJ2.FlatAppearance.BorderSize = 0;
+            this.btnRealEnvidoJ2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRealEnvidoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnRealEnvidoJ2.Location = new System.Drawing.Point(162, 93);
             this.btnRealEnvidoJ2.Name = "btnRealEnvidoJ2";
@@ -868,6 +883,7 @@ namespace FormTruco
             this.btnEnvidoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnEnvidoJ2.Enabled = false;
             this.btnEnvidoJ2.FlatAppearance.BorderSize = 0;
+            this.btnEnvidoJ2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnvidoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnEnvidoJ2.Location = new System.Drawing.Point(25, 93);
             this.btnEnvidoJ2.Name = "btnEnvidoJ2";
@@ -883,6 +899,7 @@ namespace FormTruco
             this.btnMazoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnMazoJ2.Enabled = false;
             this.btnMazoJ2.FlatAppearance.BorderSize = 0;
+            this.btnMazoJ2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMazoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnMazoJ2.Location = new System.Drawing.Point(162, 284);
             this.btnMazoJ2.Name = "btnMazoJ2";
@@ -898,6 +915,7 @@ namespace FormTruco
             this.btnValeCuatroJ2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnValeCuatroJ2.Enabled = false;
             this.btnValeCuatroJ2.FlatAppearance.BorderSize = 0;
+            this.btnValeCuatroJ2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnValeCuatroJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnValeCuatroJ2.Location = new System.Drawing.Point(25, 284);
             this.btnValeCuatroJ2.Name = "btnValeCuatroJ2";
@@ -913,6 +931,7 @@ namespace FormTruco
             this.btnReTrucoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnReTrucoJ2.Enabled = false;
             this.btnReTrucoJ2.FlatAppearance.BorderSize = 0;
+            this.btnReTrucoJ2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReTrucoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnReTrucoJ2.Location = new System.Drawing.Point(162, 221);
             this.btnReTrucoJ2.Name = "btnReTrucoJ2";
@@ -928,6 +947,7 @@ namespace FormTruco
             this.btnTrucoJ2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnTrucoJ2.Enabled = false;
             this.btnTrucoJ2.FlatAppearance.BorderSize = 0;
+            this.btnTrucoJ2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTrucoJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnTrucoJ2.Location = new System.Drawing.Point(25, 221);
             this.btnTrucoJ2.Name = "btnTrucoJ2";
@@ -943,6 +963,7 @@ namespace FormTruco
             this.btnNoQuieroJ2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnNoQuieroJ2.Enabled = false;
             this.btnNoQuieroJ2.FlatAppearance.BorderSize = 0;
+            this.btnNoQuieroJ2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNoQuieroJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnNoQuieroJ2.Location = new System.Drawing.Point(162, 29);
             this.btnNoQuieroJ2.Name = "btnNoQuieroJ2";
@@ -958,6 +979,7 @@ namespace FormTruco
             this.btnQuieroJ2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnQuieroJ2.Enabled = false;
             this.btnQuieroJ2.FlatAppearance.BorderSize = 0;
+            this.btnQuieroJ2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuieroJ2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnQuieroJ2.Location = new System.Drawing.Point(25, 29);
             this.btnQuieroJ2.Name = "btnQuieroJ2";

@@ -44,7 +44,6 @@ namespace FormTruco
             this.fk_juego = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnPartida = new System.Windows.Forms.Button();
             this.btnCreador = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -183,7 +182,7 @@ namespace FormTruco
             this.btnPartida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPartida.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnPartida.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnPartida.Location = new System.Drawing.Point(58, 308);
+            this.btnPartida.Location = new System.Drawing.Point(167, 308);
             this.btnPartida.Name = "btnPartida";
             this.btnPartida.Size = new System.Drawing.Size(159, 44);
             this.btnPartida.TabIndex = 8;
@@ -198,7 +197,7 @@ namespace FormTruco
             this.btnCreador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreador.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnCreador.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnCreador.Location = new System.Drawing.Point(289, 308);
+            this.btnCreador.Location = new System.Drawing.Point(398, 308);
             this.btnCreador.Name = "btnCreador";
             this.btnCreador.Size = new System.Drawing.Size(159, 44);
             this.btnCreador.TabIndex = 9;
@@ -206,26 +205,11 @@ namespace FormTruco
             this.btnCreador.UseVisualStyleBackColor = false;
             this.btnCreador.Click += new System.EventHandler(this.btnCreador_Click);
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnCancelar.FlatAppearance.BorderSize = 0;
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnCancelar.Location = new System.Drawing.Point(512, 308);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(159, 44);
-            this.btnCancelar.TabIndex = 10;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            // 
             // FrmHistorial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 364);
-            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnCreador);
             this.Controls.Add(this.btnPartida);
             this.Controls.Add(this.dataGridViewSalas);
@@ -251,6 +235,5 @@ namespace FormTruco
         private System.Windows.Forms.DataGridViewTextBoxColumn fk_juego;
         private System.Windows.Forms.Button btnPartida;
         private System.Windows.Forms.Button btnCreador;
-        private System.Windows.Forms.Button btnCancelar;
     }
 }

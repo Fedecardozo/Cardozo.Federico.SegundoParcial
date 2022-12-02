@@ -20,6 +20,8 @@ namespace FormTruco
 
         private const int JUGADOR_1 = 1;
         private const int JUGADOR_2 = 2;
+        private static int generadorId;
+        private int id;
         private string nameJ1;
         private string nameJ2;
         private int contadorManos;
@@ -56,16 +58,22 @@ namespace FormTruco
 
         #region Inicio Form
 
+        static FrmJuegoTruco()
+        {
+            FrmJuegoTruco.generadorId = 0;
+        }
+
         public FrmJuegoTruco(string nameJ1, string nameJ2)
         {
             InitializeComponent();
+            FrmJuegoTruco.generadorId++;
             this.nameJ1 = nameJ1;
             this.nameJ2 = nameJ2;
         }
         
         private void FrmJuegoTruco_Load(object sender, EventArgs e)
         {
-
+            this.id = generadorId;
             this.conteoTime = 0;
             this.minutos = 0;
             this.mazo = JuegoDeCartas.Mazo;
@@ -125,8 +133,14 @@ namespace FormTruco
 
         #endregion
 
+        #region Propiedades
+
+        public int Id { get { return this.id; } }
+
+        #endregion
+
         #region Tiempo de juego
-        
+
         private void timerJuego_Tick(object sender, EventArgs e)
         {
             string minutosCadena = $"0{this.minutos}";

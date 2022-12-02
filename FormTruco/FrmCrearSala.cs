@@ -16,7 +16,7 @@ namespace FormTruco
 
         #region Atributos
 
-        //private List<FrmJuegoTruco> trucos;
+        private List<FrmJuegoTruco> trucos;
         private List<Sala> salas;
         private Usuario usuario;
 
@@ -32,7 +32,7 @@ namespace FormTruco
 
         private void FrmCrearSala_Load(object sender, EventArgs e)
         {
-            //this.trucos = new List<FrmJuegoTruco>();
+            this.trucos = new List<FrmJuegoTruco>();
             this.salas = new List<Sala>();
             this.CargarSalasEnJuego();
         }
@@ -55,8 +55,7 @@ namespace FormTruco
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            int indexFilaSeleccionada = this.dataGridViewSalas.CurrentRow.Index;
-            //this.trucos[indexFilaSeleccionada].Dispose();
+            this.CancelarPartida();
         }
 
         #endregion
@@ -69,7 +68,7 @@ namespace FormTruco
             {
                 foreach (Sala item in this.salas)
                 {
-                    this.dataGridViewSalas.Rows.Add(item.Id, item.NameSala, item.Estado, item.NameJ1, item.NameJ2);
+                    this.dataGridViewSalas.Rows.Add(item.Id, item.NameSala, item.Estado, item.NameJ1, item.NameJ2,0,item.Fk_Resultado);
                 }
             }
         }
@@ -101,7 +100,7 @@ namespace FormTruco
             if (Sala.AgregarSala_Sql(sala1))
             {
                 //MessageBox.Show($"Id generado: {sala1.Id}");
-                this.dataGridViewSalas.Rows.Add(sala1.Id, sala1.NameSala, sala1.Estado, sala1.NameJ1, sala1.NameJ2);
+                this.dataGridViewSalas.Rows.Add(sala1.Id, sala1.NameSala, sala1.Estado, sala1.NameJ1, sala1.NameJ2,0,0);
                 this.salas.Add(sala1);
             }
             else
@@ -123,10 +122,13 @@ namespace FormTruco
                                 //Agrego resultado a la base datos           //La relaciono con la Sala (update)
             if (esDisponible && Resultado.AgregarResultado_Sql(resultado) && Sala.ModificarSala(sala.Id,resultado.Id, EestadoPartida.En_juego))
             {
-                //this.trucos.Add(new FrmJuegoTruco(sala.NameJ1, sala.NameJ2));
+                FrmJuegoTruco truco = new FrmJuegoTruco(sala.NameJ1, sala.NameJ2);
+                this.trucos.Add(truco);
                 //this.trucos[indexFilaSeleccionada].Show();
                 this.dataGridViewSalas.Rows[indexFilaSeleccionada].Cells["estado"].Value = EestadoPartida.En_juego;
-                new FrmJuegoTruco(sala.NameJ1, sala.NameJ2).Show();
+                truco.Show();
+                this.dataGridViewSalas.Rows[indexFilaSeleccionada].Cells["id_truco"].Value = truco.Id;
+                this.dataGridViewSalas.Rows[indexFilaSeleccionada].Cells["id_resultado"].Value = resultado.Id;
             }
             else
             {
@@ -135,8 +137,57 @@ namespace FormTruco
 
         }
 
+        private void CancelarPartida()
+        {
+            int indexFilaSeleccionada = this.dataGridViewSalas.CurrentRow.Index;
+            DataGridViewRow seleccion = this.dataGridViewSalas.Rows[indexFilaSeleccionada];
+            int id_obtenido = (int)this.dataGridViewSalas.Rows[indexFilaSeleccionada].Cells["id_truco"].Value;
+            EestadoPartida estado = (EestadoPartida)this.dataGridViewSalas.Rows[indexFilaSeleccionada].Cells["estado"].Value;
+
+            bool rta = false;
+
+            if (id_obtenido > 0)
+            {
+                foreach (FrmJuegoTruco item in this.trucos)
+                {
+                    if (item.Id == id_obtenido)
+                    {
+                        this.trucos.Remove(item);
+                        item.Dispose();
+                        rta = true;
+                    }
+                }
+            }
+            else if(id_obtenido == 0 && (estado == EestadoPartida.Disponible || estado == EestadoPartida.En_juego))
+            {                
+                rta = Sala.ModificarSala((int)seleccion.Cells["id"].Value, (int)seleccion.Cells["id_resultado"].Value, EestadoPartida.Cancelada);
+            }
+
+            this.MostrarMsj(rta,seleccion);
+
+        }
+
+        private void MostrarMsj(bool rta, DataGridViewRow seleccion)
+        {
+            EestadoPartida estado = (EestadoPartida)seleccion.Cells["estado"].Value;
+
+            if (rta)
+            {
+                seleccion.Cells["estado"].Value = EestadoPartida.Cancelada;
+                MessageBox.Show("Se cancelo con exito", "Cancelar sala", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else if(!rta && (estado == EestadoPartida.Cancelada || estado == EestadoPartida.Finalizada))
+            {
+                MessageBox.Show($"No se puede cancelar una sala {estado}", "Cancelar sala", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (!rta)
+            {
+                MessageBox.Show("Error al cancelar la sala", "Cancelar sala", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         #endregion
 
-        
+
     }
 }

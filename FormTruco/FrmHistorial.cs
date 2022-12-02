@@ -42,7 +42,7 @@ namespace FormTruco
             {
                 foreach (Sala item in this.salas)
                 {
-                    this.dataGridViewSalas.Rows.Add(item.Id,item.NameSala,item.NameJ1,item.NameJ2,item.Fk_Usuario,item.Estado,item.Fk_Resultado);
+                    this.dataGridViewSalas.Rows.Add(item.Id,item.NameSala,item.NameJ1,item.NameJ2,item.Fk_Usuario,item.Estado, item.Fecha, item.Fk_Resultado);
                 }
             }
             else
@@ -56,7 +56,7 @@ namespace FormTruco
         private void MostrarCreador()
         {
         
-            if(Usuario.ObtenerUsuarioId_Sql((int)this.dataGridViewSalas.CurrentRow.Cells[4].Value,out Usuario usuario))
+            if(Usuario.ObtenerUsuarioId_Sql((int)this.dataGridViewSalas.CurrentRow.Cells["fk_usuario"].Value,out Usuario usuario))
             {
                 MessageBox.Show(usuario.ToString(), "Información creador",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
@@ -70,7 +70,7 @@ namespace FormTruco
         private void MostrarResultado()
         {
 
-            if (Resultado.ObtenerResultadoId_Sql((int)this.dataGridViewSalas.CurrentRow.Cells[6].Value, out Resultado resultado))
+            if (Resultado.ObtenerResultadoId_Sql((int)this.dataGridViewSalas.CurrentRow.Cells["fk_juego"].Value, out Resultado resultado))
             {
                 MessageBox.Show(resultado.ToString(), "Información resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

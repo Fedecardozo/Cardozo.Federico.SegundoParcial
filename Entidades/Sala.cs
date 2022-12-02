@@ -81,6 +81,7 @@ namespace Entidades
             {
                 case "Finalizada": estadoPartida = EestadoPartida.Finalizada; break;
                 case "En_juego": estadoPartida = EestadoPartida.En_juego; break;
+                case "Disponible": estadoPartida = EestadoPartida.Disponible; break;
                 default: estadoPartida = EestadoPartida.Cancelada; break;
             }
 
@@ -139,9 +140,9 @@ namespace Entidades
 
         }
 
-        public static bool ModificarSala(int id, int fk_juego)
+        public static bool ModificarSala(int id, int fk_juego,EestadoPartida estado)
         {
-            string update = $"update [Base_Truco].[dbo].[truco_salas] set fk_juego = {fk_juego} where id = {id}";
+            string update = $"update [Base_Truco].[dbo].[truco_salas] set fk_juego = {fk_juego}, estado = '{estado}' where id = {id}";
 
             return ControlSql.RealizarConsultaSql(update);
         }

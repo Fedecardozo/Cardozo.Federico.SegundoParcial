@@ -10,6 +10,7 @@ namespace Entidades
     {
         #region Atributos
 
+        private static int ultimoId;
         private int id;
         private string nameJ1;
         private string nameJ2;
@@ -20,6 +21,11 @@ namespace Entidades
         #endregion
 
         #region Constructores
+
+        static Resultado()
+        {
+            Resultado.ultimoId = Resultado.ObtenerUltimoId_Sql();
+        }
 
         public Resultado(string nameJ1, string nameJ2, int puntosJ1, int puntosJ2, eResultado resultado)
         {
@@ -34,6 +40,12 @@ namespace Entidades
         {
             this.id = id;         
         }
+
+        #endregion
+
+        #region Propiedades
+
+        public int Id { get { return this.id; } }
 
         #endregion
 
@@ -87,7 +99,27 @@ namespace Entidades
             string insert = $"insert into [Base_Truco].[dbo].[truco_resultado] (name_j1, name_j2, puntos_j1, puntos_j2, resultado) " +
                 $"values ('{resultado.nameJ1}','{resultado.nameJ2}',{resultado.puntosJ1},{resultado.puntosJ2},'{resultado.resultado}')";
 
-            return ControlSql.RealizarConsultaSql(insert);
+            bool retorno = ControlSql.RealizarConsultaSql(insert);
+
+            if(retorno)
+            {
+                Resultado.ultimoId++;
+                resultado.id = Resultado.ultimoId;
+            }
+
+            return retorno;
+        }
+
+        private static int ObtenerUltimoId_Sql()
+        {
+            string select = "select MAX(id) as id from [Base_Truco].[dbo].[truco_resultado]";
+
+            if (!ControlSql.RealizarConsultaSql(select, () => { return (int)ControlSql.Lector["id"]; }, out int id))
+            {
+                id = 0;
+            }
+
+            return id;
         }
 
         #endregion

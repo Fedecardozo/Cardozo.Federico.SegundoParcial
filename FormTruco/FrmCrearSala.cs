@@ -122,7 +122,7 @@ namespace FormTruco
                                 //Agrego resultado a la base datos           //La relaciono con la Sala (update)
             if (esDisponible && Resultado.AgregarResultado_Sql(resultado) && Sala.ModificarSala(sala.Id,resultado.Id, EestadoPartida.En_juego))
             {
-                FrmJuegoTruco truco = new FrmJuegoTruco(sala.NameJ1, sala.NameJ2);
+                FrmJuegoTruco truco = new FrmJuegoTruco(resultado);
                 this.trucos.Add(truco);
                 //this.trucos[indexFilaSeleccionada].Show();
                 this.dataGridViewSalas.Rows[indexFilaSeleccionada].Cells["estado"].Value = EestadoPartida.En_juego;
@@ -155,6 +155,7 @@ namespace FormTruco
                         this.trucos.Remove(item);
                         item.Dispose();
                         rta = true;
+                        break;
                     }
                 }
             }

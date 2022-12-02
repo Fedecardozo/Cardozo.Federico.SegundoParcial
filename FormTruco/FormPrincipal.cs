@@ -69,6 +69,7 @@ namespace FormTruco
 
         private void btnHistorial_Click(object sender, EventArgs e)
         {
+            this.frmHistorial.CargarHistorial();
             this.MostrarFormulario(this.frmHistorial);
         }
 

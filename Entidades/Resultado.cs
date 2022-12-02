@@ -47,6 +47,16 @@ namespace Entidades
 
         public int Id { get { return this.id; } }
 
+        public eResultado Estado { get { return this.resultado; } set { this.resultado = value; } }
+
+        public int PuntosJ1 { get { return this.puntosJ1; } set { this.puntosJ1 = value; } }
+
+        public int PuntosJ2 { get { return this.puntosJ2; } set { this.puntosJ2 = value; } }
+
+        public string NameJ1 { get { return this.nameJ1; } }
+
+        public string NameJ2 { get { return this.nameJ2; } }
+
         #endregion
 
         #region Metodos
@@ -129,6 +139,13 @@ namespace Entidades
             return ControlSql.RealizarConsultaSql(update);
         }
 
+        public static bool ModificarResultado(Resultado resultado)
+        {
+            string update = $"update [Base_Truco].[dbo].[truco_resultado] " +
+                $"set resultado = '{resultado.resultado}', puntos_j1 = {resultado.puntosJ1}, puntos_j2 = {resultado.puntosJ2}  where id = {resultado.id}";
+
+            return ControlSql.RealizarConsultaSql(update);
+        }
 
         #endregion
 

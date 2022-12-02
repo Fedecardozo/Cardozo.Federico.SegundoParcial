@@ -24,11 +24,11 @@ namespace FormTruco
         public FrmHistorial()
         {
             InitializeComponent();
+            this.salas = new List<Sala>();
         }
 
         private void FrmHistorial_Load(object sender, EventArgs e)
         {
-            this.salas = new List<Sala>();
             this.CargarHistorial();
         }
 
@@ -36,16 +36,26 @@ namespace FormTruco
 
         #region Metodos
 
-        private void CargarHistorial()
+        private bool ActualizarHistorial()
         {
-            if(Sala.ObtenerListaSala_Sql(this.salas))
+            this.salas.Clear();
+            this.dataGridViewSalas.Rows.Clear();
+            bool retorno = Sala.ObtenerListaSala_Sql(this.salas);
+
+            if (retorno)
             {
                 foreach (Sala item in this.salas)
                 {
-                    this.dataGridViewSalas.Rows.Add(item.Id,item.NameSala,item.NameJ1,item.NameJ2,item.Fk_Usuario,item.Estado, item.Fecha, item.Fk_Resultado);
+                    this.dataGridViewSalas.Rows.Add(item.Id, item.NameSala, item.NameJ1, item.NameJ2, item.Fk_Usuario, item.Estado, item.Fecha, item.Fk_Resultado);
                 }
             }
-            else
+
+            return retorno;
+        }
+
+        public void CargarHistorial()
+        {
+            if(!this.ActualizarHistorial())
             {
                 MessageBox.Show("Error al cargar el historial", "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }

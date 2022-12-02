@@ -20,8 +20,8 @@ namespace FormTruco
 
         private const int JUGADOR_1 = 1;
         private const int JUGADOR_2 = 2;
-        private static int generadorId;
         private int id;
+        private Resultado resultado;
         private string nameJ1;
         private string nameJ2;
         private int contadorManos;
@@ -58,22 +58,18 @@ namespace FormTruco
 
         #region Inicio Form
 
-        static FrmJuegoTruco()
-        {
-            FrmJuegoTruco.generadorId = 0;
-        }
-
-        public FrmJuegoTruco(string nameJ1, string nameJ2)
+        public FrmJuegoTruco(Resultado resultado)
         {
             InitializeComponent();
-            FrmJuegoTruco.generadorId++;
-            this.nameJ1 = nameJ1;
-            this.nameJ2 = nameJ2;
+            this.resultado = resultado;
+            this.nameJ1 = resultado.NameJ1;
+            this.nameJ2 = resultado.NameJ2;
         }
         
         private void FrmJuegoTruco_Load(object sender, EventArgs e)
         {
-            this.id = generadorId;
+            this.id = this.resultado.Id;
+            //this.id = generadorId;
             this.conteoTime = 0;
             this.minutos = 0;
             this.mazo = JuegoDeCartas.Mazo;
@@ -136,6 +132,8 @@ namespace FormTruco
         #region Propiedades
 
         public int Id { get { return this.id; } }
+
+        public Resultado Resultado { get { return this.Resultado; } }
 
         #endregion
 
@@ -399,6 +397,8 @@ namespace FormTruco
             this.CambiarLabelPuntoParcialesTruco(jugador);
             this.HabilitarImagenes(false);
             this.CambiarDataGrid();
+            this.CambiarResultado();
+            this.CargarALaBaseDatos();
             this.SumarManosJugadas();
         }
 
@@ -1476,8 +1476,10 @@ namespace FormTruco
             }
             else if(respuesta == DialogResult.No)
             {
-
                 //Aca deberia hacer otra cosa con la base de datos y demas cosas
+                this.CambiarEstadoResultadoTerminadoPartido();
+                this.CargarALaBaseDatos();
+
                 this.Dispose(true);
                 //this.Close();
             }
@@ -1491,6 +1493,57 @@ namespace FormTruco
         private void btnReinciarJuego_Click(object sender, EventArgs e)
         {
             this.PreguntarAntesDeFinalizarJuego();
+        }
+
+        #endregion
+
+        #region Resultado
+
+        private void CargarALaBaseDatos()
+        {
+            if(!Resultado.ModificarResultado(this.resultado))
+            {
+                MessageBox.Show("Error al cargar a la base de datos", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+        }
+
+        private void CambiarResultado()
+        {
+            this.resultado.PuntosJ1 += this.puntosJ1;
+            this.resultado.PuntosJ2 += this.puntosJ2;
+            this.CambiarEstadoResultado();
+        }
+
+        private void CambiarEstadoResultado()
+        {
+            if(this.resultado.PuntosJ1 > this.resultado.PuntosJ2)
+            {
+                this.resultado.Estado = eResultado.Ganando_J1;
+            }
+            else if(this.resultado.PuntosJ2 > this.resultado.PuntosJ1)
+            {
+                this.resultado.Estado = eResultado.Ganando_J2;
+            }
+            else if (this.resultado.PuntosJ1 == this.resultado.PuntosJ2)
+            {
+                this.resultado.Estado = eResultado.Empatando;
+            }
+        }
+
+        private void CambiarEstadoResultadoTerminadoPartido()
+        {
+            if (this.resultado.PuntosJ1 > this.resultado.PuntosJ2)
+            {
+                this.resultado.Estado = eResultado.Ganador_J1;
+            }
+            else if (this.resultado.PuntosJ2 > this.resultado.PuntosJ1)
+            {
+                this.resultado.Estado = eResultado.Ganador_J2;
+            }
+            else if (this.resultado.PuntosJ1 == this.resultado.PuntosJ2)
+            {
+                this.resultado.Estado = eResultado.Empate;
+            }
         }
 
         #endregion

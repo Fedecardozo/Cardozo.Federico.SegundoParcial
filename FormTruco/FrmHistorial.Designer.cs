@@ -203,6 +203,7 @@ namespace FormTruco
             this.fk_juego.MinimumWidth = 6;
             this.fk_juego.Name = "fk_juego";
             this.fk_juego.ReadOnly = true;
+            this.fk_juego.Visible = false;
             // 
             // FrmHistorial
             // 

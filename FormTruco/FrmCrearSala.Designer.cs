@@ -36,6 +36,11 @@ namespace FormTruco
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBoxMas = new System.Windows.Forms.PictureBox();
             this.dataGridViewSalas = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnJugar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnActualizar = new System.Windows.Forms.PictureBox();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,11 +48,6 @@ namespace FormTruco
             this.J2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_truco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_resultado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnJugar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnActualizar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnActualizar)).BeginInit();
@@ -123,66 +123,6 @@ namespace FormTruco
             this.dataGridViewSalas.Size = new System.Drawing.Size(467, 264);
             this.dataGridViewSalas.TabIndex = 2;
             // 
-            // id
-            // 
-            this.id.HeaderText = "Id";
-            this.id.MinimumWidth = 6;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.id.Visible = false;
-            // 
-            // nameSala
-            // 
-            this.nameSala.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameSala.HeaderText = "Nombre Sala";
-            this.nameSala.MinimumWidth = 6;
-            this.nameSala.Name = "nameSala";
-            this.nameSala.ReadOnly = true;
-            this.nameSala.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // estado
-            // 
-            this.estado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.estado.HeaderText = "Estado";
-            this.estado.MinimumWidth = 6;
-            this.estado.Name = "estado";
-            this.estado.ReadOnly = true;
-            this.estado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // J1
-            // 
-            this.J1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.J1.HeaderText = "Jugador 1";
-            this.J1.MinimumWidth = 6;
-            this.J1.Name = "J1";
-            this.J1.ReadOnly = true;
-            this.J1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // J2
-            // 
-            this.J2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.J2.HeaderText = "Jugador 2";
-            this.J2.MinimumWidth = 6;
-            this.J2.Name = "J2";
-            this.J2.ReadOnly = true;
-            this.J2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // id_truco
-            // 
-            this.id_truco.HeaderText = "Id Truco";
-            this.id_truco.MinimumWidth = 6;
-            this.id_truco.Name = "id_truco";
-            this.id_truco.ReadOnly = true;
-            this.id_truco.Visible = false;
-            // 
-            // id_resultado
-            // 
-            this.id_resultado.HeaderText = "Id resultado";
-            this.id_resultado.MinimumWidth = 6;
-            this.id_resultado.Name = "id_resultado";
-            this.id_resultado.ReadOnly = true;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -247,6 +187,67 @@ namespace FormTruco
             this.btnActualizar.TabStop = false;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
+            // id
+            // 
+            this.id.HeaderText = "Id";
+            this.id.MinimumWidth = 6;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.id.Visible = false;
+            // 
+            // nameSala
+            // 
+            this.nameSala.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameSala.HeaderText = "Nombre Sala";
+            this.nameSala.MinimumWidth = 6;
+            this.nameSala.Name = "nameSala";
+            this.nameSala.ReadOnly = true;
+            this.nameSala.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // estado
+            // 
+            this.estado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.estado.HeaderText = "Estado";
+            this.estado.MinimumWidth = 6;
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
+            this.estado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // J1
+            // 
+            this.J1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.J1.HeaderText = "Jugador 1";
+            this.J1.MinimumWidth = 6;
+            this.J1.Name = "J1";
+            this.J1.ReadOnly = true;
+            this.J1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // J2
+            // 
+            this.J2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.J2.HeaderText = "Jugador 2";
+            this.J2.MinimumWidth = 6;
+            this.J2.Name = "J2";
+            this.J2.ReadOnly = true;
+            this.J2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // id_truco
+            // 
+            this.id_truco.HeaderText = "Id Truco";
+            this.id_truco.MinimumWidth = 6;
+            this.id_truco.Name = "id_truco";
+            this.id_truco.ReadOnly = true;
+            this.id_truco.Visible = false;
+            // 
+            // id_resultado
+            // 
+            this.id_resultado.HeaderText = "Id resultado";
+            this.id_resultado.MinimumWidth = 6;
+            this.id_resultado.Name = "id_resultado";
+            this.id_resultado.ReadOnly = true;
+            this.id_resultado.Visible = false;
+            // 
             // FrmCrearSala
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -278,6 +279,7 @@ namespace FormTruco
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnJugar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.PictureBox btnActualizar;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameSala;
         private System.Windows.Forms.DataGridViewTextBoxColumn estado;
@@ -285,6 +287,5 @@ namespace FormTruco
         private System.Windows.Forms.DataGridViewTextBoxColumn J2;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_truco;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_resultado;
-        private System.Windows.Forms.PictureBox btnActualizar;
     }
 }

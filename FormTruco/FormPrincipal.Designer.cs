@@ -157,7 +157,7 @@ namespace FormTruco
             this.lblTime.AutoSize = true;
             this.lblTime.BackColor = System.Drawing.Color.Transparent;
             this.lblTime.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTime.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.lblTime.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblTime.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblTime.Location = new System.Drawing.Point(510, 4);
             this.lblTime.Name = "lblTime";
@@ -170,7 +170,7 @@ namespace FormTruco
             this.lblFecha.AutoSize = true;
             this.lblFecha.BackColor = System.Drawing.Color.Transparent;
             this.lblFecha.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblFecha.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.lblFecha.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblFecha.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblFecha.Location = new System.Drawing.Point(133, 4);
             this.lblFecha.Name = "lblFecha";

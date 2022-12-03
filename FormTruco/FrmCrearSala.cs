@@ -58,6 +58,13 @@ namespace FormTruco
             this.CancelarPartida();
         }
 
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            this.salas.Clear();
+            this.dataGridViewSalas.Rows.Clear();
+            this.CargarSalasEnJuego();
+        }
+
         #endregion
 
         #region Metodos
@@ -122,7 +129,7 @@ namespace FormTruco
                                 //Agrego resultado a la base datos           //La relaciono con la Sala (update)
             if (esDisponible && Resultado.AgregarResultado_Sql(resultado) && Sala.ModificarSala(sala.Id,resultado.Id, EestadoPartida.En_juego))
             {
-                FrmJuegoTruco truco = new FrmJuegoTruco(resultado);
+                FrmJuegoTruco truco = new FrmJuegoTruco(resultado,sala);
                 this.trucos.Add(truco);
                 //this.trucos[indexFilaSeleccionada].Show();
                 this.dataGridViewSalas.Rows[indexFilaSeleccionada].Cells["estado"].Value = EestadoPartida.En_juego;
@@ -194,8 +201,9 @@ namespace FormTruco
         }
 
 
+
         #endregion
 
-
+       
     }
 }

@@ -21,6 +21,7 @@ namespace FormTruco
         private const int JUGADOR_1 = 1;
         private const int JUGADOR_2 = 2;
         private int id;
+        private Sala sala;
         private Resultado resultado;
         private string nameJ1;
         private string nameJ2;
@@ -58,9 +59,10 @@ namespace FormTruco
 
         #region Inicio Form
 
-        public FrmJuegoTruco(Resultado resultado)
+        public FrmJuegoTruco(Resultado resultado,Sala sala)
         {
             InitializeComponent();
+            this.sala = sala;
             this.resultado = resultado;
             this.nameJ1 = resultado.NameJ1;
             this.nameJ2 = resultado.NameJ2;
@@ -1479,6 +1481,7 @@ namespace FormTruco
                 //Aca deberia hacer otra cosa con la base de datos y demas cosas
                 this.CambiarEstadoResultadoTerminadoPartido();
                 this.CargarALaBaseDatos();
+                this.CambiarEstadoSala();
 
                 this.Dispose(true);
                 //this.Close();
@@ -1488,7 +1491,7 @@ namespace FormTruco
 
         #endregion
 
-        #region Boton Reiniciar Juego
+        #region Boton Finalizar Juego
 
         private void btnReinciarJuego_Click(object sender, EventArgs e)
         {
@@ -1503,7 +1506,7 @@ namespace FormTruco
         {
             if(!Resultado.ModificarResultado(this.resultado))
             {
-                MessageBox.Show("Error al cargar a la base de datos", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar el resultado a la base de datos", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
 
@@ -1548,6 +1551,18 @@ namespace FormTruco
 
         #endregion
 
+        #region Sala
+
+        private void CambiarEstadoSala()
+        {
+            if(!Sala.ModificarSala(this.sala.Id,this.resultado.Id, EestadoPartida.Finalizada))
+            {
+                MessageBox.Show("Error al cambiar el estado de la sala en la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
         #region Cerrar Programa
 
         private void FrmJuegoTruco_FormClosing(object sender, FormClosingEventArgs e)
@@ -1555,6 +1570,12 @@ namespace FormTruco
             if (MessageBox.Show("¿Desea salir del juego?", "Exit!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 e.Cancel = true;
+            }
+            else
+            {
+                this.CambiarEstadoResultadoTerminadoPartido();
+                this.CargarALaBaseDatos();
+                this.CambiarEstadoSala();
             }
             
         }

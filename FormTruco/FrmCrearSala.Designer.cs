@@ -36,10 +36,6 @@ namespace FormTruco
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBoxMas = new System.Windows.Forms.PictureBox();
             this.dataGridViewSalas = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnJugar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,8 +43,14 @@ namespace FormTruco
             this.J2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_truco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_resultado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnJugar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnActualizar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnActualizar)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBoxMas
@@ -121,58 +123,6 @@ namespace FormTruco
             this.dataGridViewSalas.Size = new System.Drawing.Size(467, 264);
             this.dataGridViewSalas.TabIndex = 2;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 22.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(24, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(192, 50);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Crear sala";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 22.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(359, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(248, 50);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Lista de salas";
-            // 
-            // btnJugar
-            // 
-            this.btnJugar.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnJugar.FlatAppearance.BorderSize = 0;
-            this.btnJugar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnJugar.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnJugar.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnJugar.Location = new System.Drawing.Point(24, 189);
-            this.btnJugar.Name = "btnJugar";
-            this.btnJugar.Size = new System.Drawing.Size(192, 59);
-            this.btnJugar.TabIndex = 7;
-            this.btnJugar.Text = "Jugar";
-            this.btnJugar.UseVisualStyleBackColor = false;
-            this.btnJugar.Click += new System.EventHandler(this.btnJugar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnCancelar.FlatAppearance.BorderSize = 0;
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnCancelar.Location = new System.Drawing.Point(24, 280);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(192, 59);
-            this.btnCancelar.TabIndex = 8;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // id
             // 
             this.id.HeaderText = "Id";
@@ -232,13 +182,77 @@ namespace FormTruco
             this.id_resultado.MinimumWidth = 6;
             this.id_resultado.Name = "id_resultado";
             this.id_resultado.ReadOnly = true;
-            this.id_resultado.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 22.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.Location = new System.Drawing.Point(24, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(192, 50);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Crear sala";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 22.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label2.Location = new System.Drawing.Point(359, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(248, 50);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Lista de salas";
+            // 
+            // btnJugar
+            // 
+            this.btnJugar.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnJugar.FlatAppearance.BorderSize = 0;
+            this.btnJugar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnJugar.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnJugar.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnJugar.Location = new System.Drawing.Point(24, 189);
+            this.btnJugar.Name = "btnJugar";
+            this.btnJugar.Size = new System.Drawing.Size(192, 59);
+            this.btnJugar.TabIndex = 7;
+            this.btnJugar.Text = "Jugar";
+            this.btnJugar.UseVisualStyleBackColor = false;
+            this.btnJugar.Click += new System.EventHandler(this.btnJugar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnCancelar.Location = new System.Drawing.Point(24, 280);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(192, 59);
+            this.btnCancelar.TabIndex = 8;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnActualizar
+            // 
+            this.btnActualizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnActualizar.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizar.Image")));
+            this.btnActualizar.Location = new System.Drawing.Point(656, 42);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(35, 28);
+            this.btnActualizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnActualizar.TabIndex = 9;
+            this.btnActualizar.TabStop = false;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // FrmCrearSala
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 364);
+            this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnJugar);
             this.Controls.Add(this.label2);
@@ -251,6 +265,7 @@ namespace FormTruco
             this.Load += new System.EventHandler(this.FrmCrearSala_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnActualizar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,5 +285,6 @@ namespace FormTruco
         private System.Windows.Forms.DataGridViewTextBoxColumn J2;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_truco;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_resultado;
+        private System.Windows.Forms.PictureBox btnActualizar;
     }
 }

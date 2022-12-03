@@ -34,6 +34,8 @@ namespace FormTruco
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewSalas = new System.Windows.Forms.DataGridView();
+            this.btnPartida = new System.Windows.Forms.Button();
+            this.btnCreador = new System.Windows.Forms.Button();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.J1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,8 +44,6 @@ namespace FormTruco
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fk_juego = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnPartida = new System.Windows.Forms.Button();
-            this.btnCreador = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,6 +106,36 @@ namespace FormTruco
             this.dataGridViewSalas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewSalas.Size = new System.Drawing.Size(732, 292);
             this.dataGridViewSalas.TabIndex = 3;
+            // 
+            // btnPartida
+            // 
+            this.btnPartida.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnPartida.FlatAppearance.BorderSize = 0;
+            this.btnPartida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPartida.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnPartida.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnPartida.Location = new System.Drawing.Point(167, 308);
+            this.btnPartida.Name = "btnPartida";
+            this.btnPartida.Size = new System.Drawing.Size(159, 44);
+            this.btnPartida.TabIndex = 8;
+            this.btnPartida.Text = "Ver partida";
+            this.btnPartida.UseVisualStyleBackColor = false;
+            this.btnPartida.Click += new System.EventHandler(this.btnPartida_Click);
+            // 
+            // btnCreador
+            // 
+            this.btnCreador.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnCreador.FlatAppearance.BorderSize = 0;
+            this.btnCreador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreador.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCreador.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnCreador.Location = new System.Drawing.Point(398, 308);
+            this.btnCreador.Name = "btnCreador";
+            this.btnCreador.Size = new System.Drawing.Size(159, 44);
+            this.btnCreador.TabIndex = 9;
+            this.btnCreador.Text = "Ver creador";
+            this.btnCreador.UseVisualStyleBackColor = false;
+            this.btnCreador.Click += new System.EventHandler(this.btnCreador_Click);
             // 
             // id
             // 
@@ -173,37 +203,6 @@ namespace FormTruco
             this.fk_juego.MinimumWidth = 6;
             this.fk_juego.Name = "fk_juego";
             this.fk_juego.ReadOnly = true;
-            this.fk_juego.Visible = false;
-            // 
-            // btnPartida
-            // 
-            this.btnPartida.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnPartida.FlatAppearance.BorderSize = 0;
-            this.btnPartida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPartida.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnPartida.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnPartida.Location = new System.Drawing.Point(167, 308);
-            this.btnPartida.Name = "btnPartida";
-            this.btnPartida.Size = new System.Drawing.Size(159, 44);
-            this.btnPartida.TabIndex = 8;
-            this.btnPartida.Text = "Ver partida";
-            this.btnPartida.UseVisualStyleBackColor = false;
-            this.btnPartida.Click += new System.EventHandler(this.btnPartida_Click);
-            // 
-            // btnCreador
-            // 
-            this.btnCreador.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnCreador.FlatAppearance.BorderSize = 0;
-            this.btnCreador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreador.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnCreador.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnCreador.Location = new System.Drawing.Point(398, 308);
-            this.btnCreador.Name = "btnCreador";
-            this.btnCreador.Size = new System.Drawing.Size(159, 44);
-            this.btnCreador.TabIndex = 9;
-            this.btnCreador.Text = "Ver creador";
-            this.btnCreador.UseVisualStyleBackColor = false;
-            this.btnCreador.Click += new System.EventHandler(this.btnCreador_Click);
             // 
             // FrmHistorial
             // 
@@ -225,6 +224,8 @@ namespace FormTruco
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridViewSalas;
+        private System.Windows.Forms.Button btnPartida;
+        private System.Windows.Forms.Button btnCreador;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameSala;
         private System.Windows.Forms.DataGridViewTextBoxColumn J1;
@@ -233,7 +234,5 @@ namespace FormTruco
         private System.Windows.Forms.DataGridViewTextBoxColumn estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn fk_juego;
-        private System.Windows.Forms.Button btnPartida;
-        private System.Windows.Forms.Button btnCreador;
     }
 }

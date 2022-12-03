@@ -126,8 +126,15 @@ namespace Entidades
             int fk_Usuario = (int)ControlSql.Lector["fk_usuario"];
             EestadoPartida estado = Sala.ObtenerEstado(ControlSql.Lector[5].ToString());
             DateTime fecha = (DateTime)ControlSql.Lector["fecha"];
-            int fk_resultado = (int)ControlSql.Lector["fk_juego"];
+            int fk_resultado = 0;
+            string readResultado = ControlSql.Lector["fk_juego"].ToString();
+            
+            if (readResultado != "")
+            {
+                fk_resultado = int.Parse(readResultado);
+            }
 
+                //Console.WriteLine("Resultado: " + fk_resultado);
             salas.Add(new Sala(id,nameJ1, nameJ2, nameSala, fk_Usuario, estado, fk_resultado, fecha));
         }
 
@@ -143,6 +150,11 @@ namespace Entidades
         public static bool ModificarSala(int id, int fk_juego,EestadoPartida estado)
         {
             string update = $"update [Base_Truco].[dbo].[truco_salas] set fk_juego = {fk_juego}, estado = '{estado}' where id = {id}";
+            
+            if(fk_juego <= 0)
+            {
+                update = $"update [Base_Truco].[dbo].[truco_salas] set fk_juego = null, estado = '{estado}' where id = {id}";
+            }
 
             return ControlSql.RealizarConsultaSql(update);
         }

@@ -73,6 +73,8 @@ namespace Test
                 Console.WriteLine("Un exito!");
             }
 
+            Sala.ObtenerListaSala_Sql(new List<Sala>());
+
             #region Sql
 
             #region Select

@@ -79,14 +79,13 @@ namespace FormTruco
 
         private void MostrarResultado()
         {
-
             if (Resultado.ObtenerResultadoId_Sql((int)this.dataGridViewSalas.CurrentRow.Cells["fk_juego"].Value, out Resultado resultado))
             {
                 MessageBox.Show(resultado.ToString(), "Información resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Error al obtener información", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No hay información para mostrar", "Información de la partida", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
 

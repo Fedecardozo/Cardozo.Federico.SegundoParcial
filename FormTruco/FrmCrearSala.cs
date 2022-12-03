@@ -174,13 +174,14 @@ namespace FormTruco
 
             if (rta)
             {
-                if(!Resultado.ModificarResultado((int)seleccion.Cells["id_resultado"].Value, eResultado.Cancelada))
-                {
-                    MessageBox.Show("No se pudo cancelar el resultado", "Cancelar resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
                 seleccion.Cells["estado"].Value = EestadoPartida.Cancelada;
                 MessageBox.Show("Se cancelo con exito", "Cancelar sala", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+                if(!Resultado.ModificarResultado((int)seleccion.Cells["id_resultado"].Value, eResultado.Cancelada))
+                {
+                    MessageBox.Show("No hay resultado a cancelar", "Cancelar resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
             else if(!rta && (estado == EestadoPartida.Cancelada || estado == EestadoPartida.Finalizada))
             {

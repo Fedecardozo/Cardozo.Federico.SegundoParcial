@@ -82,10 +82,10 @@ namespace FormTruco
 
         private bool ObtenerSalas()
         {
-            List<Sala> salaAux = new List<Sala>();
+            List<Sala> salaAux;
             bool retorno = false;
 
-            if (Sala.ObtenerListaSala_Sql(salaAux))
+            if (Sala.ObtenerListaSala_Sql(out salaAux))
             {
                 foreach (Sala item in salaAux)
                 {
@@ -104,7 +104,7 @@ namespace FormTruco
         {
             Sala sala1 = new Sala(j1, j2, sala, this.usuario.Id, EestadoPartida.Disponible);
             //Agregar a la base de datos y de la base de datos al dataGrid
-            if (Sala.AgregarSala_Sql(sala1))
+            if (sala1.Insert_Sql())
             {
                 //MessageBox.Show($"Id generado: {sala1.Id}");
                 this.dataGridViewSalas.Rows.Add(sala1.Id, sala1.NameSala, sala1.Estado, sala1.NameJ1, sala1.NameJ2,0,0);
@@ -127,7 +127,7 @@ namespace FormTruco
             //MessageBox.Show($"{esDisponible}");
 
                                 //Agrego resultado a la base datos           //La relaciono con la Sala (update)
-            if (esDisponible && Resultado.AgregarResultado_Sql(resultado) && Sala.ModificarSala(sala.Id,resultado.Id, EestadoPartida.En_juego))
+            if (esDisponible && resultado.Insert_Sql() && sala.Update_Sql())
             {
                 FrmJuegoTruco truco = new FrmJuegoTruco(resultado,sala);
                 this.trucos.Add(truco);
@@ -168,7 +168,7 @@ namespace FormTruco
             }
             else if(id_obtenido == 0 && (estado == EestadoPartida.Disponible || estado == EestadoPartida.En_juego))
             {                
-                rta = Sala.ModificarSala((int)seleccion.Cells["id"].Value, (int)seleccion.Cells["id_resultado"].Value, EestadoPartida.Cancelada);
+                //rta = Sala.ModificarSala((int)seleccion.Cells["id"].Value, (int)seleccion.Cells["id_resultado"].Value, EestadoPartida.Cancelada);
             }
 
             this.MostrarMsj(rta,seleccion);
@@ -184,10 +184,10 @@ namespace FormTruco
                 seleccion.Cells["estado"].Value = EestadoPartida.Cancelada;
                 MessageBox.Show("Se cancelo con exito", "Cancelar sala", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
-                if(!Resultado.ModificarResultado((int)seleccion.Cells["id_resultado"].Value, eResultado.Cancelada))
-                {
-                    MessageBox.Show("No hay resultado a cancelar", "Cancelar resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                //if(!Resultado.ModificarResultado((int)seleccion.Cells["id_resultado"].Value, eResultado.Cancelada))
+                //{
+                //    MessageBox.Show("No hay resultado a cancelar", "Cancelar resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
 
             }
             else if(!rta && (estado == EestadoPartida.Cancelada || estado == EestadoPartida.Finalizada))

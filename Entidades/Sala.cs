@@ -10,6 +10,7 @@ namespace Entidades
     {
         #region Atributos
 
+        private const string nameTableSql = "[Base_Truco].[dbo].[truco_salas]";
         private static int ultimoId;
         private int id;
         private string nameJ1;
@@ -90,38 +91,7 @@ namespace Entidades
 
         #endregion
 
-        #region Metodos Sql
-
-        #region Insert
-
-        /// <summary>
-        /// Inserta una sala a la base de datos y guarda el id en la sala pasada por parametro
-        /// </summary>
-        /// <param name="sala"></param>
-        /// <returns></returns>
-        public static bool AgregarSala_Sql(Sala sala)
-        {
-
-            string comando = $"insert into [Base_Truco].[dbo].[truco_salas] " +
-                $"(name_sala, name_j1, name_j2, fk_usuario, fecha, estado)" +
-                $"values('{sala.nameSala}', '{sala.nameJ1}', '{sala.nameJ2}', {sala.fk_Usuario}, GETDATE(), '{sala.estado}')";
-
-            bool retorno = ControlSql.RealizarAccionSql(comando);
-
-            if (retorno)
-            {
-                //Sumo uno mas al ultimoId
-                Sala.ultimoId++;
-                //Guardo en la sala el id
-                sala.id = Sala.ultimoId;
-            }
-
-            return retorno;
-        }
-
-        #endregion
-
-        #region Select
+        #region Metodos Sql Select
 
         private static List<Sala> Select_Sql()
         {
@@ -153,7 +123,7 @@ namespace Entidades
         public static bool ObtenerListaSala_Sql(out List<Sala> salas)
         {
             
-            string select = "select id,name_sala,name_j1,name_j2,fk_usuario,estado,fecha,fk_juego from [Base_Truco].[dbo].[truco_salas]";
+            string select = $"select id,name_sala,name_j1,name_j2,fk_usuario,estado,fecha,fk_juego from {nameTableSql}";
 
             return ControlSql.RealizarConsultaSelectSql<List<Sala>>(select,Sala.Select_Sql, out salas);
 
@@ -161,7 +131,7 @@ namespace Entidades
 
         private static int ObtenerUltimoId_Sql()
         {
-            string select = "select MAX(id) as id from [Base_Truco].[dbo].[truco_salas]";
+            string select = $"select MAX(id) as id from {nameTableSql}";
 
             if(!ControlSql.RealizarConsultaSelectSql(select,() => { return (int)ControlSql.Lector["id"]; }, out int id))
             {
@@ -173,25 +143,6 @@ namespace Entidades
 
         #endregion
 
-        #region Update
-
-        public static bool ModificarSala(int id, int fk_juego,EestadoPartida estado)
-        {
-            string update = $"update [Base_Truco].[dbo].[truco_salas] set fk_juego = {fk_juego}, estado = '{estado}' where id = {id}";
-            
-            if(fk_juego <= 0)
-            {
-                update = $"update [Base_Truco].[dbo].[truco_salas] set fk_juego = null, estado = '{estado}' where id = {id}";
-            }
-
-            return ControlSql.RealizarAccionSql(update);
-        }
-
-
-        #endregion
-
-        #endregion
-
         #region Interfaz - Update - Delete - Insert
 
         /// <summary>
@@ -200,11 +151,11 @@ namespace Entidades
         /// <returns>true se modifico con exito, false sino</returns>
         public bool Update_Sql()
         {
-            string update = $"update [Base_Truco].[dbo].[truco_salas] set fk_juego = {this.fk_resultado}, estado = '{this.estado}' where id = {this.id}";
+            string update = $"update {nameTableSql} set fk_juego = {this.fk_resultado}, estado = '{this.estado}' where id = {this.id}";
 
             if (this.fk_resultado <= 0)
             {
-                update = $"update [Base_Truco].[dbo].[truco_salas] set fk_juego = null, estado = '{this.estado}' where id = {this.id}";
+                update = $"update {nameTableSql} set fk_juego = null, estado = '{this.estado}' where id = {this.id}";
             }
 
             return ControlSql.RealizarAccionSql(update);
@@ -216,7 +167,7 @@ namespace Entidades
         /// <returns>true si se pudo agregar, false sino</returns>
         public bool Insert_Sql()
         {
-            string comando = $"insert into [Base_Truco].[dbo].[truco_salas] " +
+            string comando = $"insert into {nameTableSql} " +
                 $"(name_sala, name_j1, name_j2, fk_usuario, fecha, estado)" +
                 $"values('{this.nameSala}', '{this.nameJ1}', '{this.nameJ2}', {this.fk_Usuario}, GETDATE(), '{this.estado}')";
 
@@ -239,14 +190,13 @@ namespace Entidades
         /// <returns>true si se pudo eliminar, false sino</returns>
         public bool Delete_Sql()
         {
-            string comando = $"delete from [Base_Truco].[dbo].[truco_salas] where id = {this.id}";
+            string comando = $"delete from {nameTableSql} where id = {this.id}";
 
             return ControlSql.RealizarAccionSql(comando);
         }
 
 
         #endregion
-
 
         #region Polimorfismo
 

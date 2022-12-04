@@ -40,7 +40,7 @@ namespace FormTruco
         {
             this.salas.Clear();
             this.dataGridViewSalas.Rows.Clear();
-            bool retorno = Sala.ObtenerListaSala_Sql(this.salas);
+            bool retorno = Sala.ObtenerListaSala_Sql(out this.salas);
 
             if (retorno)
             {

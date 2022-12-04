@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Resultado
+    public class Resultado : ISql
     {
         #region Atributos
 
+        private const string nameTableSql = "[Base_Truco].[dbo].[truco_resultado]";
         private static int ultimoId;
         private int id;
         private string nameJ1;
@@ -81,9 +82,7 @@ namespace Entidades
 
         #endregion
 
-        #region Metodos Sql
-
-        #region Select
+        #region Metodos Sql Select
 
         private static Resultado Select_Sql()
         {
@@ -112,14 +111,14 @@ namespace Entidades
         public static bool ObtenerResultadoId_Sql(int id, out Resultado resultado)
         {
 
-            string select = $"select id, name_j1, name_j2, puntos_j1, puntos_j2, resultado from [Base_Truco].[dbo].[truco_resultado] where id = {id}";
+            string select = $"select id, name_j1, name_j2, puntos_j1, puntos_j2, resultado from {nameTableSql} where id = {id}";
 
             return ControlSql.RealizarConsultaSelectSql<Resultado>(select, Resultado.Select_Sql, out resultado);
         }
 
         private static int ObtenerUltimoId_Sql()
         {
-            string select = "select MAX(id) as id from [Base_Truco].[dbo].[truco_resultado]";
+            string select = "select MAX(id) as id from {nameTableSql}";
 
             if (!ControlSql.RealizarConsultaSelectSql(select, () => { return (int)ControlSql.Lector["id"]; }, out int id))
             {
@@ -128,47 +127,54 @@ namespace Entidades
 
             return id;
         }
-        
+
         #endregion
 
-        #region Insert
+        #region Interfaz Update - Delete - Insert
 
-        public static bool AgregarResultado_Sql(Resultado resultado)
+        /// <summary>
+        /// Por el Id del Resultado, Modifica el estado de la partida. Como esta actualmente en la instancia de Resultado
+        /// </summary>
+        /// <returns>true se modifico con exito, false sino</returns>
+        public bool Update_Sql()
         {
-            string insert = $"insert into [Base_Truco].[dbo].[truco_resultado] (name_j1, name_j2, puntos_j1, puntos_j2, resultado) " +
-                $"values ('{resultado.nameJ1}','{resultado.nameJ2}',{resultado.puntosJ1},{resultado.puntosJ2},'{resultado.resultado}')";
+            string update = $"update {nameTableSql} " +
+                $"set resultado = '{this.resultado}', puntos_j1 = {this.puntosJ1}, puntos_j2 = {this.puntosJ2}  where id = {this.id}";
+
+            return ControlSql.RealizarAccionSql(update);
+        }
+
+        /// <summary>
+        /// Agrega un Resultado a la base de datos
+        /// </summary>
+        /// <returns>true si se pudo agregar, false sino</returns>
+        public bool Insert_Sql()
+        {
+            string insert = $"insert into {nameTableSql} (name_j1, name_j2, puntos_j1, puntos_j2, resultado) " +
+                $"values ('{this.nameJ1}','{this.nameJ2}',{this.puntosJ1},{this.puntosJ2},'{this.resultado}')";
 
             bool retorno = ControlSql.RealizarAccionSql(insert);
 
-            if(retorno)
+            if (retorno)
             {
                 Resultado.ultimoId++;
-                resultado.id = Resultado.ultimoId;
+                this.id = Resultado.ultimoId;
             }
 
             return retorno;
         }
 
-        #endregion
-
-        #region Update
-
-        public static bool ModificarResultado(int id, eResultado estado)
+        /// <summary>
+        /// Elimina un Resultado de la base de datos por id
+        /// </summary>
+        /// <returns>true si se pudo eliminar, false sino</returns>
+        public bool Delete_Sql()
         {
-            string update = $"update [Base_Truco].[dbo].[truco_resultado] set resultado = '{estado}'  where id = {id}";
+            string comando = $"delete from {nameTableSql} where id = {this.id}";
 
-            return ControlSql.RealizarAccionSql(update);
+            return ControlSql.RealizarAccionSql(comando);
         }
 
-        public static bool ModificarResultado(Resultado resultado)
-        {
-            string update = $"update [Base_Truco].[dbo].[truco_resultado] " +
-                $"set resultado = '{resultado.resultado}', puntos_j1 = {resultado.puntosJ1}, puntos_j2 = {resultado.puntosJ2}  where id = {resultado.id}";
-
-            return ControlSql.RealizarAccionSql(update);
-        }
-
-        #endregion
 
         #endregion
 

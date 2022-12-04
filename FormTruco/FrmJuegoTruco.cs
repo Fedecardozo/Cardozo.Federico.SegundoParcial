@@ -1504,7 +1504,7 @@ namespace FormTruco
 
         private void CargarALaBaseDatos()
         {
-            if(!Resultado.ModificarResultado(this.resultado))
+            if(!this.resultado.Update_Sql())
             {
                 MessageBox.Show("Error al cargar el resultado a la base de datos", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
@@ -1555,10 +1555,10 @@ namespace FormTruco
 
         private void CambiarEstadoSala()
         {
-            if(!Sala.ModificarSala(this.sala.Id,this.resultado.Id, EestadoPartida.Finalizada))
-            {
-                MessageBox.Show("Error al cambiar el estado de la sala en la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //if(!Sala.ModificarSala(this.sala.Id,this.resultado.Id, EestadoPartida.Finalizada))
+            //{
+            //    MessageBox.Show("Error al cambiar el estado de la sala en la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         #endregion

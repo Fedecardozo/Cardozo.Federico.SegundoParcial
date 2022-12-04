@@ -140,6 +140,8 @@ namespace Entidades
 
                 obj = select.Invoke();
 
+                rta = obj is not null; 
+
                 lector.Close();
 
             }

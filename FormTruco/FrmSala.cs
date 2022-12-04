@@ -36,7 +36,15 @@ namespace FormTruco
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if(this.comboBoxJ1.SelectedIndex >=0 && this.comboBoxJ2.SelectedIndex >=0 && !string.IsNullOrWhiteSpace(this.textBoxSala.Text))
+            {
+                MessageBox.Show("Se creo con exito la sala!","Aviso",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Falta completar campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
@@ -61,16 +69,21 @@ namespace FormTruco
 
         private void comboBoxJ1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this.usuarioBorrado = this.comboBoxJ1.SelectedItem.ToString();
-            this.comboBoxJ2.Items.Remove(this.comboBoxJ2.Items[this.comboBoxJ1.SelectedIndex]);
+            if(this.comboBoxJ1.SelectedIndex == this.comboBoxJ2.SelectedIndex)
+            {
+                this.comboBoxJ1.Items.RemoveAt(this.comboBoxJ1.SelectedIndex);   
+            }
         }
 
         private void comboBoxJ2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this.usuarioBorrado = this.comboBoxJ2.SelectedItem.ToString();
-            this.comboBoxJ1.Items.Remove(this.comboBoxJ1.Items[this.comboBoxJ2.SelectedIndex]);
+            if (this.comboBoxJ1.SelectedIndex == this.comboBoxJ2.SelectedIndex)
+            {
+                this.comboBoxJ2.Items.RemoveAt(this.comboBoxJ2.SelectedIndex);
+            }
         }
 
         #endregion
+
     }
 }

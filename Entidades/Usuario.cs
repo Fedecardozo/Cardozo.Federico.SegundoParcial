@@ -63,19 +63,17 @@ namespace Entidades
         private static List<Usuario> SelectListaUsuarios_Sql()
         {
             List<Usuario> usuarios = new List<Usuario>();
-
-            while (true)
+            Usuario user;
+            do
             {
-                Usuario user = Usuario.Select_Sql();
-                if(user is not null)
+                user = Usuario.Select_Sql();
+
+                if (user is not null)
                 {
                     usuarios.Add(user);
                 }
-                else if(user is null)
-                {
-                    break;
-                }
-            }
+
+            } while (user is not null);
 
             return usuarios;
         }
@@ -98,8 +96,7 @@ namespace Entidades
             }
             else
             {
-                //usuario = null;
-                throw new Exception();
+                usuario = null;
             }
 
             return usuario;

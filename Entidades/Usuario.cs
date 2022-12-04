@@ -21,6 +21,14 @@ namespace Entidades
 
         #region Constructor
 
+        public Usuario(string correo, string nombre, string apellido,string password)
+        {
+            this.correo = correo;
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.password = password;
+        }
+
         public Usuario(string correo, string nombre, string apellido, int id)
         {
             this.correo = correo;
@@ -42,11 +50,11 @@ namespace Entidades
         public string Nombre { get { return this.nombre; } set { this.nombre = value; } }
         public string Apellido { get { return this.apellido; } set { this.apellido = value; } }
         public int Id { get { return this.id; } }
-        public string Passord {set { this.correo = value; } }
+        public string Password {set { this.correo = value; } }
 
         #endregion
 
-        #region Consultas SQL Select
+        #region Consultas Select SQL
 
         /// <summary>
         /// Obtener de la base de datos un Usuario

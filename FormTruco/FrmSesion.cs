@@ -23,11 +23,19 @@ namespace FormTruco
 
         #endregion
 
-        #region Boton
+        #region Botones
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             this.InicioSesion();
+        }
+
+        private void BtnRegistrarse_Click(object sender, EventArgs e)
+        {
+            FrmRegistrarse registrarse = new FrmRegistrarse();
+
+            registrarse.ShowDialog();
+
         }
 
         #endregion
@@ -96,5 +104,6 @@ namespace FormTruco
         }
 
         #endregion
+
     }
 }

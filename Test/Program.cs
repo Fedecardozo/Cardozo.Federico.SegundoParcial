@@ -13,7 +13,23 @@ namespace Test
     {
         static void Main(string[] args)
         {
-          
+            int cont = 0;
+            Console.WriteLine("Lista usuarios: " + Usuario.ObtenerListaUsuarios(out List<Usuario> usuarios));
+
+            foreach (Usuario item in usuarios)
+            {
+                if(item is not null)
+                {
+                    Console.WriteLine(item.ToString());
+                }
+                else if(item is null)
+                {
+                    cont++;
+                }
+
+            }
+
+            Console.WriteLine("Fallo: " + cont);
 
         }
 

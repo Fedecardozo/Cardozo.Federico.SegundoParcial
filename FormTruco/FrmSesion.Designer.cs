@@ -31,13 +31,13 @@ namespace FormTruco
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSesion));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnRegistrarse = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.panelContenedorImage = new System.Windows.Forms.Panel();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
-            this.BtnRegistrarse = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelContenedorImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
@@ -57,6 +57,20 @@ namespace FormTruco
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 354);
             this.panel1.TabIndex = 0;
+            // 
+            // BtnRegistrarse
+            // 
+            this.BtnRegistrarse.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.BtnRegistrarse.FlatAppearance.BorderSize = 0;
+            this.BtnRegistrarse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRegistrarse.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BtnRegistrarse.Location = new System.Drawing.Point(320, 249);
+            this.BtnRegistrarse.Name = "BtnRegistrarse";
+            this.BtnRegistrarse.Size = new System.Drawing.Size(177, 50);
+            this.BtnRegistrarse.TabIndex = 14;
+            this.BtnRegistrarse.Text = "REGISTRARSE";
+            this.BtnRegistrarse.UseVisualStyleBackColor = false;
+            this.BtnRegistrarse.Click += new System.EventHandler(this.BtnRegistrarse_Click);
             // 
             // btnLogin
             // 
@@ -84,7 +98,6 @@ namespace FormTruco
             this.textBoxPassword.PlaceholderText = "CONTRASEÑA";
             this.textBoxPassword.Size = new System.Drawing.Size(398, 33);
             this.textBoxPassword.TabIndex = 12;
-            this.textBoxPassword.UseSystemPasswordChar = true;
             this.textBoxPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPassword_KeyPress);
             // 
             // textBoxUser
@@ -131,20 +144,6 @@ namespace FormTruco
             this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxIcon.TabIndex = 0;
             this.pictureBoxIcon.TabStop = false;
-            // 
-            // BtnRegistrarse
-            // 
-            this.BtnRegistrarse.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.BtnRegistrarse.FlatAppearance.BorderSize = 0;
-            this.BtnRegistrarse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnRegistrarse.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BtnRegistrarse.Location = new System.Drawing.Point(320, 249);
-            this.BtnRegistrarse.Name = "BtnRegistrarse";
-            this.BtnRegistrarse.Size = new System.Drawing.Size(177, 50);
-            this.BtnRegistrarse.TabIndex = 14;
-            this.BtnRegistrarse.Text = "REGISTRARSE";
-            this.BtnRegistrarse.UseVisualStyleBackColor = false;
-            this.BtnRegistrarse.Click += new System.EventHandler(this.BtnRegistrarse_Click);
             // 
             // FrmSesion
             // 

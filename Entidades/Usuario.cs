@@ -57,6 +57,30 @@ namespace Entidades
         #region Consultas Select SQL
 
         /// <summary>
+        /// Obtener Lista de usuarios de la base de datos
+        /// </summary>
+        /// <returns>Una lista de usuarios</returns>
+        private static List<Usuario> SelectListaUsuarios_Sql()
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+
+            while (true)
+            {
+                Usuario user = Usuario.Select_Sql();
+                if(user is not null)
+                {
+                    usuarios.Add(user);
+                }
+                else if(user is null)
+                {
+                    break;
+                }
+            }
+
+            return usuarios;
+        }
+
+        /// <summary>
         /// Obtener de la base de datos un Usuario
         /// </summary>
         /// <returns>Usuario</returns>
@@ -74,7 +98,8 @@ namespace Entidades
             }
             else
             {
-                usuario = null;
+                //usuario = null;
+                throw new Exception();
             }
 
             return usuario;
@@ -106,6 +131,17 @@ namespace Entidades
             return ControlSql.RealizarConsultaSelectSql(select, Usuario.Select_Sql, out user);
         }
 
+        /// <summary>
+       /// Obtiene una lista de usuarios 
+       /// </summary>
+       /// <param name="users"></param>
+       /// <returns>true si obtuvo la lista, false sino</returns>
+        public static bool ObtenerListaUsuarios(out List<Usuario> users)
+        {
+            string select = $"select id, correo, nombre, apellido from {nameTableSql} ";
+
+            return ControlSql.RealizarConsultaSelectSql<List<Usuario>>(select, Usuario.SelectListaUsuarios_Sql, out users);
+        }
 
         #endregion
 

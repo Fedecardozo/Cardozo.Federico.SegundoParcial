@@ -136,6 +136,7 @@ namespace FormTruco
             this.textBoxPasswd.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.textBoxPasswd.Location = new System.Drawing.Point(46, 277);
             this.textBoxPasswd.Name = "textBoxPasswd";
+            this.textBoxPasswd.PasswordChar = '*';
             this.textBoxPasswd.PlaceholderText = "Contraseña";
             this.textBoxPasswd.Size = new System.Drawing.Size(398, 33);
             this.textBoxPasswd.TabIndex = 5;
@@ -148,6 +149,7 @@ namespace FormTruco
             this.textBoxRepetirPasswd.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.textBoxRepetirPasswd.Location = new System.Drawing.Point(46, 328);
             this.textBoxRepetirPasswd.Name = "textBoxRepetirPasswd";
+            this.textBoxRepetirPasswd.PasswordChar = '*';
             this.textBoxRepetirPasswd.PlaceholderText = "Repetir contraseña";
             this.textBoxRepetirPasswd.Size = new System.Drawing.Size(398, 33);
             this.textBoxRepetirPasswd.TabIndex = 6;
@@ -157,7 +159,7 @@ namespace FormTruco
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(494, 450);
+            this.ClientSize = new System.Drawing.Size(491, 469);
             this.Controls.Add(this.textBoxRepetirPasswd);
             this.Controls.Add(this.textBoxPasswd);
             this.Controls.Add(this.textBoxCorreo);

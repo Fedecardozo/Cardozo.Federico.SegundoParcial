@@ -36,9 +36,9 @@ namespace Entidades
             this.resultado = resultado;
         }
 
-        public Resultado(int id, string nameJ1, string nameJ2, int puntosJ1, int puntosJ2, eResultado resultado) : this(nameJ1,nameJ2,puntosJ1,puntosJ2,resultado)
+        public Resultado(int id, string nameJ1, string nameJ2, int puntosJ1, int puntosJ2, eResultado resultado) : this(nameJ1, nameJ2, puntosJ1, puntosJ2, resultado)
         {
-            this.id = id;         
+            this.id = id;
         }
 
         #endregion
@@ -65,7 +65,7 @@ namespace Entidades
         {
             eResultado eResultado;
 
-            switch(resultado)
+            switch (resultado)
             {
                 case "Ganador_J1": eResultado = eResultado.Ganador_J1; break;
                 case "Ganador_J2": eResultado = eResultado.Ganador_J2; break;
@@ -83,8 +83,11 @@ namespace Entidades
 
         #region Metodos Sql
 
+        #region Select
+
         private static Resultado Select_Sql()
         {
+            Resultado objResultado;
 
             int id = (int)ControlSql.Lector["id"];
             string nameJ1 = ControlSql.Lector["name_j1"].ToString();
@@ -93,7 +96,17 @@ namespace Entidades
             int puntosJ2 = (int)ControlSql.Lector["puntos_j2"];
             eResultado resultado = Resultado.ObtenerResultado(ControlSql.Lector["resultado"].ToString());
 
-            return new Resultado(id,nameJ1,nameJ2,puntosJ1,puntosJ2,resultado);
+            if (ControlSql.Lector.Read())
+            {
+                objResultado = new Resultado(id, nameJ1, nameJ2, puntosJ1, puntosJ2, resultado);
+            }
+            else
+            {
+                objResultado = null;
+            }
+
+            return objResultado;
+
         }
 
         public static bool ObtenerResultadoId_Sql(int id, out Resultado resultado)
@@ -101,15 +114,31 @@ namespace Entidades
 
             string select = $"select id, name_j1, name_j2, puntos_j1, puntos_j2, resultado from [Base_Truco].[dbo].[truco_resultado] where id = {id}";
 
-            return ControlSql.RealizarConsultaSql(select, Resultado.Select_Sql, out resultado);
+            return ControlSql.RealizarConsultaSelectSql<Resultado>(select, Resultado.Select_Sql, out resultado);
         }
+
+        private static int ObtenerUltimoId_Sql()
+        {
+            string select = "select MAX(id) as id from [Base_Truco].[dbo].[truco_resultado]";
+
+            if (!ControlSql.RealizarConsultaSelectSql(select, () => { return (int)ControlSql.Lector["id"]; }, out int id))
+            {
+                id = 0;
+            }
+
+            return id;
+        }
+        
+        #endregion
+
+        #region Insert
 
         public static bool AgregarResultado_Sql(Resultado resultado)
         {
             string insert = $"insert into [Base_Truco].[dbo].[truco_resultado] (name_j1, name_j2, puntos_j1, puntos_j2, resultado) " +
                 $"values ('{resultado.nameJ1}','{resultado.nameJ2}',{resultado.puntosJ1},{resultado.puntosJ2},'{resultado.resultado}')";
 
-            bool retorno = ControlSql.RealizarConsultaSql(insert);
+            bool retorno = ControlSql.RealizarAccionSql(insert);
 
             if(retorno)
             {
@@ -120,23 +149,15 @@ namespace Entidades
             return retorno;
         }
 
-        private static int ObtenerUltimoId_Sql()
-        {
-            string select = "select MAX(id) as id from [Base_Truco].[dbo].[truco_resultado]";
+        #endregion
 
-            if (!ControlSql.RealizarConsultaSql(select, () => { return (int)ControlSql.Lector["id"]; }, out int id))
-            {
-                id = 0;
-            }
-
-            return id;
-        }
+        #region Update
 
         public static bool ModificarResultado(int id, eResultado estado)
         {
             string update = $"update [Base_Truco].[dbo].[truco_resultado] set resultado = '{estado}'  where id = {id}";
 
-            return ControlSql.RealizarConsultaSql(update);
+            return ControlSql.RealizarAccionSql(update);
         }
 
         public static bool ModificarResultado(Resultado resultado)
@@ -144,8 +165,10 @@ namespace Entidades
             string update = $"update [Base_Truco].[dbo].[truco_resultado] " +
                 $"set resultado = '{resultado.resultado}', puntos_j1 = {resultado.puntosJ1}, puntos_j2 = {resultado.puntosJ2}  where id = {resultado.id}";
 
-            return ControlSql.RealizarConsultaSql(update);
+            return ControlSql.RealizarAccionSql(update);
         }
+
+        #endregion
 
         #endregion
 

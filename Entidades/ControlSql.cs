@@ -17,9 +17,6 @@ namespace Entidades
         private static SqlConnection conexion;
         private static SqlCommand comando;
         private static SqlDataReader lector;
-        public delegate bool delegateSql();
-        public delegate void delegateSelect<T>(List<T> lista);
-        public delegate T delegateSelectObj<T>();
 
         #endregion
         
@@ -32,8 +29,6 @@ namespace Entidades
         }
 
         #endregion
-
-        #region Métodos
 
         #region Probar conexión
 
@@ -62,9 +57,7 @@ namespace Entidades
 
         #endregion
 
-        #endregion
-
-        #region Abrir conexion, realizar la consulta 
+        #region Realizar conexion
 
         /// <summary>
         /// Conexion a la base de datos
@@ -80,22 +73,31 @@ namespace Entidades
             ControlSql.conexion.Open();
         }
 
+        #endregion
+
+        #region Propiedad
+        
+        public static SqlDataReader Lector { get { return ControlSql.lector; } }
+
+        #endregion
+
+        #region Update - Delete - Insert
+
         /// <summary>
         /// Realiza consultas Update, delete, insert
         /// </summary>
         /// <param name="comandoSql"></param>
         /// <param name="metodoSql"></param>
-        /// <returns></returns>
-        public static bool RealizarConsultaSql(string comandoSql)
+        /// <returns>true sin fallas, false fallo</returns>
+        public static bool RealizarAccionSql(string comandoSql)
         {
             bool rta = true;
 
             try
             {
-
                 ControlSql.RelizarConexion(comandoSql);
 
-                rta = ControlSql.ConsultarExecuteNonQuery();
+                rta = ControlSql.comando.ExecuteNonQuery() == 0;
 
             }
             catch (Exception)
@@ -113,28 +115,29 @@ namespace Entidades
             return rta;
         }
 
+        #endregion
+
+        #region Select
+
         /// <summary>
-        /// Realiza consultas Select, guardando en una lista
+        /// Realiza consultas Select
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="comandoSql"></param>
         /// <param name="action"></param>
         /// <param name="listaGenerica"></param>
-        /// <returns></returns>
-        public static bool RealizarConsultaSql<T>(string comandoSql, delegateSelect<T> select, List<T> listaGenerica)
+        /// <returns>true sin fallas, false fallo</returns>
+        public static bool RealizarConsultaSelectSql<T>(string comandoSql, Func<T> select, out T obj)
         {
             bool rta = true;
+            obj = default;
 
             try
             {
                 ControlSql.RelizarConexion(comandoSql);
                 ControlSql.lector = comando.ExecuteReader();
 
-                while (lector.Read())
-                {
-                    //Datos a recibir y guardar
-                    select.Invoke(listaGenerica);
-                }
+                obj = select.Invoke();
 
                 lector.Close();
 
@@ -153,71 +156,6 @@ namespace Entidades
 
             return rta;
         }
-
-        /// <summary>
-        /// Realiza consulta SELECT, por parametro recibe una funcion para obtener la informacion, 
-        /// el otro parametro devuelve el objeto que guardo la funcion generica
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="comandoSql"></param>
-        /// <param name="selectObj">Metodo generico, que retorne T y recibe nada</param>
-        /// <param name="obj"></param>
-        /// <returns>true si encontro el dato, false sino</returns>
-        public static bool RealizarConsultaSql<T>(string comandoSql,delegateSelectObj<T> selectObj, out T obj)
-        {
-            bool rta = true;
-            T t = default(T);
-            obj = t;
-      
-            try
-            {
-                ControlSql.RelizarConexion(comandoSql);
-                ControlSql.lector = comando.ExecuteReader();
-
-                rta = Lector.Read();
-
-                if(rta)
-                {
-                    obj = selectObj.Invoke();
-                }
-
-                lector.Close();
-
-            }
-            catch (Exception)
-            {
-                rta = false;
-            }
-            finally
-            {
-                if (ControlSql.conexion.State == ConnectionState.Open)
-                {
-                    ControlSql.conexion.Close();
-                }
-            }
-
-            return rta;
-        }
-
-        /// <summary>
-        /// Metodo para Update, Delete, Insert
-        /// </summary>
-        /// <returns></returns>
-        public static bool ConsultarExecuteNonQuery()
-        {
-            bool retorno = true;
-
-            int filasAfectadas = ControlSql.comando.ExecuteNonQuery();
-
-            if (filasAfectadas == 0)
-            {
-                retorno = false;
-            }
-
-            return retorno;
-        }
-
-        public static SqlDataReader Lector { get { return ControlSql.lector; } }
 
         #endregion
 

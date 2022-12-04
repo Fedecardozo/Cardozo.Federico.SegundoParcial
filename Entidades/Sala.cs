@@ -92,6 +92,8 @@ namespace Entidades
 
         #region Comando Sql
 
+        #region Insert
+
         /// <summary>
         /// Inserta una sala a la base de datos y guarda el id en la sala pasada por parametro
         /// </summary>
@@ -104,7 +106,7 @@ namespace Entidades
                 $"(name_sala, name_j1, name_j2, fk_usuario, fecha, estado)" +
                 $"values('{sala.nameSala}', '{sala.nameJ1}', '{sala.nameJ2}', {sala.fk_Usuario}, GETDATE(), '{sala.estado}')";
 
-            bool retorno = ControlSql.RealizarConsultaSql(comando);
+            bool retorno = ControlSql.RealizarAccionSql(comando);
 
             if (retorno)
             {
@@ -117,8 +119,14 @@ namespace Entidades
             return retorno;
         }
 
-        private static void Select_Sql(List<Sala> salas)
+        #endregion
+
+        #region Select
+
+        private static List<Sala> Select_Sql()
         {
+            List<Sala> salas = new List<Sala>();
+
             int id = (int)ControlSql.Lector["id"];
             string nameSala = ControlSql.Lector[1].ToString();
             string nameJ1 = ControlSql.Lector[2].ToString();
@@ -129,13 +137,17 @@ namespace Entidades
             int fk_resultado = 0;
             string readResultado = ControlSql.Lector["fk_juego"].ToString();
             
-            if (readResultado != "")
+            while(ControlSql.Lector.Read())
             {
-                fk_resultado = int.Parse(readResultado);
+                if (readResultado != "")
+                {
+                    fk_resultado = int.Parse(readResultado);
+                }
+
+                salas.Add(new Sala(id,nameJ1, nameJ2, nameSala, fk_Usuario, estado, fk_resultado, fecha));
             }
 
-                //Console.WriteLine("Resultado: " + fk_resultado);
-            salas.Add(new Sala(id,nameJ1, nameJ2, nameSala, fk_Usuario, estado, fk_resultado, fecha));
+            return salas;
         }
 
         public static bool ObtenerListaSala_Sql(List<Sala> salas)
@@ -143,9 +155,25 @@ namespace Entidades
             
             string select = "select id,name_sala,name_j1,name_j2,fk_usuario,estado,fecha,fk_juego from [Base_Truco].[dbo].[truco_salas]";
 
-            return ControlSql.RealizarConsultaSql(select,Sala.Select_Sql, salas);
+            return ControlSql.RealizarConsultaSelectSql<List<Sala>>(select,Sala.Select_Sql, out salas);
 
         }
+
+        private static int ObtenerUltimoId_Sql()
+        {
+            string select = "select MAX(id) as id from [Base_Truco].[dbo].[truco_salas]";
+
+            if(!ControlSql.RealizarConsultaSelectSql(select,() => { return (int)ControlSql.Lector["id"]; }, out int id))
+            {
+                id = 0;
+            }
+
+            return id;
+        }
+
+        #endregion
+
+        #region Update
 
         public static bool ModificarSala(int id, int fk_juego,EestadoPartida estado)
         {
@@ -156,20 +184,11 @@ namespace Entidades
                 update = $"update [Base_Truco].[dbo].[truco_salas] set fk_juego = null, estado = '{estado}' where id = {id}";
             }
 
-            return ControlSql.RealizarConsultaSql(update);
+            return ControlSql.RealizarAccionSql(update);
         }
 
-        private static int ObtenerUltimoId_Sql()
-        {
-            string select = "select MAX(id) as id from [Base_Truco].[dbo].[truco_salas]";
 
-            if(!ControlSql.RealizarConsultaSql(select,() => { return (int)ControlSql.Lector["id"]; }, out int id))
-            {
-                id = 0;
-            }
-
-            return id;
-        }
+        #endregion
 
         #endregion
 

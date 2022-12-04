@@ -40,33 +40,31 @@ namespace Entidades
 
         #region Consultas SQL
 
-        /// <summary>
-        /// Obtiene una lista de usuarios de las base de datos
-        /// </summary>
-        /// <param name="usuarios"></param>
-        public static void ObtenerListaUsuarios_Sql(List<Usuario> usuarios)
-        {
-            int id = (int)ControlSql.Lector["id"];
-            string correo = ControlSql.Lector[1].ToString();
-            string nombre = ControlSql.Lector[2].ToString();
-            string apellido = ControlSql.Lector[3].ToString();
-
-            usuarios.Add(new Usuario(correo, nombre, apellido, id));
-
-        }
+        #region Select
 
         /// <summary>
         /// Obtener de la base de datos un Usuario
         /// </summary>
         /// <returns>Usuario</returns>
-        private static Usuario ObtenerUsuario_Sql()
+        private static Usuario Select_Sql()
         {
+            Usuario usuario;
+
             int id = (int)ControlSql.Lector["id"];
             string correo = ControlSql.Lector[1].ToString();
             string nombre = ControlSql.Lector[2].ToString();
             string apellido = ControlSql.Lector[3].ToString();
 
-            return new Usuario(correo, nombre, apellido, id);
+            if(ControlSql.Lector.Read())
+            {
+                usuario = new Usuario(correo, nombre, apellido, id);
+            }
+            else
+            {
+                usuario = null;
+            }
+
+            return usuario;
 
         }
 
@@ -81,7 +79,7 @@ namespace Entidades
 
             string select = $"select id, correo, nombre, apellido from [Base_Truco].[dbo].[truco_usuarios] where correo = '{correo}' and password = '{password}'";
 
-            return ControlSql.RealizarConsultaSql(select, Usuario.ObtenerUsuario_Sql,out user);
+            return ControlSql.RealizarConsultaSelectSql(select, Usuario.Select_Sql,out user);
         } 
 
         /// <summary>
@@ -93,11 +91,13 @@ namespace Entidades
         public static bool ObtenerUsuarioId_Sql(int id,out Usuario user)
         {
             string select = $"select id, correo, nombre, apellido from [Base_Truco].[dbo].[truco_usuarios] where id = {id}";
-            return ControlSql.RealizarConsultaSql(select, Usuario.ObtenerUsuario_Sql, out user);
+            return ControlSql.RealizarConsultaSelectSql(select, Usuario.Select_Sql, out user);
         }
 
         #endregion
-        
+
+        #endregion
+
         #region Polimorfismo
 
         public override string ToString()

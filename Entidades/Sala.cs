@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Sala
+    public class Sala : ISql
     {
         #region Atributos
 
@@ -22,7 +22,7 @@ namespace Entidades
         
         #endregion
 
-        #region Constructor
+        #region Constructores
 
         static Sala()
         {
@@ -67,7 +67,7 @@ namespace Entidades
         public int Fk_Usuario { get { return this.fk_Usuario; } set { this.fk_Usuario = value; } }
         public int Fk_Resultado { get { return this.fk_resultado; } set { this.fk_resultado = value; } }
         public DateTime Fecha { get { return this.fecha; } }
-        public EestadoPartida Estado { get { return this.estado; } }
+        public EestadoPartida Estado { get { return this.estado; } set { this.estado = value; } }
 
         #endregion
 
@@ -90,7 +90,7 @@ namespace Entidades
 
         #endregion
 
-        #region Comando Sql
+        #region Metodos Sql
 
         #region Insert
 
@@ -127,18 +127,18 @@ namespace Entidades
         {
             List<Sala> salas = new List<Sala>();
 
-            int id = (int)ControlSql.Lector["id"];
-            string nameSala = ControlSql.Lector[1].ToString();
-            string nameJ1 = ControlSql.Lector[2].ToString();
-            string nameJ2 = ControlSql.Lector[3].ToString();
-            int fk_Usuario = (int)ControlSql.Lector["fk_usuario"];
-            EestadoPartida estado = Sala.ObtenerEstado(ControlSql.Lector[5].ToString());
-            DateTime fecha = (DateTime)ControlSql.Lector["fecha"];
-            int fk_resultado = 0;
-            string readResultado = ControlSql.Lector["fk_juego"].ToString();
-            
             while(ControlSql.Lector.Read())
             {
+                int id = (int)ControlSql.Lector["id"];
+                string nameSala = ControlSql.Lector[1].ToString();
+                string nameJ1 = ControlSql.Lector[2].ToString();
+                string nameJ2 = ControlSql.Lector[3].ToString();
+                int fk_Usuario = (int)ControlSql.Lector["fk_usuario"];
+                EestadoPartida estado = Sala.ObtenerEstado(ControlSql.Lector[5].ToString());
+                DateTime fecha = (DateTime)ControlSql.Lector["fecha"];
+                int fk_resultado = 0;
+                string readResultado = ControlSql.Lector["fk_juego"].ToString();
+
                 if (readResultado != "")
                 {
                     fk_resultado = int.Parse(readResultado);
@@ -150,7 +150,7 @@ namespace Entidades
             return salas;
         }
 
-        public static bool ObtenerListaSala_Sql(List<Sala> salas)
+        public static bool ObtenerListaSala_Sql(out List<Sala> salas)
         {
             
             string select = "select id,name_sala,name_j1,name_j2,fk_usuario,estado,fecha,fk_juego from [Base_Truco].[dbo].[truco_salas]";
@@ -189,6 +189,82 @@ namespace Entidades
 
 
         #endregion
+
+        #endregion
+
+        #region Interfaz - Update - Delete - Insert
+
+        /// <summary>
+        /// Por el Id de la Sala, Modifica la foreign key de resultado, y el estado de la sala. Como esta actualmente en la instancia de Sala
+        /// </summary>
+        /// <returns>true se modifico con exito, false sino</returns>
+        public bool Update_Sql()
+        {
+            string update = $"update [Base_Truco].[dbo].[truco_salas] set fk_juego = {this.fk_resultado}, estado = '{this.estado}' where id = {this.id}";
+
+            if (this.fk_resultado <= 0)
+            {
+                update = $"update [Base_Truco].[dbo].[truco_salas] set fk_juego = null, estado = '{this.estado}' where id = {this.id}";
+            }
+
+            return ControlSql.RealizarAccionSql(update);
+        }
+
+        /// <summary>
+        /// Agrega una sala a la base de datos
+        /// </summary>
+        /// <returns>true si se pudo agregar, false sino</returns>
+        public bool Insert_Sql()
+        {
+            string comando = $"insert into [Base_Truco].[dbo].[truco_salas] " +
+                $"(name_sala, name_j1, name_j2, fk_usuario, fecha, estado)" +
+                $"values('{this.nameSala}', '{this.nameJ1}', '{this.nameJ2}', {this.fk_Usuario}, GETDATE(), '{this.estado}')";
+
+            bool retorno = ControlSql.RealizarAccionSql(comando);
+
+            if (retorno)
+            {
+                //Sumo uno mas al ultimoId
+                Sala.ultimoId++;
+                //Guardo en la sala el id
+                this.id = Sala.ultimoId;
+            }
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Elimna una Sala de la base de datos por Id
+        /// </summary>
+        /// <returns>true si se pudo eliminar, false sino</returns>
+        public bool Delete_Sql()
+        {
+            string comando = $"delete from [Base_Truco].[dbo].[truco_salas] where id = {this.id}";
+
+            return ControlSql.RealizarAccionSql(comando);
+        }
+
+
+        #endregion
+
+
+        #region Polimorfismo
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"Id: {this.id}");
+            sb.AppendLine($"Name J1: {this.nameJ1}");
+            sb.AppendLine($"Name J2: {this.nameJ2}");
+            sb.AppendLine($"Name sala: {this.nameSala}");
+            sb.AppendLine($"Fk usuario: {this.fk_Usuario}");
+            sb.AppendLine($"Estado: {this.estado}");
+            sb.AppendLine($"Fk resultado: {this.fk_resultado}");
+            sb.AppendLine($"Fecha: {this.fecha}");
+
+            return sb.ToString();
+        }
 
         #endregion
 

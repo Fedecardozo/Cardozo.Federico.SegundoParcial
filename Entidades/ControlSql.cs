@@ -97,7 +97,7 @@ namespace Entidades
             {
                 ControlSql.RelizarConexion(comandoSql);
 
-                rta = ControlSql.comando.ExecuteNonQuery() == 0;
+                rta = ControlSql.comando.ExecuteNonQuery() > 0;
 
             }
             catch (Exception)
@@ -130,14 +130,15 @@ namespace Entidades
         public static bool RealizarConsultaSelectSql<T>(string comandoSql, Func<T> select, out T obj)
         {
             bool rta = true;
-            obj = default;
 
             try
             {
                 ControlSql.RelizarConexion(comandoSql);
+
                 ControlSql.lector = comando.ExecuteReader();
 
                 obj = select.Invoke();
+
 
                 lector.Close();
 
@@ -145,6 +146,7 @@ namespace Entidades
             catch (Exception)
             {
                 rta = false;
+                obj = default;
             }
             finally
             {

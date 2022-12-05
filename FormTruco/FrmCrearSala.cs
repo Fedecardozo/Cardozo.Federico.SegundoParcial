@@ -16,8 +16,8 @@ namespace FormTruco
 
         #region Atributos
 
-        //private List<Sala> salas;
         private Usuario usuario;
+        private Sala salaSeleccionada;
         private int indexSeleccionadoDtvg;
         private DataGridViewCellCollection filaSeleccionada;
 
@@ -33,13 +33,13 @@ namespace FormTruco
 
         private void FrmCrearSala_Load(object sender, EventArgs e)
         {
-            //FormPrincipal.AvisoCambiosSql += () => this.btnActualizar_Click(sender,e);
-            //this.CargarSalas();
-            //if(this.dataGridViewSalas.Rows.Count > 0)
-            //{
-            //    this.indexSeleccionadoDtvg = 0;
-            //    this.filaSeleccionada = this.dataGridViewSalas.Rows[this.indexSeleccionadoDtvg].Cells;
-            //}
+            FormPrincipal.AvisoCambiosSql += this.CargarDataGrid;
+            this.CargarDataGrid();
+            if (this.dataGridViewSalas.Rows.Count > 0)
+            {
+                this.indexSeleccionadoDtvg = 0;
+                this.filaSeleccionada = this.dataGridViewSalas.Rows[this.indexSeleccionadoDtvg].Cells;
+            }
         }
 
         #endregion
@@ -48,48 +48,34 @@ namespace FormTruco
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            FrmSala nuevaSala = new FrmSala(AgregarSala);
-            nuevaSala.ShowDialog();
-        }
-
-        private void btnJugar_Click(object sender, EventArgs e)
-        {
-            this.IniciarPartida();
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.CancelarPartida();
-        }
-
-        private void btnActualizar_Click(object sender, EventArgs e)
-        {
-            //this.dataGridViewSalas.Rows.Clear();
-            this.CargarSalas();
+            FrmSala frmSala = new FrmSala(this.AgregarSala);
+            frmSala.ShowDialog();
         }
 
         #endregion
 
         #region Metodos
 
+
         /// <summary>
-        /// Carga en el data grid las salas que estan disponibles o en juego
+        /// Carga la lista de salas en el data grid y oculta el id y las forenkeys.
         /// </summary>
-        private void CargarSalas()
+        private void CargarDataGrid()
         {
-            //Verifico si obtuvo la lista
-            if (Sala.ObtenerListaSala_Sql(out List<Sala> salas))
+            if (Sala.ObtenerListaSalaEstado_Sql(out List<Sala> salas))
             {
-                foreach (Sala item in salas)
+                this.dataGridViewSalas.DataSource = salas;
+                if (this.dataGridViewSalas.DataSource is not null)
                 {
-                    //Solo se muestran las que estan disponibles o en juego
-                    if(item.Estado == EestadoPartida.Disponible || item.Estado == EestadoPartida.En_juego)
-                    {
-                        //this.dataGridViewSalas.Rows.Add(item.Id,item.Fk_Usuario,item.NameSala, item.Estado, item.NameJ1, item.NameJ2,0,item.Fk_Resultado,item.Fecha);
-                    }
+                    this.dataGridViewSalas.Columns["Id"].Visible = false;
+                    this.dataGridViewSalas.Columns["Fk_Usuario"].Visible = false;
+                    this.dataGridViewSalas.Columns["Fk_Resultado"].Visible = false;
+                    this.dataGridViewSalas.Columns["Fecha"].Visible = false;
                 }
+
             }
         }
+
 
         /// <summary>
         /// Agrega una sala y un resultado a la base de datos.
@@ -118,18 +104,22 @@ namespace FormTruco
             return retorno;
         }
 
+
+        /// <summary>
+        /// Inicia las partidas que esta disponibles
+        /// </summary>
         private void IniciarPartida()
         {
             try
             {
-                if(this.ObtenerSalaDataGrid(out Sala sala) && sala.Estado == EestadoPartida.Disponible)
+                if(this.salaSeleccionada.Estado == EestadoPartida.Disponible)
                 {
                     //Inicia una partida, mostrando el form del truco 
                     FrmJuegoTruco truco = new FrmJuegoTruco();
 
                     //Cambiar estado de la partida en la base de datos
-                    sala.Estado = EestadoPartida.En_juego;
-                    if(sala.Update_Sql())
+                    this.salaSeleccionada.Estado = EestadoPartida.En_juego;
+                    if(this.salaSeleccionada.Update_Sql())
                     {
                         FormPrincipal.EnviarAvisoCambioSql();
                     }
@@ -145,37 +135,28 @@ namespace FormTruco
 
         }
 
+
         private void CancelarPartida()
         {
 
         }
 
-        private void MostrarMsj(bool rta, DataGridViewRow seleccion)
-        {
 
-        }
-
-        private bool ObtenerSalaDataGrid(out Sala sala)
+        /// <summary>
+        /// Obtiene la sala seleccionada del data grid.
+        /// </summary>
+        /// <returns>true si no rompio, false si rompio</returns>
+        private bool ObtenerSalaDataGrid()
         {
             bool retorno = true;
 
             try
             {
-                int id = (int)this.filaSeleccionada["id"].Value;
-                string nameJ1 = (string)this.filaSeleccionada["J1"].Value;
-                string nameJ2 = (string)this.filaSeleccionada["J2"].Value;
-                string nameSala = (string)this.filaSeleccionada["nameSala"].Value;
-                int fk_juego = (int)this.filaSeleccionada["id_resultado"].Value;
-                int fk_usuario = (int)this.filaSeleccionada["fk_usuario"].Value;
-                EestadoPartida estado = (EestadoPartida)this.filaSeleccionada["estado"].Value;
-                DateTime fecha = (DateTime)this.filaSeleccionada["fecha"].Value;
-
-                sala = new Sala(id,nameJ1,nameJ2,nameSala,fk_usuario,estado,fk_juego,fecha);
+                this.salaSeleccionada = (Sala)this.dataGridViewSalas.Rows[this.indexSeleccionadoDtvg].DataBoundItem;
             }
             catch (Exception)
             {
                 retorno = false;
-                sala = null;
             }
 
             return retorno;
@@ -187,11 +168,15 @@ namespace FormTruco
 
         private void dataGridViewSalas_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //this.indexSeleccionadoDtvg = this.dataGridViewSalas.CurrentRow.Index;
-            //this.filaSeleccionada = this.dataGridViewSalas.Rows[this.indexSeleccionadoDtvg].Cells;
+            this.indexSeleccionadoDtvg = this.dataGridViewSalas.CurrentRow.Index;
+            this.filaSeleccionada = this.dataGridViewSalas.Rows[this.indexSeleccionadoDtvg].Cells;
+            this.ObtenerSalaDataGrid();
             //MessageBox.Show(["estado"].Value.ToString());
         }
 
+
         #endregion
+
+        
     }
 }

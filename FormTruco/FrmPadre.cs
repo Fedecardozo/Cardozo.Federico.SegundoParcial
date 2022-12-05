@@ -12,7 +12,6 @@ namespace FormTruco
 {
     public partial class FrmPadre : Form
     {
-        
         public FrmPadre()
         {
             InitializeComponent();

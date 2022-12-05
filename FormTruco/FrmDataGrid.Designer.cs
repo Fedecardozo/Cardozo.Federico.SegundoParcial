@@ -129,6 +129,9 @@ namespace FormTruco
             this.Controls.Add(this.btnCreador);
             this.Controls.Add(this.btnPartida);
             this.Controls.Add(this.dataGridViewSalas);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(732, 364);
+            this.MinimumSize = new System.Drawing.Size(732, 364);
             this.Name = "FrmDataGrid";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmDataGrid";
@@ -140,8 +143,8 @@ namespace FormTruco
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridViewSalas;
-        private System.Windows.Forms.Button btnCreador;
-        private System.Windows.Forms.Button btnPartida;
+        protected internal System.Windows.Forms.DataGridView dataGridViewSalas;
+        protected internal System.Windows.Forms.Button btnCreador;
+        protected internal System.Windows.Forms.Button btnPartida;
     }
 }

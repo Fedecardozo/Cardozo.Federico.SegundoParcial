@@ -11,12 +11,12 @@ using Entidades;
 
 namespace FormTruco
 {
-    public partial class FrmDataGrid : FrmPadre
+    public partial class FrmDataGrid : Form
     {
         #region Atributos
 
-        protected List<Sala> salas;
-        protected Sala salaDataGridSeleccionada;
+        //private List<Sala> salas;
+        private Sala salaDataGridSeleccionada;
         private int indexSeleccionadoDtvg;
         //private DataGridViewCellCollection filaSeleccionada;
 
@@ -31,7 +31,9 @@ namespace FormTruco
 
         private void FrmDataGrid_Load(object sender, EventArgs e)
         {
+            FormPrincipal.AvisoCambiosSql += this.CargarDataGrid;
             this.CargarDataGrid();
+
             if (this.dataGridViewSalas.Rows.Count > 0)
             {
                 this.indexSeleccionadoDtvg = 0;
@@ -45,14 +47,14 @@ namespace FormTruco
 
         #region Acciones DataGrid
 
-        /// <summary>
+      /// <summary>
         /// Carga la lista de salas en el data grid y oculta el id y las forenkeys.
         /// </summary>
         private void CargarDataGrid()
         {
-            if (Sala.ObtenerListaSala_Sql(out this.salas))
+            if (Sala.ObtenerListaSala_Sql(out List<Sala> salas))
             {
-                this.dataGridViewSalas.DataSource = this.salas;
+                this.dataGridViewSalas.DataSource = salas;
                 if (this.dataGridViewSalas.DataSource is not null)
                 {
                     this.dataGridViewSalas.Columns["Id"].Visible = false;
@@ -120,6 +122,7 @@ namespace FormTruco
         }
 
         #endregion
+
 
     }
 }

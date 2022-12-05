@@ -130,6 +130,21 @@ namespace Entidades
 
         }
 
+        /// <summary>
+        /// Obtiene de la base de datos una lista de salas con el estado 'En juego' o 'Disponible'
+        /// </summary>
+        /// <param name="salas"></param>
+        /// <returns>true o false</returns>
+        public static bool ObtenerListaSalaEstado_Sql(out List<Sala> salas)
+        {
+
+            string select = $"select id,name_sala,name_j1,name_j2,fk_usuario,estado,fecha,fk_juego from {nameTableSql}" +
+                $" where estado = '{EestadoPartida.Disponible}' or estado = '{EestadoPartida.En_juego}'";
+
+            return ControlSql.RealizarConsultaSelectSql<List<Sala>>(select, Sala.Select_Sql, out salas);
+
+        }
+
         private static int ObtenerUltimoId_Sql()
         {
             string select = $"select MAX(id) as id from {nameTableSql}";

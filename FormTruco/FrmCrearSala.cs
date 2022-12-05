@@ -19,7 +19,6 @@ namespace FormTruco
         private Usuario usuario;
         private Sala salaSeleccionada;
         private int indexSeleccionadoDtvg;
-        private DataGridViewCellCollection filaSeleccionada;
 
         #endregion
 
@@ -38,7 +37,7 @@ namespace FormTruco
             if (this.dataGridViewSalas.Rows.Count > 0)
             {
                 this.indexSeleccionadoDtvg = 0;
-                this.filaSeleccionada = this.dataGridViewSalas.Rows[this.indexSeleccionadoDtvg].Cells;
+                this.ObtenerSalaDataGrid();
             }
         }
 
@@ -51,6 +50,36 @@ namespace FormTruco
             FrmSala frmSala = new FrmSala(this.AgregarSala);
             frmSala.ShowDialog();
         }
+
+        private void btnIniciar_Click(object sender, EventArgs e)
+        {
+            this.IniciarPartida();
+        }
+
+        private void btnPartida_Click(object sender, EventArgs e)
+        {
+            if (Resultado.ObtenerResultadoId_Sql(this.salaSeleccionada.Fk_Resultado, out Resultado resultado))
+            {
+                MessageBox.Show($"*** Resultado *** \n{resultado}", "Resultado sala seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else
+            {
+                MessageBox.Show($"No se pudo obtener resultado", "Error resultado sala seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCreador_Click(object sender, EventArgs e)
+        {
+            if (Usuario.ObtenerUsuarioId_Sql(this.salaSeleccionada.Fk_Usuario, out Usuario usuario))
+            {
+                MessageBox.Show($"*** Creador de la sala *** \n{usuario}", "Creador sala seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else
+            {
+                MessageBox.Show($"No se pudo obtener el creador", "Error creador sala seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         #endregion
 
@@ -162,6 +191,7 @@ namespace FormTruco
             return retorno;
         }
 
+
         #endregion
 
         #region Evento click dataGrid
@@ -169,14 +199,10 @@ namespace FormTruco
         private void dataGridViewSalas_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             this.indexSeleccionadoDtvg = this.dataGridViewSalas.CurrentRow.Index;
-            this.filaSeleccionada = this.dataGridViewSalas.Rows[this.indexSeleccionadoDtvg].Cells;
             this.ObtenerSalaDataGrid();
-            //MessageBox.Show(["estado"].Value.ToString());
         }
-
 
         #endregion
 
-        
     }
 }

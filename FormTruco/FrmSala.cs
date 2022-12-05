@@ -44,6 +44,7 @@ namespace FormTruco
             {
                 if(this.nuevaSala.Invoke(this.comboBoxJ1.Text, this.comboBoxJ2.Text, this.textBoxSala.Text))
                 {
+                    FormPrincipal.EnviarAvisoCambioSql();
                     MessageBox.Show("Se creo con exito la sala!","Aviso",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     this.Close();
                 }

@@ -15,6 +15,14 @@ namespace FormTruco
     public partial class FormPrincipal : Form
     {
 
+        #region Evento propio
+
+        public delegate void AvisarCambios_BaseDeDatos();
+
+        public static event AvisarCambios_BaseDeDatos AvisoCambiosSql;
+
+        #endregion
+
         #region Atributos
 
         private Usuario usuario;
@@ -133,6 +141,16 @@ namespace FormTruco
 
         #endregion
 
+        #region Metodos eventos propios
 
+        public static void EnviarAvisoCambioSql()
+        {
+            if (FormPrincipal.AvisoCambiosSql is not null)
+            {
+                FormPrincipal.AvisoCambiosSql.Invoke();
+            }
+        }
+
+        #endregion
     }
 }

@@ -14,14 +14,6 @@ namespace FormTruco
     public partial class FrmCrearSala : FrmPadre
     {
 
-        #region Evento propio
-
-        public delegate void AvisarCambios_BaseDeDatos();
-
-        public event AvisarCambios_BaseDeDatos AvisoCambiosSql;
-
-        #endregion
-
         #region Atributos
 
         //private List<Sala> salas;
@@ -39,6 +31,7 @@ namespace FormTruco
 
         private void FrmCrearSala_Load(object sender, EventArgs e)
         {
+            FormPrincipal.AvisoCambiosSql += () => this.btnActualizar_Click(sender,e);
             this.CargarSalas();
         }
 
@@ -49,10 +42,7 @@ namespace FormTruco
         private void btnCrear_Click(object sender, EventArgs e)
         {
             FrmSala nuevaSala = new FrmSala(AgregarSala);
-            if(nuevaSala.ShowDialog() == DialogResult.Cancel)
-            {
-                this.AvisoCambiosSql += this.IniciarPartida;
-            }
+            nuevaSala.ShowDialog();
         }
 
         private void btnJugar_Click(object sender, EventArgs e)
@@ -134,18 +124,6 @@ namespace FormTruco
         private void MostrarMsj(bool rta, DataGridViewRow seleccion)
         {
 
-        }
-
-        #endregion
-
-        #region Metodos eventos propios
-
-        public void EnviarAvisoCambioSql()
-        {
-            if (this.AvisoCambiosSql is not null)
-            {
-                this.AvisoCambiosSql.Invoke();
-            }
         }
 
         #endregion

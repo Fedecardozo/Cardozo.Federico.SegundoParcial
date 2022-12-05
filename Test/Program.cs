@@ -13,23 +13,17 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            int cont = 0;
-            Console.WriteLine("Lista usuarios: " + Usuario.ObtenerListaUsuarios(out List<Usuario> usuarios));
 
-            foreach (Usuario item in usuarios)
+            Resultado resultado = new Resultado("Fede", "Lea", 0, 0, eResultado.Sin_Iniciar);
+
+            if(!resultado.Insert_Sql())
             {
-                if(item is not null)
-                {
-                    Console.WriteLine(item.ToString());
-                }
-                else if(item is null)
-                {
-                    cont++;
-                }
-
+                Console.WriteLine("Fallo!");
             }
-
-            Console.WriteLine("Fallo: " + cont);
+            else
+            {
+                Console.WriteLine(resultado.ToString() + "\nId: " + resultado.Id);
+            }
 
         }
 

@@ -128,6 +128,19 @@ namespace Entidades
             return id;
         }
 
+        private static int ObtenerId_Sql()
+        {
+            string select = $"select MAX(id) as id from {nameTableSql}";
+            
+            if (!ControlSql.RealizarConsultaSelectSql<int>(select, 
+                () => { if (ControlSql.Lector.Read()) return (int)ControlSql.Lector["id"]; else return 0; }, out int id))
+            {
+                id = 0;
+            }
+
+            return id;
+        }
+
         #endregion
 
         #region Interfaz Update - Delete - Insert
@@ -145,7 +158,8 @@ namespace Entidades
         }
 
         /// <summary>
-        /// Agrega un Resultado a la base de datos
+        /// Agrega un Resultado a la base de datos. name_j1, name_j2, puntos_j1, puntos_j2, estado_resultado.
+        /// A la instancia del objeto se le asigna el id de la base de datos
         /// </summary>
         /// <returns>true si se pudo agregar, false sino</returns>
         public bool Insert_Sql()
@@ -157,8 +171,7 @@ namespace Entidades
 
             if (retorno)
             {
-                Resultado.ultimoId++;
-                this.id = Resultado.ultimoId;
+                this.id = Resultado.ObtenerId_Sql();
             }
 
             return retorno;

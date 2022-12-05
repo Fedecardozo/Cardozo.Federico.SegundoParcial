@@ -14,6 +14,7 @@ namespace FormTruco
 {
     public partial class FormPrincipal : Form
     {
+
         #region Atributos
 
         private Usuario usuario;
@@ -132,6 +133,6 @@ namespace FormTruco
 
         #endregion
 
-        
+
     }
 }

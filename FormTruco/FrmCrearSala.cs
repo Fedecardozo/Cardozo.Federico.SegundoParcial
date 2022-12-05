@@ -14,6 +14,14 @@ namespace FormTruco
     public partial class FrmCrearSala : FrmPadre
     {
 
+        #region Evento propio
+
+        public delegate void AvisarCambios_BaseDeDatos();
+
+        public event AvisarCambios_BaseDeDatos AvisoCambiosSql;
+
+        #endregion
+
         #region Atributos
 
         //private List<Sala> salas;
@@ -41,7 +49,10 @@ namespace FormTruco
         private void btnCrear_Click(object sender, EventArgs e)
         {
             FrmSala nuevaSala = new FrmSala(AgregarSala);
-            nuevaSala.ShowDialog();
+            if(nuevaSala.ShowDialog() == DialogResult.Cancel)
+            {
+                this.AvisoCambiosSql += this.IniciarPartida;
+            }
         }
 
         private void btnJugar_Click(object sender, EventArgs e)
@@ -83,15 +94,36 @@ namespace FormTruco
             }
         }
 
-        private void AgregarSala(string j1, string j2, string sala)
+        /// <summary>
+        /// Agrega una sala y un resultado a la base de datos.
+        /// </summary>
+        /// <param name="j1"></param>
+        /// <param name="j2"></param>
+        /// <param name="nameSala"></param>
+        /// <returns>true si subio los datos, false sino</returns>
+        private bool AgregarSala(string j1, string j2, string nameSala)
         {
-       
+            //Crear objeto resultado
+            Resultado resultado = new Resultado(j1,j2,0,0,eResultado.Sin_Iniciar);
 
+            //Agregar(Insert) resultado a la base de datos y asi obtener el id.
+            bool retorno = resultado.Insert_Sql();
+
+            if (retorno)
+            {
+                //Creo el objeto sala con sus correspondieste argumentos.
+                Sala sala = new Sala(j1,j2,nameSala,this.usuario.Id,EestadoPartida.Disponible,resultado.Id);
+                //Lo inserto en la base de datos y obtengo el id de la nueva sala.
+                retorno = sala.Insert_Sql();
+
+            }
+
+            return retorno;
         }
 
         private void IniciarPartida()
         {
-
+            MessageBox.Show("Hola");
         }
 
         private void CancelarPartida()
@@ -102,6 +134,18 @@ namespace FormTruco
         private void MostrarMsj(bool rta, DataGridViewRow seleccion)
         {
 
+        }
+
+        #endregion
+
+        #region Metodos eventos propios
+
+        public void EnviarAvisoCambioSql()
+        {
+            if (this.AvisoCambiosSql is not null)
+            {
+                this.AvisoCambiosSql.Invoke();
+            }
         }
 
         #endregion

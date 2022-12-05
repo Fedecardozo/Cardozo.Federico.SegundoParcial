@@ -11,6 +11,7 @@ namespace Entidades
 {
     public static class ControlSql
     {
+       
         #region Atributos
 
         private const string cadena_conexion = @"Server=.;Database=test;Trusted_Connection=True;";
@@ -139,8 +140,6 @@ namespace Entidades
                 ControlSql.lector = comando.ExecuteReader();
 
                 obj = select.Invoke();
-
-                rta = obj is not null; 
 
                 lector.Close();
 

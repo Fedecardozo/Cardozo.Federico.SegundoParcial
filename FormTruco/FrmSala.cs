@@ -13,16 +13,20 @@ namespace FormTruco
 {
     public partial class FrmSala : Form
     {
-        public delegate void delegadoNuevasala(string j1, string j2, string sala);
-        private delegadoNuevasala nuevaSala;
         // private string usuarioBorrado;
+
+        #region Atributos
+
+        private Func<string, string, string,bool> nuevaSala;
+
+        #endregion
 
         #region Inicio form
 
-        public FrmSala(delegadoNuevasala nuevaSala)
+        public FrmSala(Func<string, string, string,bool> funcion)
         {
             InitializeComponent();
-            this.nuevaSala = nuevaSala;
+            this.nuevaSala = funcion;
         }
 
         private void FrmSala_Load(object sender, EventArgs e)
@@ -32,14 +36,21 @@ namespace FormTruco
 
         #endregion
 
-        #region Boton
+        #region Boton Aceptar
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if(this.comboBoxJ1.SelectedIndex >=0 && this.comboBoxJ2.SelectedIndex >=0 && !string.IsNullOrWhiteSpace(this.textBoxSala.Text))
             {
-                MessageBox.Show("Se creo con exito la sala!","Aviso",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                this.Close();
+                if(this.nuevaSala.Invoke(this.comboBoxJ1.Text, this.comboBoxJ2.Text, this.textBoxSala.Text))
+                {
+                    MessageBox.Show("Se creo con exito la sala!","Aviso",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Error al cargar la sala a la base de datos. \nIntente más tarde", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {

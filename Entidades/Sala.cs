@@ -8,6 +8,7 @@ namespace Entidades
 {
     public class Sala : ISql
     {
+
         #region Atributos
 
         private const string nameTableSql = "[Base_Truco].[dbo].[truco_salas]";
@@ -162,14 +163,14 @@ namespace Entidades
         }
 
         /// <summary>
-        /// Agrega una sala a la base de datos
+        /// Agrega una sala a la base de datos. nameSala, nameJ1, nameJ2, fk_Usuario, estado, fk_Juego
         /// </summary>
         /// <returns>true si se pudo agregar, false sino</returns>
         public bool Insert_Sql()
         {
             string comando = $"insert into {nameTableSql} " +
-                $"(name_sala, name_j1, name_j2, fk_usuario, fecha, estado)" +
-                $"values('{this.nameSala}', '{this.nameJ1}', '{this.nameJ2}', {this.fk_Usuario}, GETDATE(), '{this.estado}')";
+                $"(name_sala, name_j1, name_j2, fk_usuario, fecha, estado, fk_juego)" +
+                $"values('{this.nameSala}', '{this.nameJ1}', '{this.nameJ2}', {this.fk_Usuario}, GETDATE(), '{this.estado}', {this.fk_resultado})";
 
             bool retorno = ControlSql.RealizarAccionSql(comando);
 

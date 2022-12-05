@@ -20,9 +20,9 @@ namespace FormTruco
 
         private const int JUGADOR_1 = 1;
         private const int JUGADOR_2 = 2;
-        private int id;
-        private Sala sala;
-        private Resultado resultado;
+        //private int id;
+        //private Sala sala;
+        //private Resultado resultado;
         private string nameJ1;
         private string nameJ2;
         private int contadorManos;
@@ -59,18 +59,22 @@ namespace FormTruco
 
         #region Inicio Form
 
-        public FrmJuegoTruco(Resultado resultado,Sala sala)
+        public FrmJuegoTruco()
         {
             InitializeComponent();
-            this.sala = sala;
-            this.resultado = resultado;
+        }
+
+        public FrmJuegoTruco(Resultado resultado,Sala sala) : this()
+        {
+            //this.sala = sala;
+            //this.resultado = resultado;
             this.nameJ1 = resultado.NameJ1;
             this.nameJ2 = resultado.NameJ2;
         }
         
         private void FrmJuegoTruco_Load(object sender, EventArgs e)
         {
-            this.id = this.resultado.Id;
+            //this.id = this.resultado.Id;
             //this.id = generadorId;
             this.conteoTime = 0;
             this.minutos = 0;
@@ -133,7 +137,7 @@ namespace FormTruco
 
         #region Propiedades
 
-        public int Id { get { return this.id; } }
+        //public int Id { get { return this.id; } }
 
         public Resultado Resultado { get { return this.Resultado; } }
 
@@ -1504,49 +1508,49 @@ namespace FormTruco
 
         private void CargarALaBaseDatos()
         {
-            if(!this.resultado.Update_Sql())
-            {
-                MessageBox.Show("Error al cargar el resultado a la base de datos", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
+            //if(!this.resultado.Update_Sql())
+            //{
+            //    MessageBox.Show("Error al cargar el resultado a la base de datos", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            //}
         }
 
         private void CambiarResultado()
         {
-            this.resultado.PuntosJ1 += this.puntosJ1;
-            this.resultado.PuntosJ2 += this.puntosJ2;
+            //this.resultado.PuntosJ1 += this.puntosJ1;
+            //this.resultado.PuntosJ2 += this.puntosJ2;
             this.CambiarEstadoResultado();
         }
 
         private void CambiarEstadoResultado()
         {
-            if(this.resultado.PuntosJ1 > this.resultado.PuntosJ2)
-            {
-                this.resultado.Estado = eResultado.Ganando_J1;
-            }
-            else if(this.resultado.PuntosJ2 > this.resultado.PuntosJ1)
-            {
-                this.resultado.Estado = eResultado.Ganando_J2;
-            }
-            else if (this.resultado.PuntosJ1 == this.resultado.PuntosJ2)
-            {
-                this.resultado.Estado = eResultado.Empatando;
-            }
+            //if(this.resultado.PuntosJ1 > this.resultado.PuntosJ2)
+            //{
+            //    this.resultado.Estado = eResultado.Ganando_J1;
+            //}
+            //else if(this.resultado.PuntosJ2 > this.resultado.PuntosJ1)
+            //{
+            //    this.resultado.Estado = eResultado.Ganando_J2;
+            //}
+            //else if (this.resultado.PuntosJ1 == this.resultado.PuntosJ2)
+            //{
+            //    this.resultado.Estado = eResultado.Empatando;
+            //}
         }
 
         private void CambiarEstadoResultadoTerminadoPartido()
         {
-            if (this.resultado.PuntosJ1 > this.resultado.PuntosJ2)
-            {
-                this.resultado.Estado = eResultado.Ganador_J1;
-            }
-            else if (this.resultado.PuntosJ2 > this.resultado.PuntosJ1)
-            {
-                this.resultado.Estado = eResultado.Ganador_J2;
-            }
-            else if (this.resultado.PuntosJ1 == this.resultado.PuntosJ2)
-            {
-                this.resultado.Estado = eResultado.Empate;
-            }
+            //if (this.resultado.PuntosJ1 > this.resultado.PuntosJ2)
+            //{
+            //    this.resultado.Estado = eResultado.Ganador_J1;
+            //}
+            //else if (this.resultado.PuntosJ2 > this.resultado.PuntosJ1)
+            //{
+            //    this.resultado.Estado = eResultado.Ganador_J2;
+            //}
+            //else if (this.resultado.PuntosJ1 == this.resultado.PuntosJ2)
+            //{
+            //    this.resultado.Estado = eResultado.Empate;
+            //}
         }
 
         #endregion

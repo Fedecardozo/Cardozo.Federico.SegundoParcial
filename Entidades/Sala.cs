@@ -62,10 +62,10 @@ namespace Entidades
 
         #region Propiedades
 
-        public string NameJ1 { get { return this.nameJ1; } set { this.nameJ1 = value; } }
-        public string NameJ2 { get { return this.nameJ2; } set { this.nameJ2 = value; } }
-        public string NameSala { get { return this.nameSala; } set { this.nameSala = value; } }
-        public int Id { get { return this.id; } set { this.id = value; } }
+        public string Nombre_J1 { get { return this.nameJ1; } set { this.nameJ1 = value; } }
+        public string Nombre_J2 { get { return this.nameJ2; } set { this.nameJ2 = value; } }
+        public string Nombre_Sala { get { return this.nameSala; } set { this.nameSala = value; } }
+        public int Id { get { return this.id; } /*set { this.id = value; } */}
         public int Fk_Usuario { get { return this.fk_Usuario; } set { this.fk_Usuario = value; } }
         public int Fk_Resultado { get { return this.fk_resultado; } set { this.fk_resultado = value; } }
         public DateTime Fecha { get { return this.fecha; } }

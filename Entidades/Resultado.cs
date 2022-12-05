@@ -88,15 +88,14 @@ namespace Entidades
         {
             Resultado objResultado;
 
-            int id = (int)ControlSql.Lector["id"];
-            string nameJ1 = ControlSql.Lector["name_j1"].ToString();
-            string nameJ2 = ControlSql.Lector["name_j2"].ToString();
-            int puntosJ1 = (int)ControlSql.Lector["puntos_j1"];
-            int puntosJ2 = (int)ControlSql.Lector["puntos_j2"];
-            eResultado resultado = Resultado.ObtenerResultado(ControlSql.Lector["resultado"].ToString());
-
             if (ControlSql.Lector.Read())
             {
+                int id = (int)ControlSql.Lector["id"];
+                string nameJ1 = ControlSql.Lector["name_j1"].ToString();
+                string nameJ2 = ControlSql.Lector["name_j2"].ToString();
+                int puntosJ1 = (int)ControlSql.Lector["puntos_j1"];
+                int puntosJ2 = (int)ControlSql.Lector["puntos_j2"];
+                eResultado resultado = Resultado.ObtenerResultado(ControlSql.Lector["resultado"].ToString());
                 objResultado = new Resultado(id, nameJ1, nameJ2, puntosJ1, puntosJ2, resultado);
             }
             else

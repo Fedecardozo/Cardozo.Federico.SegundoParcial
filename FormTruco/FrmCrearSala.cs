@@ -18,6 +18,8 @@ namespace FormTruco
 
         //private List<Sala> salas;
         private Usuario usuario;
+        private int indexSeleccionadoDtvg;
+        private DataGridViewCellCollection filaSeleccionada;
 
         #endregion
 
@@ -31,8 +33,13 @@ namespace FormTruco
 
         private void FrmCrearSala_Load(object sender, EventArgs e)
         {
-            FormPrincipal.AvisoCambiosSql += () => this.btnActualizar_Click(sender,e);
-            this.CargarSalas();
+            //FormPrincipal.AvisoCambiosSql += () => this.btnActualizar_Click(sender,e);
+            //this.CargarSalas();
+            //if(this.dataGridViewSalas.Rows.Count > 0)
+            //{
+            //    this.indexSeleccionadoDtvg = 0;
+            //    this.filaSeleccionada = this.dataGridViewSalas.Rows[this.indexSeleccionadoDtvg].Cells;
+            //}
         }
 
         #endregion
@@ -57,7 +64,7 @@ namespace FormTruco
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            this.dataGridViewSalas.Rows.Clear();
+            //this.dataGridViewSalas.Rows.Clear();
             this.CargarSalas();
         }
 
@@ -78,7 +85,7 @@ namespace FormTruco
                     //Solo se muestran las que estan disponibles o en juego
                     if(item.Estado == EestadoPartida.Disponible || item.Estado == EestadoPartida.En_juego)
                     {
-                        this.dataGridViewSalas.Rows.Add(item.Id, item.NameSala, item.Estado, item.NameJ1, item.NameJ2,0,item.Fk_Resultado);
+                        //this.dataGridViewSalas.Rows.Add(item.Id,item.Fk_Usuario,item.NameSala, item.Estado, item.NameJ1, item.NameJ2,0,item.Fk_Resultado,item.Fecha);
                     }
                 }
             }
@@ -113,7 +120,29 @@ namespace FormTruco
 
         private void IniciarPartida()
         {
-            MessageBox.Show("Hola");
+            try
+            {
+                if(this.ObtenerSalaDataGrid(out Sala sala) && sala.Estado == EestadoPartida.Disponible)
+                {
+                    //Inicia una partida, mostrando el form del truco 
+                    FrmJuegoTruco truco = new FrmJuegoTruco();
+
+                    //Cambiar estado de la partida en la base de datos
+                    sala.Estado = EestadoPartida.En_juego;
+                    if(sala.Update_Sql())
+                    {
+                        FormPrincipal.EnviarAvisoCambioSql();
+                    }
+
+                    //Se deberia crear en un hilo secundario, asi despues se puede cancelar
+                    truco.Show();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No hay salas creadas para jugar","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+
         }
 
         private void CancelarPartida()
@@ -126,7 +155,43 @@ namespace FormTruco
 
         }
 
+        private bool ObtenerSalaDataGrid(out Sala sala)
+        {
+            bool retorno = true;
+
+            try
+            {
+                int id = (int)this.filaSeleccionada["id"].Value;
+                string nameJ1 = (string)this.filaSeleccionada["J1"].Value;
+                string nameJ2 = (string)this.filaSeleccionada["J2"].Value;
+                string nameSala = (string)this.filaSeleccionada["nameSala"].Value;
+                int fk_juego = (int)this.filaSeleccionada["id_resultado"].Value;
+                int fk_usuario = (int)this.filaSeleccionada["fk_usuario"].Value;
+                EestadoPartida estado = (EestadoPartida)this.filaSeleccionada["estado"].Value;
+                DateTime fecha = (DateTime)this.filaSeleccionada["fecha"].Value;
+
+                sala = new Sala(id,nameJ1,nameJ2,nameSala,fk_usuario,estado,fk_juego,fecha);
+            }
+            catch (Exception)
+            {
+                retorno = false;
+                sala = null;
+            }
+
+            return retorno;
+        }
+
         #endregion
 
+        #region Evento click dataGrid
+
+        private void dataGridViewSalas_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //this.indexSeleccionadoDtvg = this.dataGridViewSalas.CurrentRow.Index;
+            //this.filaSeleccionada = this.dataGridViewSalas.Rows[this.indexSeleccionadoDtvg].Cells;
+            //MessageBox.Show(["estado"].Value.ToString());
+        }
+
+        #endregion
     }
 }

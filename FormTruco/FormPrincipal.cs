@@ -29,7 +29,7 @@ namespace FormTruco
         private FrmInicio formInicio;
         private FrmCrearSala formSala;
         private Form formActivo;
-        private FrmHistorial frmHistorial;
+        private FrmDataGrid frmDataHistorial;
 
         #endregion
 
@@ -48,7 +48,7 @@ namespace FormTruco
             this.IniciarHilo();
             this.formInicio = new FrmInicio(this.usuario);
             this.formSala = new FrmCrearSala(this.usuario);
-            this.frmHistorial = new FrmHistorial();
+            this.frmDataHistorial = new FrmDataGrid();
             this.formActivo = this.formInicio;
             this.MostrarFormulario(this.formInicio);
         }
@@ -78,8 +78,8 @@ namespace FormTruco
 
         private void btnHistorial_Click(object sender, EventArgs e)
         {
-            this.frmHistorial.CargarHistorial();
-            this.MostrarFormulario(this.frmHistorial);
+            //this.frmHistorial.CargarHistorial();
+            this.MostrarFormulario(this.frmDataHistorial);
         }
 
         #endregion

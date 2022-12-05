@@ -18,6 +18,7 @@ namespace FormTruco
 
         private Usuario usuario;
         private Sala salaSeleccionada;
+        private Resultado resultadoSeleccionado;
         private int indexSeleccionadoDtvg;
 
         #endregion
@@ -80,11 +81,9 @@ namespace FormTruco
             }
         }
 
-
         #endregion
 
         #region Metodos
-
 
         /// <summary>
         /// Carga la lista de salas en el data grid y oculta el id y las forenkeys.
@@ -144,7 +143,7 @@ namespace FormTruco
                 if(this.salaSeleccionada.Estado == EestadoPartida.Disponible)
                 {
                     //Inicia una partida, mostrando el form del truco 
-                    FrmJuegoTruco truco = new FrmJuegoTruco();
+                    FrmJuegoTruco truco = new FrmJuegoTruco(this.resultadoSeleccionado, this.salaSeleccionada);
 
                     //Cambiar estado de la partida en la base de datos
                     this.salaSeleccionada.Estado = EestadoPartida.En_juego;
@@ -164,12 +163,9 @@ namespace FormTruco
 
         }
 
+        #endregion
 
-        private void CancelarPartida()
-        {
-
-        }
-
+        #region Obtener sala y resultado
 
         /// <summary>
         /// Obtiene la sala seleccionada del data grid.
@@ -177,11 +173,12 @@ namespace FormTruco
         /// <returns>true si no rompio, false si rompio</returns>
         private bool ObtenerSalaDataGrid()
         {
-            bool retorno = true;
+            bool retorno;
 
             try
             {
                 this.salaSeleccionada = (Sala)this.dataGridViewSalas.Rows[this.indexSeleccionadoDtvg].DataBoundItem;
+                retorno = this.ObtenerResultado();
             }
             catch (Exception)
             {
@@ -190,7 +187,16 @@ namespace FormTruco
 
             return retorno;
         }
+        
 
+        /// <summary>
+        /// Obtengo el resultado seleccionado del data Grid por medio de la base de datos
+        /// </summary>
+        /// <returns>True ok, false fallo</returns>
+        private bool ObtenerResultado()
+        {
+            return Resultado.ObtenerResultadoId_Sql(this.salaSeleccionada.Fk_Resultado,out this.resultadoSeleccionado);
+        }
 
         #endregion
 

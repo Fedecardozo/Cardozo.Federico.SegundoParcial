@@ -12,7 +12,7 @@ namespace Entidades
         #region Atributos
 
         private const string nameTableSql = "[Base_Truco].[dbo].[truco_salas]";
-        private static int ultimoId;
+        //private static int ultimoId;
         private int id;
         private string nameJ1;
         private string nameJ2;
@@ -25,11 +25,6 @@ namespace Entidades
         #endregion
 
         #region Constructores
-
-        static Sala()
-        {
-            Sala.ultimoId = Sala.ObtenerUltimoId_Sql();
-        }
 
         public Sala(string nameJ1,string nameJ2, string nameSala)
         {
@@ -179,6 +174,7 @@ namespace Entidades
 
         /// <summary>
         /// Agrega una sala a la base de datos. nameSala, nameJ1, nameJ2, fk_Usuario, estado, fk_Juego
+        /// Y guarda el id generado en el objeto sala
         /// </summary>
         /// <returns>true si se pudo agregar, false sino</returns>
         public bool Insert_Sql()
@@ -191,10 +187,8 @@ namespace Entidades
 
             if (retorno)
             {
-                //Sumo uno mas al ultimoId
-                Sala.ultimoId++;
                 //Guardo en la sala el id
-                this.id = Sala.ultimoId;
+                this.id = Sala.ObtenerUltimoId_Sql();
             }
 
             return retorno;

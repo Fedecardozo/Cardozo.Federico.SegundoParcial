@@ -11,7 +11,6 @@ namespace Entidades
         #region Atributos
 
         private const string nameTableSql = "[Base_Truco].[dbo].[truco_resultado]";
-        private static int ultimoId;
         private int id;
         private string nameJ1;
         private string nameJ2;
@@ -22,11 +21,6 @@ namespace Entidades
         #endregion
 
         #region Constructores
-
-        static Resultado()
-        {
-            Resultado.ultimoId = Resultado.ObtenerUltimoId_Sql();
-        }
 
         public Resultado(string nameJ1, string nameJ2, int puntosJ1, int puntosJ2, eResultado resultado)
         {
@@ -113,18 +107,6 @@ namespace Entidades
             string select = $"select id, name_j1, name_j2, puntos_j1, puntos_j2, resultado from {nameTableSql} where id = {id}";
 
             return ControlSql.RealizarConsultaSelectSql<Resultado>(select, Resultado.Select_Sql, out resultado);
-        }
-
-        private static int ObtenerUltimoId_Sql()
-        {
-            string select = "select MAX(id) as id from {nameTableSql}";
-
-            if (!ControlSql.RealizarConsultaSelectSql(select, () => { return (int)ControlSql.Lector["id"]; }, out int id))
-            {
-                id = 0;
-            }
-
-            return id;
         }
 
         private static int ObtenerId_Sql()

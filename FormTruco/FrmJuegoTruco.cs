@@ -21,8 +21,8 @@ namespace FormTruco
         private const int JUGADOR_1 = 1;
         private const int JUGADOR_2 = 2;
         //private int id;
-        //private Sala sala;
-        //private Resultado resultado;
+        private Sala sala;
+        private Resultado resultado;
         private string nameJ1;
         private string nameJ2;
         private int contadorManos;
@@ -59,15 +59,15 @@ namespace FormTruco
 
         #region Inicio Form
 
-        public FrmJuegoTruco()
+        private FrmJuegoTruco()
         {
             InitializeComponent();
         }
 
         public FrmJuegoTruco(Resultado resultado,Sala sala) : this()
         {
-            //this.sala = sala;
-            //this.resultado = resultado;
+            this.sala = sala;
+            this.resultado = resultado;
             this.nameJ1 = resultado.NameJ1;
             this.nameJ2 = resultado.NameJ2;
         }
@@ -580,7 +580,7 @@ namespace FormTruco
 
         #endregion
 
-        #region Metodos de que se canto
+        #region Metodos de que se canto uso Action
 
         /// <summary>
         /// Si se canto algunos de tipos de envido activa el action
@@ -588,7 +588,8 @@ namespace FormTruco
         /// <param name="action"></param>
         private void AccionarEnvido(Action action)
         {
-            if (this.QueSeCanto == EQueSeCanto.Envido || this.QueSeCanto == EQueSeCanto.RealEnvido || this.QueSeCanto == EQueSeCanto.FaltaEnvido)
+            if (action is not null &&
+                (this.QueSeCanto == EQueSeCanto.Envido || this.QueSeCanto == EQueSeCanto.RealEnvido || this.QueSeCanto == EQueSeCanto.FaltaEnvido))
             {
                 action.Invoke();
 
@@ -602,7 +603,8 @@ namespace FormTruco
         /// <param name="action"></param>
         private void AccionarTruco(Action action)
         {
-            if (this.QueSeCanto == EQueSeCanto.Truco || this.QueSeCanto == EQueSeCanto.ReTruco || this.QueSeCanto == EQueSeCanto.ValeCuatro)
+            if (action is not null &&
+                (this.QueSeCanto == EQueSeCanto.Truco || this.QueSeCanto == EQueSeCanto.ReTruco || this.QueSeCanto == EQueSeCanto.ValeCuatro))
             {
                 action.Invoke();
             }
@@ -1508,49 +1510,54 @@ namespace FormTruco
 
         private void CargarALaBaseDatos()
         {
-            //if(!this.resultado.Update_Sql())
-            //{
-            //    MessageBox.Show("Error al cargar el resultado a la base de datos", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
-            //}
+            if (!this.resultado.Update_Sql())
+            {
+                MessageBox.Show("Error al cargar el resultado a la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                //Aviso al form principal que hubo cambios en la base de datos
+                FormPrincipal.EnviarAvisoCambioSql();
+            }
         }
 
         private void CambiarResultado()
         {
-            //this.resultado.PuntosJ1 += this.puntosJ1;
-            //this.resultado.PuntosJ2 += this.puntosJ2;
+            this.resultado.PuntosJ1 += this.puntosJ1;
+            this.resultado.PuntosJ2 += this.puntosJ2;
             this.CambiarEstadoResultado();
         }
 
         private void CambiarEstadoResultado()
         {
-            //if(this.resultado.PuntosJ1 > this.resultado.PuntosJ2)
-            //{
-            //    this.resultado.Estado = eResultado.Ganando_J1;
-            //}
-            //else if(this.resultado.PuntosJ2 > this.resultado.PuntosJ1)
-            //{
-            //    this.resultado.Estado = eResultado.Ganando_J2;
-            //}
-            //else if (this.resultado.PuntosJ1 == this.resultado.PuntosJ2)
-            //{
-            //    this.resultado.Estado = eResultado.Empatando;
-            //}
+            if (this.resultado.PuntosJ1 > this.resultado.PuntosJ2)
+            {
+                this.resultado.Estado = eResultado.Ganando_J1;
+            }
+            else if (this.resultado.PuntosJ2 > this.resultado.PuntosJ1)
+            {
+                this.resultado.Estado = eResultado.Ganando_J2;
+            }
+            else if (this.resultado.PuntosJ1 == this.resultado.PuntosJ2)
+            {
+                this.resultado.Estado = eResultado.Empatando;
+            }
         }
 
         private void CambiarEstadoResultadoTerminadoPartido()
         {
-            //if (this.resultado.PuntosJ1 > this.resultado.PuntosJ2)
-            //{
-            //    this.resultado.Estado = eResultado.Ganador_J1;
-            //}
-            //else if (this.resultado.PuntosJ2 > this.resultado.PuntosJ1)
-            //{
-            //    this.resultado.Estado = eResultado.Ganador_J2;
-            //}
-            //else if (this.resultado.PuntosJ1 == this.resultado.PuntosJ2)
-            //{
-            //    this.resultado.Estado = eResultado.Empate;
-            //}
+            if (this.resultado.PuntosJ1 > this.resultado.PuntosJ2)
+            {
+                this.resultado.Estado = eResultado.Ganador_J1;
+            }
+            else if (this.resultado.PuntosJ2 > this.resultado.PuntosJ1)
+            {
+                this.resultado.Estado = eResultado.Ganador_J2;
+            }
+            else if (this.resultado.PuntosJ1 == this.resultado.PuntosJ2)
+            {
+                this.resultado.Estado = eResultado.Empate;
+            }
         }
 
         #endregion
@@ -1559,10 +1566,16 @@ namespace FormTruco
 
         private void CambiarEstadoSala()
         {
-            //if(!Sala.ModificarSala(this.sala.Id,this.resultado.Id, EestadoPartida.Finalizada))
-            //{
-            //    MessageBox.Show("Error al cambiar el estado de la sala en la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            this.sala.Estado = EestadoPartida.Finalizada;
+            if (!this.sala.Update_Sql())
+            {
+                MessageBox.Show("Error al cambiar el estado de la sala en la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                //Aviso que hubo cambios en la base de datos
+                FormPrincipal.EnviarAvisoCambioSql();
+            }
         }
 
         #endregion

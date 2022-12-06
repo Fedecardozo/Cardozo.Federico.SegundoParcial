@@ -68,6 +68,7 @@ namespace Entidades
                 case "Ganando_J1": eResultado = eResultado.Ganando_J1; break;
                 case "Ganando_J2": eResultado = eResultado.Ganando_J2; break;
                 case "Empatando": eResultado = eResultado.Empatando; break;
+                case "Sin_Iniciar": eResultado = eResultado.Sin_Iniciar; break;
                 default: eResultado = eResultado.Cancelada; break;
             }
 

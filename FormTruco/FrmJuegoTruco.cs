@@ -55,6 +55,7 @@ namespace FormTruco
         private bool seCantoFlor;
         private bool isFlorJ1;
         private bool isFlorJ2;
+
         #endregion
 
         #region Inicio Form
@@ -1479,6 +1480,7 @@ namespace FormTruco
             respuesta = MessageBox.Show($"{this.MensajeGanador()} \n¿Desea jugar de nuevo?", "Fin del juego", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
+                this.contadorManos = 0;
                 this.ReiniciarJuego();
                 this.ReiniciarDataGrid();
             }

@@ -30,6 +30,7 @@ namespace FormTruco
         private FrmCrearSala formSala;
         private Form formActivo;
         private FrmDataGrid frmDataHistorial;
+        private FrmEstadisticas frmEstadisticas;
 
         #endregion
 
@@ -49,6 +50,7 @@ namespace FormTruco
             this.formInicio = new FrmInicio(this.usuario);
             this.formSala = new FrmCrearSala(this.usuario);
             this.frmDataHistorial = new FrmDataGrid();
+            this.frmEstadisticas = new FrmEstadisticas();
             this.formActivo = this.formInicio;
             this.MostrarFormulario(this.formInicio);
         }
@@ -80,6 +82,11 @@ namespace FormTruco
         {
             //this.frmHistorial.CargarHistorial();
             this.MostrarFormulario(this.frmDataHistorial);
+        }
+
+        private void btnEstadistica_Click(object sender, EventArgs e)
+        {
+            this.MostrarFormulario(this.frmEstadisticas);
         }
 
         #endregion
@@ -152,5 +159,6 @@ namespace FormTruco
         }
 
         #endregion
+
     }
 }

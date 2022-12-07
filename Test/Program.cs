@@ -13,7 +13,17 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            
+            List<Sala> salas;
+
+            if (Sala.DeserializarJson(out salas))
+            {
+                Console.WriteLine("Un exito!");
+
+                foreach (Sala item in salas)
+                {
+                    Console.WriteLine(item.ToString());
+                }
+            }
         }
 
     }

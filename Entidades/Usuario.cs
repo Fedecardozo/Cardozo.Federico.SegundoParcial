@@ -8,6 +8,7 @@ namespace Entidades
 {
     public class Usuario : ISql
     {
+
         #region Atributos
 
         private const string nameTableSql = "[Base_Truco].[dbo].[truco_usuarios]";
@@ -193,6 +194,8 @@ namespace Entidades
         }
 
         #endregion
+
+
 
     }
 }

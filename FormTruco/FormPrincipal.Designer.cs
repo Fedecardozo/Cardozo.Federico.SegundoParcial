@@ -123,6 +123,7 @@ namespace FormTruco
             this.btnEstadistica.TabIndex = 2;
             this.btnEstadistica.Text = "Estadistica";
             this.btnEstadistica.UseVisualStyleBackColor = false;
+            this.btnEstadistica.Click += new System.EventHandler(this.btnEstadistica_Click);
             // 
             // btnCrearSala
             // 

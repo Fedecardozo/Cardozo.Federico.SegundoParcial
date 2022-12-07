@@ -11,6 +11,7 @@ namespace Entidades
 
         #region Atributos
 
+        private const string path = @"..\..\..\..\Archivos\Salas.json";
         private const string nameTableSql = "[Base_Truco].[dbo].[truco_salas]";
         //private static int ultimoId;
         private int id;
@@ -225,6 +226,23 @@ namespace Entidades
 
             return sb.ToString();
         }
+
+        #endregion
+
+        #region Json
+
+        public static bool DeserializarJson(out List<Sala> salas)
+        {
+
+            return Serializacion.DeserializarJson<Sala>(path, out salas);
+
+        }
+
+        public static bool SerializarJson_Sql()
+        {
+            return Sala.ObtenerListaSala_Sql(out List<Sala> salas) && Serializacion.SerializarJson<Sala>(path, salas);
+        }
+
 
         #endregion
 

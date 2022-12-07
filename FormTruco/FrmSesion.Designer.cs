@@ -137,7 +137,7 @@ namespace FormTruco
             // pictureBoxIcon
             // 
             this.pictureBoxIcon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.pictureBoxIcon.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxIcon.Image")));
+            this.pictureBoxIcon.Image = global::FormTruco.Properties.Resources.jugando_a_las_cartas__1_;
             this.pictureBoxIcon.Location = new System.Drawing.Point(26, 66);
             this.pictureBoxIcon.Name = "pictureBoxIcon";
             this.pictureBoxIcon.Size = new System.Drawing.Size(183, 216);

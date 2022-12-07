@@ -543,6 +543,16 @@ namespace FormTruco.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap jugando_a_las_cartas__1_ {
+            get {
+                object obj = ResourceManager.GetObject("jugando-a-las-cartas (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mazo {
             get {
                 object obj = ResourceManager.GetObject("mazo", resourceCulture);

@@ -16,31 +16,30 @@ namespace Entidades
         private string apellido;
         private string password;
         private int id;
+        private string nameUser;
 
         #endregion
 
         #region Constructor
 
-        public Usuario(string correo, string nombre, string apellido,string password)
+        public Usuario(string correo, string nombre, string apellido,string password,string nameUser)
         {
             this.correo = correo;
             this.nombre = nombre;
             this.apellido = apellido;
             this.password = password;
+            this.nameUser = nameUser;
         }
 
-        public Usuario(string correo, string nombre, string apellido, int id)
+        public Usuario(string correo, string nombre, string apellido, int id, string nameUser)
         {
             this.correo = correo;
             this.nombre = nombre;
             this.apellido = apellido;
             this.id = id;
+            this.nameUser = nameUser;
         }
 
-        public Usuario(string correo, string nombre, string apellido, int id, string password) : this(correo,nombre,apellido,id)
-        {
-            this.password = password;
-        }
 
         #endregion
 
@@ -50,7 +49,7 @@ namespace Entidades
         public string Nombre { get { return this.nombre; } set { this.nombre = value; } }
         public string Apellido { get { return this.apellido; } set { this.apellido = value; } }
         public int Id { get { return this.id; } }
-        public string Password {set { this.correo = value; } }
+        public string Name_User {get { return this.nameUser; } }
 
         #endregion
 
@@ -92,7 +91,8 @@ namespace Entidades
                 string correo = ControlSql.Lector[1].ToString();
                 string nombre = ControlSql.Lector[2].ToString();
                 string apellido = ControlSql.Lector[3].ToString();
-                usuario = new Usuario(correo, nombre, apellido, id);
+                string nameUser = ControlSql.Lector["name_user"].ToString();
+                usuario = new Usuario(correo, nombre, apellido, id,nameUser);
             }
             else
             {
@@ -111,7 +111,7 @@ namespace Entidades
         /// <returns>true si esta, false sino</returns>
         public static bool ConsultarCorreo(string correo,string password, out Usuario user)
         {
-            string select = $"select id, correo, nombre, apellido from {nameTableSql} where correo = '{correo}' and password = '{password}'";
+            string select = $"select id, correo, nombre, apellido, name_user from {nameTableSql} where correo = '{correo}' and password = '{password}'";
             bool retorno = ControlSql.RealizarConsultaSelectSql(select, Usuario.Select_Sql, out user);
             
             return retorno && user is not null;
@@ -125,7 +125,7 @@ namespace Entidades
         /// <returns></returns>
         public static bool ObtenerUsuarioId_Sql(int id,out Usuario user)
         {
-            string select = $"select id, correo, nombre, apellido from {nameTableSql} where id = {id}";
+            string select = $"select id, correo, nombre, apellido, name_user from {nameTableSql} where id = {id}";
             return ControlSql.RealizarConsultaSelectSql(select, Usuario.Select_Sql, out user);
         }
 
@@ -136,7 +136,7 @@ namespace Entidades
        /// <returns>true si obtuvo la lista, false sino</returns>
         public static bool ObtenerListaUsuarios(out List<Usuario> users)
         {
-            string select = $"select id, correo, nombre, apellido from {nameTableSql} ";
+            string select = $"select id, correo, nombre, apellido, name_user from {nameTableSql} ";
 
             return ControlSql.RealizarConsultaSelectSql<List<Usuario>>(select, Usuario.SelectListaUsuarios_Sql, out users);
         }
@@ -152,7 +152,7 @@ namespace Entidades
         public bool Update_Sql()
         {
             string update = $"update {nameTableSql} set correo = '{this.correo}', " +
-                $"nombre = '{this.nombre}',apellido = '{this.apellido}' where id = {this.id}";
+                $"nombre = '{this.nombre}',apellido = '{this.apellido}', name_user where id = {this.id}";
 
             return ControlSql.RealizarAccionSql(update);
         }
@@ -164,8 +164,8 @@ namespace Entidades
         public bool Insert_Sql()
         {
             string comando = $"insert into {nameTableSql} " +
-                $"(correo,nombre,apellido,password)" +
-                $"values('{this.correo}', '{this.nombre}', '{this.apellido}', '{this.password}')";
+                $"(correo,nombre,apellido,password,name_user)" +
+                $"values('{this.correo}', '{this.nombre}', '{this.apellido}', '{this.password}','{this.nameUser}')";
 
             bool retorno = ControlSql.RealizarAccionSql(comando);
 
@@ -189,7 +189,7 @@ namespace Entidades
 
         public override string ToString()
         {
-            return $"Correo: {this.correo} \nNombre: {this.nombre} \nApellido: {this.apellido}";
+            return $"Correo: {this.correo} \nNombre: {this.nombre} \nApellido: {this.apellido} \nUsuario: {this.Name_User}";
         }
 
         #endregion

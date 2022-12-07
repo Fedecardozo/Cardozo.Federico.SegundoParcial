@@ -25,6 +25,7 @@ namespace FormTruco
             this.labelCorreo.Text = this.usuario.Correo;
             this.labelNombre.Text = this.usuario.Nombre;
             this.labelApellido.Text = this.usuario.Apellido;
+            this.labelNameUser.Text = this.usuario.Name_User;
         }
     }
 }

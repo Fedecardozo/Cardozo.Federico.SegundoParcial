@@ -69,8 +69,8 @@ namespace FormTruco
             {
                 foreach (Usuario item in usuarios)
                 {
-                    this.comboBoxJ1.Items.Add(item.Nombre);
-                    this.comboBoxJ2.Items.Add(item.Nombre);
+                    this.comboBoxJ1.Items.Add(item.Name_User);
+                    this.comboBoxJ2.Items.Add(item.Name_User);
                 }
             }
         }

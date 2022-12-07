@@ -91,7 +91,7 @@ namespace FormTruco
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            if (this.salaSeleccionada.Estado == EestadoPartida.En_juego)
+            if (this.salaSeleccionada.Estado == EestadoPartida.En_juego || this.salaSeleccionada.Estado == EestadoPartida.Disponible)
             {
                 this.salaSeleccionada.Estado = EestadoPartida.Cancelada;
                 this.resultadoSeleccionado.Estado = eResultado.Cancelada;

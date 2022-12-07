@@ -31,10 +31,11 @@ namespace FormTruco
             }
             else 
             {
-                Usuario user = new Usuario(this.textBoxCorreo.Text, this.textBoxNombre.Text, this.textBoxApellido.Text, this.textBoxPasswd.Text);
+                Usuario user = new Usuario(this.textBoxCorreo.Text, this.textBoxNombre.Text, this.textBoxApellido.Text, 
+                    this.textBoxPasswd.Text,this.textBoxUsuario.Text);
                 if(user.Insert_Sql())
                 {
-                    MessageBox.Show("Se registro con exito!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Se registro con exito!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     this.Close();
                 }
                 else

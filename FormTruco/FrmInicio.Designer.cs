@@ -38,6 +38,8 @@ namespace FormTruco
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBoxPerfil = new System.Windows.Forms.PictureBox();
+            this.labelNameUser = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPerfil)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +61,7 @@ namespace FormTruco
             this.labelApellido.BackColor = System.Drawing.Color.Transparent;
             this.labelApellido.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelApellido.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.labelApellido.Location = new System.Drawing.Point(473, 250);
+            this.labelApellido.Location = new System.Drawing.Point(470, 231);
             this.labelApellido.Name = "labelApellido";
             this.labelApellido.Size = new System.Drawing.Size(115, 41);
             this.labelApellido.TabIndex = 18;
@@ -71,7 +73,7 @@ namespace FormTruco
             this.labelNombre.BackColor = System.Drawing.Color.Transparent;
             this.labelNombre.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelNombre.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.labelNombre.Location = new System.Drawing.Point(473, 189);
+            this.labelNombre.Location = new System.Drawing.Point(470, 170);
             this.labelNombre.Name = "labelNombre";
             this.labelNombre.Size = new System.Drawing.Size(117, 41);
             this.labelNombre.TabIndex = 17;
@@ -83,7 +85,7 @@ namespace FormTruco
             this.labelCorreo.BackColor = System.Drawing.Color.Transparent;
             this.labelCorreo.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelCorreo.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.labelCorreo.Location = new System.Drawing.Point(456, 132);
+            this.labelCorreo.Location = new System.Drawing.Point(453, 113);
             this.labelCorreo.Name = "labelCorreo";
             this.labelCorreo.Size = new System.Drawing.Size(242, 41);
             this.labelCorreo.TabIndex = 16;
@@ -95,7 +97,7 @@ namespace FormTruco
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label3.Location = new System.Drawing.Point(334, 250);
+            this.label3.Location = new System.Drawing.Point(331, 231);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(135, 41);
             this.label3.TabIndex = 15;
@@ -107,7 +109,7 @@ namespace FormTruco
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label2.Location = new System.Drawing.Point(334, 189);
+            this.label2.Location = new System.Drawing.Point(331, 170);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(135, 41);
             this.label2.TabIndex = 14;
@@ -119,7 +121,7 @@ namespace FormTruco
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label1.Location = new System.Drawing.Point(334, 132);
+            this.label1.Location = new System.Drawing.Point(331, 113);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 41);
             this.label1.TabIndex = 13;
@@ -137,12 +139,38 @@ namespace FormTruco
             this.pictureBoxPerfil.TabIndex = 12;
             this.pictureBoxPerfil.TabStop = false;
             // 
+            // labelNameUser
+            // 
+            this.labelNameUser.AutoSize = true;
+            this.labelNameUser.BackColor = System.Drawing.Color.Transparent;
+            this.labelNameUser.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelNameUser.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.labelNameUser.Location = new System.Drawing.Point(470, 291);
+            this.labelNameUser.Name = "labelNameUser";
+            this.labelNameUser.Size = new System.Drawing.Size(121, 41);
+            this.labelNameUser.TabIndex = 21;
+            this.labelNameUser.Text = "Chanito";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.label5.Location = new System.Drawing.Point(331, 291);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(126, 41);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "Usuario:";
+            // 
             // FrmInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(732, 364);
+            this.Controls.Add(this.labelNameUser);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.labelBienvenido);
             this.Controls.Add(this.labelApellido);
             this.Controls.Add(this.labelNombre);
@@ -151,7 +179,6 @@ namespace FormTruco
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBoxPerfil);
-            this.MinimumSize = new System.Drawing.Size(732, 364);
             this.Name = "FrmInicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
@@ -172,5 +199,7 @@ namespace FormTruco
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBoxPerfil;
+        private System.Windows.Forms.Label labelNameUser;
+        private System.Windows.Forms.Label label5;
     }
 }

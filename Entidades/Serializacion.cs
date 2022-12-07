@@ -48,6 +48,30 @@ namespace Entidades
             return retorno;
         }
 
+
+        public static bool DeserializarJson2<T>(string path, out T listJson)
+        {
+            bool retorno = true;
+            listJson = default;
+
+            try
+            {
+
+                string json = File.ReadAllText(path);
+
+                listJson = JsonSerializer.Deserialize<T>(json);
+                
+            }
+            catch (Exception)
+            {
+                //Lanzar una expecion propia
+                Console.WriteLine("Fallo");
+                retorno = false;
+            }
+
+            return retorno;
+        }
+
         #endregion
 
         #region Serializar Json

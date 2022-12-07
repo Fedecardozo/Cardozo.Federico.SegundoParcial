@@ -13,9 +13,19 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            List<Sala> salas;
+            List<Usuario> usuarios;
 
-            if (Sala.DeserializarJson(out salas))
+            if (Usuario.DeserializarJson(out usuarios))
+            {
+                Console.WriteLine("Un exito!");
+
+                foreach (Usuario item in usuarios)
+                {
+                    Console.WriteLine(item.ToString());
+                }
+            }
+
+            if (Sala.DeserializarJson(out List<Sala> salas))
             {
                 Console.WriteLine("Un exito!");
 
@@ -24,6 +34,7 @@ namespace Test
                     Console.WriteLine(item.ToString());
                 }
             }
+
         }
 
     }

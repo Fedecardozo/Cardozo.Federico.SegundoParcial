@@ -10,7 +10,8 @@ namespace Entidades
     {
 
         #region Atributos
-
+ 
+        private const string path = @"..\..\..\..\Archivos\Usuarios.json";
         private const string nameTableSql = "[Base_Truco].[dbo].[truco_usuarios]";
         private string correo;
         private string nombre;
@@ -23,6 +24,15 @@ namespace Entidades
 
         #region Constructor
 
+        public Usuario(string correo, string nombre, string apellido, int id, string nameUser)
+        {
+            this.correo = correo;
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.id = id;
+            this.nameUser = nameUser;
+        }
+
         public Usuario(string correo, string nombre, string apellido,string password,string nameUser)
         {
             this.correo = correo;
@@ -32,14 +42,6 @@ namespace Entidades
             this.nameUser = nameUser;
         }
 
-        public Usuario(string correo, string nombre, string apellido, int id, string nameUser)
-        {
-            this.correo = correo;
-            this.nombre = nombre;
-            this.apellido = apellido;
-            this.id = id;
-            this.nameUser = nameUser;
-        }
 
 
         #endregion
@@ -195,7 +197,22 @@ namespace Entidades
 
         #endregion
 
+        #region Json
 
+        public static bool DeserializarJson(out List<Usuario> usuarios)
+        {
+
+            return Serializacion.DeserializarJson2<List<Usuario>>(path, out usuarios);
+
+        }
+
+        public static bool SerializarJson_Sql()
+        {
+            return Usuario.ObtenerListaUsuarios(out List<Usuario> usuarios) && Serializacion.SerializarJson<Usuario>(path, usuarios);
+        }
+
+
+        #endregion
 
     }
 }

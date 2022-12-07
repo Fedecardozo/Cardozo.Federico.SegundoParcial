@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Entidades.Carta">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAEgAAAAAAACAAAAIAAAAEAAAABAiQ=</HashCode>
+      <FileName>Carta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.JuegoDeCartas">
+    <Position X="3.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAQAAACAAAACAAAAAAACAAACAAAAMg=</HashCode>
+      <FileName>JuegoDeCartas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.MazoCartas">
+    <Position X="6.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAgEAAESAkgAAAIAAAAAQAAAABAABAAAAE=</HashCode>
+      <FileName>MazoCartas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Resultado">
+    <Position X="9" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AIATBAAQAAAREBAEAAAQAAAACgABAAAAAAgAAACAAgg=</HashCode>
+      <FileName>Resultado.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Entidades.Sala">
+    <Position X="3.75" Y="4.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ABCTDIAQAUAQAAEkAQACAAAAAQABABAgAAAAAAAAEho=</HashCode>
+      <FileName>Sala.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Entidades.Usuario">
+    <Position X="0.5" Y="4.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AACTFkAAAEQQAACEAAASgAAgAIABAACQAAAAAgAAAgA=</HashCode>
+      <FileName>Usuario.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Entidades.ISql">
+    <Position X="6.5" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAQBAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ISql.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -112,8 +112,9 @@ namespace Entidades
         public static bool ConsultarCorreo(string correo,string password, out Usuario user)
         {
             string select = $"select id, correo, nombre, apellido from {nameTableSql} where correo = '{correo}' and password = '{password}'";
-
-            return ControlSql.RealizarConsultaSelectSql(select, Usuario.Select_Sql,out user);
+            bool retorno = ControlSql.RealizarConsultaSelectSql(select, Usuario.Select_Sql, out user);
+            
+            return retorno && user is not null;
         } 
 
         /// <summary>

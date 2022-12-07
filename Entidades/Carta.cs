@@ -17,17 +17,17 @@ namespace Entidades
 
         public ETipoCarta Tipo { get { return this.tipo; } }
 
-        public int ValorCartaEnvido 
-        { 
-            get 
+        public int ValorCartaEnvido
+        {
+            get
             {
                 int valor = this.Numero;
-                if(valor >= 10)
+                if (valor >= 10)
                 {
                     valor = 0;
                 }
                 return valor;
-            } 
+            }
         }
 
         #endregion
@@ -65,7 +65,7 @@ namespace Entidades
 
         public static bool operator ==(Carta c1, Carta c2)
         {
-            if(c1 is not null && c2 is not null)
+            if (c1 is not null && c2 is not null)
             {
                 return c1 == c2.tipo && c1.numero == c2.numero;
             }
@@ -88,7 +88,7 @@ namespace Entidades
         {
             bool retorno = false;
 
-            if(obj is not null && obj is Carta)
+            if (obj is not null && obj is Carta)
             {
                 retorno = ((Carta)obj) == this;
             }
@@ -109,4 +109,5 @@ namespace Entidades
         #endregion
 
     }
+
 }

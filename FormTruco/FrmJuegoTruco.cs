@@ -20,7 +20,7 @@ namespace FormTruco
 
         private const int JUGADOR_1 = 1;
         private const int JUGADOR_2 = 2;
-        //private int id;
+        private int id;
         private Sala sala;
         private Resultado resultado;
         private string nameJ1;
@@ -63,6 +63,8 @@ namespace FormTruco
         private FrmJuegoTruco()
         {
             InitializeComponent();
+            //this.id = Thread.CurrentThread.ManagedThreadId;
+            this.id = 0;
         }
 
         public FrmJuegoTruco(Resultado resultado,Sala sala) : this()
@@ -138,9 +140,9 @@ namespace FormTruco
 
         #region Propiedades
 
-        //public int Id { get { return this.id; } }
+        public int Id { get { return this.id; } set { this.id = value; } }
 
-        public Resultado Resultado { get { return this.Resultado; } }
+        public Resultado Resultado { get { return this.resultado; } }
 
         #endregion
 

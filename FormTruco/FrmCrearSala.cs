@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
@@ -20,6 +21,10 @@ namespace FormTruco
         private Sala salaSeleccionada;
         private Resultado resultadoSeleccionado;
         private int indexSeleccionadoDtvg;
+        private List<Task> hilos;
+        private List<FrmJuegoTruco> listaTrucos;
+        private CancellationTokenSource cancellationToken;
+        //private Dictionary<int, CancellationTokenSource> cancellationTokens;
 
         #endregion
 
@@ -33,6 +38,9 @@ namespace FormTruco
 
         private void FrmCrearSala_Load(object sender, EventArgs e)
         {
+            this.hilos = new List<Task>();
+            this.listaTrucos = new List<FrmJuegoTruco>();
+            this.cancellationToken = new CancellationTokenSource();
             FormPrincipal.AvisoCambiosSql += this.CargarDataGrid;
             this.CargarDataGrid();
             if (this.dataGridViewSalas.Rows.Count > 0)
@@ -78,6 +86,28 @@ namespace FormTruco
             else
             {
                 MessageBox.Show($"No se pudo obtener el creador", "Error creador sala seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            if (this.salaSeleccionada.Estado == EestadoPartida.En_juego)
+            {
+                this.salaSeleccionada.Estado = EestadoPartida.Cancelada;
+                this.resultadoSeleccionado.Estado = eResultado.Cancelada;
+
+                if (this.salaSeleccionada.Update_Sql() && this.resultadoSeleccionado.Update_Sql())
+                {
+                    this.CancelarHilo();
+                    MessageBox.Show("Se cancelo con exito", "Cancelar sala", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    this.cancellationToken.Cancel();
+                    FormPrincipal.EnviarAvisoCambioSql();
+                }
+                else
+                {
+                    this.salaSeleccionada.Estado = EestadoPartida.En_juego;
+                    MessageBox.Show("Error al cancelar la sala", "Cancelar sala", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -147,13 +177,17 @@ namespace FormTruco
 
                     //Cambiar estado de la partida en la base de datos
                     this.salaSeleccionada.Estado = EestadoPartida.En_juego;
-                    if(this.salaSeleccionada.Update_Sql())
+                    this.resultadoSeleccionado.Estado = eResultado.Empatando;
+                    if (this.salaSeleccionada.Update_Sql() && this.resultadoSeleccionado.Update_Sql())
                     {
                         FormPrincipal.EnviarAvisoCambioSql();
                     }
-
+                    this.listaTrucos.Add(truco);
                     //Se deberia crear en un hilo secundario, asi despues se puede cancelar
-                    truco.Show();
+                    this.IniciarHilo(truco);
+                    //truco.Show();
+                    //this.btnCancelar.Text = $"{truco.Id}";
+
                 }
             }
             catch (Exception)
@@ -210,5 +244,58 @@ namespace FormTruco
 
         #endregion
 
+        #region Hilo Salas
+
+        private void IniciarHilo(FrmJuegoTruco truco)
+        {
+            CancellationToken token = this.cancellationToken.Token;
+            Task hilo = new Task(() => this.InvocarHilo(truco),token);
+            hilo.Start();
+            //Task hilo = Task.Run(() => this.InvocarHilo(truco));
+
+            this.hilos.Add(hilo);
+
+            //Primera idea que se me ocurrio
+            truco.Id = hilo.Id;
+            
+        }
+
+        private void InvocarHilo(FrmJuegoTruco truco)
+        {
+
+            if (this.InvokeRequired)
+            {
+                Action action = truco.Show;
+                try
+                {
+                    this.Invoke(action);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al iniciar la partida","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                truco.Show();
+            }
+        }
+
+        private void CancelarHilo()
+        {
+            this.listaTrucos.Add(new FrmJuegoTruco(this.resultadoSeleccionado,this.salaSeleccionada));
+            foreach (FrmJuegoTruco item in this.listaTrucos)
+            {
+                if (item.Resultado.Id == this.resultadoSeleccionado.Id)
+                {
+                    item.Dispose();
+                    break;
+                }
+            }
+        }
+
+        #endregion
+
+        
     }
 }

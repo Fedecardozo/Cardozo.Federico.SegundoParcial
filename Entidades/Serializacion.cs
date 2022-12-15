@@ -50,9 +50,10 @@ namespace Entidades
 
 
         public static bool DeserializarJson2<T>(string path, out T listJson)
+            where T : new()
         {
             bool retorno = true;
-            listJson = default;
+            listJson = new T();
 
             try
             {

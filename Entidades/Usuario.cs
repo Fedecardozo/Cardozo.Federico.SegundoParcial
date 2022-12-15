@@ -24,6 +24,8 @@ namespace Entidades
 
         #region Constructor
 
+       
+        [System.Text.Json.Serialization.JsonConstructor]
         public Usuario(string correo, string nombre, string apellido, int id, string nameUser)
         {
             this.correo = correo;

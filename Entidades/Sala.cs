@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Entidades
@@ -22,7 +23,7 @@ namespace Entidades
         private EestadoPartida estado;
         private int fk_resultado;
         private DateTime fecha;
-        
+
         #endregion
 
         #region Constructores
@@ -33,13 +34,13 @@ namespace Entidades
             this.nameJ2 = nameJ2;
             this.nameSala = nameSala;
         }
-
+       
         public Sala(string nameJ1, string nameJ2, string nameSala, int fk_Usuario, EestadoPartida estado) : this(nameJ1, nameJ2, nameSala)
         {
             this.fk_Usuario = fk_Usuario;
             this.estado = estado;
         }
-
+    
         public Sala(string nameJ1, string nameJ2, string nameSala, int fk_Usuario, EestadoPartida estado, int fk_resultado) 
             : this(nameJ1, nameJ2, nameSala, fk_Usuario, estado)
         {
@@ -47,7 +48,7 @@ namespace Entidades
             this.fk_resultado = fk_resultado;
         }
 
-        public Sala(int id,string nameJ1, string nameJ2, string nameSala, int fk_Usuario,EestadoPartida estado, int fk_resultado,DateTime fecha)
+        public Sala(string nameJ1, string nameJ2, string nameSala, int id, int fk_Usuario, int fk_resultado, DateTime fecha, EestadoPartida estado)
             : this(nameJ1,nameJ2,nameSala, fk_Usuario, estado, fk_resultado)
         { 
             this.id = id;
@@ -111,7 +112,7 @@ namespace Entidades
                     fk_resultado = int.Parse(readResultado);
                 }
 
-                salas.Add(new Sala(id,nameJ1, nameJ2, nameSala, fk_Usuario, estado, fk_resultado, fecha));
+                salas.Add(new Sala(nameJ1, nameJ2, nameSala, id, fk_Usuario, fk_resultado, fecha, estado));
             }
 
             return salas;

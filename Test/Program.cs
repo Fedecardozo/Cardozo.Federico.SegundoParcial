@@ -15,7 +15,7 @@ namespace Test
         {
             List<Usuario> usuarios;
 
-            if (Usuario.DeserializarJson(out usuarios))
+            if (!Usuario.DeserializarJson(out usuarios))
             {
                 Console.WriteLine("Un exito!");
 
